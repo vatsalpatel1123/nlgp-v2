@@ -14,6 +14,30 @@
   </style>
   <script src="newsletter.js" defer></script>
 
+  <!-- Baserow API Configuration -->
+  <script>
+    // Baserow Configuration
+    const BASEROW_CONFIG = {
+      baseUrl: 'https://api.baserow.io/api/database/rows/table/',
+      tableId: '580774', // Replace with your actual table ID
+      token: 'dq5ZamHGgdU0fv4BgbvUSakrh4c12idq', // Replace with your actual API token
+      fields: {
+        name: 'Name',
+        notes: 'Notes',
+        active: 'Active',
+        category: 'Category',
+        shortDescription: 'Short description',
+        image: 'image',
+        authorName: 'author name',
+        readTime: 'read time',
+        quote: 'quote',
+        mainContent: 'main content',
+        createdAt: 'created at',
+        slug: 'slug'
+      }
+    };
+  </script>
+
 
   <script>
     window._wpemojiSettings = { "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/", "ext": ".png", "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/", "svgExt": ".svg", "source": { "concatemoji": "https:\/\/brandmode.1onestrong.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1" } };
@@ -33,13 +57,14 @@
       background: none !important;
       padding: 0 !important;
     }
-                    .elementor-message-danger{
-            display: none !important;
-        }
 
-          .elementor-message-danger::before{
-            display: none;
-        }
+    .elementor-message-danger {
+      display: none !important;
+    }
+
+    .elementor-message-danger::before {
+      display: none;
+    }
   </style>
   <style id='global-styles-inline-css'>
     :root {
@@ -40134,15 +40159,16 @@
         flex-wrap: wrap
       }
     }
-          .site-logo-img {
-            max-height: 50px;
-            width: auto;
-            display: block;
-            margin: 0;
-            padding: 0;
-            border: none;
-            background: none;
-        }
+
+    .site-logo-img {
+      max-height: 50px;
+      width: auto;
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: none;
+    }
   </style>
   <style>
     /* latin-ext */
@@ -48466,8 +48492,7 @@
   <link rel="icon" href="./img/image-logo.png" sizes="32x32" />
   <link rel="icon" href="./img/image-logo.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./img/image-logo.png" />
-  <meta name="msapplication-TileImage"
-    content="./img/image-logo.png" />
+  <meta name="msapplication-TileImage" content="./img/image-logo.png" />
 </head>
 
 <body
@@ -48488,8 +48513,8 @@
             data-id="f0c84a9" data-element_type="widget" data-widget_type="theme-site-logo.default">
             <div class="elementor-widget-container">
               <a href="index.html" class="site-logo-link">
-                                <img src="img/image.png" alt="Next Level Growth Partners" class="site-logo-img">
-                            </a>
+                <img src="img/image.png" alt="Next Level Growth Partners" class="site-logo-img">
+              </a>
             </div>
           </div>
         </div>
@@ -48600,7 +48625,7 @@
         <div class="e-con-inner">
           <div class="elementor-element elementor-element-809954e e-con-full e-flex e-con e-child" data-id="809954e"
             data-element_type="container">
-           
+
           </div>
           <!-- <div
             class="elementor-element elementor-element-927ea8f elementor-widget__width-initial elementor-widget elementor-widget-elementskit-heading"
@@ -48623,10 +48648,10 @@
         </div>
       </div>
     </div>
-       
-   
 
-      
+
+
+
     <!-- <div class="elementor-element elementor-element-6a0ac55 e-flex e-con-boxed e-con e-parent" data-id="6a0ac55"
       data-element_type="container"
       data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;background_motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;background_motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;laptop&quot;,&quot;tablet&quot;],&quot;background_motion_fx_motion_fx_mouse&quot;:&quot;yes&quot;,&quot;background_motion_fx_mouseTrack_effect&quot;:&quot;yes&quot;,&quot;background_motion_fx_mouseTrack_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:1,&quot;sizes&quot;:[]}}">
@@ -48652,448 +48677,351 @@
       </div>
     </div> -->
     <script>
-        // Reading progress bar
-        window.addEventListener('scroll', function() {
-            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercentage = (scrollTop / scrollHeight) * 100;
-            document.getElementById('progress-bar').style.width = scrollPercentage + '%';
-        });
+      // Reading progress bar
+      window.addEventListener('scroll', function () {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        document.getElementById('progress-bar').style.width = scrollPercentage + '%';
+      });
 
-        // Back to top button
-        const backToTopButton = document.getElementById('back-to-top');
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
-            }
-        });
+      // Back to top button
+      const backToTopButton = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function () {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.remove('opacity-0', 'invisible');
+          backToTopButton.classList.add('opacity-100', 'visible');
+        } else {
+          backToTopButton.classList.remove('opacity-100', 'visible');
+          backToTopButton.classList.add('opacity-0', 'invisible');
+        }
+      });
 
-        backToTopButton.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+      backToTopButton.addEventListener('click', function () {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
         });
+      });
 
-        // Like button functionality
-        const likeButtons = document.querySelectorAll('.far.fa-thumbs-up').forEach(button => {
-            button.addEventListener('click', function() {
-                const countElement = this.nextElementSibling;
-                let count = parseInt(countElement.textContent);
-                if (this.classList.contains('text-indigo-600')) {
-                    this.classList.remove('text-indigo-600');
-                    countElement.textContent = count - 1;
-                } else {
-                    this.classList.add('text-indigo-600');
-                    countElement.textContent = count + 1;
-                }
-            });
+      // Like button functionality
+      const likeButtons = document.querySelectorAll('.far.fa-thumbs-up').forEach(button => {
+        button.addEventListener('click', function () {
+          const countElement = this.nextElementSibling;
+          let count = parseInt(countElement.textContent);
+          if (this.classList.contains('text-indigo-600')) {
+            this.classList.remove('text-indigo-600');
+            countElement.textContent = count - 1;
+          } else {
+            this.classList.add('text-indigo-600');
+            countElement.textContent = count + 1;
+          }
         });
+      });
     </script>
-        <style>
-        .article-content p {
-            @apply mb-4 text-gray-700 leading-relaxed;
+    <style>
+      .article-content p {
+        @apply mb-4 text-gray-700 leading-relaxed;
+      }
+
+      .article-content h2 {
+        @apply text-2xl font-bold mt-8 mb-4 text-gray-800;
+      }
+
+      .article-content h3 {
+        @apply text-xl font-semibold mt-6 mb-3 text-gray-800;
+      }
+
+      .article-content ul {
+        @apply list-disc pl-6 mb-4;
+      }
+
+      .article-content blockquote {
+        @apply border-l-4 border-indigo-500 pl-4 italic text-gray-600 my-6;
+      }
+
+      .article-content a {
+        @apply text-indigo-600 hover:underline;
+      }
+
+      .article-content img {
+        @apply rounded-lg shadow-lg my-6 w-full;
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
         }
-        .article-content h2 {
-            @apply text-2xl font-bold mt-8 mb-4 text-gray-800;
+
+        to {
+          opacity: 1;
         }
-        .article-content h3 {
-            @apply text-xl font-semibold mt-6 mb-3 text-gray-800;
-        }
-        .article-content ul {
-            @apply list-disc pl-6 mb-4;
-        }
-        .article-content blockquote {
-            @apply border-l-4 border-indigo-500 pl-4 italic text-gray-600 my-6;
-        }
-        .article-content a {
-            @apply text-indigo-600 hover:underline;
-        }
-        .article-content img {
-            @apply rounded-lg shadow-lg my-6 w-full;
-        }
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .progress-bar {
-            height: 4px;
-            background: linear-gradient(90deg, #4f46e5 0%, #a855f7 50%, #ec4899 100%);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 999;
-            transition: width 0.1s ease;
-        }
-        .bg-indigo-50 {
-              background-color: #282d3d;
-    /* background: var(--glass); */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-radius: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-    /* background: var(--glass); */
-    backdrop-filter: blur(16px);
-        }
+      }
+
+      .progress-bar {
+        height: 4px;
+        background: linear-gradient(90deg, #4f46e5 0%, #a855f7 50%, #ec4899 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        transition: width 0.1s ease;
+      }
+
+      .bg-indigo-50 {
+        background-color: #282d3d;
+        /* background: var(--glass); */
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        /* background: var(--glass); */
+        backdrop-filter: blur(16px);
+      }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkblue: {
-                            900: '#0a192f',
-                            800: '#172a45',
-                            700: '#303f60',
-                            600: '#4a6fa5',
-                            500: '#64ffda',
-                        }
-                    }
-                }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              darkblue: {
+                900: '#0a192f',
+                800: '#172a45',
+                700: '#303f60',
+                600: '#4a6fa5',
+                500: '#64ffda',
+              }
             }
+          }
         }
+      }
     </script>
     <style>
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(10, 25, 47, 0.5);
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #64ffda, #4a6fa5);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+      .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(10, 25, 47, 0.5);
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #64ffda, #4a6fa5);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
     </style>
-    <div class="" data-id="73e92d4"
-      data-element_type="container">
+    <div class="" data-id="73e92d4" data-element_type="container">
       <div class="">
-            <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8 max-w-4xl fade-in">
-        <!-- Article Header -->
-        <article>
+        <!-- Loading State -->
+        <div id="loading-state" class="container mx-auto px-4 py-8 max-w-4xl">
+          <div class="animate-pulse">
+            <div class="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
+            <div class="h-8 bg-gray-200 rounded w-3/4 mb-6"></div>
+            <div class="flex items-center mb-8">
+              <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+              <div class="ml-4">
+                <div class="h-4 bg-gray-200 rounded w-32 mb-2"></div>
+                <div class="h-3 bg-gray-200 rounded w-24"></div>
+              </div>
+            </div>
+            <div class="h-64 bg-gray-200 rounded-xl mb-8"></div>
+          </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="container mx-auto px-4 py-8 max-w-4xl hidden">
+          <div class="text-center">
+            <div class="text-red-500 text-6xl mb-4">⚠️</div>
+            <h1 class="text-2xl font-bold text-gray-900 mb-4">Blog Post Not Found</h1>
+            <p class="text-gray-600 mb-6">The blog post you're looking for doesn't exist or has been removed.</p>
+            <a href="blogs.html" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+              View All Blogs
+            </a>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <main id="blog-content" class="container mx-auto px-4 py-8 max-w-4xl fade-in hidden">
+          <!-- Article Header -->
+          <article>
             <div class="mb-6">
-                <span class="text-indigo-600 font-medium">Mindfulness</span>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4 leading-tight">The Art of Mindful Living: Finding Peace in a Busy World</h1>
-                <div class="flex items-center mt-6">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author" class="w-12 h-12 rounded-full object-cover">
-                    <div class="ml-4">
-                        <p class="font-medium text-gray-900">Sarah Johnson</p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <span>May 15, 2023</span>
-                            <span class="mx-2">•</span>
-                            <span>8 min read</span>
-                        </div>
-                    </div>
+              <span id="blog-category" class="text-indigo-600 font-medium"></span>
+              <h1 id="blog-title" class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4 leading-tight"></h1>
+              <div class="flex items-center mt-6">
+                <img id="author-image" src="" alt="Author" class="w-12 h-12 rounded-full object-cover">
+                <div class="ml-4">
+                  <p id="author-name" class="font-medium text-gray-900"></p>
+                  <div class="flex items-center text-sm text-gray-500">
+                    <span id="blog-date"></span>
+                    <span class="mx-2">•</span>
+                    <span id="read-time"></span>
+                  </div>
                 </div>
+              </div>
             </div>
 
             <!-- Featured Image -->
-            <div class="rounded-xl overflow-hidden shadow-lg mb-8">
-                <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                     alt="Mindful living" class="w-full h-auto max-h-96 object-cover">
+            <div id="featured-image-container" class="rounded-xl overflow-hidden shadow-lg mb-8">
+              <img id="featured-image" src="" alt="" class="w-full h-auto max-h-96 object-cover">
             </div>
 
             <!-- Article Content -->
             <div class="article-content">
-                <p class="text-lg font-medium text-gray-800 mb-6">In our fast-paced, technology-driven world, finding moments of peace can seem like an impossible task. Yet, the practice of mindfulness offers a simple but powerful way to reconnect with the present moment and cultivate inner calm.</p>
+              <!-- Short Description -->
+              <p id="blog-short-description" class="text-lg font-medium text-gray-800 mb-6"></p>
 
-                <h2>What is Mindfulness?</h2>
-                <p>Mindfulness is the basic human ability to be fully present, aware of where we are and what we're doing, and not overly reactive or overwhelmed by what's going on around us. While mindfulness is something we all naturally possess, it's more readily available to us when we practice on a daily basis.</p>
+              <!-- Quote Section -->
+              <blockquote id="blog-quote" class="border-l-4 border-indigo-500 pl-4 italic text-gray-600 my-6 hidden">
+              </blockquote>
 
-                <blockquote>
-                    "Mindfulness isn't difficult, we just need to remember to do it." — Sharon Salzberg
-                </blockquote>
+              <!-- Main Content -->
+              <div id="blog-main-content" class="prose prose-lg max-w-none">
+                <!-- Dynamic content will be inserted here -->
+              </div>
 
-                
 
-                <h2>The Benefits of Mindful Living</h2>
-                <p>Research has shown that practicing mindfulness, even for just a few weeks, can bring a variety of physical, psychological, and social benefits:</p>
-                <ul>
-                    <li>Reduced stress and anxiety</li>
-                    <li>Improved focus and concentration</li>
-                    <li>Better emotional regulation</li>
-                    <li>Enhanced self-awareness</li>
-                    <li>Improved relationships</li>
-                    <li>Increased resilience to challenges</li>
-                </ul>
 
-                <h3>Getting Started with Mindfulness</h3>
-                <p>You don't need special equipment or training to begin practicing mindfulness. Here are some simple ways to incorporate mindfulness into your daily routine:</p>
-
-                <div class="bg-indigo-50 rounded-lg p-6 my-6">
-                    <h3 class="text-indigo-800 font-semibold mb-3">Mindfulness Quick Start</h3>
-                    <ol class="list-decimal pl-6 space-y-2">
-                        <li>Start with just 5 minutes a day</li>
-                        <li>Focus on your breath - notice the sensation of air moving in and out</li>
-                        <li>When your mind wanders (and it will), gently bring it back</li>
-                        <li>Expand to mindful eating, walking, or listening</li>
-                        <li>Be patient with yourself - it's called practice for a reason</li>
-                    </ol>
-                </div>
-
-                <h2>Mindfulness in Everyday Activities</h2>
-                <p>Mindfulness doesn't have to be limited to meditation. You can bring mindful awareness to nearly any activity:</p>
-
-                <div class="grid md:grid-cols-2 gap-6 my-6">
-                    <div class="bg-indigo-50 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                        <div class="text-indigo-600 mb-3">
-                            <i class="fas fa-utensils text-2xl"></i>
-                        </div>
-                        <h3 class="font-semibold mb-2">Mindful Eating</h3>
-                        <p class="text-gray-600">Slow down and savor each bite. Notice the colors, textures, and flavors of your food.</p>
-                    </div>
-                    <div class="bg-indigo-50 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                        <div class="text-indigo-600 mb-3">
-                            <i class="fas fa-walking text-2xl"></i>
-                        </div>
-                        <h3 class="font-semibold mb-2">Mindful Walking</h3>
-                        <p class="text-gray-600">Pay attention to the sensation of each step, the movement of your body, and your surroundings.</p>
-                    </div>
-                </div>
-
-                <h2>Overcoming Common Challenges</h2>
-                <p>Many beginners encounter similar obstacles when starting a mindfulness practice. Here's how to work through them:</p>
-
-                <div class="bg-indigo-50 overflow-hidden rounded-lg border border-gray-200 my-6">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Challenge</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Solution</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">"I can't stop my thoughts"</td>
-                                <td class="px-6 py-4 text-sm text-gray-500">Thoughts are natural. The practice is noticing them without judgment and returning to your focus.</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">"I don't have time"</td>
-                                <td class="px-6 py-4 text-sm text-gray-500">Start with just one minute. You can practice mindfulness while brushing your teeth or waiting in line.</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">"It feels silly"</td>
-                                <td class="px-6 py-4 text-sm text-gray-500">Remember that mindfulness is scientifically validated. Millions practice worldwide.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h2>Deepening Your Practice</h2>
-                <p>As you become more comfortable with basic mindfulness techniques, you might explore these ways to deepen your practice:</p>
-                <ul>
-                    <li>Join a local meditation group or class</li>
-                    <li>Try guided meditations (many free apps are available)</li>
-                    <li>Attend a mindfulness retreat</li>
-                    <li>Read books on mindfulness and meditation</li>
-                    <li>Keep a mindfulness journal to track your experiences</li>
-                </ul>
-
-                <div class="border-t border-b border-gray-200 py-6 my-8">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-lightbulb text-3xl text-indigo-600"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-lg font-medium text-gray-900">Mindfulness Tip</h3>
-                            <p class="mt-1 text-gray-600">Set a gentle chime on your phone to remind you to pause and take three mindful breaths at various times throughout your day.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <h2>The Ripple Effects of Mindfulness</h2>
-                <p>As you cultivate mindfulness in your own life, you may begin to notice positive changes in your relationships and how you interact with the world. Mindfulness can help you:</p>
-                <ul>
-                    <li>Respond rather than react in difficult situations</li>
-                    <li>Listen more attentively to others</li>
-                    <li>Appreciate small moments of joy</li>
-                    <li>Develop greater compassion for yourself and others</li>
-                    <li>Feel more connected to the world around you</li>
-                </ul>
-
-                <p class="mt-8 text-lg font-medium text-gray-800">Mindfulness is not about achieving perfection or emptying your mind completely. It's about showing up for your life with curiosity and kindness, one moment at a time. The more you practice, the more you'll discover the profound benefits of living mindfully.</p>
             </div>
 
             <!-- Article Footer -->
             <div class="mt-12 pt-8 border-t border-gray-200">
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Mindfulness</span>
-                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Wellness</span>
-                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Mental Health</span>
-                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Self-Care</span>
-                </div>
+              <div id="blog-tags" class="flex flex-wrap gap-2 mb-6">
+                <!-- Dynamic tags will be inserted here -->
+              </div>
 
-                <div class="flex items-center justify-between">
-                    <div class="flex space-x-4">
-                        <button class="text-gray-500 hover:text-indigo-600">
-                            <i class="far fa-heart text-xl"></i>
-                            <span class="ml-1">243</span>
-                        </button>
-                        <button class="text-gray-500 hover:text-indigo-600">
-                            <i class="far fa-comment text-xl"></i>
-                            <span class="ml-1">28</span>
-                        </button>
-                    </div>
-                    <div class="flex space-x-3">
-                        <button class="text-gray-500 hover:text-indigo-600">
-                            <i class="fab fa-twitter text-xl"></i>
-                        </button>
-                        <button class="text-gray-500 hover:text-indigo-600">
-                            <i class="fab fa-facebook text-xl"></i>
-                        </button>
-                        <button class="text-gray-500 hover:text-indigo-600">
-                            <i class="fab fa-linkedin text-xl"></i>
-                        </button>
-                    </div>
+              <div class="flex items-center justify-between">
+                <div class="flex space-x-4">
+                  <button class="text-gray-500 hover:text-indigo-600">
+                    <i class="far fa-heart text-xl"></i>
+                    <span class="ml-1">0</span>
+                  </button>
+                  <button class="text-gray-500 hover:text-indigo-600">
+                    <i class="far fa-comment text-xl"></i>
+                    <span class="ml-1">0</span>
+                  </button>
                 </div>
+                <div class="flex space-x-3">
+                  <button onclick="shareOnTwitter()" class="text-gray-500 hover:text-indigo-600">
+                    <i class="fab fa-twitter text-xl"></i>
+                  </button>
+                  <button onclick="shareOnFacebook()" class="text-gray-500 hover:text-indigo-600">
+                    <i class="fab fa-facebook text-xl"></i>
+                  </button>
+                  <button onclick="shareOnLinkedIn()" class="text-gray-500 hover:text-indigo-600">
+                    <i class="fab fa-linkedin text-xl"></i>
+                  </button>
+                </div>
+              </div>
             </div>
-        </article>
+          </article>
 
-        <!-- Author Bio -->
-        <div class="bg-indigo-50 mt-12 bg-gray-50 rounded-lg p-6">
+          <!-- Author Bio -->
+          <div id="author-bio" class="bg-indigo-50 mt-12 bg-gray-50 rounded-lg p-6">
             <div class="flex flex-col md:flex-row">
-                <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author" class="w-20 h-20 rounded-full object-cover">
+              <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                <img id="author-bio-image" src="" alt="Author" class="w-20 h-20 rounded-full object-cover">
+              </div>
+              <div>
+                <h3 id="author-bio-title" class="text-lg font-bold text-gray-900"></h3>
+                <p id="author-bio-description" class="mt-2 text-gray-600"></p>
+                <div class="mt-4">
+                  <a href="#" id="author-bio-link" class="text-indigo-600 hover:underline font-medium"></a>
                 </div>
-                <div>
-                    <h3 class="text-lg font-bold text-gray-900">About Sarah Johnson</h3>
-                    <p class="mt-2 text-gray-600">Sarah is a certified mindfulness instructor and wellness coach with over 10 years of experience helping people find balance in their busy lives. She leads workshops and retreats internationally and is the author of "Everyday Mindfulness: Simple Practices for Busy People."</p>
-                    <div class="mt-4">
-                        <a href="#" class="text-indigo-600 hover:underline font-medium">View all posts by Sarah →</a>
-                    </div>
-                </div>
+              </div>
             </div>
-        </div>
+          </div>
 
-        <!-- Related Articles -->
-        <div class="mt-16">
+          <!-- Related Articles -->
+          <div id="related-articles" class="mt-16">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">You Might Also Enjoy</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="https://images.unsplash.com/photo-1491897554428-130a60dd4757?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
-                         alt="Morning routine" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-medium text-indigo-600">PRODUCTIVITY</span>
-                        <h3 class="text-lg font-bold mt-2 mb-2 text-gray-900">Creating a Mindful Morning Routine</h3>
-                        <p class="text-sm text-gray-500 mb-4">Start your day with intention and purpose with these simple practices.</p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <span>Jun 2, 2023</span>
-                            <span class="mx-2">•</span>
-                            <span>5 min read</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="https://images.unsplash.com/photo-1544378061-0d8b0221a2bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
-                         alt="Digital detox" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-medium text-indigo-600">DIGITAL WELLNESS</span>
-                        <h3 class="text-lg font-bold mt-2 mb-2 text-gray-900">The Benefits of a Digital Detox</h3>
-                        <p class="text-sm text-gray-500 mb-4">How stepping away from screens can improve your mental health and relationships.</p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <span>Apr 18, 2023</span>
-                            <span class="mx-2">•</span>
-                            <span>7 min read</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
-                         alt="Gratitude" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-medium text-indigo-600">HAPPINESS</span>
-                        <h3 class="text-lg font-bold mt-2 mb-2 text-gray-900">The Science of Gratitude</h3>
-                        <p class="text-sm text-gray-500 mb-4">How keeping a gratitude journal can rewire your brain for happiness.</p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <span>Mar 5, 2023</span>
-                            <span class="mx-2">•</span>
-                            <span>6 min read</span>
-                        </div>
-                    </div>
-                </div>
+            <div id="related-articles-grid" class="grid md:grid-cols-3 gap-6">
+              <!-- Dynamic related articles will be inserted here -->
             </div>
-        </div>
+          </div>
 
-        <!-- Comments Section -->
-        <div class="mt-16">
+          <!-- Comments Section -->
+          <div class="mt-16">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Discussion (28)</h2>
             <div class="space-y-6">
-                <!-- Comment 1 -->
-                <div class="flex">
-                    <div class="flex-shrink-0 mr-4">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="w-10 h-10 rounded-full">
-                    </div>
-                    <div class="flex-1">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center justify-between">
-                                <h4 class="font-medium text-gray-900">Michael Chen</h4>
-                                <span class="text-sm text-gray-500">2 days ago</span>
-                            </div>
-                            <p class="mt-2 text-gray-600">This article came at the perfect time for me. I've been feeling overwhelmed with work and needed these reminders about mindfulness. The tip about setting phone reminders is brilliant!</p>
-                            <div class="mt-3 flex items-center text-sm text-gray-500">
-                                <button class="flex items-center hover:text-indigo-600">
-                                    <i class="far fa-thumbs-up mr-1"></i>
-                                    <span>12</span>
-                                </button>
-                                <button class="flex items-center ml-4 hover:text-indigo-600">
-                                    <i class="far fa-thumbs-down mr-1"></i>
-                                </button>
-                                <button class="ml-auto hover:text-indigo-600">Reply</button>
-                            </div>
-                        </div>
-                    </div>
+              <!-- Comment 1 -->
+              <div class="flex">
+                <div class="flex-shrink-0 mr-4">
+                  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="w-10 h-10 rounded-full">
                 </div>
+                <div class="flex-1">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center justify-between">
+                      <h4 class="font-medium text-gray-900">Michael Chen</h4>
+                      <span class="text-sm text-gray-500">2 days ago</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">This article came at the perfect time for me. I've been feeling
+                      overwhelmed with work and needed these reminders about mindfulness. The tip about setting phone
+                      reminders is brilliant!</p>
+                    <div class="mt-3 flex items-center text-sm text-gray-500">
+                      <button class="flex items-center hover:text-indigo-600">
+                        <i class="far fa-thumbs-up mr-1"></i>
+                        <span>12</span>
+                      </button>
+                      <button class="flex items-center ml-4 hover:text-indigo-600">
+                        <i class="far fa-thumbs-down mr-1"></i>
+                      </button>
+                      <button class="ml-auto hover:text-indigo-600">Reply</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                <!-- Comment 2 -->
-                <div class="flex">
-                    <div class="flex-shrink-0 mr-4">
-                        <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="User" class="w-10 h-10 rounded-full">
-                    </div>
-                    <div class="flex-1">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center justify-between">
-                                <h4 class="font-medium text-gray-900">Priya Patel</h4>
-                                <span class="text-sm text-gray-500">1 week ago</span>
-                            </div>
-                            <p class="mt-2 text-gray-600">I've been practicing mindfulness for about 6 months now and can confirm all these benefits. The biggest change for me has been in my relationships - I'm much more present with my family now.</p>
-                            <div class="mt-3 flex items-center text-sm text-gray-500">
-                                <button class="flex items-center hover:text-indigo-600">
-                                    <i class="far fa-thumbs-up mr-1"></i>
-                                    <span>8</span>
-                                </button>
-                                <button class="flex items-center ml-4 hover:text-indigo-600">
-                                    <i class="far fa-thumbs-down mr-1"></i>
-                                </button>
-                                <button class="ml-auto hover:text-indigo-600">Reply</button>
-                            </div>
-                        </div>
-                    </div>
+              <!-- Comment 2 -->
+              <div class="flex">
+                <div class="flex-shrink-0 mr-4">
+                  <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="User" class="w-10 h-10 rounded-full">
                 </div>
+                <div class="flex-1">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center justify-between">
+                      <h4 class="font-medium text-gray-900">Priya Patel</h4>
+                      <span class="text-sm text-gray-500">1 week ago</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">I've been practicing mindfulness for about 6 months now and can
+                      confirm all these benefits. The biggest change for me has been in my relationships - I'm much more
+                      present with my family now.</p>
+                    <div class="mt-3 flex items-center text-sm text-gray-500">
+                      <button class="flex items-center hover:text-indigo-600">
+                        <i class="far fa-thumbs-up mr-1"></i>
+                        <span>8</span>
+                      </button>
+                      <button class="flex items-center ml-4 hover:text-indigo-600">
+                        <i class="far fa-thumbs-down mr-1"></i>
+                      </button>
+                      <button class="ml-auto hover:text-indigo-600">Reply</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                <!-- Comment Form -->
-                <div class="mt-8">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Leave a comment</h3>
-                    <form>
-                        <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Share your thoughts..."></textarea>
-                        <div class="mt-4 flex justify-end">
-                            <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Post Comment</button>
-                        </div>
-                    </form>
-                </div>
+              <!-- Comment Form -->
+              <div class="mt-8">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Leave a comment</h3>
+                <form>
+                  <textarea rows="4"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Share your thoughts..."></textarea>
+                  <div class="mt-4 flex justify-end">
+                    <button type="submit"
+                      class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Post
+                      Comment</button>
+                  </div>
+                </form>
+              </div>
             </div>
-        </div>
-    </main>
+          </div>
+        </main>
         <!-- <div class="elementor-element elementor-element-808104b e-con-full e-flex e-con e-child" data-id="808104b"
           data-element_type="container">
           <div class="elementor-element elementor-element-bf62d9c e-con-full e-flex e-con e-child" data-id="bf62d9c"
@@ -49418,253 +49346,255 @@
       </div>
     </div>
   </div>
-    <div data-elementor-type="footer" data-elementor-id="1764"
-                class="elementor elementor-1764 elementor-location-footer" data-elementor-post-type="elementor_library">
-                <div class="elementor-element elementor-element-78cad96 e-flex e-con-boxed e-con e-parent"
-                    data-id="78cad96" data-element_type="container"
-                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                    <div class="e-con-inner">
-                        <div class="elementor-element elementor-element-52abb05 e-con-full e-flex e-con e-child"
-                            data-id="52abb05" data-element_type="container">
-                            <div class="elementor-element elementor-element-600cf77 elementor-widget elementor-widget-elementskit-heading"
-                                data-id="600cf77" data-element_type="widget"
-                                data-widget_type="elementskit-heading.default">
-                                <div class="elementor-widget-container">
-                                    <div class="ekit-wid-con">
-                                        <div
-                                            class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-text_center   ekit_heading_mobile-text_left">
-                                            <h3 class="ekit-heading--title elementskit-section-title text_fill">
-                                                Ready to transform <span><span>your
-                                                        business? </span></span></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="elementor-element elementor-element-8d50095 elementor-align-left elementor-align--tabletcenter elementor-widget elementor-widget-elementskit-button"
-                                data-id="8d50095" data-element_type="widget"
-                                data-widget_type="elementskit-button.default">
-                                <div class="elementor-widget-container">
-                                    <div class="ekit-wid-con">
-                                        <div class="ekit-btn-wraper">
-                                            <a href="#" class="elementskit-btn  whitespace--normal" id="">
-                                                Learn More <i class="icon icon-right-arrow"></i> </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="elementor-element elementor-element-2c2a580 e-con-full e-flex e-con e-child"
-                            data-id="2c2a580" data-element_type="container">
-                            <div class="elementor-element elementor-element-73e9142 e-con-full e-flex e-con e-child"
-                                data-id="73e9142" data-element_type="container">
-                                <div class="elementor-element elementor-element-bc9c29b elementor-widget elementor-widget-heading"
-                                    data-id="bc9c29b" data-element_type="widget" data-widget_type="heading.default">
-                                    <div class="elementor-widget-container">
-                                        <h4 class="elementor-heading-title elementor-size-default">Connect with
-                                            us</h4>
-                                    </div>
-                                </div>
-                                <div class="elementor-element elementor-element-6d0c3bb elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
-                                    data-id="6d0c3bb" data-element_type="widget" data-widget_type="icon-list.default">
-                                    <div class="elementor-widget-container">
-                                        <ul class="elementor-icon-list-items">
-                                            <li class="elementor-icon-list-item">
-                                                <a href="mailto:support@nextlevelgrowthpartner.com">
-                                                    <span class="elementor-icon-list-text">
-                                                        <font size="5">📧</font> &nbsp;&nbsp;
-                                                        support@nextlevelgrowthpartner.com
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li class="elementor-icon-list-item">
-                                                <a href="tel:+15615302575">
-                                                    <span class="elementor-icon-list-text">
-                                                        <font size="5">💬</font> &nbsp;&nbsp; +15615302575
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="elementor-element elementor-element-6785420 e-con-full e-flex e-con e-child"
-                                data-id="6785420" data-element_type="container">
-                                <div class="elementor-element elementor-element-e923f1d elementor-widget elementor-widget-heading"
-                                    data-id="e923f1d" data-element_type="widget" data-widget_type="heading.default">
-                                    <div class="elementor-widget-container">
-                                        <h4 class="elementor-heading-title elementor-size-default">Address</h4>
-                                    </div>
-                                </div>
-                                <div class="elementor-element elementor-element-7bef88b elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
-                                    data-id="7bef88b" data-element_type="widget" data-widget_type="icon-list.default">
-                                    <div class="elementor-widget-container">
-                                        <ul class="elementor-icon-list-items">
-                                            <li class="elementor-icon-list-item">
-                                                <a href="#">
-
-                                                    <span class="elementor-icon-list-text">
-                                                        <font size="5">🌍</font> &nbsp;&nbsp; 21 NE 10th St,
-                                                        Deerfield Beach FL 33441
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li class="elementor-icon-list-item">
-                                                <a href="#">
-
-                                                    <span class="elementor-icon-list-text">
-                                                        <font size="5">🕒</font> &nbsp;&nbsp; Monday → Friday
-                                                        9am to 5pm
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="elementor-element elementor-element-9b7cd60 e-con-full e-flex e-con e-child"
-                                data-id="9b7cd60" data-element_type="container">
-                                <div class="elementor-element elementor-element-e3957e2 elementor-widget elementor-widget-heading"
-                                    data-id="e3957e2" data-element_type="widget" data-widget_type="heading.default">
-                                    <div class="elementor-widget-container">
-                                        <h4 class="elementor-heading-title elementor-size-default"> Join our
-                                            newsletter</h4>
-                                    </div>
-                                </div>
-                                <div class="elementor-element elementor-element-60dd47a elementor-button-align-stretch elementor-widget elementor-widget-form"
-                                    data-id="60dd47a" data-element_type="widget"
-                                    data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;20&quot;,&quot;button_width_mobile&quot;:&quot;20&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
-                                    data-widget_type="form.default">
-                                    <div class="elementor-widget-container">
-                                        <form class="elementor-form" method="post" name="New Form">
-                                            <input type="hidden" name="post_id" value="1764" />
-                                            <input type="hidden" name="form_id" value="60dd47a" />
-                                            <input type="hidden" name="referer_title" value="Services" />
-
-                                            <input type="hidden" name="queried_id" value="2433" />
-
-                                            <div class="elementor-form-fields-wrapper elementor-labels-above">
-                                                <div
-                                                    class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-80 elementor-sm-80 elementor-field-required">
-                                                    <input size="1" type="email" name="form_fields[email]"
-                                                        id="form-field-email"
-                                                        class="elementor-field elementor-size-sm  elementor-field-textual"
-                                                        placeholder="Email Address" required="required">
-                                                </div>
-                                                <div
-                                                    class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-20 e-form__buttons elementor-sm-20">
-                                                    <button class="elementor-button elementor-size-sm" type="submit">
-                                                        <span class="elementor-button-content-wrapper">
-                                                            <span class="elementor-button-icon">
-                                                                <i aria-hidden="true" class="icon icon-right-arrow"></i>
-                                                                <span class="elementor-screen-only">Submit</span>
-                                                            </span>
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="elementor-element elementor-element-b9f61ee e-con-full e-flex e-con e-child"
-                                data-id="b9f61ee" data-element_type="container">
-                                <div class="elementor-element elementor-element-8737e81 elementor-widget elementor-widget-heading"
-                                    data-id="8737e81" data-element_type="widget" data-widget_type="heading.default">
-                                    <div class="elementor-widget-container">
-                                        <h4 class="elementor-heading-title elementor-size-default">Follow us
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div class="elementor-element elementor-element-265915a e-grid e-con-full e-con e-child"
-                                    data-id="265915a" data-element_type="container">
-                                    <div class="elementor-element elementor-element-5a77c23 elementor-widget elementor-widget-elementskit-social-media"
-                                        data-id="5a77c23" data-element_type="widget"
-                                        data-widget_type="elementskit-social-media.default">
-                                        <div class="elementor-widget-container">
-                                            <div class="ekit-wid-con">
-                                                <ul class="ekit_social_media">
-                                                    <li class="elementor-repeater-item-633e4a1">
-                                                        <a href="https://www.facebook.com/profile.php?id=61575209545205" aria-label="Facebook" target="_blank" class="">
-                                                            Facebook </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="elementor-element elementor-element-652d726 elementor-widget elementor-widget-elementskit-social-media"
-                                        data-id="652d726" data-element_type="widget"
-                                        data-widget_type="elementskit-social-media.default">
-                                        <div class="elementor-widget-container">
-                                            <div class="ekit-wid-con">
-                                                <ul class="ekit_social_media">
-                                                    <li class="elementor-repeater-item-55fe18f">
-                                                        <a href="https://x.com/tomsantella" aria-label="Twitter" target="_blank"  class="">
-                                                            Twitter </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="elementor-element elementor-element-c8b0b41 elementor-widget elementor-widget-elementskit-social-media"
-                                        data-id="c8b0b41" data-element_type="widget"
-                                        data-widget_type="elementskit-social-media.default">
-                                        <div class="elementor-widget-container">
-                                            <div class="ekit-wid-con">
-                                                <ul class="ekit_social_media">
-                                                    <li class="elementor-repeater-item-55fe18f">
-                                                        <a href="https://www.instagram.com/nextlevelgrowthpartners/?hl=en" aria-label="Instagram" target="_blank"  class="">
-                                                            Instagram </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="elementor-element elementor-element-7bde8dc elementor-widget elementor-widget-elementskit-social-media"
-                                        data-id="7bde8dc" data-element_type="widget"
-                                        data-widget_type="elementskit-social-media.default">
-                                        <div class="elementor-widget-container">
-                                            <div class="ekit-wid-con">
-                                                <ul class="ekit_social_media">
-                                                    <li class="elementor-repeater-item-55fe18f">
-                                                        <a href="https://www.linkedin.com/company/next-level-growth-partners/" aria-label="LinkedIn" target="_blank"  class="">
-                                                            LinkedIn </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="elementor-element elementor-element-dc0f0af e-con-full e-flex e-con e-child"
-                            data-id="dc0f0af" data-element_type="container">
-                            <div class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
-                                data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
-                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                                <div class="elementor-widget-container" style="flex: 1; min-width: 200px;">
-                                    <p style="margin: 0; font-size: 14px;">
-                                        <a href="privacy-policy.html"
-                                            style="margin-right: 1rem; text-decoration: underline;">Privacy Policy</a>
-                                        <a href="terms.html" style="text-decoration: underline;">Terms of Service</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
-                                data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
-                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                                <div class="elementor-widget-container"
-                                    style="flex: 1; min-width: 200px; text-align: right;">
-                                    <h2 class="elementor-heading-title elementor-size-default"
-                                        style="margin: 0; font-size: 14px;">
-                                        <a href="index.html">Copyright © 2025 Next Level Growth Partners </a>
-                                    </h2>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+  <div data-elementor-type="footer" data-elementor-id="1764" class="elementor elementor-1764 elementor-location-footer"
+    data-elementor-post-type="elementor_library">
+    <div class="elementor-element elementor-element-78cad96 e-flex e-con-boxed e-con e-parent" data-id="78cad96"
+      data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+      <div class="e-con-inner">
+        <div class="elementor-element elementor-element-52abb05 e-con-full e-flex e-con e-child" data-id="52abb05"
+          data-element_type="container">
+          <div class="elementor-element elementor-element-600cf77 elementor-widget elementor-widget-elementskit-heading"
+            data-id="600cf77" data-element_type="widget" data-widget_type="elementskit-heading.default">
+            <div class="elementor-widget-container">
+              <div class="ekit-wid-con">
+                <div
+                  class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-text_center   ekit_heading_mobile-text_left">
+                  <h3 class="ekit-heading--title elementskit-section-title text_fill">
+                    Ready to transform <span><span>your
+                        business? </span></span></h3>
                 </div>
+              </div>
             </div>
+          </div>
+          <div
+            class="elementor-element elementor-element-8d50095 elementor-align-left elementor-align--tabletcenter elementor-widget elementor-widget-elementskit-button"
+            data-id="8d50095" data-element_type="widget" data-widget_type="elementskit-button.default">
+            <div class="elementor-widget-container">
+              <div class="ekit-wid-con">
+                <div class="ekit-btn-wraper">
+                  <a href="#" class="elementskit-btn  whitespace--normal" id="">
+                    Learn More <i class="icon icon-right-arrow"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="elementor-element elementor-element-2c2a580 e-con-full e-flex e-con e-child" data-id="2c2a580"
+          data-element_type="container">
+          <div class="elementor-element elementor-element-73e9142 e-con-full e-flex e-con e-child" data-id="73e9142"
+            data-element_type="container">
+            <div class="elementor-element elementor-element-bc9c29b elementor-widget elementor-widget-heading"
+              data-id="bc9c29b" data-element_type="widget" data-widget_type="heading.default">
+              <div class="elementor-widget-container">
+                <h4 class="elementor-heading-title elementor-size-default">Connect with
+                  us</h4>
+              </div>
+            </div>
+            <div
+              class="elementor-element elementor-element-6d0c3bb elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
+              data-id="6d0c3bb" data-element_type="widget" data-widget_type="icon-list.default">
+              <div class="elementor-widget-container">
+                <ul class="elementor-icon-list-items">
+                  <li class="elementor-icon-list-item">
+                    <a href="mailto:support@nextlevelgrowthpartner.com">
+                      <span class="elementor-icon-list-text">
+                        <font size="5">📧</font> &nbsp;&nbsp;
+                        support@nextlevelgrowthpartner.com
+                      </span>
+                    </a>
+                  </li>
+                  <li class="elementor-icon-list-item">
+                    <a href="tel:+15615302575">
+                      <span class="elementor-icon-list-text">
+                        <font size="5">💬</font> &nbsp;&nbsp; +15615302575
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="elementor-element elementor-element-6785420 e-con-full e-flex e-con e-child" data-id="6785420"
+            data-element_type="container">
+            <div class="elementor-element elementor-element-e923f1d elementor-widget elementor-widget-heading"
+              data-id="e923f1d" data-element_type="widget" data-widget_type="heading.default">
+              <div class="elementor-widget-container">
+                <h4 class="elementor-heading-title elementor-size-default">Address</h4>
+              </div>
+            </div>
+            <div
+              class="elementor-element elementor-element-7bef88b elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
+              data-id="7bef88b" data-element_type="widget" data-widget_type="icon-list.default">
+              <div class="elementor-widget-container">
+                <ul class="elementor-icon-list-items">
+                  <li class="elementor-icon-list-item">
+                    <a href="#">
+
+                      <span class="elementor-icon-list-text">
+                        <font size="5">🌍</font> &nbsp;&nbsp; 21 NE 10th St,
+                        Deerfield Beach FL 33441
+                      </span>
+                    </a>
+                  </li>
+                  <li class="elementor-icon-list-item">
+                    <a href="#">
+
+                      <span class="elementor-icon-list-text">
+                        <font size="5">🕒</font> &nbsp;&nbsp; Monday → Friday
+                        9am to 5pm
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="elementor-element elementor-element-9b7cd60 e-con-full e-flex e-con e-child" data-id="9b7cd60"
+            data-element_type="container">
+            <div class="elementor-element elementor-element-e3957e2 elementor-widget elementor-widget-heading"
+              data-id="e3957e2" data-element_type="widget" data-widget_type="heading.default">
+              <div class="elementor-widget-container">
+                <h4 class="elementor-heading-title elementor-size-default"> Join our
+                  newsletter</h4>
+              </div>
+            </div>
+            <div
+              class="elementor-element elementor-element-60dd47a elementor-button-align-stretch elementor-widget elementor-widget-form"
+              data-id="60dd47a" data-element_type="widget"
+              data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;20&quot;,&quot;button_width_mobile&quot;:&quot;20&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
+              data-widget_type="form.default">
+              <div class="elementor-widget-container">
+                <form class="elementor-form" method="post" name="New Form">
+                  <input type="hidden" name="post_id" value="1764" />
+                  <input type="hidden" name="form_id" value="60dd47a" />
+                  <input type="hidden" name="referer_title" value="Services" />
+
+                  <input type="hidden" name="queried_id" value="2433" />
+
+                  <div class="elementor-form-fields-wrapper elementor-labels-above">
+                    <div
+                      class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-80 elementor-sm-80 elementor-field-required">
+                      <input size="1" type="email" name="form_fields[email]" id="form-field-email"
+                        class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Email Address"
+                        required="required">
+                    </div>
+                    <div
+                      class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-20 e-form__buttons elementor-sm-20">
+                      <button class="elementor-button elementor-size-sm" type="submit">
+                        <span class="elementor-button-content-wrapper">
+                          <span class="elementor-button-icon">
+                            <i aria-hidden="true" class="icon icon-right-arrow"></i>
+                            <span class="elementor-screen-only">Submit</span>
+                          </span>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="elementor-element elementor-element-b9f61ee e-con-full e-flex e-con e-child" data-id="b9f61ee"
+            data-element_type="container">
+            <div class="elementor-element elementor-element-8737e81 elementor-widget elementor-widget-heading"
+              data-id="8737e81" data-element_type="widget" data-widget_type="heading.default">
+              <div class="elementor-widget-container">
+                <h4 class="elementor-heading-title elementor-size-default">Follow us
+                </h4>
+              </div>
+            </div>
+            <div class="elementor-element elementor-element-265915a e-grid e-con-full e-con e-child" data-id="265915a"
+              data-element_type="container">
+              <div
+                class="elementor-element elementor-element-5a77c23 elementor-widget elementor-widget-elementskit-social-media"
+                data-id="5a77c23" data-element_type="widget" data-widget_type="elementskit-social-media.default">
+                <div class="elementor-widget-container">
+                  <div class="ekit-wid-con">
+                    <ul class="ekit_social_media">
+                      <li class="elementor-repeater-item-633e4a1">
+                        <a href="https://www.facebook.com/profile.php?id=61575209545205" aria-label="Facebook"
+                          target="_blank" class="">
+                          Facebook </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="elementor-element elementor-element-652d726 elementor-widget elementor-widget-elementskit-social-media"
+                data-id="652d726" data-element_type="widget" data-widget_type="elementskit-social-media.default">
+                <div class="elementor-widget-container">
+                  <div class="ekit-wid-con">
+                    <ul class="ekit_social_media">
+                      <li class="elementor-repeater-item-55fe18f">
+                        <a href="https://x.com/tomsantella" aria-label="Twitter" target="_blank" class="">
+                          Twitter </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="elementor-element elementor-element-c8b0b41 elementor-widget elementor-widget-elementskit-social-media"
+                data-id="c8b0b41" data-element_type="widget" data-widget_type="elementskit-social-media.default">
+                <div class="elementor-widget-container">
+                  <div class="ekit-wid-con">
+                    <ul class="ekit_social_media">
+                      <li class="elementor-repeater-item-55fe18f">
+                        <a href="https://www.instagram.com/nextlevelgrowthpartners/?hl=en" aria-label="Instagram"
+                          target="_blank" class="">
+                          Instagram </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="elementor-element elementor-element-7bde8dc elementor-widget elementor-widget-elementskit-social-media"
+                data-id="7bde8dc" data-element_type="widget" data-widget_type="elementskit-social-media.default">
+                <div class="elementor-widget-container">
+                  <div class="ekit-wid-con">
+                    <ul class="ekit_social_media">
+                      <li class="elementor-repeater-item-55fe18f">
+                        <a href="https://www.linkedin.com/company/next-level-growth-partners/" aria-label="LinkedIn"
+                          target="_blank" class="">
+                          LinkedIn </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="elementor-element elementor-element-dc0f0af e-con-full e-flex e-con e-child" data-id="dc0f0af"
+          data-element_type="container">
+          <div
+            class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
+            data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div class="elementor-widget-container" style="flex: 1; min-width: 200px;">
+              <p style="margin: 0; font-size: 14px;">
+                <a href="privacy-policy.html" style="margin-right: 1rem; text-decoration: underline;">Privacy Policy</a>
+                <a href="terms.html" style="text-decoration: underline;">Terms of Service</a>
+              </p>
+            </div>
+          </div>
+          <div
+            class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
+            data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div class="elementor-widget-container" style="flex: 1; min-width: 200px; text-align: right;">
+              <h2 class="elementor-heading-title elementor-size-default" style="margin: 0; font-size: 14px;">
+                <a href="index.html">Copyright © 2025 Next Level Growth Partners </a>
+              </h2>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script data-cfasync="false"
     src="https://brandmode.1onestrong.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -49757,7 +49687,483 @@
     src="https://brandmode.1onestrong.com/wp-content/plugins/elementskit-lite/widgets/init/assets/js/elementor.js?ver=3.4.0"
     id="elementskit-elementor-js"></script>
 
+  <!-- Dynamic Blog Functionality -->
+  <script>
+    // Global variables
+    let currentBlog = null;
+    let allBlogs = [];
+    let retryCount = 0;
+    const maxRetries = 3;
 
+    // Fallback content for when API fails
+    const fallbackContent = {
+      name: 'Welcome to Our Blog',
+      category: 'General',
+      shortDescription: 'We\'re experiencing technical difficulties loading this blog post. Please try again later or contact us for assistance.',
+      authorName: 'Next Level Growth Partners',
+      readTime: '5 min read',
+      mainContent: `
+        <h2>We're Sorry for the Inconvenience</h2>
+        <p>We're currently experiencing technical difficulties loading this blog post. Our team is working to resolve this issue as quickly as possible.</p>
+
+        <h3>What you can do:</h3>
+        <ul>
+          <li>Try refreshing the page in a few minutes</li>
+          <li>Visit our <a href="blogs.html">blog listing page</a> to see other articles</li>
+          <li>Contact us directly if you need immediate assistance</li>
+        </ul>
+
+        <h3>About Next Level Growth Partners</h3>
+        <p>We're AI-powered lead conversion experts helping businesses grow through innovative digital marketing strategies and cutting-edge technology solutions.</p>
+
+        <p>Thank you for your patience and understanding.</p>
+      `,
+      image: 'https://via.placeholder.com/800x400?text=Next+Level+Growth+Partners',
+      createdAt: new Date().toISOString(),
+      slug: 'fallback-content'
+    };
+
+    // Utility functions
+    function getUrlParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    function formatDate(dateString) {
+      if (!dateString) return 'Unknown date';
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+
+    function stripHtml(html) {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || '';
+    }
+
+    function truncateText(text, maxLength = 150) {
+      if (text.length <= maxLength) return text;
+      return text.substr(0, maxLength) + '...';
+    }
+
+    // API functions with retry logic
+    async function fetchBlogBySlug(slug, attempt = 1) {
+      try {
+        // Check if Baserow config is properly set
+        if (!BASEROW_CONFIG.tableId || BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
+          throw new Error('Baserow configuration not properly set');
+        }
+
+        const response = await fetch(
+          `${BASEROW_CONFIG.baseUrl}${BASEROW_CONFIG.tableId}/?user_field_names=true&filter__field_${BASEROW_CONFIG.fields.slug}__equal=${encodeURIComponent(slug)}`,
+          {
+            headers: {
+              'Authorization': `Token ${BASEROW_CONFIG.token}`,
+              'Content-Type': 'application/json'
+            },
+            timeout: 10000 // 10 second timeout
+          }
+        );
+
+        if (!response.ok) {
+          if (response.status === 429 && attempt < maxRetries) {
+            // Rate limited, wait and retry
+            await new Promise(resolve => setTimeout(resolve, 2000 * attempt));
+            return fetchBlogBySlug(slug, attempt + 1);
+          }
+          throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data.results && data.results.length > 0 ? data.results[0] : null;
+      } catch (error) {
+        console.error(`Error fetching blog (attempt ${attempt}):`, error);
+
+        if (attempt < maxRetries && !error.message.includes('configuration')) {
+          // Retry with exponential backoff
+          await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempt)));
+          return fetchBlogBySlug(slug, attempt + 1);
+        }
+
+        return null;
+      }
+    }
+
+    async function fetchAllBlogs(attempt = 1) {
+      try {
+        // Check if Baserow config is properly set
+        if (!BASEROW_CONFIG.tableId || BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
+          console.warn('Baserow configuration not properly set, using fallback content');
+          return [];
+        }
+
+        const response = await fetch(
+          `${BASEROW_CONFIG.baseUrl}${BASEROW_CONFIG.tableId}/?user_field_names=true&filter__field_${BASEROW_CONFIG.fields.active}__equal=true&order_by=-${BASEROW_CONFIG.fields.createdAt}`,
+          {
+            headers: {
+              'Authorization': `Token ${BASEROW_CONFIG.token}`,
+              'Content-Type': 'application/json'
+            },
+            timeout: 15000 // 15 second timeout for multiple records
+          }
+        );
+
+        if (!response.ok) {
+          if (response.status === 429 && attempt < maxRetries) {
+            // Rate limited, wait and retry
+            await new Promise(resolve => setTimeout(resolve, 2000 * attempt));
+            return fetchAllBlogs(attempt + 1);
+          }
+          throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data.results || [];
+      } catch (error) {
+        console.error(`Error fetching blogs (attempt ${attempt}):`, error);
+
+        if (attempt < maxRetries) {
+          // Retry with exponential backoff
+          await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempt)));
+          return fetchAllBlogs(attempt + 1);
+        }
+
+        return [];
+      }
+    }
+
+    // SEO and Meta functions
+    function updateSEOMetaTags(blog) {
+      // Update page title
+      document.title = `${blog[BASEROW_CONFIG.fields.name]} - Next Level Growth Partners`;
+
+      // Update meta description
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.name = 'description';
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.content = stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || blog[BASEROW_CONFIG.fields.name]);
+
+      // Update Open Graph tags
+      updateOpenGraphTags(blog);
+
+      // Update Twitter Card tags
+      updateTwitterCardTags(blog);
+
+      // Add structured data
+      addStructuredData(blog);
+    }
+
+    function updateOpenGraphTags(blog) {
+      const ogTags = [
+        { property: 'og:title', content: blog[BASEROW_CONFIG.fields.name] },
+        { property: 'og:description', content: stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || blog[BASEROW_CONFIG.fields.name]) },
+        { property: 'og:image', content: blog[BASEROW_CONFIG.fields.image] || 'https://via.placeholder.com/1200x630?text=Blog+Image' },
+        { property: 'og:url', content: window.location.href },
+        { property: 'og:type', content: 'article' },
+        { property: 'og:site_name', content: 'Next Level Growth Partners' },
+        { property: 'article:author', content: blog[BASEROW_CONFIG.fields.authorName] || 'Next Level Growth Partners' },
+        { property: 'article:published_time', content: blog[BASEROW_CONFIG.fields.createdAt] },
+        { property: 'article:section', content: blog[BASEROW_CONFIG.fields.category] || 'Blog' }
+      ];
+
+      ogTags.forEach(tag => {
+        let metaTag = document.querySelector(`meta[property="${tag.property}"]`);
+        if (!metaTag) {
+          metaTag = document.createElement('meta');
+          metaTag.setAttribute('property', tag.property);
+          document.head.appendChild(metaTag);
+        }
+        metaTag.content = tag.content;
+      });
+    }
+
+    function updateTwitterCardTags(blog) {
+      const twitterTags = [
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: blog[BASEROW_CONFIG.fields.name] },
+        { name: 'twitter:description', content: stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || blog[BASEROW_CONFIG.fields.name]) },
+        { name: 'twitter:image', content: blog[BASEROW_CONFIG.fields.image] || 'https://via.placeholder.com/1200x630?text=Blog+Image' },
+        { name: 'twitter:site', content: '@NextLevelGrowth' },
+        { name: 'twitter:creator', content: '@NextLevelGrowth' }
+      ];
+
+      twitterTags.forEach(tag => {
+        let metaTag = document.querySelector(`meta[name="${tag.name}"]`);
+        if (!metaTag) {
+          metaTag = document.createElement('meta');
+          metaTag.setAttribute('name', tag.name);
+          document.head.appendChild(metaTag);
+        }
+        metaTag.content = tag.content;
+      });
+    }
+
+    function addStructuredData(blog) {
+      // Remove existing structured data
+      const existingScript = document.querySelector('script[type="application/ld+json"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      // Create new structured data
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": blog[BASEROW_CONFIG.fields.name],
+        "description": stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || blog[BASEROW_CONFIG.fields.name]),
+        "image": blog[BASEROW_CONFIG.fields.image] || 'https://via.placeholder.com/1200x630?text=Blog+Image',
+        "author": {
+          "@type": "Person",
+          "name": blog[BASEROW_CONFIG.fields.authorName] || 'Next Level Growth Partners'
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Next Level Growth Partners",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://nextlevelgrowthpartners.com/logo.png"
+          }
+        },
+        "datePublished": blog[BASEROW_CONFIG.fields.createdAt],
+        "dateModified": blog[BASEROW_CONFIG.fields.createdAt],
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": window.location.href
+        },
+        "articleSection": blog[BASEROW_CONFIG.fields.category] || 'Blog',
+        "keywords": blog[BASEROW_CONFIG.fields.category] || 'business, growth, AI, lead conversion'
+      };
+
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(structuredData);
+      document.head.appendChild(script);
+    }
+
+    // Display functions
+    function displayBlog(blog) {
+      currentBlog = blog;
+
+      // Update SEO and meta tags
+      updateSEOMetaTags(blog);
+
+      // Update blog content
+      document.getElementById('blog-category').textContent = blog[BASEROW_CONFIG.fields.category] || 'Blog';
+      document.getElementById('blog-title').textContent = blog[BASEROW_CONFIG.fields.name] || 'Untitled';
+      document.getElementById('blog-date').textContent = formatDate(blog[BASEROW_CONFIG.fields.createdAt]);
+      document.getElementById('read-time').textContent = blog[BASEROW_CONFIG.fields.readTime] || '5 min read';
+      document.getElementById('author-name').textContent = blog[BASEROW_CONFIG.fields.authorName] || 'Anonymous';
+
+      // Update images
+      const authorImage = document.getElementById('author-image');
+      const featuredImage = document.getElementById('featured-image');
+      const authorBioImage = document.getElementById('author-bio-image');
+
+      if (blog[BASEROW_CONFIG.fields.image]) {
+        authorImage.src = blog[BASEROW_CONFIG.fields.image];
+        featuredImage.src = blog[BASEROW_CONFIG.fields.image];
+        featuredImage.alt = blog[BASEROW_CONFIG.fields.name];
+        authorBioImage.src = blog[BASEROW_CONFIG.fields.image];
+      } else {
+        // Default images
+        const defaultImage = 'https://via.placeholder.com/400x300?text=Blog+Image';
+        authorImage.src = defaultImage;
+        featuredImage.src = defaultImage;
+        featuredImage.alt = 'Blog image';
+        authorBioImage.src = defaultImage;
+      }
+
+      // Update content
+      document.getElementById('blog-short-description').textContent = blog[BASEROW_CONFIG.fields.shortDescription] || '';
+
+      // Handle quote
+      const quoteElement = document.getElementById('blog-quote');
+      if (blog[BASEROW_CONFIG.fields.quote]) {
+        quoteElement.textContent = blog[BASEROW_CONFIG.fields.quote];
+        quoteElement.classList.remove('hidden');
+      } else {
+        quoteElement.classList.add('hidden');
+      }
+
+      // Update main content
+      const mainContentElement = document.getElementById('blog-main-content');
+      if (blog[BASEROW_CONFIG.fields.mainContent]) {
+        mainContentElement.innerHTML = blog[BASEROW_CONFIG.fields.mainContent];
+      } else {
+        mainContentElement.innerHTML = '<p>Content coming soon...</p>';
+      }
+
+      // Update tags
+      const tagsContainer = document.getElementById('blog-tags');
+      tagsContainer.innerHTML = '';
+      if (blog[BASEROW_CONFIG.fields.category]) {
+        const tag = document.createElement('span');
+        tag.className = 'px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium';
+        tag.textContent = blog[BASEROW_CONFIG.fields.category];
+        tagsContainer.appendChild(tag);
+      }
+
+      // Update author bio
+      document.getElementById('author-bio-title').textContent = `About ${blog[BASEROW_CONFIG.fields.authorName] || 'the Author'}`;
+      document.getElementById('author-bio-description').textContent = blog[BASEROW_CONFIG.fields.notes] || 'Professional content creator and industry expert.';
+      document.getElementById('author-bio-link').textContent = `View all posts by ${blog[BASEROW_CONFIG.fields.authorName] || 'this author'} →`;
+
+      // Load related articles
+      loadRelatedArticles(blog);
+    }
+
+    async function loadRelatedArticles(currentBlog) {
+      if (allBlogs.length === 0) {
+        allBlogs = await fetchAllBlogs();
+      }
+
+      // Filter out current blog and get related ones (same category or recent)
+      const relatedBlogs = allBlogs
+        .filter(blog => blog.id !== currentBlog.id)
+        .filter(blog =>
+          blog[BASEROW_CONFIG.fields.category] === currentBlog[BASEROW_CONFIG.fields.category] ||
+          blog[BASEROW_CONFIG.fields.active] === true
+        )
+        .slice(0, 3);
+
+      const relatedContainer = document.getElementById('related-articles-grid');
+      relatedContainer.innerHTML = '';
+
+      relatedBlogs.forEach(blog => {
+        const articleCard = createArticleCard(blog);
+        relatedContainer.appendChild(articleCard);
+      });
+    }
+
+    function createArticleCard(blog) {
+      const card = document.createElement('div');
+      card.className = 'bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300';
+
+      const imageUrl = blog[BASEROW_CONFIG.fields.image] || 'https://via.placeholder.com/400x300?text=Blog+Image';
+      const shortDesc = stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || '');
+
+      card.innerHTML = `
+        <img src="${imageUrl}" alt="${blog[BASEROW_CONFIG.fields.name]}" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <span class="text-xs font-medium text-indigo-600">${blog[BASEROW_CONFIG.fields.category] || 'BLOG'}</span>
+          <h3 class="text-lg font-bold mt-2 mb-2 text-gray-900">${blog[BASEROW_CONFIG.fields.name] || 'Untitled'}</h3>
+          <p class="text-sm text-gray-500 mb-4">${truncateText(shortDesc, 100)}</p>
+          <div class="flex items-center text-sm text-gray-500">
+            <span>${formatDate(blog[BASEROW_CONFIG.fields.createdAt])}</span>
+            <span class="mx-2">•</span>
+            <span>${blog[BASEROW_CONFIG.fields.readTime] || '5 min read'}</span>
+          </div>
+        </div>
+      `;
+
+      card.addEventListener('click', () => {
+        window.location.href = `blogs-artical.html?slug=${encodeURIComponent(blog[BASEROW_CONFIG.fields.slug])}`;
+      });
+
+      return card;
+    }
+
+    // Social sharing functions
+    function shareOnTwitter() {
+      if (!currentBlog) return;
+      const text = `Check out this article: ${currentBlog[BASEROW_CONFIG.fields.name]}`;
+      const url = window.location.href;
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+    }
+
+    function shareOnFacebook() {
+      if (!currentBlog) return;
+      const url = window.location.href;
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    }
+
+    function shareOnLinkedIn() {
+      if (!currentBlog) return;
+      const url = window.location.href;
+      const title = currentBlog[BASEROW_CONFIG.fields.name];
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`, '_blank');
+    }
+
+    // Make functions globally available
+    window.shareOnTwitter = shareOnTwitter;
+    window.shareOnFacebook = shareOnFacebook;
+    window.shareOnLinkedIn = shareOnLinkedIn;
+
+    // Error handling
+    function showError() {
+      document.getElementById('loading-state').classList.add('hidden');
+      document.getElementById('error-state').classList.remove('hidden');
+      document.getElementById('blog-content').classList.add('hidden');
+    }
+
+    function showContent() {
+      document.getElementById('loading-state').classList.add('hidden');
+      document.getElementById('error-state').classList.add('hidden');
+      document.getElementById('blog-content').classList.remove('hidden');
+    }
+
+    // Main initialization with fallback support
+    async function initializeBlog() {
+      const slug = getUrlParameter('slug');
+
+      if (!slug) {
+        // If no slug provided, try to use fallback or show error
+        if (BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
+          // Configuration not set, show fallback content
+          displayBlog(fallbackContent);
+          showContent();
+          return;
+        }
+        showError();
+        return;
+      }
+
+      try {
+        const blog = await fetchBlogBySlug(slug);
+
+        if (!blog) {
+          // Blog not found, check if we should show fallback
+          if (BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
+            // Configuration not set, show fallback content
+            displayBlog(fallbackContent);
+            showContent();
+            return;
+          }
+          showError();
+          return;
+        }
+
+        if (!blog[BASEROW_CONFIG.fields.active]) {
+          showError();
+          return;
+        }
+
+        displayBlog(blog);
+        showContent();
+      } catch (error) {
+        console.error('Error initializing blog:', error);
+
+        // Try to show fallback content if configuration issues
+        if (error.message.includes('configuration') || BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
+          displayBlog(fallbackContent);
+          showContent();
+          return;
+        }
+
+        showError();
+      }
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initializeBlog);
+  </script>
 
 </body>
 

@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="profile" href="https://gmpg.org/xfn/11">
+  <title>Blog - Next Level Growth Partners | AI Lead Conversion Experts</title>
+  <meta name='robots' content='max-image-preview:large' />
+  <meta name="description" content="Discover insights on AI lead conversion, digital marketing strategies, and business growth tips from Next Level Growth Partners.">
+
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Blog - Next Level Growth Partners | AI Lead Conversion Experts">
+  <meta property="og:description" content="Discover insights on AI lead conversion, digital marketing strategies, and business growth tips from Next Level Growth Partners.">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Next+Level+Growth+Partners+Blog">
+  <meta property="og:url" content="https://nextlevelgrowthpartners.com/blogs.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Next Level Growth Partners">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog - Next Level Growth Partners | AI Lead Conversion Experts">
+  <meta name="twitter:description" content="Discover insights on AI lead conversion, digital marketing strategies, and business growth tips from Next Level Growth Partners.">
+  <meta name="twitter:image" content="https://via.placeholder.com/1200x630?text=Next+Level+Growth+Partners+Blog">
+  <meta name="twitter:site" content="@NextLevelGrowth">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Next Level Growth Partners Blog",
+    "description": "Discover insights on AI lead conversion, digital marketing strategies, and business growth tips from Next Level Growth Partners.",
+    "url": "https://nextlevelgrowthpartners.com/blogs.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Next Level Growth Partners",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nextlevelgrowthpartners.com/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nextlevelgrowthpartners.com/blogs.html"
+    }
+  }
+  </script>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Baserow API Configuration -->
+  <script>
+    // Baserow Configuration
+    const BASEROW_CONFIG = {
+      baseUrl: 'https://api.baserow.io/api/database/rows/table/',
+      tableId: '580774', // Replace with your actual table ID
+      token: 'dq5ZamHGgdU0fv4BgbvUSakrh4c12idq', // Replace with your actual API token
+      fields: {
+        name: 'Name',
+        notes: 'Notes', 
+        active: 'Active',
+        category: 'Category',
+        shortDescription: 'Short Description',
+        image: 'image',
+        authorName: 'Author Name',
+        readTime: 'Read Time',
+        quote: 'Quote',
+        mainContent: 'Main Content',
+        createdAt: 'Created at',
+        slug: 'slug'
+      }
+    };
+  </script>
+
+  <style>
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .blog-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .category-filter {
+      transition: all 0.3s ease;
+    }
+    
+    .category-filter.active {
+      background-color: #4f46e5;
+      color: white;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="container mx-auto px-4 py-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-gray-900">Next Level Growth Partners</h1>
+        </div>
+        <nav class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-600 hover:text-indigo-600">Home</a>
+          <a href="about.html" class="text-gray-600 hover:text-indigo-600">About</a>
+          <a href="blogs.html" class="text-indigo-600 font-medium">Blog</a>
+          <a href="contact.html" class="text-gray-600 hover:text-indigo-600">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Blog</h1>
+      <p class="text-xl md:text-2xl mb-8 opacity-90">Insights, strategies, and tips for business growth</p>
+    </div>
+  </section>
+
+  <!-- Loading State -->
+  <div id="loading-state" class="container mx-auto px-4 py-16">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+      <p class="text-gray-600">Loading blog posts...</p>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div id="error-state" class="container mx-auto px-4 py-16 hidden">
+    <div class="text-center">
+      <div class="text-red-500 text-6xl mb-4">⚠️</div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Unable to Load Blog Posts</h2>
+      <p class="text-gray-600 mb-6">There was an error loading the blog posts. Please try again later.</p>
+      <button onclick="location.reload()" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+        Try Again
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main id="blog-listing" class="container mx-auto px-4 py-16 hidden">
+    <!-- Category Filters -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Browse by Category</h2>
+      <div id="category-filters" class="flex flex-wrap gap-3">
+        <button class="category-filter active px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-indigo-600 hover:text-white" data-category="all">
+          All Posts
+        </button>
+        <!-- Dynamic category filters will be inserted here -->
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="mb-12">
+      <div class="max-w-md mx-auto">
+        <div class="relative">
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search blog posts..." 
+            class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+          >
+          <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div id="blog-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Dynamic blog cards will be inserted here -->
+    </div>
+
+    <!-- Load More Button -->
+    <div class="text-center mt-12">
+      <button id="load-more-btn" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition hidden">
+        Load More Posts
+      </button>
+    </div>
+
+    <!-- No Results -->
+    <div id="no-results" class="text-center py-16 hidden">
+      <div class="text-gray-400 text-6xl mb-4">📝</div>
+      <h3 class="text-xl font-semibold text-gray-900 mb-2">No blog posts found</h3>
+      <p class="text-gray-600">Try adjusting your search or filter criteria.</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Next Level Growth Partners</h3>
+          <p class="text-gray-400">AI-powered lead conversion experts helping businesses grow.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="index.html" class="hover:text-white">Home</a></li>
+            <li><a href="about.html" class="hover:text-white">About</a></li>
+            <li><a href="blogs.html" class="hover:text-white">Blog</a></li>
+            <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Services</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">AI Lead Generation</a></li>
+            <li><a href="#" class="hover:text-white">Conversion Optimization</a></li>
+            <li><a href="#" class="hover:text-white">Digital Marketing</a></li>
+            <li><a href="#" class="hover:text-white">Business Consulting</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2024 Next Level Growth Partners. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dynamic Blog Listing JavaScript -->
+  <script>
+    // Global variables
+    let allBlogs = [];
+    let filteredBlogs = [];
+    let currentPage = 1;
+    const blogsPerPage = 9;
+    let currentCategory = 'all';
+    let currentSearch = '';
+    let retryCount = 0;
+    const maxRetries = 3;
+
+    // Fallback blogs for when API fails
+    const fallbackBlogs = [
+      {
+        [BASEROW_CONFIG.fields.name]: 'Welcome to Our Blog',
+        [BASEROW_CONFIG.fields.category]: 'General',
+        [BASEROW_CONFIG.fields.shortDescription]: 'We\'re experiencing technical difficulties. Please check back later for our latest insights on AI lead conversion and business growth.',
+        [BASEROW_CONFIG.fields.authorName]: 'Next Level Growth Partners',
+        [BASEROW_CONFIG.fields.readTime]: '5 min read',
+        [BASEROW_CONFIG.fields.image]: 'https://via.placeholder.com/400x300?text=Next+Level+Growth+Partners',
+        [BASEROW_CONFIG.fields.createdAt]: new Date().toISOString(),
+        [BASEROW_CONFIG.fields.slug]: 'welcome-to-our-blog',
+        [BASEROW_CONFIG.fields.active]: true
+      },
+      {
+        [BASEROW_CONFIG.fields.name]: 'AI Lead Conversion Strategies',
+        [BASEROW_CONFIG.fields.category]: 'AI',
+        [BASEROW_CONFIG.fields.shortDescription]: 'Discover how artificial intelligence is revolutionizing lead conversion and helping businesses achieve unprecedented growth.',
+        [BASEROW_CONFIG.fields.authorName]: 'Next Level Growth Partners',
+        [BASEROW_CONFIG.fields.readTime]: '8 min read',
+        [BASEROW_CONFIG.fields.image]: 'https://via.placeholder.com/400x300?text=AI+Lead+Conversion',
+        [BASEROW_CONFIG.fields.createdAt]: new Date(Date.now() - 86400000).toISOString(),
+        [BASEROW_CONFIG.fields.slug]: 'ai-lead-conversion-strategies',
+        [BASEROW_CONFIG.fields.active]: true
+      },
+      {
+        [BASEROW_CONFIG.fields.name]: 'Digital Marketing Best Practices',
+        [BASEROW_CONFIG.fields.category]: 'Marketing',
+        [BASEROW_CONFIG.fields.shortDescription]: 'Learn the latest digital marketing strategies that drive results and help businesses connect with their target audience.',
+        [BASEROW_CONFIG.fields.authorName]: 'Next Level Growth Partners',
+        [BASEROW_CONFIG.fields.readTime]: '6 min read',
+        [BASEROW_CONFIG.fields.image]: 'https://via.placeholder.com/400x300?text=Digital+Marketing',
+        [BASEROW_CONFIG.fields.createdAt]: new Date(Date.now() - 172800000).toISOString(),
+        [BASEROW_CONFIG.fields.slug]: 'digital-marketing-best-practices',
+        [BASEROW_CONFIG.fields.active]: true
+      }
+    ];
+
+    // Utility functions
+    function formatDate(dateString) {
+      if (!dateString) return 'Unknown date';
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+    }
+
+    function stripHtml(html) {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || '';
+    }
+
+    function truncateText(text, maxLength = 150) {
+      if (text.length <= maxLength) return text;
+      return text.substr(0, maxLength) + '...';
+    }
+
+    // API functions with enhanced error handling
+    async function fetchAllBlogs(attempt = 1) {
+      try {
+        // Check if Baserow config is properly set
+        if (!BASEROW_CONFIG.tableId || BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
+          console.warn('Baserow configuration not properly set, using fallback content');
+          return fallbackBlogs;
+        }
+
+        const response = await fetch(
+          `${BASEROW_CONFIG.baseUrl}${BASEROW_CONFIG.tableId}/?user_field_names=true&filter__field_${BASEROW_CONFIG.fields.active}__equal=true&order_by=-${BASEROW_CONFIG.fields.createdAt}`,
+          {
+            headers: {
+              'Authorization': `Token ${BASEROW_CONFIG.token}`,
+              'Content-Type': 'application/json'
+            },
+            timeout: 15000 // 15 second timeout
+          }
+        );
+
+        if (!response.ok) {
+          if (response.status === 429 && attempt < maxRetries) {
+            // Rate limited, wait and retry
+            await new Promise(resolve => setTimeout(resolve, 2000 * attempt));
+            return fetchAllBlogs(attempt + 1);
+          }
+          throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        const blogs = data.results || [];
+
+        // If no blogs found and this is a configuration issue, return fallback
+        if (blogs.length === 0 && BASEROW_CONFIG.token === 'YOUR_API_TOKEN') {
+          return fallbackBlogs;
+        }
+
+        return blogs;
+      } catch (error) {
+        console.error(`Error fetching blogs (attempt ${attempt}):`, error);
+
+        if (attempt < maxRetries && !error.message.includes('configuration')) {
+          // Retry with exponential backoff
+          await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempt)));
+          return fetchAllBlogs(attempt + 1);
+        }
+
+        // Return fallback content on final failure
+        console.warn('Using fallback content due to API failure');
+        return fallbackBlogs;
+      }
+    }
+
+    // Display functions
+    function createBlogCard(blog) {
+      const card = document.createElement('div');
+      card.className = 'blog-card bg-white rounded-lg overflow-hidden shadow-sm cursor-pointer';
+
+      const imageUrl = blog[BASEROW_CONFIG.fields.image] || 'https://via.placeholder.com/400x300?text=Blog+Image';
+      const shortDesc = stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || '');
+
+      card.innerHTML = `
+        <img src="${imageUrl}" alt="${blog[BASEROW_CONFIG.fields.name]}" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-medium text-indigo-600 uppercase tracking-wide">${blog[BASEROW_CONFIG.fields.category] || 'BLOG'}</span>
+            <span class="text-xs text-gray-500">${blog[BASEROW_CONFIG.fields.readTime] || '5 min read'}</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">${blog[BASEROW_CONFIG.fields.name] || 'Untitled'}</h3>
+          <p class="text-gray-600 mb-4 line-clamp-3">${truncateText(shortDesc, 120)}</p>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <img src="${imageUrl}" alt="${blog[BASEROW_CONFIG.fields.authorName]}" class="w-8 h-8 rounded-full object-cover mr-3">
+              <div>
+                <p class="text-sm font-medium text-gray-900">${blog[BASEROW_CONFIG.fields.authorName] || 'Anonymous'}</p>
+                <p class="text-xs text-gray-500">${formatDate(blog[BASEROW_CONFIG.fields.createdAt])}</p>
+              </div>
+            </div>
+            <div class="text-indigo-600">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+      `;
+
+      card.addEventListener('click', () => {
+        window.location.href = `blogs-artical.html?slug=${encodeURIComponent(blog[BASEROW_CONFIG.fields.slug])}`;
+      });
+
+      return card;
+    }
+
+    function displayBlogs() {
+      const blogGrid = document.getElementById('blog-grid');
+      const noResults = document.getElementById('no-results');
+      const loadMoreBtn = document.getElementById('load-more-btn');
+
+      // Clear existing content
+      blogGrid.innerHTML = '';
+
+      if (filteredBlogs.length === 0) {
+        noResults.classList.remove('hidden');
+        loadMoreBtn.classList.add('hidden');
+        return;
+      }
+
+      noResults.classList.add('hidden');
+
+      // Calculate blogs to show
+      const blogsToShow = filteredBlogs.slice(0, currentPage * blogsPerPage);
+
+      // Create and append blog cards
+      blogsToShow.forEach((blog, index) => {
+        const card = createBlogCard(blog);
+        card.style.animationDelay = `${(index % blogsPerPage) * 0.1}s`;
+        card.classList.add('fade-in');
+        blogGrid.appendChild(card);
+      });
+
+      // Show/hide load more button
+      if (blogsToShow.length < filteredBlogs.length) {
+        loadMoreBtn.classList.remove('hidden');
+      } else {
+        loadMoreBtn.classList.add('hidden');
+      }
+    }
+
+    function generateCategoryFilters() {
+      const categories = [...new Set(allBlogs.map(blog => blog[BASEROW_CONFIG.fields.category]).filter(Boolean))];
+      const filtersContainer = document.getElementById('category-filters');
+
+      // Keep the "All Posts" button and add category buttons
+      const allButton = filtersContainer.querySelector('[data-category="all"]');
+      filtersContainer.innerHTML = '';
+      filtersContainer.appendChild(allButton);
+
+      categories.forEach(category => {
+        const button = document.createElement('button');
+        button.className = 'category-filter px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-indigo-600 hover:text-white';
+        button.setAttribute('data-category', category);
+        button.textContent = category;
+        filtersContainer.appendChild(button);
+      });
+
+      // Add event listeners
+      filtersContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('category-filter')) {
+          // Update active state
+          filtersContainer.querySelectorAll('.category-filter').forEach(btn => {
+            btn.classList.remove('active');
+          });
+          e.target.classList.add('active');
+
+          // Update filter
+          currentCategory = e.target.getAttribute('data-category');
+          currentPage = 1;
+          filterBlogs();
+          displayBlogs();
+        }
+      });
+    }
+
+    function filterBlogs() {
+      filteredBlogs = allBlogs.filter(blog => {
+        // Category filter
+        const categoryMatch = currentCategory === 'all' || blog[BASEROW_CONFIG.fields.category] === currentCategory;
+
+        // Search filter
+        const searchMatch = currentSearch === '' ||
+          blog[BASEROW_CONFIG.fields.name].toLowerCase().includes(currentSearch.toLowerCase()) ||
+          (blog[BASEROW_CONFIG.fields.shortDescription] &&
+           stripHtml(blog[BASEROW_CONFIG.fields.shortDescription]).toLowerCase().includes(currentSearch.toLowerCase())) ||
+          (blog[BASEROW_CONFIG.fields.category] &&
+           blog[BASEROW_CONFIG.fields.category].toLowerCase().includes(currentSearch.toLowerCase()));
+
+        return categoryMatch && searchMatch;
+      });
+    }
+
+    // Event listeners
+    function setupEventListeners() {
+      // Search functionality
+      const searchInput = document.getElementById('search-input');
+      let searchTimeout;
+
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          currentSearch = e.target.value;
+          currentPage = 1;
+          filterBlogs();
+          displayBlogs();
+        }, 300);
+      });
+
+      // Load more functionality
+      document.getElementById('load-more-btn').addEventListener('click', () => {
+        currentPage++;
+        displayBlogs();
+      });
+    }
+
+    // State management
+    function showLoading() {
+      document.getElementById('loading-state').classList.remove('hidden');
+      document.getElementById('error-state').classList.add('hidden');
+      document.getElementById('blog-listing').classList.add('hidden');
+    }
+
+    function showError() {
+      document.getElementById('loading-state').classList.add('hidden');
+      document.getElementById('error-state').classList.remove('hidden');
+      document.getElementById('blog-listing').classList.add('hidden');
+    }
+
+    function showContent() {
+      document.getElementById('loading-state').classList.add('hidden');
+      document.getElementById('error-state').classList.add('hidden');
+      document.getElementById('blog-listing').classList.remove('hidden');
+    }
+
+    // Main initialization with fallback support
+    async function initializeBlogListing() {
+      showLoading();
+
+      try {
+        allBlogs = await fetchAllBlogs();
+
+        // Always show content if we have blogs (including fallback)
+        if (allBlogs.length === 0) {
+          showError();
+          return;
+        }
+
+        filteredBlogs = [...allBlogs];
+        generateCategoryFilters();
+        setupEventListeners();
+        displayBlogs();
+        showContent();
+
+        // Show a notice if using fallback content
+        if (BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID' || BASEROW_CONFIG.token === 'YOUR_API_TOKEN') {
+          showFallbackNotice();
+        }
+      } catch (error) {
+        console.error('Error initializing blog listing:', error);
+
+        // Try to use fallback content
+        allBlogs = fallbackBlogs;
+        filteredBlogs = [...allBlogs];
+        generateCategoryFilters();
+        setupEventListeners();
+        displayBlogs();
+        showContent();
+        showFallbackNotice();
+      }
+    }
+
+    // Show notice when using fallback content
+    function showFallbackNotice() {
+      const notice = document.createElement('div');
+      notice.className = 'bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6';
+      notice.innerHTML = `
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-yellow-800">Demo Content</h3>
+            <p class="mt-1 text-sm text-yellow-700">
+              You're viewing demo content. To see live blog posts, please configure your Baserow API credentials.
+            </p>
+          </div>
+        </div>
+      `;
+
+      const blogListing = document.getElementById('blog-listing');
+      const firstChild = blogListing.firstElementChild;
+      blogListing.insertBefore(notice, firstChild);
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initializeBlogListing);
+  </script>
+</body>
+
+</html>
