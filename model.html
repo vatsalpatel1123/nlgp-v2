@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Modal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Universal Chat Widget -->
+  <script src="universal-chat-widget.js"></script>
+    <style>
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a122e;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e40af;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1e3a8a;
+        }
+
+        /* Custom animations for modal */
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-enter {
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        .overlay-enter {
+            animation: fadeIn 0.2s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+
+    <!-- Trigger Button -->
+    <button 
+        id="openModalBtn" 
+        class="bg-gradient-to-r from-blue-800 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105 transform"
+    >
+        <i class="fas fa-calendar-check mr-2"></i> Request Demo
+    </button>
+
+    <!-- Modal Overlay -->
+    <div 
+        id="modalOverlay" 
+        class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden overlay-enter flex items-center justify-center p-4"
+    >
+        <!-- Modal Container -->
+        <div 
+            id="modalContainer" 
+            class="bg-[#01071a] text-[#A5A5A5] rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl hidden modal-enter scrollbar-thin scrollbar-thumb-blue-800 scrollbar-track-[#0a122e] scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
+        >
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-gray-800 flex justify-between items-center">
+                <div>
+                    <h3 class="text-xl font-bold text-white">Book Your Demo</h3>
+                    <p class="text-sm mt-1">Fill out the form below to schedule your demo</p>
+                </div>
+                <button id="closeModalBtn" class="text-gray-400 hover:text-white focus:outline-none">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Content - Form -->
+            <form class="p-4 md:p-6 pb-6 md:pb-8 space-y-3 md:space-y-4" method="post" name="New Form" id="demoForm">
+                <input type="hidden" name="post_id" value="2672" />
+                <input type="hidden" name="form_id" value="d94708f" />
+                <input type="hidden" name="referer_title" value="Contact" />
+                <input type="hidden" name="queried_id" value="2672" />
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <!-- First Name -->
+                    <div>
+                        <label for="form-field-first-name" class="block text-sm font-medium mb-1 text-gray-400">
+                            First Name <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="form_fields[first_name]" 
+                            id="form-field-first-name" 
+                            class="w-full bg-[#0a122e] border border-gray-800 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                            placeholder="First Name" 
+                            required
+                        >
+                    </div>
+                    
+                    <!-- Last Name -->
+                    <div>
+                        <label for="form-field-last-name" class="block text-sm font-medium mb-1 text-gray-400">
+                            Last Name <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="form_fields[last_name]" 
+                            id="form-field-last-name" 
+                            class="w-full bg-[#0a122e] border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                            placeholder="Last Name" 
+                            required
+                        >
+                    </div>
+                    
+                    <!-- Phone -->
+                    <div>
+                        <label for="form-field-phone" class="block text-sm font-medium mb-1 text-gray-400">
+                            Phone <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="tel" 
+                            name="form_fields[phone]" 
+                            id="form-field-phone" 
+                            class="w-full bg-[#0a122e] border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                            placeholder="Phone" 
+                            required
+                        >
+                    </div>
+                    
+                    <!-- Email -->
+                    <div>
+                        <label for="form-field-email" class="block text-sm font-medium mb-1 text-gray-400">
+                            Email <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            name="form_fields[email]" 
+                            id="form-field-email" 
+                            class="w-full bg-[#0a122e] border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                            placeholder="Email" 
+                            required
+                        >
+                    </div>
+                </div>
+                
+                <!-- Company Name -->
+                <div>
+                    <label for="form-field-company" class="block text-sm font-medium mb-1 text-gray-400">
+                        Company Name <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        name="form_fields[company]" 
+                        id="form-field-company" 
+                        class="w-full bg-[#0a122e] border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                        placeholder="Company Name" 
+                        required
+                    >
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Service Interest -->
+                    <div>
+                        <label for="form-field-service" class="block text-sm font-medium mb-1 text-gray-400">
+                            Which service interests you most?
+                        </label>
+                        <div class="relative">
+                            <select 
+                                name="form_fields[service]" 
+                                id="form-field-service" 
+                                class="w-full bg-[#0a122e] border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none appearance-none pr-10"
+                            >
+                                <option value="Lead Revival Android">Lead Revival Android</option>
+                                <option value="Instant Lead Android">Instant Lead Android</option>
+                                <option value="Abandoned Cart Recovery">Abandoned Cart Recovery</option>
+                                <option value="Out Of Hours Android">Out Of Hours Android</option>
+                                <option value="Voice AI Receptionist">Voice AI Receptionist</option>
+                                <option value="Convo AI Widget">Convo AI Widget</option>
+                                <option value="Google Reviews Android">Google Reviews Android</option>
+                                <option value="Custom Built Solution">Custom Built Solution</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Referral Source -->
+                    <div>
+                        <label for="form-field-referral" class="block text-sm font-medium mb-1 text-gray-400">
+                            How did you hear about us?
+                        </label>
+                        <div class="relative">
+                            <select 
+                                name="form_fields[referral]" 
+                                id="form-field-referral" 
+                                class="w-full bg-[#0a122e] border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none appearance-none pr-10"
+                            >
+                                <option value="Google Search">Google Search</option>
+                                <option value="Social Media">Social Media</option>
+                                <option value="Referral">Referral</option>
+                                <option value="LinkedIn">LinkedIn</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Message -->
+                <div>
+                    <label for="form-field-message" class="block text-sm font-medium mb-1 text-gray-400">
+                        Tell us about your business and goals:
+                    </label>
+                    <textarea 
+                        name="form_fields[message]" 
+                        id="form-field-message" 
+                        rows="4" 
+                        class="w-full bg-[#0a122e] border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                        placeholder="Describe your business, current challenges, and what you hope to achieve with AI automation..."
+                    ></textarea>
+                </div>
+                
+                <!-- SMS Consent -->
+                <div class="pt-2">
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input 
+                                type="checkbox" 
+                                value="yes" 
+                                id="form-field-sms-consent" 
+                                name="form_fields[sms_consent]" 
+                                class="w-4 h-4 bg-[#0a122e] border-gray-800 rounded focus:ring-blue-500 text-blue-600"
+                                required
+                            >
+                        </div>
+                        <label for="form-field-sms-consent" class="ml-3 text-sm text-gray-400">
+                            I consent to receive SMS messages from Next Level Growth Partners. Message and data rates may apply. Reply STOP to opt out. <span class="text-red-500">*</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Terms Consent -->
+                <div class="pb-2">
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input 
+                                type="checkbox" 
+                                value="yes" 
+                                id="form-field-terms" 
+                                name="form_fields[terms]" 
+                                class="w-4 h-4 bg-[#0a122e] border-gray-800 rounded focus:ring-blue-500 text-blue-600"
+                                required
+                            >
+                        </div>
+                        <label for="form-field-terms" class="ml-3 text-sm text-gray-400">
+                            I agree to the <a href="#" target="_blank" class="text-blue-400 hover:text-blue-300">Terms of Service</a> and <a href="#" target="_blank" class="text-blue-400 hover:text-blue-300">Privacy Policy</a>. <span class="text-red-500">*</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="pt-3 md:pt-4">
+                    <button 
+                        type="submit" 
+                        class="w-full bg-gradient-to-r from-blue-800 to-blue-600 hover:from-blue-700 hover:to-blue-500 text-white font-semibold py-3 md:py-4 px-4 md:px-6 rounded-full shadow-md hover:shadow-lg transition-all transform hover:scale-[1.01]"
+                    >
+                        <i class="fas fa-calendar-check mr-2"></i> Book My Demo
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalContainer = document.getElementById('modalContainer');
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        
+        function openModal() {
+            modalOverlay.classList.remove('hidden');
+            modalOverlay.classList.add('flex');
+            
+            // Small delay to allow display property to change before animation
+            setTimeout(() => {
+                modalContainer.classList.remove('hidden');
+            }, 10);
+            
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            modalContainer.classList.add('hidden');
+            modalOverlay.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                modalOverlay.classList.add('hidden');
+                modalOverlay.classList.remove('opacity-0', 'flex');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+        
+        openModalBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        
+        // Close modal when clicking outside the form
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Form submission
+        const form = document.querySelector('form[name="New Form"]');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would normally handle form submission
+            alert('Demo request submitted! We will contact you soon.');
+            closeModal();
+        });
+    </script>
+</body>
+</html>

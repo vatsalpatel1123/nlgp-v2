@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Article | Mindful Living</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .article-content p {
+            @apply mb-4 text-gray-700 leading-relaxed;
+        }
+        .article-content h2 {
+            @apply text-2xl font-bold mt-8 mb-4 text-gray-800;
+        }
+        .article-content h3 {
+            @apply text-xl font-semibold mt-6 mb-3 text-gray-800;
+        }
+        .article-content ul {
+            @apply list-disc pl-6 mb-4;
+        }
+        .article-content blockquote {
+            @apply border-l-4 border-indigo-500 pl-4 italic text-gray-600 my-6;
+        }
+        .article-content a {
+            @apply text-indigo-600 hover:underline;
+        }
+        .article-content img {
+            @apply rounded-lg shadow-lg my-6 w-full;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #4f46e5 0%, #a855f7 50%, #ec4899 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+    <!-- Reading progress bar -->
+    <div id="progress-bar" class="progress-bar"></div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600">Mindful<span class="text-gray-800">Living</span></a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-600 hover:text-indigo-600">Home</a>
+                <a href="#" class="text-gray-600 hover:text-indigo-600">Blog</a>
+                <a href="#" class="text-gray-600 hover:text-indigo-600">Categories</a>
+                <a href="#" class="text-gray-600 hover:text-indigo-600">About</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <button class="hidden md:block bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-4xl fade-in">
+        <!-- Article Header -->
+        <article>
+            <div class="mb-6">
+                <span class="text-indigo-600 font-medium">Mindfulness</span>
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4 leading-tight">The Art of Mindful Living: Finding Peace in a Busy World</h1>
+                <div class="flex items-center mt-6">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author" class="w-12 h-12 rounded-full object-cover">
+                    <div class="ml-4">
+                        <p class="font-medium text-gray-900">Sarah Johnson</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>May 15, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>8 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Image -->
+            <div class="rounded-xl overflow-hidden shadow-lg mb-8">
+                <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                     alt="Mindful living" class="w-full h-auto max-h-96 object-cover">
+            </div>
+
+            <!-- Article Content -->
+            <div class="article-content">
+                <p class="text-lg font-medium text-gray-800 mb-6">In our fast-paced, technology-driven world, finding moments of peace can seem like an impossible task. Yet, the practice of mindfulness offers a simple but powerful way to reconnect with the present moment and cultivate inner calm.</p>
+
+                <h2>What is Mindfulness?</h2>
+                <p>Mindfulness is the basic human ability to be fully present, aware of where we are and what we're doing, and not overly reactive or overwhelmed by what's going on around us. While mindfulness is something we all naturally possess, it's more readily available to us when we practice on a daily basis.</p>
+
+                <blockquote>
+                    "Mindfulness isn't difficult, we just need to remember to do it." — Sharon Salzberg
+                </blockquote>
+
+                <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                     alt="Meditation" class="rounded-lg">
+
+                <h2>The Benefits of Mindful Living</h2>
+                <p>Research has shown that practicing mindfulness, even for just a few weeks, can bring a variety of physical, psychological, and social benefits:</p>
+                <ul>
+                    <li>Reduced stress and anxiety</li>
+                    <li>Improved focus and concentration</li>
+                    <li>Better emotional regulation</li>
+                    <li>Enhanced self-awareness</li>
+                    <li>Improved relationships</li>
+                    <li>Increased resilience to challenges</li>
+                </ul>
+
+                <h3>Getting Started with Mindfulness</h3>
+                <p>You don't need special equipment or training to begin practicing mindfulness. Here are some simple ways to incorporate mindfulness into your daily routine:</p>
+
+                <div class="bg-indigo-50 rounded-lg p-6 my-6">
+                    <h3 class="text-indigo-800 font-semibold mb-3">Mindfulness Quick Start</h3>
+                    <ol class="list-decimal pl-6 space-y-2">
+                        <li>Start with just 5 minutes a day</li>
+                        <li>Focus on your breath - notice the sensation of air moving in and out</li>
+                        <li>When your mind wanders (and it will), gently bring it back</li>
+                        <li>Expand to mindful eating, walking, or listening</li>
+                        <li>Be patient with yourself - it's called practice for a reason</li>
+                    </ol>
+                </div>
+
+                <h2>Mindfulness in Everyday Activities</h2>
+                <p>Mindfulness doesn't have to be limited to meditation. You can bring mindful awareness to nearly any activity:</p>
+
+                <div class="grid md:grid-cols-2 gap-6 my-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                        <div class="text-indigo-600 mb-3">
+                            <i class="fas fa-utensils text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Mindful Eating</h3>
+                        <p class="text-gray-600">Slow down and savor each bite. Notice the colors, textures, and flavors of your food.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                        <div class="text-indigo-600 mb-3">
+                            <i class="fas fa-walking text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Mindful Walking</h3>
+                        <p class="text-gray-600">Pay attention to the sensation of each step, the movement of your body, and your surroundings.</p>
+                    </div>
+                </div>
+
+                <h2>Overcoming Common Challenges</h2>
+                <p>Many beginners encounter similar obstacles when starting a mindfulness practice. Here's how to work through them:</p>
+
+                <div class="overflow-hidden rounded-lg border border-gray-200 my-6">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Challenge</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Solution</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">"I can't stop my thoughts"</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">Thoughts are natural. The practice is noticing them without judgment and returning to your focus.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">"I don't have time"</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">Start with just one minute. You can practice mindfulness while brushing your teeth or waiting in line.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">"It feels silly"</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">Remember that mindfulness is scientifically validated. Millions practice worldwide.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Deepening Your Practice</h2>
+                <p>As you become more comfortable with basic mindfulness techniques, you might explore these ways to deepen your practice:</p>
+                <ul>
+                    <li>Join a local meditation group or class</li>
+                    <li>Try guided meditations (many free apps are available)</li>
+                    <li>Attend a mindfulness retreat</li>
+                    <li>Read books on mindfulness and meditation</li>
+                    <li>Keep a mindfulness journal to track your experiences</li>
+                </ul>
+
+                <div class="border-t border-b border-gray-200 py-6 my-8">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-lightbulb text-3xl text-indigo-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">Mindfulness Tip</h3>
+                            <p class="mt-1 text-gray-600">Set a gentle chime on your phone to remind you to pause and take three mindful breaths at various times throughout your day.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>The Ripple Effects of Mindfulness</h2>
+                <p>As you cultivate mindfulness in your own life, you may begin to notice positive changes in your relationships and how you interact with the world. Mindfulness can help you:</p>
+                <ul>
+                    <li>Respond rather than react in difficult situations</li>
+                    <li>Listen more attentively to others</li>
+                    <li>Appreciate small moments of joy</li>
+                    <li>Develop greater compassion for yourself and others</li>
+                    <li>Feel more connected to the world around you</li>
+                </ul>
+
+                <p class="mt-8 text-lg font-medium text-gray-800">Mindfulness is not about achieving perfection or emptying your mind completely. It's about showing up for your life with curiosity and kindness, one moment at a time. The more you practice, the more you'll discover the profound benefits of living mindfully.</p>
+            </div>
+
+            <!-- Article Footer -->
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Mindfulness</span>
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Wellness</span>
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Mental Health</span>
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Self-Care</span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex space-x-4">
+                        <button class="text-gray-500 hover:text-indigo-600">
+                            <i class="far fa-heart text-xl"></i>
+                            <span class="ml-1">243</span>
+                        </button>
+                        <button class="text-gray-500 hover:text-indigo-600">
+                            <i class="far fa-comment text-xl"></i>
+                            <span class="ml-1">28</span>
+                        </button>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="text-gray-500 hover:text-indigo-600">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </button>
+                        <button class="text-gray-500 hover:text-indigo-600">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </button>
+                        <button class="text-gray-500 hover:text-indigo-600">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Author Bio -->
+        <div class="mt-12 bg-gray-50 rounded-lg p-6">
+            <div class="flex flex-col md:flex-row">
+                <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author" class="w-20 h-20 rounded-full object-cover">
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-900">About Sarah Johnson</h3>
+                    <p class="mt-2 text-gray-600">Sarah is a certified mindfulness instructor and wellness coach with over 10 years of experience helping people find balance in their busy lives. She leads workshops and retreats internationally and is the author of "Everyday Mindfulness: Simple Practices for Busy People."</p>
+                    <div class="mt-4">
+                        <a href="#" class="text-indigo-600 hover:underline font-medium">View all posts by Sarah →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Articles -->
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">You Might Also Enjoy</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1491897554428-130a60dd4757?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                         alt="Morning routine" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-medium text-indigo-600">PRODUCTIVITY</span>
+                        <h3 class="text-lg font-bold mt-2 mb-2 text-gray-900">Creating a Mindful Morning Routine</h3>
+                        <p class="text-sm text-gray-500 mb-4">Start your day with intention and purpose with these simple practices.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>Jun 2, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1544378061-0d8b0221a2bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                         alt="Digital detox" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-medium text-indigo-600">DIGITAL WELLNESS</span>
+                        <h3 class="text-lg font-bold mt-2 mb-2 text-gray-900">The Benefits of a Digital Detox</h3>
+                        <p class="text-sm text-gray-500 mb-4">How stepping away from screens can improve your mental health and relationships.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>Apr 18, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>7 min read</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                         alt="Gratitude" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-medium text-indigo-600">HAPPINESS</span>
+                        <h3 class="text-lg font-bold mt-2 mb-2 text-gray-900">The Science of Gratitude</h3>
+                        <p class="text-sm text-gray-500 mb-4">How keeping a gratitude journal can rewire your brain for happiness.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>Mar 5, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>6 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Discussion (28)</h2>
+            <div class="space-y-6">
+                <!-- Comment 1 -->
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="w-10 h-10 rounded-full">
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-medium text-gray-900">Michael Chen</h4>
+                                <span class="text-sm text-gray-500">2 days ago</span>
+                            </div>
+                            <p class="mt-2 text-gray-600">This article came at the perfect time for me. I've been feeling overwhelmed with work and needed these reminders about mindfulness. The tip about setting phone reminders is brilliant!</p>
+                            <div class="mt-3 flex items-center text-sm text-gray-500">
+                                <button class="flex items-center hover:text-indigo-600">
+                                    <i class="far fa-thumbs-up mr-1"></i>
+                                    <span>12</span>
+                                </button>
+                                <button class="flex items-center ml-4 hover:text-indigo-600">
+                                    <i class="far fa-thumbs-down mr-1"></i>
+                                </button>
+                                <button class="ml-auto hover:text-indigo-600">Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment 2 -->
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="User" class="w-10 h-10 rounded-full">
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-medium text-gray-900">Priya Patel</h4>
+                                <span class="text-sm text-gray-500">1 week ago</span>
+                            </div>
+                            <p class="mt-2 text-gray-600">I've been practicing mindfulness for about 6 months now and can confirm all these benefits. The biggest change for me has been in my relationships - I'm much more present with my family now.</p>
+                            <div class="mt-3 flex items-center text-sm text-gray-500">
+                                <button class="flex items-center hover:text-indigo-600">
+                                    <i class="far fa-thumbs-up mr-1"></i>
+                                    <span>8</span>
+                                </button>
+                                <button class="flex items-center ml-4 hover:text-indigo-600">
+                                    <i class="far fa-thumbs-down mr-1"></i>
+                                </button>
+                                <button class="ml-auto hover:text-indigo-600">Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment Form -->
+                <div class="mt-8">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">Leave a comment</h3>
+                    <form>
+                        <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Share your thoughts..."></textarea>
+                        <div class="mt-4 flex justify-end">
+                            <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Post Comment</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Newsletter -->
+    <div class="bg-indigo-50 mt-16 py-12">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Join Our Mindful Community</h2>
+                <p class="text-gray-600 mb-6">Get weekly insights and tips for living more mindfully delivered to your inbox.</p>
+                <form class="max-w-md mx-auto">
+                    <div class="flex">
+                        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-r-lg hover:bg-indigo-700 transition">Subscribe</button>
+                    </div>
+                    <p class="mt-2 text-xs text-gray-500">We respect your privacy. Unsubscribe at any time.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Mindful Living</h3>
+                    <p class="text-gray-400">Helping you find peace and purpose in everyday life through mindfulness practices.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Explore</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Mindfulness</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Wellness</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Mental Health</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Productivity</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2023 Mindful Living. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-indigo-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercentage + '%';
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Like button functionality
+        const likeButtons = document.querySelectorAll('.far.fa-thumbs-up').forEach(button => {
+            button.addEventListener('click', function() {
+                const countElement = this.nextElementSibling;
+                let count = parseInt(countElement.textContent);
+                if (this.classList.contains('text-indigo-600')) {
+                    this.classList.remove('text-indigo-600');
+                    countElement.textContent = count - 1;
+                } else {
+                    this.classList.add('text-indigo-600');
+                    countElement.textContent = count + 1;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

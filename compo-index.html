@@ -1,0 +1,200 @@
+<script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+        /* Custom scrollbar */
+        .benefits-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .benefits-container::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        .benefits-container::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+        }
+        .benefits-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.5);
+        }
+        
+        /* Hide scrollbar but keep functionality */
+        .benefits-container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .benefits-container::-webkit-scrollbar {
+            display: none;  /* Chrome, Safari and Opera */
+        }
+        
+        /* Smooth hover effect for cards */
+        .benefit-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Navigation buttons */
+        .nav-button {
+            opacity: 0.6;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .nav-button:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    </style>
+   <div class="container mx-auto px-4 py-20" style="overflow-y: hidden;">
+        <!-- Header Section -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">The Benefits of Working With Us</h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">Experience transformative growth with our cutting-edge AI solutions designed to optimize every aspect of your business.</p>
+            <!-- Partner with Us Button -->
+                <div class="text-center mt-8">
+                    <a href="/contact.html" target="_blank"
+                        class="inline-block bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        Partner with Us
+                    </a>
+                </div>
+        </div>
+        
+        <!-- Benefits Cards Container -->
+        <div class="relative">
+            <div class="benefits-container flex overflow-x-auto space-x-6 py-4 px-2" id="benefitsContainer" style="scroll-behavior: smooth;">
+                <!-- Advanced AI -->
+                <div class="benefit-card flex-shrink-0 w-80 md:w-96 bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700">
+                    <div class="w-16 h-16 bg-indigo-600 rounded-lg flex items-center justify-center mb-6 text-white">
+                        <i class="fas fa-brain text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Advanced AI</h3>
+                    <p class="text-gray-300">AI is changing at a rapid pace and it's easy to get left behind. We stay ahead and simplify everything so you're always at the forefront. Our systems continuously improve to ensure we provide the most advanced solutions.</p>
+                </div>
+                
+                <!-- Reclaimed Time -->
+                <div class="benefit-card flex-shrink-0 w-80 md:w-96 bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700">
+                    <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mb-6 text-white">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Reclaimed Time</h3>
+                    <p class="text-gray-300">With AI-powered systems and intelligent automation, your business can eliminate manual processes. Free up your team to focus on what truly drives growth—serving clients and closing new deals.</p>
+                </div>
+                
+                <!-- Increased Revenue -->
+                <div class="benefit-card flex-shrink-0 w-80 md:w-96 bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700">
+                    <div class="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mb-6 text-white">
+                        <i class="fas fa-chart-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Increased Revenue</h3>
+                    <p class="text-gray-300">Our proven system guarantees consistent and predictable results, empowering you to scale your business to new levels. We'll help you maximize earnings and profit as much as possible.</p>
+                </div>
+                
+                <!-- Elevated Profit Margins -->
+                <div class="benefit-card flex-shrink-0 w-80 md:w-96 bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700">
+                    <div class="w-16 h-16 bg-purple-600 rounded-lg flex items-center justify-center mb-6 text-white">
+                        <i class="fas fa-coins text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Elevated Profit Margins</h3>
+                    <p class="text-gray-300">Replace costly outdated processes with efficient advanced alternatives. Our solutions run your sales process autonomously and drastically reduce your company's overhead.</p>
+                </div>
+                
+                <!-- Higher Valuation -->
+                <div class="benefit-card flex-shrink-0 w-80 md:w-96 bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700">
+                    <div class="w-16 h-16 bg-yellow-600 rounded-lg flex items-center justify-center mb-6 text-white">
+                        <i class="fas fa-briefcase text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Higher Valuation</h3>
+                    <p class="text-gray-300">Instantly own a more valuable business with streamlined processes, more revenue, and less overhead. We'll show you how to utilize proprietary technology to ensure continuous growth.</p>
+                </div>
+                
+                <!-- Guaranteed Results -->
+                <div class="benefit-card flex-shrink-0 w-80 md:w-96 bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700">
+                    <div class="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-6 text-white">
+                        <i class="fas fa-medal text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Guaranteed Results</h3>
+                    <p class="text-gray-300">We guarantee a return on our partner's investments. As our client, we ensure complete satisfaction and work relentlessly to achieve your business goals.</p>
+                </div>
+                
+                <!-- Top-Tier Partnerships -->
+                <div class="benefit-card flex-shrink-0 w-80 md:w-96 bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700">
+                    <div class="w-16 h-16 bg-teal-600 rounded-lg flex items-center justify-center mb-6 text-white">
+                        <i class="fas fa-handshake text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Top-Tier Partnerships</h3>
+                    <p class="text-gray-300">Many of our clients are ideal referral partners for one another. Becoming our client grants you access to our network of high-performing companies and business owners.</p>
+                </div>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <button id="prevBtn" class="nav-button absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-gray-800 text-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="nextBtn" class="nav-button absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-gray-800 text-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Indicator -->
+        <div class="flex justify-center mt-6 md:hidden">
+            <div class="flex space-x-2">
+                <div class="w-2 h-2 rounded-full bg-gray-600"></div>
+                <div class="w-2 h-2 rounded-full bg-gray-600"></div>
+                <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+                <div class="w-2 h-2 rounded-full bg-gray-600"></div>
+                <div class="w-2 h-2 rounded-full bg-gray-600"></div>
+                <div class="w-2 h-2 rounded-full bg-gray-600"></div>
+                <div class="w-2 h-2 rounded-full bg-gray-600"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('benefitsContainer');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            // Card width + gap (24px in this case)
+            const scrollAmount = 384; // 80 (card width) + 24 (gap) = 104 * 3.69 for proper scrolling
+            
+            nextBtn.addEventListener('click', function() {
+                container.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                container.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Hide/show buttons based on scroll position
+            container.addEventListener('scroll', function() {
+                const maxScrollLeft = container.scrollWidth - container.clientWidth;
+                
+                if (container.scrollLeft <= 0) {
+                    prevBtn.style.opacity = '0.2';
+                    prevBtn.style.pointerEvents = 'none';
+                } else {
+                    prevBtn.style.opacity = '0.7';
+                    prevBtn.style.pointerEvents = 'auto';
+                }
+                
+                if (container.scrollLeft >= maxScrollLeft - 5) {
+                    nextBtn.style.opacity = '0.2';
+                    nextBtn.style.pointerEvents = 'none';
+                } else {
+                    nextBtn.style.opacity = '0.7';
+                    nextBtn.style.pointerEvents = 'auto';
+                }
+            });
+            
+            // Initialize button states
+            prevBtn.style.opacity = '0.2';
+            prevBtn.style.pointerEvents = 'none';
+        });
+    </script>

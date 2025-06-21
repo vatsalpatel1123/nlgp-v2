@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Lifecycle Flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Universal Chat Widget -->
+  <script src="universal-chat-widget.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Lead Lifecycle Flow</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Discover our seamless lead management process that transforms prospects into loyal customers</p>
+        </header>
+
+        <!-- Lead Lifecycle Flow Container -->
+        <div class="relative">
+            <!-- Horizontal Flow for Desktop -->
+            <div class="hidden md:block overflow-x-auto pb-8 hide-scrollbar">
+                <div class="relative">
+                    <!-- Funnel Background -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-50 via-purple-50 to-orange-50 rounded-2xl opacity-30 z-0"></div>
+
+                    <!-- Stage Cards Container -->
+                    <div class="relative z-10 flex justify-center items-center py-8 px-4">
+                        <div id="desktop-stages-container" class="flex items-center space-x-8">
+                            <!-- Stages will be inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Animated Connection Arrows -->
+                    <div id="connection-arrows" class="absolute top-1/2 left-0 right-0 flex justify-center items-center z-5">
+                        <!-- Arrows will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vertical Flow for Mobile -->
+            <div class="md:hidden space-y-6">
+                <div id="mobile-stages-container">
+                    <!-- Stages will be inserted here (mobile version) -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Section Placeholder -->
+        <div id="demo-section" class="mt-32 py-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Experience Our Demo</h2>
+                <p class="text-gray-600 mb-8">Select a stage above to see it in action or explore our full platform demo below.</p>
+                <button class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    View Full Platform Demo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Custom CSS */
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .stage-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stage-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.3);
+        }
+
+        .stage-icon {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stage-card:hover .stage-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            z-index: 100;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 100%;
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(30, 60, 114, 0.9));
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            white-space: nowrap;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .stage-card:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        /* Funnel Arrow Styles */
+        .funnel-arrow {
+            position: relative;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .funnel-arrow::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid #ef4444;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .funnel-arrow::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Stage Number Badge */
+        .stage-number {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 20;
+        }
+
+        /* Mobile Arrow Styles */
+        .mobile-arrow {
+            display: flex;
+            justify-content: center;
+            margin: 16px 0;
+        }
+
+        .mobile-arrow-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Animation classes */
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-in-delayed {
+            animation: fadeInUp 0.6s ease-out forwards;
+            animation-delay: 0.2s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Pulse effect for active stage */
+        .stage-active {
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .stage-card {
+                margin: 0 auto;
+                max-width: 350px;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lifecycle stages data
+            const stages = [
+                {
+                    title: "Lead Generation",
+                    icon: "fa-bullseye",
+                    description: "Capture high-quality leads through targeted campaigns and smart forms",
+                    info: "Multi-channel lead capture forms with smart validation",
+                    color: "from-blue-400 to-blue-600"
+                },
+                {
+                    title: "Automated Outreach",
+                    icon: "fa-paper-plane",
+                    description: "Instant follow-up with personalized messages at scale",
+                    info: "AI-powered message personalization with dynamic fields",
+                    color: "from-blue-500 to-indigo-600"
+                },
+                {
+                    title: "Speed to Lead",
+                    icon: "fa-bolt",
+                    description: "Respond to leads in seconds with our lightning-fast system",
+                    info: "Real-time lead distribution with response time tracking",
+                    color: "from-indigo-500 to-purple-600"
+                },
+                {
+                    title: "Database Reactivation",
+                    icon: "fa-recycle",
+                    description: "Revive old leads with intelligent re-engagement sequences",
+                    info: "Automated win-backs for cold leads based on behavior",
+                    color: "from-purple-500 to-purple-700"
+                },
+                {
+                    title: "Appointment Booking",
+                    icon: "fa-calendar-check",
+                    description: "Seamless scheduling integrated with your calendar",
+                    info: "Two-way calendar sync with automated reminders",
+                    color: "from-purple-600 to-pink-600"
+                },
+                {
+                    title: "AI Voice Receptionist",
+                    icon: "fa-robot",
+                    description: "24/7 AI answering service to never miss a call",
+                    info: "Natural language processing with human-like responses",
+                    color: "from-pink-500 to-red-500"
+                },
+                {
+                    title: "AI Convo Widget",
+                    icon: "fa-comments",
+                    description: "Smart chat widget that qualifies leads automatically",
+                    info: "Context-aware conversations that adapt to visitor needs",
+                    color: "from-red-500 to-orange-500"
+                }
+            ];
+
+            const desktopContainer = document.getElementById('desktop-stages-container');
+            const mobileContainer = document.getElementById('mobile-stages-container');
+            const arrowsContainer = document.getElementById('connection-arrows');
+
+            // Create stages for desktop
+            stages.forEach((stage, index) => {
+                const stageElement = createStageElement(stage, index, false);
+                desktopContainer.appendChild(stageElement);
+
+                // Add connecting arrow (except for the last stage)
+                if (index < stages.length - 1) {
+                    const arrow = createArrowElement(index);
+                    desktopContainer.appendChild(arrow);
+                }
+            });
+
+            // Create stages for mobile
+            stages.forEach((stage, index) => {
+                const stageElement = createStageElement(stage, index, true);
+                mobileContainer.appendChild(stageElement);
+
+                // Add mobile arrow (except for the last stage)
+                if (index < stages.length - 1) {
+                    const mobileArrow = createMobileArrowElement(index);
+                    mobileContainer.appendChild(mobileArrow);
+                }
+            });
+            
+            // Enhanced animation sequence
+            function animateStages() {
+                const stageCards = document.querySelectorAll('.stage-card');
+                const arrows = document.querySelectorAll('.funnel-arrow, .mobile-arrow-icon');
+
+                // Animate stages with staggered delay
+                stageCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('animate-in');
+
+                        // Add active pulse effect to first stage
+                        if (index === 0) {
+                            setTimeout(() => {
+                                card.classList.add('stage-active');
+                            }, 500);
+                        }
+                    }, index * 200);
+                });
+
+                // Animate arrows after stages
+                arrows.forEach((arrow, index) => {
+                    setTimeout(() => {
+                        arrow.style.opacity = '1';
+                        arrow.classList.add('animate-in-delayed');
+                    }, (index + 1) * 300 + 1000);
+                });
+            }
+
+            // Start animation sequence
+            setTimeout(animateStages, 500);
+
+            // Enhanced demo button click handlers
+            document.querySelectorAll('.demo-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const stageTitle = this.getAttribute('data-stage');
+                    console.log(`Demo requested for: ${stageTitle}`);
+
+                    // Add click effect
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+
+                    // Highlight the clicked stage
+                    document.querySelectorAll('.stage-card').forEach(card => {
+                        card.classList.remove('stage-active');
+                    });
+                    this.closest('.stage-card').classList.add('stage-active');
+
+                    // Scroll to demo section with smooth behavior
+                    setTimeout(() => {
+                        document.getElementById('demo-section').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }, 200);
+                });
+            });
+
+            // Add hover effects for stage progression visualization
+            document.querySelectorAll('.stage-card').forEach((card, index) => {
+                card.addEventListener('mouseenter', function() {
+                    // Highlight current and previous stages
+                    document.querySelectorAll('.stage-card').forEach((otherCard, otherIndex) => {
+                        if (otherIndex <= index) {
+                            otherCard.style.opacity = '1';
+                            otherCard.style.transform = 'translateY(-5px) scale(1.02)';
+                        } else {
+                            otherCard.style.opacity = '0.6';
+                        }
+                    });
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    // Reset all stages
+                    document.querySelectorAll('.stage-card').forEach(otherCard => {
+                        otherCard.style.opacity = '1';
+                        otherCard.style.transform = '';
+                    });
+                });
+            });
+            
+            // Create stage element function
+            function createStageElement(stage, index, isMobile) {
+                const stageElement = document.createElement('div');
+
+                if (isMobile) {
+                    stageElement.className = `stage-card bg-white/90 rounded-xl shadow-lg p-6 transform transition-all duration-300 opacity-0 relative border-l-4 border-blue-500`;
+
+                    stageElement.innerHTML = `
+                        <div class="stage-number">${index + 1}</div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-gradient-to-r ${stage.color} p-3 rounded-lg text-white mr-4 stage-icon">
+                                <i class="fas ${stage.icon} text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">${stage.title}</h3>
+                                <p class="text-gray-600 mb-4">${stage.description}</p>
+                                <button class="demo-btn px-4 py-2 bg-gradient-to-r ${stage.color} text-white rounded-lg text-sm font-semibold hover:opacity-90 transition-all duration-300 hover:scale-105" data-stage="${stage.title}">
+                                    See Demo <i class="fas fa-play ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tooltip">${stage.info}</div>
+                    `;
+                } else {
+                    stageElement.className = `stage-card w-48 flex-shrink-0 bg-white/90 rounded-xl shadow-lg p-6 transform transition-all duration-300 opacity-0 relative`;
+
+                    stageElement.innerHTML = `
+                        <div class="stage-number">${index + 1}</div>
+                        <div class="text-center">
+                            <div class="bg-gradient-to-r ${stage.color} p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 stage-icon">
+                                <i class="fas ${stage.icon} text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-2">${stage.title}</h3>
+                            <p class="text-gray-600 text-sm mb-4">${stage.description}</p>
+                            <button class="demo-btn px-3 py-2 bg-gradient-to-r ${stage.color} text-white rounded-lg text-xs font-semibold hover:opacity-90 transition-all duration-300 hover:scale-105" data-stage="${stage.title}">
+                                See Demo <i class="fas fa-play ml-1"></i>
+                            </button>
+                        </div>
+                        <div class="tooltip">${stage.info}</div>
+                    `;
+                }
+
+                return stageElement;
+            }
+
+            // Create arrow element for desktop
+            function createArrowElement(index) {
+                const arrowElement = document.createElement('div');
+                arrowElement.className = 'flex items-center justify-center mx-2';
+                arrowElement.innerHTML = `
+                    <div class="funnel-arrow" style="animation-delay: ${(index + 1) * 0.5}s;"></div>
+                `;
+                return arrowElement;
+            }
+
+            // Create mobile arrow element
+            function createMobileArrowElement(index) {
+                const arrowElement = document.createElement('div');
+                arrowElement.className = 'mobile-arrow';
+                arrowElement.innerHTML = `
+                    <div class="mobile-arrow-icon" style="animation-delay: ${(index + 1) * 0.3}s;">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                `;
+                return arrowElement;
+            }
+            
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            document.querySelectorAll('.stage-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

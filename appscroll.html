@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AiNeN &#8211; AI Agent &amp; Automation WordPress Theme</title>
+    <meta name='robots' content='max-image-preview:large' />
+    <style>
+        img:is([sizes="auto" i], [sizes^="auto," i]) {
+            contain-intrinsic-size: 3000px 1500px
+        }
+    </style>
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link rel="alternate" type="application/rss+xml" title="AiNeN &raquo; Feed"
+        href="https://ainen.modeltheme.com/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="AiNeN &raquo; Comments Feed"
+        href="https://ainen.modeltheme.com/comments/feed/" />
+    
+    <style id='wp-emoji-styles-inline-css' type='text/css'>
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 0.07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <style id='classic-theme-styles-inline-css' type='text/css'>
+        /*! This file is auto-generated */
+        .wp-block-button__link {
+            color: #fff;
+            background-color: #32373c;
+            border-radius: 9999px;
+            box-shadow: none;
+            text-decoration: none;
+            padding: calc(.667em + 2px) calc(1.333em + 2px);
+            font-size: 1.125em
+        }
+
+        .wp-block-file__button {
+            background: #32373c;
+            color: #fff;
+            text-decoration: none
+        }
+    </style>
+    <style id='global-styles-inline-css' type='text/css'>
+        :root {
+            --wp--preset--aspect-ratio--square: 1;
+            --wp--preset--aspect-ratio--4-3: 4/3;
+            --wp--preset--aspect-ratio--3-4: 3/4;
+            --wp--preset--aspect-ratio--3-2: 3/2;
+            --wp--preset--aspect-ratio--2-3: 2/3;
+            --wp--preset--aspect-ratio--16-9: 16/9;
+            --wp--preset--aspect-ratio--9-16: 9/16;
+            --wp--preset--color--black: #000000;
+            --wp--preset--color--cyan-bluish-gray: #abb8c3;
+            --wp--preset--color--white: #ffffff;
+            --wp--preset--color--pale-pink: #f78da7;
+            --wp--preset--color--vivid-red: #cf2e2e;
+            --wp--preset--color--luminous-vivid-orange: #ff6900;
+            --wp--preset--color--luminous-vivid-amber: #fcb900;
+            --wp--preset--color--light-green-cyan: #7bdcb5;
+            --wp--preset--color--vivid-green-cyan: #00d084;
+            --wp--preset--color--pale-cyan-blue: #8ed1fc;
+            --wp--preset--color--vivid-cyan-blue: #0693e3;
+            --wp--preset--color--vivid-purple: #9b51e0;
+            --wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg, rgba(6, 147, 227, 1) 0%, rgb(155, 81, 224) 100%);
+            --wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg, rgb(122, 220, 180) 0%, rgb(0, 208, 130) 100%);
+            --wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg, rgba(252, 185, 0, 1) 0%, rgba(255, 105, 0, 1) 100%);
+            --wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg, rgba(255, 105, 0, 1) 0%, rgb(207, 46, 46) 100%);
+            --wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg, rgb(238, 238, 238) 0%, rgb(169, 184, 195) 100%);
+            --wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg, rgb(74, 234, 220) 0%, rgb(151, 120, 209) 20%, rgb(207, 42, 186) 40%, rgb(238, 44, 130) 60%, rgb(251, 105, 98) 80%, rgb(254, 248, 76) 100%);
+            --wp--preset--gradient--blush-light-purple: linear-gradient(135deg, rgb(255, 206, 236) 0%, rgb(152, 150, 240) 100%);
+            --wp--preset--gradient--blush-bordeaux: linear-gradient(135deg, rgb(254, 205, 165) 0%, rgb(254, 45, 45) 50%, rgb(107, 0, 62) 100%);
+            --wp--preset--gradient--luminous-dusk: linear-gradient(135deg, rgb(255, 203, 112) 0%, rgb(199, 81, 192) 50%, rgb(65, 88, 208) 100%);
+            --wp--preset--gradient--pale-ocean: linear-gradient(135deg, rgb(255, 245, 203) 0%, rgb(182, 227, 212) 50%, rgb(51, 167, 181) 100%);
+            --wp--preset--gradient--electric-grass: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+            --wp--preset--gradient--midnight: linear-gradient(135deg, rgb(2, 3, 129) 0%, rgb(40, 116, 252) 100%);
+            --wp--preset--font-size--small: 13px;
+            --wp--preset--font-size--medium: 20px;
+            --wp--preset--font-size--large: 36px;
+            --wp--preset--font-size--x-large: 42px;
+            --wp--preset--font-family--inter: "Inter", sans-serif;
+            --wp--preset--font-family--cardo: Cardo;
+            --wp--preset--spacing--20: 0.44rem;
+            --wp--preset--spacing--30: 0.67rem;
+            --wp--preset--spacing--40: 1rem;
+            --wp--preset--spacing--50: 1.5rem;
+            --wp--preset--spacing--60: 2.25rem;
+            --wp--preset--spacing--70: 3.38rem;
+            --wp--preset--spacing--80: 5.06rem;
+            --wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);
+            --wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);
+            --wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);
+            --wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);
+            --wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);
+        }
+
+        :where(.is-layout-flex) {
+            gap: 0.5em;
+        }
+
+        :where(.is-layout-grid) {
+            gap: 0.5em;
+        }
+
+        body .is-layout-flex {
+            display: flex;
+        }
+
+        .is-layout-flex {
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .is-layout-flex> :is(*, div) {
+            margin: 0;
+        }
+
+        body .is-layout-grid {
+            display: grid;
+        }
+
+        .is-layout-grid> :is(*, div) {
+            margin: 0;
+        }
+
+        :where(.wp-block-columns.is-layout-flex) {
+            gap: 2em;
+        }
+
+        :where(.wp-block-columns.is-layout-grid) {
+            gap: 2em;
+        }
+
+        :where(.wp-block-post-template.is-layout-flex) {
+            gap: 1.25em;
+        }
+
+        :where(.wp-block-post-template.is-layout-grid) {
+            gap: 1.25em;
+        }
+
+        .has-black-color {
+            color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-color {
+            color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-color {
+            color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-color {
+            color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-color {
+            color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-color {
+            color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-color {
+            color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-color {
+            color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-color {
+            color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-color {
+            color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-color {
+            color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-color {
+            color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-black-background-color {
+            background-color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-background-color {
+            background-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-background-color {
+            background-color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-background-color {
+            background-color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-background-color {
+            background-color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-background-color {
+            background-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-background-color {
+            background-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-background-color {
+            background-color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-background-color {
+            background-color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-background-color {
+            background-color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-background-color {
+            background-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-background-color {
+            background-color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-black-border-color {
+            border-color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-border-color {
+            border-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-border-color {
+            border-color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-border-color {
+            border-color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-border-color {
+            border-color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-border-color {
+            border-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-border-color {
+            border-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-border-color {
+            border-color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-border-color {
+            border-color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-border-color {
+            border-color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-border-color {
+            border-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-border-color {
+            border-color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-vivid-cyan-blue-to-vivid-purple-gradient-background {
+            background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
+        }
+
+        .has-light-green-cyan-to-vivid-green-cyan-gradient-background {
+            background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
+        }
+
+        .has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
+            background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-orange-to-vivid-red-gradient-background {
+            background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
+        }
+
+        .has-very-light-gray-to-cyan-bluish-gray-gradient-background {
+            background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
+        }
+
+        .has-cool-to-warm-spectrum-gradient-background {
+            background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
+        }
+
+        .has-blush-light-purple-gradient-background {
+            background: var(--wp--preset--gradient--blush-light-purple) !important;
+        }
+
+        .has-blush-bordeaux-gradient-background {
+            background: var(--wp--preset--gradient--blush-bordeaux) !important;
+        }
+
+        .has-luminous-dusk-gradient-background {
+            background: var(--wp--preset--gradient--luminous-dusk) !important;
+        }
+
+        .has-pale-ocean-gradient-background {
+            background: var(--wp--preset--gradient--pale-ocean) !important;
+        }
+
+        .has-electric-grass-gradient-background {
+            background: var(--wp--preset--gradient--electric-grass) !important;
+        }
+
+        .has-midnight-gradient-background {
+            background: var(--wp--preset--gradient--midnight) !important;
+        }
+
+        .has-small-font-size {
+            font-size: var(--wp--preset--font-size--small) !important;
+        }
+
+        .has-medium-font-size {
+            font-size: var(--wp--preset--font-size--medium) !important;
+        }
+
+        .has-large-font-size {
+            font-size: var(--wp--preset--font-size--large) !important;
+        }
+
+        .has-x-large-font-size {
+            font-size: var(--wp--preset--font-size--x-large) !important;
+        }
+
+        :where(.wp-block-post-template.is-layout-flex) {
+            gap: 1.25em;
+        }
+
+        :where(.wp-block-post-template.is-layout-grid) {
+            gap: 1.25em;
+        }
+
+        :where(.wp-block-columns.is-layout-flex) {
+            gap: 2em;
+        }
+
+        :where(.wp-block-columns.is-layout-grid) {
+            gap: 2em;
+        }
+
+        :root :where(.wp-block-pullquote) {
+            font-size: 1.5em;
+            line-height: 1.6;
+        }
+    </style>
+    <link rel='stylesheet' id='contact-form-7-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.0.6'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-shortcodes-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/modeltheme-framework/inc/shortcodes/shortcodes.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='animations-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/modeltheme-framework/css/animations.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/mt-addons-public.css?ver=1.0.0'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-responsive-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/plugins/bootstrap/mt-addons-responsive.css?ver=5.15.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='woocommerce-layout-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=9.7.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='woocommerce-smallscreen-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=9.7.1'
+        type='text/css' media='only screen and (max-width: 768px)' />
+    <link rel='stylesheet' id='woocommerce-general-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=9.7.1'
+        type='text/css' media='all' />
+    <style id='woocommerce-inline-inline-css' type='text/css'>
+        .woocommerce form .form-row .required {
+            visibility: visible;
+        }
+    </style>
+    <link rel='stylesheet' id='brands-styles-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/css/brands.css?ver=9.7.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-5-css'
+        href='https://ainen.modeltheme.com/wp-content/themes/ainen/css/vendor/font-awesome/all.min.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/font-awesome.min.css?ver=4.7.0'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='ainen-responsive-css'
+        href='https://ainen.modeltheme.com/wp-content/themes/ainen/css/responsive.css?ver=6.8.1' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='ainen-media-screens-css'
+        href='https://ainen.modeltheme.com/wp-content/themes/ainen/css/media-screens.css?ver=6.8.1' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='owl-carousel-css'
+        href='https://ainen.modeltheme.com/wp-content/themes/ainen/css/owl.carousel.css?ver=6.8.1' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='animate-css'
+        href='https://ainen.modeltheme.com/wp-content/themes/ainen/css/animate.css?ver=6.8.1' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='ainen-styles-css'
+        href='https://ainen.modeltheme.com/wp-content/themes/ainen/css/styles.css?ver=6.8.1' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='ainen-style-css'
+        href='https://ainen.modeltheme.com/wp-content/themes/ainen/style.css?ver=6.8.1' type='text/css' media='all' />
+    <style id='ainen-style-inline-css' type='text/css'>
+        body #navbar .menu-item.selected>a,
+        body #navbar .current_page_item>a,
+        .header-nav-actions .mt-search-icon {
+            color: #0a4035 !important;
+        }
+
+        body #navbar .menu-item.free-consultation:hover>a {
+            color: #fff !important;
+        }
+
+        .header-infos .header-info-group a:hover span,
+        body #navbar .menu-item.selected>a,
+        body #navbar .current_page_item>a,
+        .header-infos .header-info-group a:hover i {
+            color: #0a4035 !important;
+        }
+
+        .header1 .header-nav-actions .mt-search-icon:hover,
+        .header1 .mt-nav-burger-holder:hover {
+            background: #e0f2f1 !important;
+            border-color: #e0f2f1 !important;
+        }
+
+        .is_header_semitransparent header {
+            background: rgba(255, 255, 255, 0.0) none repeat scroll 0 0;
+        }
+
+        .is_header_semitransparent .sticky-wrapper.is-sticky .navbar-default .container {
+            background: rgba(255, 255, 255, 0.9) none repeat scroll 0 0;
+        }
+
+        .is_header_semitransparent .header1 .header-info-group h3,
+        .is_header_semitransparent .header1 .header-info-group h5,
+        header.header1 .header-info-group a,
+        header.header1 .header-info-group span,
+        header.header1 .social-links * {
+            color: #ffffff;
+        }
+
+        .woocommerce #respond input#submit.disabled:hover,
+        .woocommerce #respond input#submit:disabled:hover,
+        .woocommerce #respond input#submit:disabled[disabled]:hover,
+        .woocommerce a.button.disabled:hover,
+        .woocommerce a.button:disabled:hover,
+        .woocommerce a.button:disabled[disabled]:hover,
+        .woocommerce button.button.disabled:hover,
+        .woocommerce button.button:disabled:hover,
+        .woocommerce button.button:disabled[disabled]:hover,
+        .woocommerce input.button.disabled:hover,
+        .woocommerce input.button:disabled:hover,
+        .woocommerce input.button:disabled[disabled]:hover {
+            background-color: #252525;
+        }
+
+        body #navbar .menu-item.free-consultation>a {
+            background: #ff5e15 !important;
+        }
+
+        body #navbar .menu-item.free-consultation:hover>a {
+            background: #ff5e15 !important;
+        }
+
+        .back-to-top {
+            background: #0A4035;
+        }
+
+        .back-to-top i {
+            color: #EAF7EE;
+        }
+
+        .back-to-top:hover {
+            background: #0A4035;
+        }
+
+        .back-to-top:hover i {
+            color: #EAF7EE;
+        }
+
+        body #navbar .menu-item.free-consultation>a {
+            background: #FF5E15;
+            color: #FFFFFF;
+        }
+
+        body #navbar .menu-item.free-consultation:hover>a {
+            background: #FF5E15;
+            color: #FFFFFF;
+        }
+
+        body {
+            font-family: Karla;
+        }
+
+        h1,
+        h1 span {
+            font-family: "Karla";
+            font-size: 55px;
+        }
+
+        h2 {
+            font-family: "Karla";
+            font-size: 30px;
+        }
+
+        h3 {
+            font-family: "Karla";
+            font-size: 24px;
+        }
+
+        h4 {
+            font-family: "Karla";
+            font-size: 18px;
+        }
+
+        h5 {
+            font-family: "Karla";
+            font-size: 14px;
+        }
+
+        h6 {
+            font-family: "Karla";
+            font-size: 12px;
+        }
+
+        input,
+        textarea {
+            font-family: DM Sans;
+        }
+
+        input[type="submit"] {
+            font-family: DM Sans;
+        }
+
+        .breadcrumb a::after {
+            content: "/";
+        }
+
+        body {
+            background: #ffffff;
+        }
+
+        .logo img,
+        .navbar-header .logo img {
+            max-width: 140px;
+        }
+
+        ::selection {
+            color: #ffffff;
+            background: #0a4035;
+        }
+
+        ::-moz-selection {
+            /* Code for Firefox */
+            color: #ffffff;
+            background: #0a4035;
+        }
+
+        a,
+        a:visited {
+            color: #0a4035;
+        }
+
+        a:focus,
+        a:hover {
+            color: #e0f2f1;
+        }
+
+        /*------------------------------------------------------------------
+			        COLOR
+			    ------------------------------------------------------------------*/
+        a,
+        a:hover,
+        a:focus,
+        .mt_car--tax-type,
+        span.amount,
+        .widget_popular_recent_tabs .nav-tabs li.active a,
+        .widget_product_categories .cat-item:hover,
+        .widget_product_categories .cat-item a:hover,
+        .widget_archive li:hover,
+        .widget_archive li a:hover,
+        .widget_categories .cat-item:hover,
+        .widget_categories li a:hover,
+        .wp-block-latest-posts li a:hover,
+        .wp-block-archives-list li a:hover,
+        .wp-block-categories li a:hover,
+        .pricing-table.recomended .button.solid-button,
+        .pricing-table .table-content:hover .button.solid-button,
+        .pricing-table.Recommended .button.solid-button,
+        .pricing-table.recommended .button.solid-button,
+        #sync2 .owl-item.synced .post_slider_title,
+        #sync2 .owl-item:hover .post_slider_title,
+        #sync2 .owl-item:active .post_slider_title,
+        .pricing-table.recomended .button.solid-button,
+        .pricing-table .table-content:hover .button.solid-button,
+        .testimonial-author,
+        .testimonials-container blockquote::before,
+        .testimonials-container blockquote::after,
+        .post-author>a,
+        h2 span,
+        label.error,
+        .author-name,
+        .prev-next-post a:hover,
+        .prev-text,
+        .wpb_button.btn-filled:hover,
+        .next-text,
+        .social ul li a:hover i,
+        .wpcf7-form span.wpcf7-not-valid-tip,
+        .text-dark .statistics .stats-head *,
+        .wpb_button.btn-filled,
+        .widget_meta a:hover,
+        .widget_pages a:hover,
+        .blogloop-v1 .post-name a:hover,
+        .blogloop-v2 .post-name a:hover,
+        .blogloop-v3 .post-name a:hover,
+        .blogloop-v4 .post-name a:hover,
+        .blogloop-v5 .post-name a:hover,
+        .post-category-comment-date span a:hover,
+        .list-view .post-details .post-category-comment-date a:hover,
+        .simple_sermon_content_top h4,
+        .page_404_v1 h1,
+        .mt_cars--single-main-pic .post-name>a,
+        .widget_recent_comments li:hover a,
+        .list-view .post-details .post-name a:hover,
+        .blogloop-v5 .post-details .post-sticky-label i,
+        header.header2 .header-info-group .header_text_title strong,
+        .widget_recent_entries_with_thumbnail li:hover a,
+        .widget_recent_entries li a:hover,
+        .blogloop-v1 .post-details .post-sticky-label i,
+        .blogloop-v2 .post-details .post-sticky-label i,
+        .blogloop-v3 .post-details .post-sticky-label i,
+        .blogloop-v4 .post-details .post-sticky-label i,
+        .blogloop-v5 .post-details .post-sticky-label i,
+        .error-404.not-found h1,
+        .list-view .post-details .post-excerpt .more-link:hover,
+        .header4 header .right-side-social-actions .social-links a:hover i,
+        .sidebar-content .widget_nav_menu li a:hover,
+        .header1 .header-info-group i,
+        .woocommerce-info::before,
+        .member01_social a:hover,
+        .contact-details i,
+        footer .social-links a:hover i,
+        .woocommerce .star-rating span,
+        .related.products .star-rating span,
+        .orange_subtitle,
+        .members_img_holder .member01_position,
+        .woocommerce .woocommerce-message::before,
+        footer .footer-top .menu .menu-item a:hover,
+        .widget_ainen_recent_entries_with_thumbnail li:hover a,
+        .woocommerce ul.products li.product .button:hover,
+        .ainen-contact-sidebar .wpcf7-submit:hover:focus,
+        body .get-a-consultation-sidebar .ainen-contact .wpcf7-submit:active,
+        .ainen-contact-sidebar .wpcf7-submit:hover,
+        .fixed-sidebar-menu .left-side .social-links a:hover i,
+        .fixed-sidebar-menu .widget_ainen_address_social_icons p a:hover {
+            color: #0a4035;
+        }
+
+        .services-section .box-shadow-column .vc_column-inner:hover .button-sections a,
+        .woocommerce a.remove,
+        .related.products ul.products li.product .button:hover,
+        .blog-posts-shortcode.blog-posts .list-view .post-details .post-name,
+        .mt-icon-listgroup-content-holder-button p,
+        .mt-icon-listgroup-content-holder-button p .more-link {
+            color: #0a4035 !important;
+        }
+
+        /* NAVIGATION */
+        .navstyle-v8.header3 #navbar .menu>.menu-item.current-menu-item>a,
+        .navstyle-v8.header3 #navbar .menu>.menu-item:hover>a,
+        .navstyle-v1.header3 #navbar .menu>.menu-item:hover>a,
+        .navstyle-v1.header2 #navbar .menu>.menu-item:hover>a,
+        .navstyle-v4 #navbar .menu>.menu-item.current-menu-item>a,
+        .navstyle-v4 #navbar .menu>.menu-item:hover>a,
+        .navstyle-v3 #navbar .menu>.menu-item.current-menu-item>a,
+        .navstyle-v3 #navbar .menu>.menu-item:hover>a,
+        .navstyle-v3 #navbar .menu>.menu-item>a::before,
+        .navstyle-v3 #navbar .menu>.menu-item>a::after,
+        .navstyle-v2 #navbar .menu>.menu-item.current-menu-item>a,
+        .navstyle-v2 #navbar .menu>.menu-item:hover>a {
+            color: #0a4035;
+        }
+
+        .nav-submenu-style1 #navbar .sub-menu .menu-item.selected>a,
+        .nav-submenu-style1 #navbar .sub-menu .menu-item:hover>a,
+        .navstyle-v2.header3 #navbar .menu>.menu-item>a::before,
+        .navstyle-v2.header3 #navbar .menu>.menu-item>a::after,
+        .navstyle-v8 #navbar .menu>.menu-item>a::before,
+        .navstyle-v7 #navbar .menu>.menu-item .sub-menu>.menu-item>a:hover,
+        .navstyle-v7 #navbar .menu>.menu-item.current_page_item>a,
+        .navstyle-v7 #navbar .menu>.menu-item.current-menu-item>a,
+        .navstyle-v7 #navbar .menu>.menu-item:hover>a,
+        .navstyle-v6 #navbar .menu>.menu-item.current_page_item>a,
+        .navstyle-v6 #navbar .menu>.menu-item.current-menu-item>a,
+        .navstyle-v6 #navbar .menu>.menu-item:hover>a,
+        .navstyle-v5 #navbar .menu>.menu-item.current_page_item>a,
+        .navstyle-v5 #navbar .menu>.menu-item.current-menu-item>a,
+        .navstyle-v5 #navbar .menu>.menu-item:hover>a,
+        .navstyle-v2 #navbar .menu>.menu-item>a::before,
+        .navstyle-v2 #navbar .menu>.menu-item>a::after {
+            background: #0a4035;
+        }
+
+
+        /* Color Dark / Hovers */
+        .related-posts .post-name:hover a {
+            color: #e0f2f1;
+        }
+
+
+
+        /*------------------------------------------------------------------
+			        BACKGROUND + BACKGROUND-COLOR
+			    ------------------------------------------------------------------*/
+        .tagcloud>a:hover,
+        .modeltheme-icon-search,
+        .wpb_button::after,
+        .rotate45,
+        .latest-posts .post-date-day,
+        .latest-posts h3,
+        .latest-tweets h3,
+        .latest-videos h3,
+        .button.solid-button,
+        button.vc_btn,
+        .pricing-table.recomended .table-content,
+        .pricing-table .table-content:hover,
+        .pricing-table.Recommended .table-content,
+        .pricing-table.recommended .table-content,
+        .pricing-table.recomended .table-content,
+        .pricing-table .table-content:hover,
+        .block-triangle,
+        .owl-theme .owl-controls .owl-page span,
+        body .vc_btn.vc_btn-blue,
+        body a.vc_btn.vc_btn-blue,
+        body button.vc_btn.vc_btn-blue,
+        .pagination .page-numbers.current,
+        .pagination .page-numbers:hover,
+        #subscribe>button[type='submit'],
+        .social-sharer>li:hover,
+        .prev-next-post a:hover .rotate45,
+        .masonry_banner.default-skin,
+        .form-submit input,
+        .form-submit button,
+        .member-header::before,
+        .member-header::after,
+        .member-footer .social::before,
+        .member-footer .social::after,
+        .subscribe>button[type='submit'],
+        .no-results input[type='submit'],
+        h3#reply-title::after,
+        .newspaper-info,
+        header.header1 .header-nav-actions .shop_cart,
+        .categories_shortcode .owl-controls .owl-buttons i:hover,
+        .widget-title:after,
+        h2.heading-bottom:after,
+        .single .content-car-heading:after,
+        .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header.ui-state-active,
+        #primary .main-content ul li:not(.rotate45)::before,
+        .wpcf7-form .wpcf7-submit,
+        ul.ecs-event-list li span,
+        #contact_form2 .solid-button.button,
+        .details-container>div.details-item .amount,
+        .details-container>div.details-item ins,
+        .modeltheme-search .search-submit,
+        .pricing-table.recommended .table-content .title-pricing,
+        .pricing-table .table-content:hover .title-pricing,
+        .pricing-table.recommended .button.solid-button,
+        #navbar ul.sub-menu li a:hover .blogloop-v5 .absolute-date-badge span,
+        .post-category-date a[rel="tag"],
+        #navbar .mt-icon-list-item:hover,
+        .mt_car--single-gallery.mt_car--featured-single-gallery:hover,
+        .modeltheme-pagination.pagination .page-numbers.current,
+        .pricing-table .table-content:hover .button.solid-button,
+        footer .footer-top .menu .menu-item a::before,
+        .mt-car-search .submit .form-control,
+        .blogloop-v4.list-view .post-date,
+        .post-password-form input[type="submit"],
+        .search-form input[type="submit"],
+        body .btn-sticky-left,
+        .post-password-form input[type='submit'],
+        body.woocommerce ul.products li.product .onsale,
+        .woocommerce a.remove:hover,
+        body .ainen-contact .wpcf7-submit:focus,
+        body .ainen-contact .wpcf7-submit:active,
+        .sidebar-menu h2.widgettitle,
+        .consulting-broshure-sidebar a.btn.btn-download-pdf,
+        .header-button .button-winona,
+        .woocommerce button.button.alt.disabled,
+        .error404 a.vc_button_404,
+        .button-winona.btn.btn-medium,
+        .single-post-tags>a:hover,
+        .orange_border {
+            background: #0a4035;
+        }
+
+        .woocommerce #payment #place_order:hover,
+        .woocommerce-page #payment #place_order:hover,
+        .accordion-services .vc_tta-panel.vc_active a,
+        .woocommerce nav.woocommerce-pagination ul li span,
+        .woocommerce nav.woocommerce-pagination ul li a.page-numbers:hover,
+        .cases-tabs ul.vc_tta-tabs-list li.vc_tta-tab.vc_active a {
+            background: #0a4035 !important;
+        }
+
+        .woocommerce .product-thumbnails span.onsale,
+        .related.products ul.products li.product .button,
+        .woocommerce #review_form #respond .form-submit input,
+        .woocommerce #respond input#submit,
+        .woocommerce a.button,
+        .woocommerce input.button,
+        .woocommerce button.button,
+        .woocommerce #respond input#submit.alt,
+        .woocommerce a.button.alt,
+        .woocommerce button.button.alt,
+        .woocommerce input.button.alt {
+            background-color: #0a4035;
+        }
+
+        body .ainen-contact .wpcf7-submit:hover,
+        .modeltheme-search.modeltheme-search-open .modeltheme-icon-search,
+        .no-js .modeltheme-search .modeltheme-icon-search,
+        .modeltheme-icon-search:hover,
+        .latest-posts .post-date-month,
+        .button.solid-button:hover,
+        body .vc_btn.vc_btn-blue:hover,
+        body a.vc_btn.vc_btn-blue:hover,
+        .post-category-date a[rel="tag"]:hover,
+        body button.vc_btn.vc_btn-blue:hover,
+        .blogloop-v5 .absolute-date-badge span:hover,
+        .mt-car-search .submit .form-control:hover,
+        #contact_form2 .solid-button.button:hover,
+        .subscribe>button[type='submit']:hover,
+        footer .mc4wp-form-fields input[type="submit"]:hover,
+        .no-results.not-found .search-submit:hover,
+        .no-results input[type='submit']:hover,
+        ul.ecs-event-list li span:hover,
+        .pricing-table.recommended .table-content .price_circle,
+        .pricing-table .table-content:hover .price_circle,
+        #modal-search-form .modal-content input.search-input,
+        .wpcf7-form .wpcf7-submit:hover,
+        .form-submit input:hover,
+        .blogloop-v4.list-view .post-date a:hover,
+        .pricing-table.recommended .button.solid-button:hover,
+        .search-form input[type="submit"]:hover,
+        .modeltheme-pagination.pagination .page-numbers.current:hover,
+        .error-return-home.text-center>a:hover,
+        .pricing-table .table-content:hover .button.solid-button:hover,
+        .post-password-form input[type="submit"]:hover,
+        .navbar-toggle .navbar-toggle:hover .icon-bar,
+        .btn-sticky-left:hover,
+        .post-password-form input[type='submit']:hover,
+        .woocommerce #respond input#submit.alt:hover,
+        .woocommerce a.button.alt:hover,
+        .woocommerce button.button.alt:hover,
+        .woocommerce input.button.alt:hover,
+        .list-view .post-details .post-excerpt .more-link:hover i {
+            background: #e0f2f1;
+        }
+
+        .related.products ul.products li.product .button:hover,
+        .woocommerce #review_form #respond .form-submit input:hover,
+        .woocommerce #respond input#submit:hover,
+        .woocommerce a.button:hover,
+        .woocommerce button.button:hover,
+        .woocommerce input.button:hover,
+        .services-section .box-shadow-column .vc_column-inner:hover .button-sections a:hover .vc_btn3-icon {
+            background-color: #e0f2f1;
+        }
+
+        .ainen_preloader_holder .loader-42 {
+            color: #0A4035;
+        }
+
+        /*------------------------------------------------------------------
+			        BORDER-COLOR
+			    ------------------------------------------------------------------*/
+        .button-winona,
+        .button-winona.btn.btn-medium,
+        .woocommerce div.product form.cart .button,
+        .woocommerce-page .woocommerce-message .button,
+        .woocommerce #review_form #respond .form-submit input,
+        .woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
+        .woocommerce table.cart td.actions .coupon button.button,
+        .woocommerce #payment #place_order,
+        .woocommerce-page #payment #place_order:hover,
+        .woocommerce-page div.woocommerce .shop_table td.actions button.button,
+        .woocommerce-page .shipping-calculator-form button.button,
+        .woocommerce form.checkout_coupon button.button,
+        #commentform .form-submit input[type="submit"],
+        .woocommerce div.product .woocommerce-tabs ul.tabs li,
+        footer .social-links a:hover,
+        body .ainen-contact .wpcf7-submit:hover,
+        body .ainen-contact .wpcf7-submit:focus,
+        body .ainen-contact .wpcf7-submit:active,
+        .woocommerce .woocommerce-info,
+        .comment-form input,
+        .comment-form textarea,
+        .author-bio,
+        blockquote,
+        .widget_popular_recent_tabs .nav-tabs>li.active,
+        body .left-border,
+        body .right-border,
+        body .member-header,
+        body .member-footer .social,
+        body .button[type='submit'],
+        .navbar ul li ul.sub-menu,
+        .wpb_content_element .wpb_tabs_nav li.ui-tabs-active,
+        #contact-us .form-control:focus,
+        .sale_banner_holder:hover,
+        .testimonial-img,
+        .wpcf7-form input:focus,
+        .wpcf7-form textarea:focus,
+        .header_search_form,
+        .list-view .post-details .post-excerpt .more-link:hover,
+        .consulting-broshure-sidebar a.btn.btn-download-pdf,
+        .sidebar-menu .menu li.current-menu-item>a,
+        .sidebar-menu .menu li:hover>a,
+        .sidebar-menu .menu li:active>a,
+        body .ainen-contact .wpcf7-submit:hover,
+        .ainen-contact-sidebar .wpcf7-submit,
+        .error404 a.vc_button_404 {
+            border-color: #0a4035;
+        }
+    </style>
+    <link rel='stylesheet' id='simple-line-icons-css'
+        href='https://ainen.modeltheme.com/wp-content/themes/ainen/css/simple-line-icons.css?ver=6.8.1' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='js-composer-css'
+        href='https://ainen.modeltheme.com/wp-content/themes/ainen/css/js_composer.css?ver=6.8.1' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='ainen-gutenberg-frontend-css'
+        href='https://ainen.modeltheme.com/wp-content/themes/ainen/css/gutenberg-frontend.css?ver=6.8.1' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='ainen-fonts-css'
+        href='//fonts.googleapis.com/css?family=Yantramanav%3Aregular%2C300%2C400%2C500%2C600%2C700%2Cbold%7CKarla%3Aregular%2Citalic%2C700%2C700italic%2Clatin-ext%2Clatin&#038;ver=1.0.0'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='aiknowledgebasepremium-frontend-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/ai-knowledgebase-premium/assets/frontend.css?ver=1.0.0'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='aitld-frontend-style-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/aitld/assets/frontend.css?ver=1.0.0' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='elementor-frontend-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.28.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='elementor-post-8-css'
+        href='https://ainen.modeltheme.com/wp-content/uploads/elementor/css/post-8.css?ver=1747033971' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='widget-heading-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=3.28.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='e-animation-zoomIn-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/lib/animations/styles/zoomIn.min.css?ver=3.28.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='e-animation-fadeInUp-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInUp.min.css?ver=3.28.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='widget-image-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.28.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='e-animation-fadeIn-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/lib/animations/styles/fadeIn.min.css?ver=3.28.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='e-animation-fadeInDown-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInDown.min.css?ver=3.28.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='widget-counter-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/css/widget-counter.min.css?ver=3.28.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='widget-spacer-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/css/widget-spacer.min.css?ver=3.28.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='widget-nested-tabs-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/css/widget-nested-tabs.min.css?ver=3.28.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='elementor-post-1633-css'
+        href='https://ainen.modeltheme.com/wp-content/uploads/elementor/css/post-1633.css?ver=1747038341'
+        type='text/css' media='all' />
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css?family=Karla:600%7CDM%20Sans:400&#038;display=swap&#038;ver=1746699161" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Karla:600%7CDM%20Sans:400&#038;display=swap&#038;ver=1746699161"
+        media="print" onload="this.media='all'"><noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Karla:600%7CDM%20Sans:400&#038;display=swap&#038;ver=1746699161" />
+    </noscript>
+    <link rel='stylesheet' id='elementor-gf-local-roboto-css'
+        href='https://ainen.modeltheme.com/wp-content/uploads/elementor/google-fonts/css/roboto.css?ver=1742997818'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='elementor-gf-local-robotoslab-css'
+        href='https://ainen.modeltheme.com/wp-content/uploads/elementor/google-fonts/css/robotoslab.css?ver=1742997820'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='elementor-gf-local-karla-css'
+        href='https://ainen.modeltheme.com/wp-content/uploads/elementor/google-fonts/css/karla.css?ver=1742999838'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='elementor-gf-local-dmsans-css'
+        href='https://ainen.modeltheme.com/wp-content/uploads/elementor/google-fonts/css/dmsans.css?ver=1743000475'
+        type='text/css' media='all' />
+    <script type="text/javascript" src="https://ainen.modeltheme.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
+        id="jquery-core-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"
+        id="jquery-migrate-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/js/mt-addons-public.js?ver=1.0.0"
+        id="mt-addons-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.9.7.1"
+        id="jquery-blockui-js" defer="defer" data-wp-strategy="defer"></script>
+    <script type="text/javascript" id="wc-add-to-cart-js-extra">
+        /* <![CDATA[ */
+        var wc_add_to_cart_params = { "ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%", "i18n_view_cart": "View cart", "cart_url": "https:\/\/ainen.modeltheme.com\/cart\/", "is_cart": "", "cart_redirect_after_add": "no" };
+        /* ]]> */
+    </script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=9.7.1"
+        id="wc-add-to-cart-js" defer="defer" data-wp-strategy="defer"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4-wc.9.7.1"
+        id="js-cookie-js" defer="defer" data-wp-strategy="defer"></script>
+    <script type="text/javascript" id="woocommerce-js-extra">
+        /* <![CDATA[ */
+        var woocommerce_params = { "ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%", "i18n_password_show": "Show password", "i18n_password_hide": "Hide password" };
+        /* ]]> */
+    </script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=9.7.1"
+        id="woocommerce-js" defer="defer" data-wp-strategy="defer"></script>
+    <link rel="https://api.w.org/" href="https://ainen.modeltheme.com/wp-json/" />
+    <link rel="alternate" title="JSON" type="application/json"
+        href="https://ainen.modeltheme.com/wp-json/wp/v2/pages/1633" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ainen.modeltheme.com/xmlrpc.php?rsd" />
+    <meta name="generator" content="WordPress 6.8.1" />
+    <meta name="generator" content="WooCommerce 9.7.1" />
+    <link rel="canonical" href="https://ainen.modeltheme.com/" />
+    <link rel='shortlink' href='https://ainen.modeltheme.com/' />
+    <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed"
+        href="https://ainen.modeltheme.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fainen.modeltheme.com%2F" />
+    <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed"
+        href="https://ainen.modeltheme.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fainen.modeltheme.com%2F&#038;format=xml" />
+    <meta name="generator" content="Redux 4.5.7" />
+    <meta name="cdp-version" content="1.4.9" /> <noscript>
+        <style>
+            .woocommerce-product-gallery {
+                opacity: 1 !important;
+            }
+        </style>
+    </noscript>
+    <meta name="generator"
+        content="Elementor 3.28.4; features: e_font_icon_svg, additional_custom_breakpoints, e_local_google_fonts, e_element_cache; settings: css_print_method-external, google_font-enabled, font_display-swap">
+    <style>
+        .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+        .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+            background-image: none !important;
+        }
+
+        @media screen and (max-height: 1024px) {
+
+            .e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+            .e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+                background-image: none !important;
+            }
+        }
+
+        @media screen and (max-height: 640px) {
+
+            .e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+            .e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+                background-image: none !important;
+            }
+        }
+    </style>
+    <style class='wp-fonts-local' type='text/css'>
+        @font-face {
+            font-family: Inter;
+            font-style: normal;
+            font-weight: 300 900;
+            font-display: fallback;
+            src: url('https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/fonts/Inter-VariableFont_slnt,wght.woff2') format('woff2');
+            font-stretch: normal;
+        }
+
+        @font-face {
+            font-family: Cardo;
+            font-style: normal;
+            font-weight: 400;
+            font-display: fallback;
+            src: url('https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/fonts/cardo_normal_400.woff2') format('woff2');
+        }
+    </style>
+    <link rel="icon" href="https://ainen.modeltheme.com/wp-content/uploads/2025/04/cropped-favicon-2-32x32.png"
+        sizes="32x32" />
+    <link rel="icon" href="https://ainen.modeltheme.com/wp-content/uploads/2025/04/cropped-favicon-2-192x192.png"
+        sizes="192x192" />
+    <link rel="apple-touch-icon"
+        href="https://ainen.modeltheme.com/wp-content/uploads/2025/04/cropped-favicon-2-180x180.png" />
+    <meta name="msapplication-TileImage"
+        content="https://ainen.modeltheme.com/wp-content/uploads/2025/04/cropped-favicon-2-270x270.png" />
+    <style type="text/css" id="wp-custom-css">
+        .ainen-newsletter {
+            position: relative
+        }
+
+
+
+
+        .mt-contact-submit input {
+            margin-top: 0 !important;
+            display: flex;
+            transition: all 350ms;
+            font-weight: 600 !important;
+        }
+
+        .mt-contact-submit input:hover {
+            background-color: #000 !important;
+        }
+
+
+        .header1#modeltheme-main-head {
+            box-shadow: rgba(0, 0, 0, 0.03) 1px 2px 4px 1px;
+            border-top: 1px solid rgb(234, 234, 239);
+        }
+    </style>
+    <style id="redux_demo-dynamic-css" title="dynamic-css" class="redux-options-output">
+        body .ainen_preloader_holder {
+            background-color: #ffffff;
+        }
+
+        .flickr_badge_image a::after,
+        .portfolio-hover,
+        .pastor-image-content .details-holder,
+        .item-description .holder-top,
+        blockquote::before {
+            background: rgba(201, 232, 225, 0.57);
+        }
+
+        #navbar .menu-item>a,
+        .navbar-nav .search_products a,
+        .navbar-default .navbar-nav>li>a:hover,
+        .navbar-default .navbar-nav>li>a:focus,
+        .navbar-default .navbar-nav>li>a {
+            color: #252525;
+        }
+
+        body #navbar .menu-item.selected>a,
+        body:not(.is_header_semitransparent) #navbar .menu-item:hover>a,
+        body #navbar ul.sub-menu .menu-item:hover>a,
+        .header-infos .header-info-group a:hover i {
+            color: #0A4035;
+        }
+
+        #navbar .sub-menu .menu-item>a::before {
+            background-color: #0A4035;
+        }
+
+        #navbar .sub-menu,
+        .navbar ul li ul.sub-menu {
+            background-color: #FFFFFF;
+        }
+
+        #navbar ul.sub-menu li a:hover {
+            background-color: transparent;
+        }
+
+        #navbar ul.sub-menu li a {
+            color: #252525;
+        }
+
+        body {
+            font-family: Karla;
+        }
+
+        h1,
+        h1 span {
+            font-family: Karla;
+            line-height: 63px;
+            font-weight: 600;
+            font-size: 55px;
+        }
+
+        h2,
+        h2 span {
+            font-family: Karla;
+            line-height: 30px;
+            font-weight: 600;
+            font-size: 30px;
+        }
+
+        h3,
+        h3 span {
+            font-family: Karla;
+            line-height: 24px;
+            font-weight: 600;
+            font-size: 24px;
+        }
+
+        h4 {
+            font-family: Karla;
+            line-height: 18px;
+            font-size: 18px;
+        }
+
+        h5 {
+            font-family: Karla;
+            line-height: 14px;
+            font-size: 14px;
+        }
+
+        h6 {
+            font-family: Karla;
+            line-height: 12px;
+            font-size: 12px;
+        }
+
+        input,
+        textarea {
+            font-family: "DM Sans";
+        }
+
+        input[type="submit"] {
+            font-family: "DM Sans";
+        }
+
+        .navbar-default {
+            background-color: #ffffff;
+        }
+
+        header .top-header {
+            background-color: #252525;
+        }
+
+        .fixed-sidebar-menu {
+            background-color: #ffffff;
+        }
+
+        footer .footer-top {
+            background-color: #ffffff;
+            background-repeat: no-repeat;
+        }
+
+        footer .footer-top h1.widget-title,
+        footer .footer-top h3.widget-title,
+        footer .footer-top .widget-title,
+        footer .footer-top h1.widget-title a {
+            color: #000000;
+        }
+
+        .footer-row-1 {
+            padding-top: 90px;
+            padding-bottom: 50px;
+        }
+
+        .footer-row-1 {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .footer-row-1 {
+            border-top: 0px solid #515b5e;
+            border-bottom: 0px solid #515b5e;
+            border-left: 0px solid #515b5e;
+            border-right: 0px solid #515b5e;
+        }
+
+        footer.footer1 .footer,
+        footer.footer2 .footer-div-parent {
+            background-color: #f6f6f6;
+        }
+
+        footer .footer h1.widget-title,
+        footer .footer h3.widget-title,
+        footer .footer .widget-title {
+            color: #000000;
+        }
+
+        .single article .article-content p,
+        p,
+        .post-excerpt {
+            font-family: "DM Sans";
+            line-height: 25px;
+            font-weight: 400;
+            color: #333333;
+            font-size: 16px;
+        }
+    </style>
+  <!-- Universal Chat Widget -->
+  <script src="universal-chat-widget.js"></script>
+</head>
+
+<body
+    class="home wp-singular page-template-default page page-id-1633 wp-embed-responsive wp-theme-ainen theme-ainen woocommerce-no-js nav-submenu-style2 widgets_v1  added-redux-framework            elementor-default elementor-kit-8 elementor-page elementor-page-1633">
+
+    <!-- PAGE #page -->
+    <div id="page" class="hfeed site">
+
+
+
+
+
+        <!-- Page content -->
+        <div id="primary" class="no-padding content-area no-sidebar">
+            <div class="container">
+                <div class="row">
+                    <main id="main" class="col-md-12 site-main main-content">
+
+
+                        <article id="post-1633" class="post-1633 page type-page status-publish hentry">
+                            <div class="entry-content">
+                                <div data-elementor-type="wp-page" data-elementor-id="1633"
+                                    class="elementor elementor-1633">
+
+                               
+                         
+                                    <section
+                                        class="elementor-section elementor-top-section elementor-element elementor-element-d8a8cd9 elementor-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-invisible"
+                                        data-id="d8a8cd9" data-element_type="section" id="integrations"
+                                        data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;,&quot;background_background&quot;:&quot;gradient&quot;,&quot;animation&quot;:&quot;fadeIn&quot;}">
+                                        <div class="elementor-background-overlay"></div>
+                                        <div class="elementor-container elementor-column-gap-default">
+                                            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fa886a8"
+                                                data-id="fa886a8" data-element_type="column">
+                                                <div class="elementor-widget-wrap elementor-element-populated">
+                                                    <div class="elementor-element elementor-element-9395056 e-con-full e-flex e-con e-parent"
+                                                        data-id="9395056" data-element_type="container"
+                                                        data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                                                        <div class="elementor-element elementor-element-041354d e-con-full e-flex e-con e-child"
+                                                            data-id="041354d" data-element_type="container">
+                                                            <div class="elementor-element elementor-element-512c08f elementor-widget__width-initial elementor-widget elementor-widget-heading"
+                                                                data-id="512c08f" data-element_type="widget"
+                                                                data-widget_type="heading.default">
+                                                                <div class="elementor-widget-container">
+                                                                    <h2
+                                                                        class="elementor-heading-title elementor-size-default">
+                                                                        Plug AI into your own data &
+                                                                        over 400 integrations</h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="elementor-element elementor-element-516d03c elementor-widget elementor-widget-mtfe-clients"
+                                                                data-id="516d03c" data-element_type="widget"
+                                                                data-widget_type="mtfe-clients.default">
+                                                                <div class="elementor-widget-container">
+
+                                                                    <div class="mt-addons-swiper-container">
+                                                                        <div class="mt-swipper-carusel-position">
+                                                                            <div id="mt-addons-carousel-683ac2b9efd7c"
+                                                                                data-swiper-id="mt-addons-carousel-683ac2b9efd7c"
+                                                                                data-swiper-autoplay="yes"
+                                                                                data-swiper-delay="600"
+                                                                                data-swiper-desktop-items="8"
+                                                                                data-swiper-mobile-items="5"
+                                                                                data-swiper-tablet-items="5"
+                                                                                data-swiper-space-between-items="30"
+                                                                                data-swiper-allow-touch-move=""
+                                                                                data-swiper-effect=""
+                                                                                data-swiper-grab-cursor=""
+                                                                                data-swiper-infinite-loop="yes"
+                                                                                data-swiper-centered-slides=""
+                                                                                data-swiper-navigation=""
+                                                                                data-swiper-pagination=""
+                                                                                class="mt-addons-clients-carusel mtfe-row mt-addons-swipper swiper">
+
+                                                                                <div class="swiper-wrapper">
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com1.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com2.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com3.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com4.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com5.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com6.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com7.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com8.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="elementor-element elementor-element-0ef07cb scroll-back elementor-widget elementor-widget-mtfe-clients"
+                                                                data-id="0ef07cb" data-element_type="widget"
+                                                                data-widget_type="mtfe-clients.default">
+                                                                <div class="elementor-widget-container">
+
+                                                                    <div class="mt-addons-swiper-container">
+                                                                        <div class="mt-swipper-carusel-position">
+                                                                            <div id="mt-addons-carousel-683ac2b9f1be0"
+                                                                                data-swiper-id="mt-addons-carousel-683ac2b9f1be0"
+                                                                                data-swiper-autoplay="yes"
+                                                                                data-swiper-delay="600"
+                                                                                data-swiper-desktop-items="8"
+                                                                                data-swiper-mobile-items="5"
+                                                                                data-swiper-tablet-items="5"
+                                                                                data-swiper-space-between-items="30"
+                                                                                data-swiper-allow-touch-move=""
+                                                                                data-swiper-effect=""
+                                                                                data-swiper-grab-cursor=""
+                                                                                data-swiper-infinite-loop="yes"
+                                                                                data-swiper-centered-slides=""
+                                                                                data-swiper-navigation=""
+                                                                                data-swiper-pagination=""
+                                                                                class="mt-addons-clients-carusel mtfe-row mt-addons-swipper swiper">
+
+                                                                                <div class="swiper-wrapper">
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com9.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com10.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com11.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com12.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com13.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com14.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com15.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                    <div
+                                                                                        class="mt-addons-client-image-item relative swiper-slide">
+
+                                                                                        <div
+                                                                                            class="mt-addons-client-image-holder">
+                                                                                            <div
+                                                                                                class="mt-addons-client-image">
+
+                                                                                                <img decoding="async"
+                                                                                                    src="https://ainen.modeltheme.com/wp-content/uploads/2025/04/ainen-com16.png"
+                                                                                                    alt="Client" />
+
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                             
+                                 
+                                
+                                </div>
+
+                            </div><!-- .entry-content -->
+                        </article><!-- #post-## -->
+
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/ainen\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+    <script>
+        const lazyloadRunObserver = () => {
+            const lazyloadBackgrounds = document.querySelectorAll(`.e-con.e-parent:not(.e-lazyloaded)`);
+            const lazyloadBackgroundObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        let lazyloadBackground = entry.target;
+                        if (lazyloadBackground) {
+                            lazyloadBackground.classList.add('e-lazyloaded');
+                        }
+                        lazyloadBackgroundObserver.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '200px 0px 200px 0px' });
+            lazyloadBackgrounds.forEach((lazyloadBackground) => {
+                lazyloadBackgroundObserver.observe(lazyloadBackground);
+            });
+        };
+        const events = [
+            'DOMContentLoaded',
+            'elementor/lazyload/observe',
+        ];
+        events.forEach((event) => {
+            document.addEventListener(event, lazyloadRunObserver);
+        });
+    </script>
+    <script type='text/javascript'>
+        (function () {
+            var c = document.body.className;
+            c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+            document.body.className = c;
+        })();
+    </script>
+    <link rel='stylesheet' id='wc-blocks-style-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/client/blocks/wc-blocks.css?ver=wc-9.7.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-absolute-element-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/absolute-element.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-button-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/button.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-clients-carousel-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/clients-carousel.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='swiper-bundle-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/plugins/swiperjs/swiper-bundle.min.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-icon-list-group-item-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/icon-list-group-item.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-tabs-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/tabs.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-testimonials-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/testimonials.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-icon-box-grid-item-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/icon-box-grid-item.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-pricing-table-v2-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/pricing-table-v2.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='mt-addons-blog-posts-css'
+        href='https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/css/blog-posts.css?ver=6.8.1'
+        type='text/css' media='all' />
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6"
+        id="wp-hooks-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6"
+        id="wp-i18n-js"></script>
+    <script type="text/javascript" id="wp-i18n-js-after">
+        /* <![CDATA[ */
+        wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
+        /* ]]> */
+    </script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.0.6"
+        id="swv-js"></script>
+    <script type="text/javascript" id="contact-form-7-js-before">
+        /* <![CDATA[ */
+        var wpcf7 = {
+            "api": {
+                "root": "https:\/\/ainen.modeltheme.com\/wp-json\/",
+                "namespace": "contact-form-7\/v1"
+            }
+        };
+        /* ]]> */
+    </script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.0.6"
+        id="contact-form-7-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/modeltheme-framework/js/classie.js?ver=1.0.0"
+        id="classie-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/modeltheme-framework/js/typed.min.js?ver=1.0.0"
+        id="typed-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/modeltheme-framework/js/mt-skills-circle/percircle.js?ver=1.0.0"
+        id="percircle-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/modeltheme-framework/js/modeltheme-custom.js?ver=1.0.0"
+        id="js-modeltheme-custom-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/modeltheme-framework/js/mt-video/jquery.magnific-popup.js?ver=1.0.0"
+        id="magnific-popup-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/modeltheme-framework/js/TweenMan.min.js?ver=1.0.0"
+        id="tweenman-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/modernizr.custom.js?ver=2.6.2"
+        id="modernizr-custom-js"></script>
+    <script type="text/javascript" src="https://ainen.modeltheme.com/wp-includes/js/jquery/jquery.form.min.js?ver=4.3.0"
+        id="jquery-form-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/jquery.validation.js?ver=1.13.1"
+        id="jquery-validation-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/jquery.sticky.js?ver=1.0.0"
+        id="jquery-sticky-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/jquery.appear.js?ver=1.0.0"
+        id="jquery-appear-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/jquery.countTo.js?ver=1.0.0"
+        id="jquery-countTo-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/owl.carousel.js?ver=1.0.0"
+        id="owl-carousel-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/modernizr.viewport.js?ver=2.6.2"
+        id="modernizr-viewport-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/bootstrap.min.js?ver=3.3.1"
+        id="bootstrap-js"></script>
+    <script type="text/javascript" src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/animate.js?ver=1.0.0"
+        id="animate-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/jquery.countdown.js?ver=1.0.0"
+        id="jquery-countdown-js"></script>
+    <script type="text/javascript" src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/wow.min.js?ver=1.0.0"
+        id="wow-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/jquery.sticky-kit.min.js?ver=1.0.0"
+        id="stickykit-js"></script>
+    <script type="text/javascript" src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/loaders.js?ver=1.0.0"
+        id="loaders-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/themes/ainen/js/ainen-custom.js?ver=1.0.0"
+        id="ainen-custom-js-js"></script>
+    <script type="text/javascript" id="aiknowledgebasepremium-frontend-js-extra">
+        /* <![CDATA[ */
+        var aiknowledgebasepremium = { "ajaxurl": "https:\/\/ainen.modeltheme.com\/wp-admin\/admin-ajax.php", "nonce": "4bd0727e7d" };
+        /* ]]> */
+    </script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/ai-knowledgebase-premium/assets/frontend.js?ver=1.0.0"
+        id="aiknowledgebasepremium-frontend-js"></script>
+    <script type="text/javascript" id="aitld-frontend-script-js-extra">
+        /* <![CDATA[ */
+        var aitld = { "ajaxurl": "https:\/\/ainen.modeltheme.com\/wp-admin\/admin-ajax.php", "nonce": "4bd0727e7d" };
+        /* ]]> */
+    </script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/aitld/assets/frontend.js?ver=1.0.0"
+        id="aitld-frontend-script-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/aitld/assets/tippy@4.js?ver=1.0.0"
+        id="tippy@4-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min.js?ver=9.7.1"
+        id="sourcebuster-js-js"></script>
+    <script type="text/javascript" id="wc-order-attribution-js-extra">
+        /* <![CDATA[ */
+        var wc_order_attribution = { "params": { "lifetime": 1.0000000000000000818030539140313095458623138256371021270751953125e-5, "session": 30, "base64": false, "ajaxurl": "https:\/\/ainen.modeltheme.com\/wp-admin\/admin-ajax.php", "prefix": "wc_order_attribution_", "allowTracking": true }, "fields": { "source_type": "current.typ", "referrer": "current_add.rf", "utm_campaign": "current.cmp", "utm_source": "current.src", "utm_medium": "current.mdm", "utm_content": "current.cnt", "utm_id": "current.id", "utm_term": "current.trm", "utm_source_platform": "current.plt", "utm_creative_format": "current.fmt", "utm_marketing_tactic": "current.tct", "session_entry": "current_add.ep", "session_start_time": "current_add.fd", "session_pages": "session.pgs", "session_count": "udata.vst", "user_agent": "udata.uag" } };
+        /* ]]> */
+    </script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min.js?ver=9.7.1"
+        id="wc-order-attribution-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.28.4"
+        id="elementor-webpack-runtime-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.28.4"
+        id="elementor-frontend-modules-js"></script>
+    <script type="text/javascript" src="https://ainen.modeltheme.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3"
+        id="jquery-ui-core-js"></script>
+    <script type="text/javascript" id="elementor-frontend-js-before">
+        /* <![CDATA[ */
+        var elementorFrontendConfig = { "environmentMode": { "edit": false, "wpPreview": false, "isScriptDebug": false }, "i18n": { "shareOnFacebook": "Share on Facebook", "shareOnTwitter": "Share on Twitter", "pinIt": "Pin it", "download": "Download", "downloadImage": "Download image", "fullscreen": "Fullscreen", "zoom": "Zoom", "share": "Share", "playVideo": "Play Video", "previous": "Previous", "next": "Next", "close": "Close", "a11yCarouselPrevSlideMessage": "Previous slide", "a11yCarouselNextSlideMessage": "Next slide", "a11yCarouselFirstSlideMessage": "This is the first slide", "a11yCarouselLastSlideMessage": "This is the last slide", "a11yCarouselPaginationBulletMessage": "Go to slide" }, "is_rtl": false, "breakpoints": { "xs": 0, "sm": 480, "md": 768, "lg": 1025, "xl": 1440, "xxl": 1600 }, "responsive": { "breakpoints": { "mobile": { "label": "Mobile Portrait", "value": 767, "default_value": 767, "direction": "max", "is_enabled": true }, "mobile_extra": { "label": "Mobile Landscape", "value": 880, "default_value": 880, "direction": "max", "is_enabled": false }, "tablet": { "label": "Tablet Portrait", "value": 1024, "default_value": 1024, "direction": "max", "is_enabled": true }, "tablet_extra": { "label": "Tablet Landscape", "value": 1200, "default_value": 1200, "direction": "max", "is_enabled": false }, "laptop": { "label": "Laptop", "value": 1366, "default_value": 1366, "direction": "max", "is_enabled": false }, "widescreen": { "label": "Widescreen", "value": 2400, "default_value": 2400, "direction": "min", "is_enabled": false } }, "hasCustomBreakpoints": false }, "version": "3.28.4", "is_static": false, "experimentalFeatures": { "e_font_icon_svg": true, "additional_custom_breakpoints": true, "container": true, "e_local_google_fonts": true, "nested-elements": true, "editor_v2": true, "e_element_cache": true, "home_screen": true, "launchpad-checklist": true }, "urls": { "assets": "https:\/\/ainen.modeltheme.com\/wp-content\/plugins\/elementor\/assets\/", "ajaxurl": "https:\/\/ainen.modeltheme.com\/wp-admin\/admin-ajax.php", "uploadUrl": "https:\/\/ainen.modeltheme.com\/wp-content\/uploads" }, "nonces": { "floatingButtonsClickTracking": "7a04aae421" }, "swiperClass": "swiper", "settings": { "page": [], "editorPreferences": [] }, "kit": { "active_breakpoints": ["viewport_mobile", "viewport_tablet"], "global_image_lightbox": "yes", "lightbox_enable_counter": "yes", "lightbox_enable_fullscreen": "yes", "lightbox_enable_zoom": "yes", "lightbox_enable_share": "yes", "lightbox_title_src": "title", "lightbox_description_src": "description" }, "post": { "id": 1633, "title": "AiNeN%20%E2%80%93%20AI%20Agent%20%26%20Automation%20WordPress%20Theme", "excerpt": "", "featuredImage": false } };
+        /* ]]> */
+    </script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.28.4"
+        id="elementor-frontend-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/lib/jquery-numerator/jquery-numerator.min.js?ver=0.2.1"
+        id="jquery-numerator-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/elementor/assets/lib/swiper/v8/swiper.min.js?ver=8.4.5"
+        id="swiper-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/js/plugins/swiperjs/swiper-bundle.min.js?ver=6.8.1"
+        id="swiper-bundle-js"></script>
+    <script type="text/javascript"
+        src="https://ainen.modeltheme.com/wp-content/plugins/mt-addons-for-elementor/public/js/swiper.js?ver=6.8.1"
+        id="mt-addons-swiper-js"></script>
+</body>
+
+</html>

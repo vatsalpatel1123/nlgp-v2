@@ -1,0 +1,458 @@
+{
+  "name": "Form Submissions to Google Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "demo-form",
+        "options": {}
+      },
+      "id": "webhook-demo",
+      "name": "Demo Form Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "demo-form-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "contact-form",
+        "options": {}
+      },
+      "id": "webhook-contact",
+      "name": "Contact Form Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 500],
+      "webhookId": "contact-form-webhook"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.form_type}}",
+              "operation": "equal",
+              "value2": "demo_request"
+            }
+          ]
+        }
+      },
+      "id": "if-demo",
+      "name": "Is Demo Form?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [460, 400]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "timestamp",
+              "value": "={{$json.timestamp}}"
+            },
+            {
+              "name": "form_type",
+              "value": "={{$json.form_type}}"
+            },
+            {
+              "name": "source",
+              "value": "={{$json.source}}"
+            },
+            {
+              "name": "first_name",
+              "value": "={{$json.first_name}}"
+            },
+            {
+              "name": "last_name",
+              "value": "={{$json.last_name}}"
+            },
+            {
+              "name": "full_name",
+              "value": "={{$json.first_name}} {{$json.last_name}}"
+            },
+            {
+              "name": "email",
+              "value": "={{$json.email}}"
+            },
+            {
+              "name": "phone",
+              "value": "={{$json.phone}}"
+            },
+            {
+              "name": "company",
+              "value": "={{$json.company}}"
+            },
+            {
+              "name": "service_interest",
+              "value": "={{$json.service_interest}}"
+            },
+            {
+              "name": "referral_source",
+              "value": "={{$json.referral_source}}"
+            },
+            {
+              "name": "message",
+              "value": "={{$json.message}}"
+            },
+            {
+              "name": "sms_consent",
+              "value": "={{$json.sms_consent}}"
+            },
+            {
+              "name": "terms_consent",
+              "value": "={{$json.terms_consent}}"
+            },
+            {
+              "name": "page_url",
+              "value": "={{$json.page_url}}"
+            },
+            {
+              "name": "user_agent",
+              "value": "={{$json.user_agent}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "format-demo-data",
+      "name": "Format Demo Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "timestamp",
+              "value": "={{$json.timestamp}}"
+            },
+            {
+              "name": "form_type",
+              "value": "={{$json.form_type}}"
+            },
+            {
+              "name": "source",
+              "value": "={{$json.source}}"
+            },
+            {
+              "name": "first_name",
+              "value": "={{$json.first_name || 'N/A'}}"
+            },
+            {
+              "name": "last_name",
+              "value": "={{$json.last_name || 'N/A'}}"
+            },
+            {
+              "name": "full_name",
+              "value": "={{($json.first_name || '') + ' ' + ($json.last_name || '')}}"
+            },
+            {
+              "name": "email",
+              "value": "={{$json.email}}"
+            },
+            {
+              "name": "phone",
+              "value": "={{$json.phone || 'N/A'}}"
+            },
+            {
+              "name": "company",
+              "value": "={{$json.company || 'N/A'}}"
+            },
+            {
+              "name": "service_interest",
+              "value": "={{$json.service_interest || 'N/A'}}"
+            },
+            {
+              "name": "referral_source",
+              "value": "={{$json.referral_source || 'N/A'}}"
+            },
+            {
+              "name": "message",
+              "value": "={{$json.message || 'N/A'}}"
+            },
+            {
+              "name": "sms_consent",
+              "value": "={{$json.sms_consent || false}}"
+            },
+            {
+              "name": "terms_consent",
+              "value": "={{$json.terms_consent || false}}"
+            },
+            {
+              "name": "page_url",
+              "value": "={{$json.page_url}}"
+            },
+            {
+              "name": "user_agent",
+              "value": "={{$json.user_agent}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "format-contact-data",
+      "name": "Format Contact Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [680, 500]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "resource": "sheet",
+        "operation": "appendOrUpdate",
+        "documentId": "YOUR_GOOGLE_SHEET_ID_HERE",
+        "sheetName": "Form Submissions",
+        "columnToMatchOn": "A",
+        "valueInputOption": "USER_ENTERED",
+        "options": {
+          "useAppend": true
+        }
+      },
+      "id": "google-sheets",
+      "name": "Add to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [900, 400],
+      "credentials": {
+        "googleSheetsApi": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "Timestamp",
+              "value": "={{$json.timestamp}}"
+            },
+            {
+              "name": "Form Type",
+              "value": "={{$json.form_type}}"
+            },
+            {
+              "name": "Source",
+              "value": "={{$json.source}}"
+            },
+            {
+              "name": "First Name",
+              "value": "={{$json.first_name}}"
+            },
+            {
+              "name": "Last Name",
+              "value": "={{$json.last_name}}"
+            },
+            {
+              "name": "Full Name",
+              "value": "={{$json.full_name}}"
+            },
+            {
+              "name": "Email",
+              "value": "={{$json.email}}"
+            },
+            {
+              "name": "Phone",
+              "value": "={{$json.phone}}"
+            },
+            {
+              "name": "Company",
+              "value": "={{$json.company}}"
+            },
+            {
+              "name": "Service Interest",
+              "value": "={{$json.service_interest}}"
+            },
+            {
+              "name": "Referral Source",
+              "value": "={{$json.referral_source}}"
+            },
+            {
+              "name": "Message",
+              "value": "={{$json.message}}"
+            },
+            {
+              "name": "SMS Consent",
+              "value": "={{$json.sms_consent}}"
+            },
+            {
+              "name": "Terms Consent",
+              "value": "={{$json.terms_consent}}"
+            },
+            {
+              "name": "Page URL",
+              "value": "={{$json.page_url}}"
+            },
+            {
+              "name": "User Agent",
+              "value": "={{$json.user_agent}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "prepare-sheet-data",
+      "name": "Prepare Sheet Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": true,\n  \"message\": \"Form submitted successfully\",\n  \"timestamp\": \"{{$json.timestamp}}\",\n  \"form_type\": \"{{$json.form_type}}\"\n}",
+        "options": {}
+      },
+      "id": "success-response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1120, 400]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": false,\n  \"message\": \"Error processing form submission\",\n  \"error\": \"{{$json.error}}\"\n}",
+        "options": {
+          "responseCode": 500
+        }
+      },
+      "id": "error-response",
+      "name": "Error Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1120, 600]
+    },
+    {
+      "parameters": {
+        "subject": "New {{$json.form_type}} Submission",
+        "emailType": "html",
+        "message": "<h2>New Form Submission</h2>\n<p><strong>Form Type:</strong> {{$json.form_type}}</p>\n<p><strong>Source:</strong> {{$json.source}}</p>\n<p><strong>Timestamp:</strong> {{$json.timestamp}}</p>\n<hr>\n<p><strong>Name:</strong> {{$json.full_name}}</p>\n<p><strong>Email:</strong> {{$json.email}}</p>\n<p><strong>Phone:</strong> {{$json.phone}}</p>\n<p><strong>Company:</strong> {{$json.company}}</p>\n<p><strong>Service Interest:</strong> {{$json.service_interest}}</p>\n<p><strong>Referral Source:</strong> {{$json.referral_source}}</p>\n<p><strong>Message:</strong> {{$json.message}}</p>\n<p><strong>SMS Consent:</strong> {{$json.sms_consent}}</p>\n<p><strong>Terms Consent:</strong> {{$json.terms_consent}}</p>\n<hr>\n<p><strong>Page URL:</strong> {{$json.page_url}}</p>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "send-notification-email",
+      "name": "Send Notification Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [1120, 200],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP Email"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Demo Form Webhook": {
+      "main": [
+        [
+          {
+            "node": "Is Demo Form?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Contact Form Webhook": {
+      "main": [
+        [
+          {
+            "node": "Is Demo Form?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Demo Form?": {
+      "main": [
+        [
+          {
+            "node": "Format Demo Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Contact Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Demo Data": {
+      "main": [
+        [
+          {
+            "node": "Prepare Sheet Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Contact Data": {
+      "main": [
+        [
+          {
+            "node": "Prepare Sheet Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Sheet Data": {
+      "main": [
+        [
+          {
+            "node": "Add to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Send Notification Email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ],
+      "error": [
+        [
+          {
+            "node": "Error Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {},
+  "versionId": "1"
+}

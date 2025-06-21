@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .question-container {
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        .question-enter {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        .question-active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .question-exit {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <main class="w-full max-w-2xl mx-auto">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <!-- Quiz Header -->
+            <div class="bg-indigo-600 text-white p-6">
+                <h1 class="text-2xl font-bold">Interactive Quiz</h1>
+                <div class="flex items-center mt-2">
+                    <div class="w-full bg-indigo-400 rounded-full h-2.5">
+                        <div id="progress-bar" class="bg-white h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <span id="progress-text" class="ml-3 text-sm font-medium">0/0</span>
+                </div>
+            </div>
+            
+            <!-- Quiz Content -->
+            <div class="p-6 relative overflow-hidden" style="min-height: 400px;">
+                <div id="quiz-container" class="relative">
+                    <!-- Questions will be dynamically inserted here -->
+                </div>
+            </div>
+            
+            <!-- Quiz Navigation -->
+            <div class="bg-gray-50 px-6 py-4 flex justify-between border-t border-gray-200">
+                <button id="prev-btn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed transition" disabled>
+                    <i class="fas fa-arrow-left mr-2"></i>Previous
+                </button>
+                <div class="flex space-x-2">
+                    <button id="skip-btn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium transition hover:bg-gray-300">
+                        Skip <i class="fas fa-forward ml-2"></i>
+                    </button>
+                    <button id="next-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium transition hover:bg-indigo-700">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Modal -->
+        <div id="results-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+            <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-check text-green-600 text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Quiz Completed!</h2>
+                    <p class="text-gray-600 mb-6">You've answered all the questions. Here's your result:</p>
+                    <div class="bg-gray-100 rounded-lg p-4 mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700">Correct Answers:</span>
+                            <span id="correct-answers" class="font-bold">0</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700">Total Questions:</span>
+                            <span id="total-questions" class="font-bold">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-700">Score:</span>
+                            <span id="quiz-score" class="font-bold text-indigo-600">0%</span>
+                        </div>
+                    </div>
+                    <button id="restart-btn" class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium transition hover:bg-indigo-700">
+                        <i class="fas fa-redo mr-2"></i>Restart Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quiz questions data
+            const quizQuestions = [
+                {
+                    id: 1,
+                    type: 'radio',
+                    question: 'What is the capital of France?',
+                    options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
+                    correctAnswer: 'Paris'
+                },
+                {
+                    id: 2,
+                    type: 'checkbox',
+                    question: 'Which of these are programming languages? (Select all that apply)',
+                    options: ['JavaScript', 'HTML', 'CSS', 'Python'],
+                    correctAnswers: ['JavaScript', 'Python']
+                },
+                {
+                    id: 3,
+                    type: 'text',
+                    question: 'Who painted the Mona Lisa?',
+                    correctAnswer: 'Leonardo da Vinci'
+                },
+                {
+                    id: 4,
+                    type: 'textarea',
+                    question: 'Explain the concept of gravity in your own words:',
+                    correctAnswer: 'Gravity is a natural phenomenon by which all things with mass or energy are brought toward one another.'
+                },
+                {
+                    id: 5,
+                    type: 'radio',
+                    question: 'Which planet is known as the Red Planet?',
+                    options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
+                    correctAnswer: 'Mars'
+                }
+            ];
+
+            // Quiz state
+            let currentQuestionIndex = 0;
+            let answers = {};
+            let score = 0;
+
+            // DOM elements
+            const quizContainer = document.getElementById('quiz-container');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const skipBtn = document.getElementById('skip-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const resultsModal = document.getElementById('results-modal');
+            const correctAnswersEl = document.getElementById('correct-answers');
+            const totalQuestionsEl = document.getElementById('total-questions');
+            const quizScoreEl = document.getElementById('quiz-score');
+            const restartBtn = document.getElementById('restart-btn');
+
+            // Initialize the quiz
+            function initQuiz() {
+                currentQuestionIndex = 0;
+                answers = {};
+                score = 0;
+                updateProgress();
+                renderQuestion(currentQuestionIndex);
+                updateNavigationButtons();
+            }
+
+            // Render a question
+            function renderQuestion(index) {
+                const question = quizQuestions[index];
+                
+                // Create question container with animation classes
+                const questionContainer = document.createElement('div');
+                questionContainer.className = 'question-container question-enter absolute inset-0 p-6';
+                questionContainer.id = `question-${question.id}`;
+                
+                // Add question title
+                questionContainer.innerHTML = `
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">${question.question}</h2>
+                    <div class="question-content">
+                        ${renderQuestionContent(question)}
+                    </div>
+                `;
+                
+                // Add to DOM
+                quizContainer.innerHTML = '';
+                quizContainer.appendChild(questionContainer);
+                
+                // Trigger animation
+                setTimeout(() => {
+                    questionContainer.classList.remove('question-enter');
+                    questionContainer.classList.add('question-active');
+                }, 10);
+                
+                // Load previous answer if exists
+                if (answers[question.id]) {
+                    loadAnswer(question, answers[question.id]);
+                }
+            }
+
+            // Render different question types
+            function renderQuestionContent(question) {
+                switch (question.type) {
+                    case 'radio':
+                        return `
+                            <div class="space-y-3">
+                                ${question.options.map((option, i) => `
+                                    <label class="flex items-center space-x-3 cursor-pointer">
+                                        <input type="radio" name="q${question.id}" value="${option}" 
+                                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                        <span class="text-gray-700">${option}</span>
+                                    </label>
+                                `).join('')}
+                            </div>
+                        `;
+                    case 'checkbox':
+                        return `
+                            <div class="space-y-3">
+                                ${question.options.map((option, i) => `
+                                    <label class="flex items-center space-x-3 cursor-pointer">
+                                        <input type="checkbox" name="q${question.id}" value="${option}" 
+                                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                        <span class="text-gray-700">${option}</span>
+                                    </label>
+                                `).join('')}
+                            </div>
+                        `;
+                    case 'text':
+                        return `
+                            <div class="mt-1">
+                                <input type="text" name="q${question.id}" 
+                                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                            </div>
+                        `;
+                    case 'textarea':
+                        return `
+                            <div class="mt-1">
+                                <textarea name="q${question.id}" rows="4" 
+                                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"></textarea>
+                            </div>
+                        `;
+                    default:
+                        return '';
+                }
+            }
+
+            // Load previous answer
+            function loadAnswer(question, answer) {
+                if (question.type === 'radio') {
+                    const input = document.querySelector(`input[name="q${question.id}"][value="${answer}"]`);
+                    if (input) input.checked = true;
+                } 
+                else if (question.type === 'checkbox') {
+                    answer.forEach(val => {
+                        const input = document.querySelector(`input[name="q${question.id}"][value="${val}"]`);
+                        if (input) input.checked = true;
+                    });
+                } 
+                else if (question.type === 'text' || question.type === 'textarea') {
+                    const input = document.querySelector(`[name="q${question.id}"]`);
+                    if (input) input.value = answer;
+                }
+            }
+
+            // Save current answer
+            function saveAnswer() {
+                const question = quizQuestions[currentQuestionIndex];
+                let answer;
+                
+                if (question.type === 'radio') {
+                    const selected = document.querySelector(`input[name="q${question.id}"]:checked`);
+                    answer = selected ? selected.value : null;
+                } 
+                else if (question.type === 'checkbox') {
+                    const selected = Array.from(document.querySelectorAll(`input[name="q${question.id}"]:checked`)).map(el => el.value);
+                    answer = selected.length > 0 ? selected : null;
+                } 
+                else if (question.type === 'text' || question.type === 'textarea') {
+                    const input = document.querySelector(`[name="q${question.id}"]`);
+                    answer = input.value.trim() || null;
+                }
+                
+                if (answer !== null) {
+                    answers[question.id] = answer;
+                } else if (answers[question.id]) {
+                    delete answers[question.id];
+                }
+            }
+
+            // Navigate to next question
+            function nextQuestion() {
+                saveAnswer();
+                
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    // Animate out current question
+                    const currentQuestion = document.getElementById(`question-${quizQuestions[currentQuestionIndex].id}`);
+                    currentQuestion.classList.remove('question-active');
+                    currentQuestion.classList.add('question-exit');
+                    
+                    // Move to next question after animation
+                    setTimeout(() => {
+                        currentQuestionIndex++;
+                        updateProgress();
+                        renderQuestion(currentQuestionIndex);
+                        updateNavigationButtons();
+                    }, 500);
+                } else {
+                    // Quiz completed
+                    calculateScore();
+                    showResults();
+                }
+            }
+
+            // Navigate to previous question
+            function prevQuestion() {
+                if (currentQuestionIndex > 0) {
+                    saveAnswer();
+                    
+                    // Animate out current question
+                    const currentQuestion = document.getElementById(`question-${quizQuestions[currentQuestionIndex].id}`);
+                    currentQuestion.classList.remove('question-active');
+                    currentQuestion.classList.add('question-exit');
+                    
+                    // Move to previous question after animation
+                    setTimeout(() => {
+                        currentQuestionIndex--;
+                        updateProgress();
+                        renderQuestion(currentQuestionIndex);
+                        updateNavigationButtons();
+                    }, 500);
+                }
+            }
+
+            // Skip current question
+            function skipQuestion() {
+                if (answers[quizQuestions[currentQuestionIndex].id]) {
+                    delete answers[quizQuestions[currentQuestionIndex].id];
+                }
+                nextQuestion();
+            }
+
+            // Update progress bar and text
+            function updateProgress() {
+                const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${currentQuestionIndex + 1}/${quizQuestions.length}`;
+            }
+
+            // Update navigation buttons state
+            function updateNavigationButtons() {
+                prevBtn.disabled = currentQuestionIndex === 0;
+                nextBtn.textContent = currentQuestionIndex === quizQuestions.length - 1 ? 'Submit' : 'Next';
+            }
+
+            // Calculate final score
+            function calculateScore() {
+                score = 0;
+                quizQuestions.forEach(question => {
+                    if (!answers[question.id]) return;
+                    
+                    if (question.type === 'radio' || question.type === 'text' || question.type === 'textarea') {
+                        if (answers[question.id] === question.correctAnswer) {
+                            score++;
+                        }
+                    } 
+                    else if (question.type === 'checkbox') {
+                        const userAnswers = answers[question.id];
+                        const correctAnswers = question.correctAnswers;
+                        
+                        // Check if all correct answers are selected and no incorrect ones
+                        if (userAnswers.length === correctAnswers.length && 
+                            userAnswers.every(val => correctAnswers.includes(val))) {
+                            score++;
+                        }
+                    }
+                });
+            }
+
+            // Show results modal
+            function showResults() {
+                correctAnswersEl.textContent = score;
+                totalQuestionsEl.textContent = quizQuestions.length;
+                quizScoreEl.textContent = `${Math.round((score / quizQuestions.length) * 100)}%`;
+                resultsModal.classList.remove('hidden');
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', nextQuestion);
+            prevBtn.addEventListener('click', prevQuestion);
+            skipBtn.addEventListener('click', skipQuestion);
+            restartBtn.addEventListener('click', () => {
+                resultsModal.classList.add('hidden');
+                initQuiz();
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    nextQuestion();
+                } else if (e.key === 'ArrowLeft' && !prevBtn.disabled) {
+                    prevQuestion();
+                } else if (e.key === 'ArrowRight') {
+                    nextQuestion();
+                } else if (e.key === 'Escape') {
+                    skipQuestion();
+                }
+            });
+
+            // Initialize the quiz
+            initQuiz();
+        });
+    </script>
+</body>
+</html>

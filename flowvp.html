@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Lifecycle Flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Universal Chat Widget -->
+  <script src="universal-chat-widget.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --secondary: #10B981;
+            --step-1: #6366F1;
+            --step-2: #8B5CF6;
+            --step-3: #EC4899;
+            --step-4: #F97316;
+            --step-5: #F59E0B;
+            --step-6: #84CC16;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9FAFB;
+        }
+        
+        .step-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-connector {
+            position: relative;
+            height: 30px;
+            width: 2px;
+            margin-left: 24px;
+            background: linear-gradient(to bottom, rgba(156, 163, 175, 0.4), rgba(156, 163, 175, 0.1));
+        }
+        
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(156, 163, 175, 0.4);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .accordion-content.open {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        .step-1 { border-left-color: var(--step-1); }
+        .step-2 { border-left-color: var(--step-2); }
+        .step-3 { border-left-color: var(--step-3); }
+        .step-4 { border-left-color: var(--step-4); }
+        .step-5 { border-left-color: var(--step-5); }
+        .step-6 { border-left-color: var(--step-6); }
+        
+        .step-badge-1 { background-color: var(--step-1); }
+        .step-badge-2 { background-color: var(--step-2); }
+        .step-badge-3 { background-color: var(--step-3); }
+        .step-badge-4 { background-color: var(--step-4); }
+        .step-badge-5 { background-color: var(--step-5); }
+        .step-badge-6 { background-color: var(--step-6); }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">Lead Lifecycle Flow</h1>
+            <p class="mt-3 text-xl text-gray-500">Automated workflow for maximum conversion</p>
+        </div>
+        
+        <div class="space-y-8">
+            <!-- Step 1 -->
+            <div class="flow-step">
+                <div class="step-card bg-white rounded-lg overflow-hidden border-l-4 border-solid step-1 cursor-pointer"
+                     onclick="toggleAccordion('step1')">
+                    <div class="p-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md step-badge-1 text-white font-bold text-sm">
+                                1
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">Lead Generation</h3>
+                                <p class="mt-1 text-sm text-gray-500">Scrape, sync, and enrich contact data of decision-makers based on ICP.</p>
+                            </div>
+                            <div class="ml-auto">
+                                <i id="step1-icon" class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step1-content" class="accordion-content px-6 -mt-2">
+                        <div class="pl-14 pt-3 border-t border-gray-200" style="margin-bottom: 12px;">
+                            <p class="text-sm text-gray-600">Our system automatically collects and verifies contact information from multiple sources, ensuring you have accurate data for your target accounts. We enrich each lead with company size, technographics, and intent signals.</p>
+                            <div class="mt-4">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 mr-2">
+                                    <i class="fas fa-database mr-1"></i> Data Scraping
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 mr-2">
+                                    <i class="fas fa-sync-alt mr-1"></i> Sync
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                    <i class="fas fa-magic mr-1"></i> Enrichment
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="flow-step">
+                <div class="step-card bg-white rounded-lg overflow-hidden border-l-4 border-solid step-2 cursor-pointer"
+                     onclick="toggleAccordion('step2')">
+                    <div class="p-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md step-badge-2 text-white font-bold text-sm">
+                                2
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">Automated Outreach</h3>
+                                <p class="mt-1 text-sm text-gray-500">Email/SMS/LinkedIn sequences to engage leads on autopilot.</p>
+                            </div>
+                            <div class="ml-auto">
+                                <i id="step2-icon" class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step2-content" class="accordion-content px-6 -mt-2">
+                        <div class="pl-14 pt-3 border-t border-gray-200" style="margin-bottom: 12px;">
+                            <p class="text-sm text-gray-600">Personalized multi-channel sequences that adapt based on engagement. Our AI analyzes responses to optimize timing and content for higher response rates.</p>
+                            <div class="mt-4">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 mr-2">
+                                    <i class="fas fa-envelope mr-1"></i> Email
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 mr-2">
+                                    <i class="fas fa-comment-alt mr-1"></i> SMS
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                    <i class="fab fa-linkedin mr-1"></i> LinkedIn
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="flow-step">
+                <div class="step-card bg-white rounded-lg overflow-hidden border-l-4 border-solid step-3 cursor-pointer"
+                     onclick="toggleAccordion('step3')">
+                    <div class="p-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md step-badge-3 text-white font-bold text-sm">
+                                3
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">Speed to Lead</h3>
+                                <p class="mt-1 text-sm text-gray-500">AI responds instantly after a form fill or incoming contact.</p>
+                            </div>
+                            <div class="ml-auto">
+                                <i id="step3-icon" class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step3-content" class="accordion-content px-6 -mt-2">
+                        <div class="pl-14 pt-3 border-t border-gray-200" style="margin-bottom: 12px;">
+                            <p class="text-sm text-gray-600">Our AI assistant engages with leads within seconds of their first interaction. It can answer common questions, qualify the lead, and schedule meetings without human intervention.</p>
+                            <div class="mt-4">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-pink-100 text-pink-800 mr-2">
+                                    <i class="fas fa-bolt mr-1"></i> Instant Response
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-pink-100 text-pink-800 mr-2">
+                                    <i class="fas fa-robot mr-1"></i> AI Assistant
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-pink-100 text-pink-800">
+                                    <i class="fas fa-stopwatch mr-1"></i> <5 second response
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="flow-step">
+                <div class="step-card bg-white rounded-lg overflow-hidden border-l-4 border-solid step-4 cursor-pointer"
+                     onclick="toggleAccordion('step4')">
+                    <div class="p-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md step-badge-4 text-white font-bold text-sm">
+                                4
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">Database Reactivation</h3>
+                                <p class="mt-1 text-sm text-gray-500">Re-engage cold or lost leads with reactivation campaigns.</p>
+                            </div>
+                            <div class="ml-auto">
+                                <i id="step4-icon" class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step4-content" class="accordion-content px-6 -mt-2">
+                        <div class="pl-14 pt-3 border-t border-gray-200" style="margin-bottom: 12px;">
+                            <p class="text-sm text-gray-600">Our system identifies inactive leads and delivers targeted messages with new offers, content, or incentives designed to rekindle their interest in your solution.</p>
+                            <div class="mt-4">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800 mr-2">
+                                    <i class="fas fa-fire mr-1"></i> Reactivation
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800 mr-2">
+                                    <i class="fas fa-snowflake mr-1"></i> Cold Leads
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                                    <i class="fas fa-chart-line mr-1"></i> Win-back Strategy
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+            </div>
+            
+            <!-- Step 5 -->
+            <div class="flow-step">
+                <div class="step-card bg-white rounded-lg overflow-hidden border-l-4 border-solid step-5 cursor-pointer"
+                     onclick="toggleAccordion('step5')">
+                    <div class="p-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md step-badge-5 text-white font-bold text-sm">
+                                5
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">Appointment Setting</h3>
+                                <p class="mt-1 text-sm text-gray-500">Book calls automatically with reminders and confirmations.</p>
+                            </div>
+                            <div class="ml-auto">
+                                <i id="step5-icon" class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step5-content" class="accordion-content px-6 -mt-2">
+                        <div class="pl-14 pt-3 border-t border-gray-200" style="margin-bottom: 12px;">
+                            <p class="text-sm text-gray-600">Our system integrates with your calendar to instantly book qualified meetings. Automated reminders and confirmations reduce no-shows by up to 70%.</p>
+                            <div class="mt-4">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mr-2">
+                                    <i class="fas fa-calendar-check mr-1"></i> Scheduling
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mr-2">
+                                    <i class="fas fa-bell mr-1"></i> Reminders
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    <i class="fas fa-redo mr-1"></i> Follow-ups
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+            </div>
+            
+            <!-- Step 6 -->
+            <div class="flow-step">
+                <div class="step-card bg-white rounded-lg overflow-hidden border-l-4 border-solid step-6 cursor-pointer"
+                     onclick="toggleAccordion('step6')">
+                    <div class="p-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md step-badge-6 text-white font-bold text-sm">
+                                6
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">AI Voice Receptionist + Chat Widget + Cart Recovery</h3>
+                                <p class="mt-1 text-sm text-gray-500">Answer calls, qualify leads via chat, and recover abandoned carts automatically.</p>
+                            </div>
+                            <div class="ml-auto">
+                                <i id="step6-icon" class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step6-content" class="accordion-content px-6 -mt-2">
+                        <div class="pl-14 pt-3 border-t border-gray-200" style="margin-bottom: 12px;">
+                            <p class="text-sm text-gray-600">Our 24/7 AI assistant handles incoming calls with human-like conversations, qualifies leads through intelligent chat, and recovers lost sales with personalized cart recovery sequences.</p>
+                            <div class="mt-4">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mr-2">
+                                    <i class="fas fa-phone-alt mr-1"></i> Voice AI
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mr-2">
+                                    <i class="fas fa-comments mr-1"></i> Smart Chat
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    <i class="fas fa-shopping-cart mr-1"></i> Cart Recovery
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(stepId) {
+            const content = document.getElementById(`${stepId}-content`);
+            const icon = document.getElementById(`${stepId}-icon`);
+            
+            content.classList.toggle('open');
+            icon.classList.toggle('rotate-180');
+        }
+    </script>
+</body>
+</html>

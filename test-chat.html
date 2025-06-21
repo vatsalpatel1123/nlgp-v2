@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Widget Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            min-height: 100vh;
+        }
+        .test-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1e3c72;
+            text-align: center;
+        }
+        p {
+            line-height: 1.6;
+            color: #333;
+        }
+        .instructions {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #1e3c72;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-content">
+        <h1>Chat Widget Test Page</h1>
+        <p>This is a test page to verify that the chat widget is working correctly.</p>
+        
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Look for the chat widget button in the bottom-right corner</li>
+                <li>Click on the chat widget button to open the chat</li>
+                <li>You should see a welcome message from Bella automatically</li>
+                <li>Try typing a message and sending it</li>
+            </ol>
+        </div>
+        
+        <p>If you can see the chat widget and the welcome message appears when you open it, then everything is working correctly!</p>
+        
+        <p>Open the browser console (F12) to see debug messages from the chat widget.</p>
+    </div>
+
+    <!-- Universal Chat Widget -->
+    <script src="universal-chat-widget.js"></script>
+    
+    <script>
+        // Additional debugging
+        window.addEventListener('load', function() {
+            console.log('Test page loaded');
+            console.log('ProfessionalChatWidget:', window.ProfessionalChatWidget);
+            console.log('ProfessionalChatAPI:', window.ProfessionalChatAPI);
+            
+            // Check if chat widget elements exist
+            setTimeout(() => {
+                const chatButton = document.getElementById('professionalChatButton');
+                const chatMessages = document.getElementById('professionalChatMessages');
+                console.log('Chat button found:', !!chatButton);
+                console.log('Chat messages container found:', !!chatMessages);
+                if (chatMessages) {
+                    console.log('Number of messages in container:', chatMessages.children.length);
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
