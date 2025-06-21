@@ -48699,6 +48699,16 @@
             transform: translateY(-100%);
             opacity: 0;
         }
+                .font-color-change {
+    color: #00347b;
+    font-size: 40px;
+        }
+
+input[type="text"] {
+    border-radius: 14px;
+    border: 1px solid darkgray;
+    color: black;
+}
     </style>
         <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -48778,7 +48788,7 @@
                 
                 // Add question title
                 questionContainer.innerHTML = `
-                    <h2 class="text-xl font-bold text-gray-800 mb-6">${question.question}</h2>
+                    <h2 class="text-xl font-color-change font-bold text-gray-800 mb-6" style="color: #00347b; font-size: 40px;">${question.question}</h2>
                     <div class="question-content">
                         ${renderQuestionContent(question)}
                     </div>
@@ -48831,14 +48841,14 @@
                         return `
                             <div class="mt-1">
                                 <input type="text" name="q${question.id}" 
-                                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" style=" border-radius: 14px; border: 1px solid darkgray; color: black;" placeholder="Enter your response">
                             </div>
                         `;
                     case 'textarea':
                         return `
                             <div class="mt-1">
                                 <textarea name="q${question.id}" rows="4" 
-                                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"></textarea>
+                                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" style=" border-radius: 14px; border: 1px solid darkgray; color: black;" placeholder="Enter your response"></textarea>
                             </div>
                         `;
                     default:
@@ -49018,8 +49028,8 @@
         <main class="w-full max-w-2xl mx-auto">
         <div class="bg-white rounded-xl shadow-lg overflow-hidden">
             <!-- Quiz Header -->
-            <div class="bg-indigo-600 text-white p-6">
-                <h1 class="text-2xl font-bold">Interactive Quiz</h1>
+            <div class="bg-indigo-600 text-white p-6" style="background-color: #00347b;">
+                <h1 class="text-2xl font-bold" >Interactive Quiz</h1>
                 <div class="flex items-center mt-2">
                     <div class="w-full bg-indigo-400 rounded-full h-2.5">
                         <div id="progress-bar" class="bg-white h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
@@ -49058,9 +49068,9 @@
                     <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-check text-green-600 text-3xl"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Quiz Completed!</h2>
-                    <p class="text-gray-600 mb-6">You've answered all the questions. Here's your result:</p>
-                    <div class="bg-gray-100 rounded-lg p-4 mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #00347b;">Quiz Completed!</h2>
+                    <p class="text-gray-600 mb-6">Check your mail inbox to magic response!</p>
+                    <div class="bg-gray-100 rounded-lg p-4 mb-6" style="display: none;">
                         <div class="flex justify-between mb-2">
                             <span class="text-gray-700">Correct Answers:</span>
                             <span id="correct-answers" class="font-bold">0</span>
@@ -49074,9 +49084,14 @@
                             <span id="quiz-score" class="font-bold text-indigo-600">0%</span>
                         </div>
                     </div>
-                    <button id="restart-btn" class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium transition hover:bg-indigo-700">
-                        <i class="fas fa-redo mr-2"></i>Restart Quiz
-                    </button>
+                    <button
+  id="restart-btn"
+  onclick="window.location.href='index.html';"
+  class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium transition hover:bg-indigo-700"
+>
+  <i class="fas fa-redo mr-2"></i>Back to Dashboard
+</button>
+
                 </div>
             </div>
         </div>
