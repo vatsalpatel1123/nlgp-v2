@@ -822,13 +822,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitBtn = form.querySelector("button[type='submit']");
     const websiteError = document.getElementById("website-error");
 
-    function validateWebsite() {
-        const pattern = /^www\.[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
-        const isValid = pattern.test(websiteInput.value.trim());
-        websiteError.style.display = isValid ? "none" : "block";
-        websiteInput.style.border = isValid ? "" : "1px solid red";
-        return isValid;
-    }
+    // function validateWebsite() {
+    //     const pattern = /^www\.[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+    //     const isValid = pattern.test(websiteInput.value.trim());
+    //     websiteError.style.display = isValid ? "none" : "block";
+    //     websiteInput.style.border = isValid ? "" : "1px solid red";
+    //     return isValid;
+    // }
+function validateWebsite() {
+    const pattern = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+    const isValid = pattern.test(websiteInput.value.trim());
+    websiteError.style.display = isValid ? "none" : "block";
+    websiteInput.style.border = isValid ? "" : "1px solid red";
+    return isValid;
+}
+
 
     function validatePhone() {
         const pattern = /^\+?[0-9]{7,15}$/;
