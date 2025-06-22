@@ -48704,18 +48704,8 @@
   <!-- Dynamic Blog Container -->
   <div id="blog-grid" class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 hidden"></div>
 
-  <!-- Pagination Placeholder -->
-  <div class="mt-12 flex justify-center">
-    <nav class="flex items-center space-x-2">
-      <button class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-left"></i></button>
-      <button class="w-10 h-10 rounded-full bg-darkblue-500 text-darkblue-900 font-bold">1</button>
-      <button class="w-10 h-10 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">2</button>
-      <button class="w-10 h-10 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">3</button>
-      <span class="px-2 text-gray-400">...</span>
-      <button class="w-10 h-10 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">8</button>
-      <button class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-right"></i></button>
-    </nav>
-  </div>
+  
+  
 </main>
 
 <!-- Script -->
@@ -48724,6 +48714,10 @@
     const loading = document.getElementById('loading-state');
     const error = document.getElementById('error-state');
     const blogGrid = document.getElementById('blog-grid');
+    const paginationContainer = document.getElementById('pagination-container');
+    const blogsPerPage = 9;
+    let currentPage = 1;
+    let blogs = [];
 
     async function fetchBlogs() {
       const apiUrl = 'https://api.baserow.io/api/database/rows/table/580774/?user_field_names=true';
@@ -48766,8 +48760,74 @@
       return text.length > max ? text.substring(0, max) + '...' : text;
     }
 
-    const blogs = await fetchBlogs();
+    function renderBlogs(page) {
+      blogGrid.innerHTML = '';
+      const start = (page - 1) * blogsPerPage;
+      const end = start + blogsPerPage;
+      const pageBlogs = blogs.slice(start, end);
 
+      pageBlogs.forEach(blog => {
+        const image = getImage(blog.Image);
+        const title = blog.Name || 'Untitled';
+        const category = blog.Category || 'General';
+        const readTime = blog.Read_Time || '5';
+        const description = truncate(stripHtmlTags(blog.Short_Description));
+        const author = blog.Author_Name || blog["Created by"]?.name || 'Anonymous';
+        const createdAt = formatDate(blog.Created_at);
+        const slug = blog.slug || '#';
+
+        const card = `
+          <a href="blogs-artical.html?slug=${slug}" class="blog-card bg-darkblue-800 rounded-xl overflow-hidden border border-darkblue-700 transition duration-300 ease-in-out flex flex-col">
+            <div class="h-48 sm:h-52 md:h-48 overflow-hidden">
+              <img src="${image}" alt="Blog Image" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex items-center mb-2">
+                <span class="bg-darkblue-700 text-darkblue-500 text-xs px-3 py-1 rounded-full">${category}</span>
+                <span class="ml-auto text-xs text-gray-400"><i class="far fa-clock mr-1"></i> ${readTime} min read</span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2 hover:text-darkblue-500 transition">${title}</h3>
+              <p class="text-gray-400 mb-4">${description}</p>
+              <div class="flex items-center mt-auto">
+                <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
+                  <img src="https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 90)}.jpg" alt="Author" class="w-full h-full object-cover">
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-white">${author}</p>
+                  <p class="text-xs text-gray-400">${createdAt}</p>
+                </div>
+              </div>
+            </div>
+          </a>
+        `;
+        blogGrid.innerHTML += card;
+      });
+    }
+
+    function renderPagination(totalPages) {
+      paginationContainer.innerHTML = '';
+
+      const createBtn = (label, page, isActive = false) => {
+        return `<button onclick="goToPage(${page})" class="${isActive ? 'bg-darkblue-500 text-darkblue-900 font-bold' : 'bg-darkblue-700 text-gray-300 hover:bg-darkblue-600'} w-10 h-10 rounded-full transition">${label}</button>`;
+      };
+
+      paginationContainer.innerHTML += `<button onclick="goToPage(${Math.max(currentPage - 1, 1)})" class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-left"></i></button>`;
+
+      for (let i = 1; i <= totalPages; i++) {
+        paginationContainer.innerHTML += createBtn(i, i, i === currentPage);
+      }
+
+      paginationContainer.innerHTML += `<button onclick="goToPage(${Math.min(currentPage + 1, totalPages)})" class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-right"></i></button>`;
+    }
+
+    window.goToPage = (page) => {
+      currentPage = page;
+      renderBlogs(currentPage);
+      renderPagination(Math.ceil(blogs.length / blogsPerPage));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    blogs = await fetchBlogs();
     loading.classList.add('hidden');
 
     if (!blogs) {
@@ -48776,368 +48836,15 @@
     }
 
     blogGrid.classList.remove('hidden');
-
-    blogs.forEach(blog => {
-      const image = getImage(blog.Image);
-      const title = blog.Name || 'Untitled';
-      const category = blog.Category || 'General';
-      const readTime = blog.Read_Time || '5';
-      const description = truncate(stripHtmlTags(blog.Short_Description));
-      const author = blog.Author_Name || blog["Created by"]?.name || 'Anonymous';
-      const createdAt = formatDate(blog.Created_at);
-      const slug = blog.slug || '#';
-
-      const card = `
-        <a href="blogs-artical.html?slug=${slug}" class="blog-card bg-darkblue-800 rounded-xl overflow-hidden border border-darkblue-700 transition duration-300 ease-in-out flex flex-col">
-          <div class="h-48 sm:h-52 md:h-48 overflow-hidden">
-            <img src="${image}" alt="Blog Image" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <div class="flex items-center mb-2">
-              <span class="bg-darkblue-700 text-darkblue-500 text-xs px-3 py-1 rounded-full">${category}</span>
-              <span class="ml-auto text-xs text-gray-400"><i class="far fa-clock mr-1"></i> ${readTime} min read</span>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-2 hover:text-darkblue-500 transition">${title}</h3>
-            <p class="text-gray-400 mb-4">${description}</p>
-            <div class="flex items-center mt-auto">
-              <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
-                <img src="https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 90)}.jpg" alt="Author" class="w-full h-full object-cover">
-              </div>
-              <div>
-                <p class="text-sm font-medium text-white">${author}</p>
-                <p class="text-xs text-gray-400">${createdAt}</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      `;
-
-      blogGrid.innerHTML += card;
-    });
+    renderBlogs(currentPage);
+    renderPagination(Math.ceil(blogs.length / blogsPerPage));
   });
 </script>
 
-        <!-- <div class="elementor-element elementor-element-808104b e-con-full e-flex e-con e-child" data-id="808104b"
-          data-element_type="container">
-          <div class="elementor-element elementor-element-bf62d9c e-con-full e-flex e-con e-child" data-id="bf62d9c"
-            data-element_type="container">
-            
-          </div>
-          <div class="elementor-element elementor-element-b152c9a elementor-widget elementor-widget-elementskit-heading"
-            data-id="b152c9a" data-element_type="widget" data-widget_type="elementskit-heading.default">
-            <div class="elementor-widget-container">
-              <div class="ekit-wid-con">
-                <div
-                  class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-text_center   ekit_heading_mobile-text_center">
-                  <h2 class="ekit-heading--title elementskit-section-title text_fill">Our AI Governance
-                    <span><span>Principles</span></span>
-                  </h2>
-                  <div class='ekit-heading__description'>
-                    <p>We maintain the highest standards of AI ethics and governance to ensure responsible automation that benefits your business and customers.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="elementor-element elementor-element-267b982 e-con-full e-flex e-con e-child" data-id="267b982"
-          data-element_type="container">
-          <div class="elementor-element elementor-element-75d56a0 e-con-full e-flex e-con e-child" data-id="75d56a0"
-            data-element_type="container">
-            <div
-              class="elementor-element elementor-element-fd8f295 elementor-widget__width-initial elementor-widget elementor-widget-heading"
-              data-id="fd8f295" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <p class="elementor-heading-title elementor-size-default">01</p>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-cfcf528 elementor-widget__width-initial elementor-widget elementor-widget-elementskit-accordion"
-              data-id="cfcf528" data-element_type="widget" data-widget_type="elementskit-accordion.default">
-              <div class="elementor-widget-container">
-                <div class="ekit-wid-con">
-                  <div class="elementskit-accordion accoedion-primary" id="accordion-68374019e4691">
-
-
-                    <div class="elementskit-card ">
-                      <div class="elementskit-card-header" id="primaryHeading-0-cfcf528">
-                        <a href="#collapse-97e05e368374019e4691"
-                          class="ekit-accordion--toggler elementskit-btn-link collapsed" data-ekit-toggle="collapse"
-                          data-target="#Collapse-97e05e368374019e4691" aria-expanded="false"
-                          aria-controls="Collapse-97e05e368374019e4691">
-
-                          <span class="ekit-accordion-title">Transparency & Explainability</span>
-
-
-                          <div class="ekit_accordion_icon_group">
-                            <div class="ekit_accordion_normal_icon">
-
-                              <i class="icon icon-down-arrow1"></i>
-                            </div>
-
-                            <div class="ekit_accordion_active_icon">
-
-                              <i class="icon icon-cancel"></i>
-                            </div>
-                          </div>
-
-
-                        </a>
-                      </div>
-
-                      <div id="Collapse-97e05e368374019e4691" class=" collapse"
-                        aria-labelledby="primaryHeading-0-cfcf528" data-parent="#accordion-68374019e4691">
-
-                        <div class="elementskit-card-body ekit-accordion--content">
-                          <p>Our AI systems are designed with transparency at their core. Every decision made by our automation can be traced and explained, ensuring you understand exactly how leads are being processed and converted.</p>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-d1a9dfc e-con-full e-flex e-con e-child" data-id="d1a9dfc"
-            data-element_type="container">
-            <div
-              class="elementor-element elementor-element-5b92828 elementor-widget__width-initial elementor-widget elementor-widget-heading"
-              data-id="5b92828" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <p class="elementor-heading-title elementor-size-default">02</p>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-8af2640 elementor-widget__width-initial elementor-widget elementor-widget-elementskit-accordion"
-              data-id="8af2640" data-element_type="widget" data-widget_type="elementskit-accordion.default">
-              <div class="elementor-widget-container">
-                <div class="ekit-wid-con">
-                  <div class="elementskit-accordion accoedion-primary" id="accordion-68374019e4da2">
-
-
-                    <div class="elementskit-card ">
-                      <div class="elementskit-card-header" id="primaryHeading-0-8af2640">
-                        <a href="#collapse-97e05e368374019e4da2"
-                          class="ekit-accordion--toggler elementskit-btn-link collapsed" data-ekit-toggle="collapse"
-                          data-target="#Collapse-97e05e368374019e4da2" aria-expanded="false"
-                          aria-controls="Collapse-97e05e368374019e4da2">
-
-                          <span class="ekit-accordion-title">Privacy & Data Protection</span>
-
-
-                          <div class="ekit_accordion_icon_group">
-                            <div class="ekit_accordion_normal_icon">
-
-                              <i class="icon icon-down-arrow1"></i>
-                            </div>
-
-                            <div class="ekit_accordion_active_icon">
-
-                              <i class="icon icon-cancel"></i>
-                            </div>
-                          </div>
-
-
-                        </a>
-                      </div>
-
-                      <div id="Collapse-97e05e368374019e4da2" class=" collapse"
-                        aria-labelledby="primaryHeading-0-8af2640" data-parent="#accordion-68374019e4da2">
-
-                        <div class="elementskit-card-body ekit-accordion--content">
-                          <p>We implement robust data protection measures and comply with all privacy regulations. Your customer data is encrypted, secure, and never shared with third parties. We only use data to improve your business outcomes.</p>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-cc69783 e-con-full e-flex e-con e-child" data-id="cc69783"
-            data-element_type="container">
-            <div
-              class="elementor-element elementor-element-f50c8b6 elementor-widget__width-initial elementor-widget elementor-widget-heading"
-              data-id="f50c8b6" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <p class="elementor-heading-title elementor-size-default">03</p>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-3706481 elementor-widget__width-initial elementor-widget elementor-widget-elementskit-accordion"
-              data-id="3706481" data-element_type="widget" data-widget_type="elementskit-accordion.default">
-              <div class="elementor-widget-container">
-                <div class="ekit-wid-con">
-                  <div class="elementskit-accordion accoedion-primary" id="accordion-68374019e54ae">
-
-
-                    <div class="elementskit-card ">
-                      <div class="elementskit-card-header" id="primaryHeading-0-3706481">
-                        <a href="#collapse-97e05e368374019e54ae"
-                          class="ekit-accordion--toggler elementskit-btn-link collapsed" data-ekit-toggle="collapse"
-                          data-target="#Collapse-97e05e368374019e54ae" aria-expanded="false"
-                          aria-controls="Collapse-97e05e368374019e54ae">
-
-                          <span class="ekit-accordion-title">Fairness & Bias Prevention</span>
-
-
-                          <div class="ekit_accordion_icon_group">
-                            <div class="ekit_accordion_normal_icon">
-
-                              <i class="icon icon-down-arrow1"></i>
-                            </div>
-
-                            <div class="ekit_accordion_active_icon">
-
-                              <i class="icon icon-cancel"></i>
-                            </div>
-                          </div>
-
-
-                        </a>
-                      </div>
-
-                      <div id="Collapse-97e05e368374019e54ae" class=" collapse"
-                        aria-labelledby="primaryHeading-0-3706481" data-parent="#accordion-68374019e54ae">
-
-                        <div class="elementskit-card-body ekit-accordion--content">
-                          <p>Our AI models are continuously monitored and tested for bias. We ensure fair treatment of all leads regardless of demographics, ensuring equal opportunity for conversion and engagement.</p>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-e359644 e-con-full e-flex e-con e-child" data-id="e359644"
-            data-element_type="container">
-            <div
-              class="elementor-element elementor-element-6980197 elementor-widget__width-initial elementor-widget elementor-widget-heading"
-              data-id="6980197" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <p class="elementor-heading-title elementor-size-default">04</p>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-4788319 elementor-widget__width-initial elementor-widget elementor-widget-elementskit-accordion"
-              data-id="4788319" data-element_type="widget" data-widget_type="elementskit-accordion.default">
-              <div class="elementor-widget-container">
-                <div class="ekit-wid-con">
-                  <div class="elementskit-accordion accoedion-primary" id="accordion-68374019e5c83">
-
-
-                    <div class="elementskit-card ">
-                      <div class="elementskit-card-header" id="primaryHeading-0-4788319">
-                        <a href="#collapse-97e05e368374019e5c83"
-                          class="ekit-accordion--toggler elementskit-btn-link collapsed" data-ekit-toggle="collapse"
-                          data-target="#Collapse-97e05e368374019e5c83" aria-expanded="false"
-                          aria-controls="Collapse-97e05e368374019e5c83">
-
-                          <span class="ekit-accordion-title">Human Oversight & Control</span>
-
-
-                          <div class="ekit_accordion_icon_group">
-                            <div class="ekit_accordion_normal_icon">
-
-                              <i class="icon icon-down-arrow1"></i>
-                            </div>
-
-                            <div class="ekit_accordion_active_icon">
-
-                              <i class="icon icon-cancel"></i>
-                            </div>
-                          </div>
-
-
-                        </a>
-                      </div>
-
-                      <div id="Collapse-97e05e368374019e5c83" class=" collapse"
-                        aria-labelledby="primaryHeading-0-4788319" data-parent="#accordion-68374019e5c83">
-
-                        <div class="elementskit-card-body ekit-accordion--content">
-                          <p>While our AI operates autonomously, human oversight remains paramount. Your team maintains full control over AI decisions, with the ability to intervene, adjust, or override automated actions at any time.</p>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-220fd21 e-con-full e-flex e-con e-child" data-id="220fd21"
-            data-element_type="container">
-            <div
-              class="elementor-element elementor-element-c4e39d4 elementor-widget__width-initial elementor-widget elementor-widget-heading"
-              data-id="c4e39d4" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <p class="elementor-heading-title elementor-size-default">05</p>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-73f5692 elementor-widget__width-initial elementor-widget elementor-widget-elementskit-accordion"
-              data-id="73f5692" data-element_type="widget" data-widget_type="elementskit-accordion.default">
-              <div class="elementor-widget-container">
-                <div class="ekit-wid-con">
-                  <div class="elementskit-accordion accoedion-primary" id="accordion-68374019e6385">
-
-
-                    <div class="elementskit-card ">
-                      <div class="elementskit-card-header" id="primaryHeading-0-73f5692">
-                        <a href="#collapse-97e05e368374019e6385"
-                          class="ekit-accordion--toggler elementskit-btn-link collapsed" data-ekit-toggle="collapse"
-                          data-target="#Collapse-97e05e368374019e6385" aria-expanded="false"
-                          aria-controls="Collapse-97e05e368374019e6385">
-
-                          <span class="ekit-accordion-title">Continuous Improvement & Learning</span>
-
-
-                          <div class="ekit_accordion_icon_group">
-                            <div class="ekit_accordion_normal_icon">
-
-                              <i class="icon icon-down-arrow1"></i>
-                            </div>
-
-                            <div class="ekit_accordion_active_icon">
-
-                              <i class="icon icon-cancel"></i>
-                            </div>
-                          </div>
-
-
-                        </a>
-                      </div>
-
-                      <div id="Collapse-97e05e368374019e6385" class=" collapse"
-                        aria-labelledby="primaryHeading-0-73f5692" data-parent="#accordion-68374019e6385">
-
-                        <div class="elementskit-card-body ekit-accordion--content">
-                          <p>Our AI systems continuously learn and improve from interactions while maintaining strict ethical boundaries. We regularly update our models to enhance performance while ensuring they remain aligned with your business values and customer expectations.</p>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+<div class="mt-12 flex justify-center">
+  <nav id="pagination-container" class="flex items-center space-x-2"></nav>
+</div>
+  
       </div>
     </div>
   </div>

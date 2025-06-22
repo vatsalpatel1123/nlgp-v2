@@ -48867,6 +48867,7 @@
     let articleHTML = `
       <p class="text-lg font-medium text-gray-400 mb-6">${blog.Quote}</p>
       <div>${convertMarkdown(blog.Main_Content)}</div>
+      <div>${convertMarkdown(blog.Sub_Main_Content)}</div>
     `;
     document.getElementById("article-content").innerHTML = articleHTML;
   }
