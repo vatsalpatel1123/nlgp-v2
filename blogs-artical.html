@@ -14,98 +14,8 @@
   </style>
   <script src="newsletter.js" defer></script>
 
-  <!-- Dynamic Blog Article Script -->
-  <script>
-    // Get slug from URL parameters
-    function getSlugFromUrl() {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get('slug');
-    }
-
-    // Fetch blog data directly from Baserow API using slug
-    async function fetchBlogData(slug) {
-      if (!slug) {
-        throw new Error('No slug provided');
-      }
-
-      try {
-        const apiUrl = `https://api.baserow.io/api/database/rows/table/580774/?user_field_names=true&filter_slug_equal=${encodeURIComponent(slug)}`;
-
-        const response = await fetch(apiUrl, {
-          method: 'GET',
-          headers: {
-            'Authorization': 'Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq',
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (!data.results || data.results.length === 0) {
-          throw new Error('Blog post not found');
-        }
-
-        return data.results[0]; // Return the first (and should be only) result
-      } catch (error) {
-        console.error('Error fetching blog data:', error);
-        throw error;
-      }
-    }
-
-    // Process image URL for Baserow
-    function processImageUrl(imageUrl) {
-      if (!imageUrl) return 'https://via.placeholder.com/400x300?text=Blog+Image';
-
-      // If it's already a full URL, return as is
-      if (imageUrl.startsWith('http')) {
-        return imageUrl;
-      }
-
-      // If it's a Baserow file reference, construct the full URL
-      if (imageUrl.includes('baserow.io') || imageUrl.startsWith('/media/')) {
-        return imageUrl.startsWith('http') ? imageUrl : `https://api.baserow.io${imageUrl}`;
-      }
-
-      return imageUrl;
-    }
-
-    // Convert markdown to HTML (simple implementation)
-    function markdownToHtml(text) {
-      if (!text) return '';
-
-      let html = text
-        // Headers
-        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-        // Bold
-        .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
-        .replace(/__(.*?)__/gim, '<strong>$1</strong>')
-        // Italic
-        .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-        .replace(/_(.*?)_/gim, '<em>$1</em>')
-        // Links
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank">$1</a>')
-        // Line breaks
-        .replace(/\n\n/gim, '</p><p>')
-        .replace(/\n/gim, '<br>');
-
-      // Wrap in paragraphs if not already wrapped
-      if (!html.startsWith('<h') && !html.startsWith('<p')) {
-        html = '<p>' + html + '</p>';
-      }
-
-      return html;
-    }
-  </script>
-
 
   <script>
-    console.log(BASEROW_CONFIG)
     window._wpemojiSettings = { "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/", "ext": ".png", "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/", "svgExt": ".svg", "source": { "concatemoji": "https:\/\/brandmode.1onestrong.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1" } };
     /*! This file is auto-generated */
     !function (i, n) { var o, s, e; function c(e) { try { var t = { supportTests: e, timestamp: (new Date).valueOf() }; sessionStorage.setItem(o, JSON.stringify(t)) } catch (e) { } } function p(e, t, n) { e.clearRect(0, 0, e.canvas.width, e.canvas.height), e.fillText(t, 0, 0); var t = new Uint32Array(e.getImageData(0, 0, e.canvas.width, e.canvas.height).data), r = (e.clearRect(0, 0, e.canvas.width, e.canvas.height), e.fillText(n, 0, 0), new Uint32Array(e.getImageData(0, 0, e.canvas.width, e.canvas.height).data)); return t.every(function (e, t) { return e === r[t] }) } function u(e, t, n) { switch (t) { case "flag": return n(e, "\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f", "\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f") ? !1 : !n(e, "\ud83c\uddfa\ud83c\uddf3", "\ud83c\uddfa\u200b\ud83c\uddf3") && !n(e, "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f", "\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f"); case "emoji": return !n(e, "\ud83d\udc26\u200d\ud83d\udd25", "\ud83d\udc26\u200b\ud83d\udd25") }return !1 } function f(e, t, n) { var r = "undefined" != typeof WorkerGlobalScope && self instanceof WorkerGlobalScope ? new OffscreenCanvas(300, 150) : i.createElement("canvas"), a = r.getContext("2d", { willReadFrequently: !0 }), o = (a.textBaseline = "top", a.font = "600 32px Arial", {}); return e.forEach(function (e) { o[e] = t(a, e, n) }), o } function t(e) { var t = i.createElement("script"); t.src = e, t.defer = !0, i.head.appendChild(t) } "undefined" != typeof Promise && (o = "wpEmojiSettingsSupports", s = ["flag", "emoji"], n.supports = { everything: !0, everythingExceptFlag: !0 }, e = new Promise(function (e) { i.addEventListener("DOMContentLoaded", e, { once: !0 }) }), new Promise(function (t) { var n = function () { try { var e = JSON.parse(sessionStorage.getItem(o)); if ("object" == typeof e && "number" == typeof e.timestamp && (new Date).valueOf() < e.timestamp + 604800 && "object" == typeof e.supportTests) return e.supportTests } catch (e) { } return null }(); if (!n) { if ("undefined" != typeof Worker && "undefined" != typeof OffscreenCanvas && "undefined" != typeof URL && URL.createObjectURL && "undefined" != typeof Blob) try { var e = "postMessage(" + f.toString() + "(" + [JSON.stringify(s), u.toString(), p.toString()].join(",") + "));", r = new Blob([e], { type: "text/javascript" }), a = new Worker(URL.createObjectURL(r), { name: "wpTestEmojiSupports" }); return void (a.onmessage = function (e) { c(n = e.data), a.terminate(), t(n) }) } catch (e) { } c(n = f(s, u, p)) } t(n) }).then(function (e) { for (var t in e) n.supports[t] = e[t], n.supports.everything = n.supports.everything && n.supports[t], "flag" !== t && (n.supports.everythingExceptFlag = n.supports.everythingExceptFlag && n.supports[t]); n.supports.everythingExceptFlag = n.supports.everythingExceptFlag && !n.supports.flag, n.DOMReady = !1, n.readyCallback = function () { n.DOMReady = !0 } }).then(function () { return e }).then(function () { var e; n.supports.everything || (n.readyCallback(), (e = n.source || {}).concatemoji ? t(e.concatemoji) : e.wpemoji && e.twemoji && (t(e.twemoji), t(e.wpemoji))) })) }((window, document), window._wpemojiSettings);
@@ -123,14 +33,13 @@
       background: none !important;
       padding: 0 !important;
     }
+                    .elementor-message-danger{
+            display: none !important;
+        }
 
-    .elementor-message-danger {
-      display: none !important;
-    }
-
-    .elementor-message-danger::before {
-      display: none;
-    }
+          .elementor-message-danger::before{
+            display: none;
+        }
   </style>
   <style id='global-styles-inline-css'>
     :root {
@@ -40225,16 +40134,15 @@
         flex-wrap: wrap
       }
     }
-
-    .site-logo-img {
-      max-height: 50px;
-      width: auto;
-      display: block;
-      margin: 0;
-      padding: 0;
-      border: none;
-      background: none;
-    }
+          .site-logo-img {
+            max-height: 50px;
+            width: auto;
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: none;
+        }
   </style>
   <style>
     /* latin-ext */
@@ -48558,7 +48466,8 @@
   <link rel="icon" href="./img/image-logo.png" sizes="32x32" />
   <link rel="icon" href="./img/image-logo.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./img/image-logo.png" />
-  <meta name="msapplication-TileImage" content="./img/image-logo.png" />
+  <meta name="msapplication-TileImage"
+    content="./img/image-logo.png" />
 </head>
 
 <body
@@ -48579,8 +48488,8 @@
             data-id="f0c84a9" data-element_type="widget" data-widget_type="theme-site-logo.default">
             <div class="elementor-widget-container">
               <a href="index.html" class="site-logo-link">
-                <img src="img/image.png" alt="Next Level Growth Partners" class="site-logo-img">
-              </a>
+                                <img src="img/image.png" alt="Next Level Growth Partners" class="site-logo-img">
+                            </a>
             </div>
           </div>
         </div>
@@ -48691,7 +48600,7 @@
         <div class="e-con-inner">
           <div class="elementor-element elementor-element-809954e e-con-full e-flex e-con e-child" data-id="809954e"
             data-element_type="container">
-
+           
           </div>
           <!-- <div
             class="elementor-element elementor-element-927ea8f elementor-widget__width-initial elementor-widget elementor-widget-elementskit-heading"
@@ -48714,10 +48623,10 @@
         </div>
       </div>
     </div>
+       
+   
 
-
-
-
+      
     <!-- <div class="elementor-element elementor-element-6a0ac55 e-flex e-con-boxed e-con e-parent" data-id="6a0ac55"
       data-element_type="container"
       data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;background_motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;background_motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;laptop&quot;,&quot;tablet&quot;],&quot;background_motion_fx_motion_fx_mouse&quot;:&quot;yes&quot;,&quot;background_motion_fx_mouseTrack_effect&quot;:&quot;yes&quot;,&quot;background_motion_fx_mouseTrack_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:1,&quot;sizes&quot;:[]}}">
@@ -48743,351 +48652,244 @@
       </div>
     </div> -->
     <script>
-      // Reading progress bar
-      window.addEventListener('scroll', function () {
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercentage = (scrollTop / scrollHeight) * 100;
-        document.getElementById('progress-bar').style.width = scrollPercentage + '%';
-      });
-
-      // Back to top button
-      const backToTopButton = document.getElementById('back-to-top');
-      window.addEventListener('scroll', function () {
-        if (window.pageYOffset > 300) {
-          backToTopButton.classList.remove('opacity-0', 'invisible');
-          backToTopButton.classList.add('opacity-100', 'visible');
-        } else {
-          backToTopButton.classList.remove('opacity-100', 'visible');
-          backToTopButton.classList.add('opacity-0', 'invisible');
-        }
-      });
-
-      backToTopButton.addEventListener('click', function () {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+        // Reading progress bar
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercentage + '%';
         });
-      });
 
-      // Like button functionality
-      const likeButtons = document.querySelectorAll('.far.fa-thumbs-up').forEach(button => {
-        button.addEventListener('click', function () {
-          const countElement = this.nextElementSibling;
-          let count = parseInt(countElement.textContent);
-          if (this.classList.contains('text-indigo-600')) {
-            this.classList.remove('text-indigo-600');
-            countElement.textContent = count - 1;
-          } else {
-            this.classList.add('text-indigo-600');
-            countElement.textContent = count + 1;
-          }
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
         });
-      });
+
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Like button functionality
+        const likeButtons = document.querySelectorAll('.far.fa-thumbs-up').forEach(button => {
+            button.addEventListener('click', function() {
+                const countElement = this.nextElementSibling;
+                let count = parseInt(countElement.textContent);
+                if (this.classList.contains('text-indigo-600')) {
+                    this.classList.remove('text-indigo-600');
+                    countElement.textContent = count - 1;
+                } else {
+                    this.classList.add('text-indigo-600');
+                    countElement.textContent = count + 1;
+                }
+            });
+        });
     </script>
-    <style>
-      .article-content p {
-        @apply mb-4 text-gray-700 leading-relaxed;
-      }
-
-      .article-content h2 {
-        @apply text-2xl font-bold mt-8 mb-4 text-gray-800;
-      }
-
-      .article-content h3 {
-        @apply text-xl font-semibold mt-6 mb-3 text-gray-800;
-      }
-
-      .article-content ul {
-        @apply list-disc pl-6 mb-4;
-      }
-
-      .article-content blockquote {
-        @apply border-l-4 border-indigo-500 pl-4 italic text-gray-600 my-6;
-      }
-
-      .article-content a {
-        @apply text-indigo-600 hover:underline;
-      }
-
-      .article-content img {
-        @apply rounded-lg shadow-lg my-6 w-full;
-      }
-
-      .fade-in {
-        animation: fadeIn 0.5s ease-in;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
+        <style>
+        .article-content p {
+            @apply mb-4 text-gray-700 leading-relaxed;
         }
-
-        to {
-          opacity: 1;
+        .article-content h2 {
+            @apply text-2xl font-bold mt-8 mb-4 text-gray-800;
         }
-      }
-
-      .progress-bar {
-        height: 4px;
-        background: linear-gradient(90deg, #4f46e5 0%, #a855f7 50%, #ec4899 100%);
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 999;
-        transition: width 0.1s ease;
-      }
-
-      .bg-indigo-50 {
-        background-color: #282d3d;
-        /* background: var(--glass); */
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-radius: 1.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-        /* background: var(--glass); */
-        backdrop-filter: blur(16px);
-      }
+        .article-content h3 {
+            @apply text-xl font-semibold mt-6 mb-3 text-gray-800;
+        }
+        .article-content ul {
+            @apply list-disc pl-6 mb-4;
+        }
+        .article-content blockquote {
+            @apply border-l-4 border-indigo-500 pl-4 italic text-gray-600 my-6;
+        }
+        .article-content a {
+            @apply text-indigo-600 hover:underline;
+        }
+        .article-content img {
+            @apply rounded-lg shadow-lg my-6 w-full;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #4f46e5 0%, #a855f7 50%, #ec4899 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            transition: width 0.1s ease;
+        }
+        .bg-indigo-50 {
+              background-color: #282d3d;
+    /* background: var(--glass); */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    /* background: var(--glass); */
+    backdrop-filter: blur(16px);
+        }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              darkblue: {
-                900: '#0a192f',
-                800: '#172a45',
-                700: '#303f60',
-                600: '#4a6fa5',
-                500: '#64ffda',
-              }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkblue: {
+                            900: '#0a192f',
+                            800: '#172a45',
+                            700: '#303f60',
+                            600: '#4a6fa5',
+                            500: '#64ffda',
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     </script>
     <style>
-      .blog-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(10, 25, 47, 0.5);
-      }
-
-      .gradient-text {
-        background: linear-gradient(90deg, #64ffda, #4a6fa5);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(10, 25, 47, 0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #64ffda, #4a6fa5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
     </style>
-    <div class="" data-id="73e92d4" data-element_type="container">
+    <div class="" data-id="73e92d4"
+      data-element_type="container">
       <div class="">
-        <!-- Loading State -->
-        <div id="loading-state" class="container mx-auto px-4 py-8 max-w-4xl">
-          <div class="animate-pulse">
-            <div class="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
-            <div class="h-8 bg-gray-200 rounded w-3/4 mb-6"></div>
-            <div class="flex items-center mb-8">
-              <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
-              <div class="ml-4">
-                <div class="h-4 bg-gray-200 rounded w-32 mb-2"></div>
-                <div class="h-3 bg-gray-200 rounded w-24"></div>
-              </div>
-            </div>
-            <div class="h-64 bg-gray-200 rounded-xl mb-8"></div>
-          </div>
-        </div>
-
-        <!-- Error State -->
-        <div id="error-state" class="container mx-auto px-4 py-8 max-w-4xl hidden">
-          <div class="text-center">
-            <div class="text-red-500 text-6xl mb-4">⚠️</div>
-            <h1 class="text-2xl font-bold text-gray-900 mb-4">Blog Post Not Found</h1>
-            <p class="text-gray-600 mb-6">The blog post you're looking for doesn't exist or has been removed.</p>
-            <a href="blogs.html" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
-              View All Blogs
-            </a>
-          </div>
-        </div>
-
-        <!-- Main Content -->
-        <main id="blog-content" class="container mx-auto px-4 py-8 max-w-4xl fade-in hidden">
-          <!-- Article Header -->
-          <article>
-            <div class="mb-6">
-              <span id="blog-category" class="text-indigo-600 font-medium"></span>
-              <h1 id="blog-title" class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4 leading-tight"></h1>
-              <div class="flex items-center mt-6">
+            <!-- Main Content -->
+        <main id="blog-main" class="container mx-auto px-4 py-8 max-w-4xl fade-in">
+    <!-- Article Header -->
+    <article>
+        <div class="mb-6">
+            <span id="category" class="text-indigo-600 font-medium">Category</span>
+            <h1 id="title" class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4 leading-tight"></h1>
+            <div class="flex items-center mt-6">
                 <img id="author-image" src="" alt="Author" class="w-12 h-12 rounded-full object-cover">
                 <div class="ml-4">
-                  <p id="author-name" class="font-medium text-gray-900"></p>
-                  <div class="flex items-center text-sm text-gray-500">
-                    <span id="blog-date"></span>
-                    <span class="mx-2">•</span>
-                    <span id="read-time"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Featured Image -->
-            <div id="featured-image-container" class="rounded-xl overflow-hidden shadow-lg mb-8">
-              <img id="featured-image" src="" alt="" class="w-full h-auto max-h-96 object-cover">
-            </div>
-
-            <!-- Article Content -->
-            <div class="article-content">
-              <!-- Short Description -->
-              <p id="blog-short-description" class="text-lg font-medium text-gray-800 mb-6"></p>
-
-              <!-- Quote Section -->
-              <blockquote id="blog-quote" class="border-l-4 border-indigo-500 pl-4 italic text-gray-600 my-6 hidden">
-              </blockquote>
-
-              <!-- Main Content -->
-              <div id="blog-main-content" class="prose prose-lg max-w-none">
-                <!-- Dynamic content will be inserted here -->
-              </div>
-
-
-
-            </div>
-
-            <!-- Article Footer -->
-            <div class="mt-12 pt-8 border-t border-gray-200">
-              <div id="blog-tags" class="flex flex-wrap gap-2 mb-6">
-                <!-- Dynamic tags will be inserted here -->
-              </div>
-
-              <div class="flex items-center justify-between">
-                <div class="flex space-x-4">
-                  <button class="text-gray-500 hover:text-indigo-600">
-                    <i class="far fa-heart text-xl"></i>
-                    <span class="ml-1">0</span>
-                  </button>
-                  <button class="text-gray-500 hover:text-indigo-600">
-                    <i class="far fa-comment text-xl"></i>
-                    <span class="ml-1">0</span>
-                  </button>
-                </div>
-                <div class="flex space-x-3">
-                  <button onclick="shareOnTwitter()" class="text-gray-500 hover:text-indigo-600">
-                    <i class="fab fa-twitter text-xl"></i>
-                  </button>
-                  <button onclick="shareOnFacebook()" class="text-gray-500 hover:text-indigo-600">
-                    <i class="fab fa-facebook text-xl"></i>
-                  </button>
-                  <button onclick="shareOnLinkedIn()" class="text-gray-500 hover:text-indigo-600">
-                    <i class="fab fa-linkedin text-xl"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Author Bio -->
-          <div id="author-bio" class="bg-indigo-50 mt-12 bg-gray-50 rounded-lg p-6">
-            <div class="flex flex-col md:flex-row">
-              <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-                <img id="author-bio-image" src="" alt="Author" class="w-20 h-20 rounded-full object-cover">
-              </div>
-              <div>
-                <h3 id="author-bio-title" class="text-lg font-bold text-gray-900"></h3>
-                <p id="author-bio-description" class="mt-2 text-gray-600"></p>
-                <div class="mt-4">
-                  <a href="#" id="author-bio-link" class="text-indigo-600 hover:underline font-medium"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Related Articles -->
-          <div id="related-articles" class="mt-16">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">You Might Also Enjoy</h2>
-            <div id="related-articles-grid" class="grid md:grid-cols-3 gap-6">
-              <!-- Dynamic related articles will be inserted here -->
-            </div>
-          </div>
-
-          <!-- Comments Section -->
-          <div class="mt-16">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Discussion (28)</h2>
-            <div class="space-y-6">
-              <!-- Comment 1 -->
-              <div class="flex">
-                <div class="flex-shrink-0 mr-4">
-                  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="w-10 h-10 rounded-full">
-                </div>
-                <div class="flex-1">
-                  <div class="bg-gray-50 p-4 rounded-lg">
-                    <div class="flex items-center justify-between">
-                      <h4 class="font-medium text-gray-900">Michael Chen</h4>
-                      <span class="text-sm text-gray-500">2 days ago</span>
+                    <p id="author-name" class="font-medium text-gray-900"></p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <span id="published-date"></span>
+                        <span class="mx-2">•</span>
+                        <span id="read-time"></span>
                     </div>
-                    <p class="mt-2 text-gray-600">This article came at the perfect time for me. I've been feeling
-                      overwhelmed with work and needed these reminders about mindfulness. The tip about setting phone
-                      reminders is brilliant!</p>
-                    <div class="mt-3 flex items-center text-sm text-gray-500">
-                      <button class="flex items-center hover:text-indigo-600">
-                        <i class="far fa-thumbs-up mr-1"></i>
-                        <span>12</span>
-                      </button>
-                      <button class="flex items-center ml-4 hover:text-indigo-600">
-                        <i class="far fa-thumbs-down mr-1"></i>
-                      </button>
-                      <button class="ml-auto hover:text-indigo-600">Reply</button>
-                    </div>
-                  </div>
                 </div>
-              </div>
-
-              <!-- Comment 2 -->
-              <div class="flex">
-                <div class="flex-shrink-0 mr-4">
-                  <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="User" class="w-10 h-10 rounded-full">
-                </div>
-                <div class="flex-1">
-                  <div class="bg-gray-50 p-4 rounded-lg">
-                    <div class="flex items-center justify-between">
-                      <h4 class="font-medium text-gray-900">Priya Patel</h4>
-                      <span class="text-sm text-gray-500">1 week ago</span>
-                    </div>
-                    <p class="mt-2 text-gray-600">I've been practicing mindfulness for about 6 months now and can
-                      confirm all these benefits. The biggest change for me has been in my relationships - I'm much more
-                      present with my family now.</p>
-                    <div class="mt-3 flex items-center text-sm text-gray-500">
-                      <button class="flex items-center hover:text-indigo-600">
-                        <i class="far fa-thumbs-up mr-1"></i>
-                        <span>8</span>
-                      </button>
-                      <button class="flex items-center ml-4 hover:text-indigo-600">
-                        <i class="far fa-thumbs-down mr-1"></i>
-                      </button>
-                      <button class="ml-auto hover:text-indigo-600">Reply</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Comment Form -->
-              <div class="mt-8">
-                <h3 class="text-lg font-medium text-gray-900 mb-4">Leave a comment</h3>
-                <form>
-                  <textarea rows="4"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    placeholder="Share your thoughts..."></textarea>
-                  <div class="mt-4 flex justify-end">
-                    <button type="submit"
-                      class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Post
-                      Comment</button>
-                  </div>
-                </form>
-              </div>
             </div>
-          </div>
-        </main>
+        </div>
+
+        <!-- Featured Image -->
+        <div class="rounded-xl overflow-hidden shadow-lg mb-8">
+            <img id="main-image" src="" alt="Main blog image" class="w-full h-auto max-h-96 object-cover">
+        </div>
+
+        <!-- Article Content -->
+        <div id="article-content" class="article-content">
+            <!-- Filled by JavaScript -->
+        </div>
+    </article>
+</main>
+
+<script>
+  async function fetchBlogData(slug) {
+    if (!slug) {
+      throw new Error("No slug provided");
+    }
+
+    try {
+      const apiUrl = `https://api.baserow.io/api/database/rows/table/580774/?user_field_names=true&filter__slug__equal=${encodeURIComponent(slug)}`;
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          Authorization: "Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (!data.results || data.results.length === 0) {
+        throw new Error("Blog post not found");
+      }
+
+      return data.results[0];
+    } catch (error) {
+      console.error("Error fetching blog data:", error);
+      throw error;
+    }
+  }
+
+  function populateBlog(blog) {
+    // Header section
+    document.getElementById("category").innerText = blog.Category || "Blog";
+    document.getElementById("title").innerText = blog.Name;
+    document.getElementById("author-name").innerText = blog.Author_Name || "Unknown Author";
+    document.getElementById("read-time").innerText = `${blog.Read_Time || "5"} min read`;
+
+    // Fallback author image if not available
+    document.getElementById("author-image").src = "https://randomuser.me/api/portraits/men/32.jpg";
+
+    // Date formatting
+    const publishedDate = new Date(blog.Created_at);
+    document.getElementById("published-date").innerText = publishedDate.toDateString();
+
+    // Main Image
+    const imageObj = blog.Image?.find((img) => img.is_image);
+    if (imageObj) {
+      document.getElementById("main-image").src = imageObj.url;
+    }
+
+    // Article content
+    let articleHTML = `
+      <p class="text-lg font-medium text-gray-800 mb-6">${blog.Quote}</p>
+      <div>${convertMarkdown(blog.Main_Content)}</div>
+    `;
+    document.getElementById("article-content").innerHTML = articleHTML;
+  }
+
+  function convertMarkdown(text) {
+    // Very basic Markdown rendering (headings, blockquotes, newlines)
+    return (text || "")
+      .replace(/^### (.*$)/gim, "<h3>$1</h3>")
+      .replace(/^## (.*$)/gim, "<h2>$1</h2>")
+      .replace(/^# (.*$)/gim, "<h1>$1</h1>")
+      .replace(/^\> (.*$)/gim, "<blockquote>$1</blockquote>")
+      .replace(/\n/g, "<br>");
+  }
+
+  // Get slug from URL (e.g. ?slug=first-blog)
+  const urlParams = new URLSearchParams(window.location.search);
+  const slug = urlParams.get("slug") || "first-blog"; // default fallback
+
+  fetchBlogData(slug).then(populateBlog).catch((err) => {
+    document.getElementById("blog-main").innerHTML = `<p class="text-red-500 font-semibold">Error loading blog: ${err.message}</p>`;
+  });
+</script>
+
         <!-- <div class="elementor-element elementor-element-808104b e-con-full e-flex e-con e-child" data-id="808104b"
           data-element_type="container">
           <div class="elementor-element elementor-element-bf62d9c e-con-full e-flex e-con e-child" data-id="bf62d9c"
@@ -49412,255 +49214,253 @@
       </div>
     </div>
   </div>
-  <div data-elementor-type="footer" data-elementor-id="1764" class="elementor elementor-1764 elementor-location-footer"
-    data-elementor-post-type="elementor_library">
-    <div class="elementor-element elementor-element-78cad96 e-flex e-con-boxed e-con e-parent" data-id="78cad96"
-      data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-      <div class="e-con-inner">
-        <div class="elementor-element elementor-element-52abb05 e-con-full e-flex e-con e-child" data-id="52abb05"
-          data-element_type="container">
-          <div class="elementor-element elementor-element-600cf77 elementor-widget elementor-widget-elementskit-heading"
-            data-id="600cf77" data-element_type="widget" data-widget_type="elementskit-heading.default">
-            <div class="elementor-widget-container">
-              <div class="ekit-wid-con">
-                <div
-                  class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-text_center   ekit_heading_mobile-text_left">
-                  <h3 class="ekit-heading--title elementskit-section-title text_fill">
-                    Ready to transform <span><span>your
-                        business? </span></span></h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="elementor-element elementor-element-8d50095 elementor-align-left elementor-align--tabletcenter elementor-widget elementor-widget-elementskit-button"
-            data-id="8d50095" data-element_type="widget" data-widget_type="elementskit-button.default">
-            <div class="elementor-widget-container">
-              <div class="ekit-wid-con">
-                <div class="ekit-btn-wraper">
-                  <a href="#" class="elementskit-btn  whitespace--normal" id="">
-                    Learn More <i class="icon icon-right-arrow"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="elementor-element elementor-element-2c2a580 e-con-full e-flex e-con e-child" data-id="2c2a580"
-          data-element_type="container">
-          <div class="elementor-element elementor-element-73e9142 e-con-full e-flex e-con e-child" data-id="73e9142"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-bc9c29b elementor-widget elementor-widget-heading"
-              data-id="bc9c29b" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default">Connect with
-                  us</h4>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-6d0c3bb elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
-              data-id="6d0c3bb" data-element_type="widget" data-widget_type="icon-list.default">
-              <div class="elementor-widget-container">
-                <ul class="elementor-icon-list-items">
-                  <li class="elementor-icon-list-item">
-                    <a href="mailto:support@nextlevelgrowthpartner.com">
-                      <span class="elementor-icon-list-text">
-                        <font size="5">📧</font> &nbsp;&nbsp;
-                        support@nextlevelgrowthpartner.com
-                      </span>
-                    </a>
-                  </li>
-                  <li class="elementor-icon-list-item">
-                    <a href="tel:+15615302575">
-                      <span class="elementor-icon-list-text">
-                        <font size="5">💬</font> &nbsp;&nbsp; +15615302575
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-6785420 e-con-full e-flex e-con e-child" data-id="6785420"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-e923f1d elementor-widget elementor-widget-heading"
-              data-id="e923f1d" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default">Address</h4>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-7bef88b elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
-              data-id="7bef88b" data-element_type="widget" data-widget_type="icon-list.default">
-              <div class="elementor-widget-container">
-                <ul class="elementor-icon-list-items">
-                  <li class="elementor-icon-list-item">
-                    <a href="#">
+    <div data-elementor-type="footer" data-elementor-id="1764"
+                class="elementor elementor-1764 elementor-location-footer" data-elementor-post-type="elementor_library">
+                <div class="elementor-element elementor-element-78cad96 e-flex e-con-boxed e-con e-parent"
+                    data-id="78cad96" data-element_type="container"
+                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                    <div class="e-con-inner">
+                        <div class="elementor-element elementor-element-52abb05 e-con-full e-flex e-con e-child"
+                            data-id="52abb05" data-element_type="container">
+                            <div class="elementor-element elementor-element-600cf77 elementor-widget elementor-widget-elementskit-heading"
+                                data-id="600cf77" data-element_type="widget"
+                                data-widget_type="elementskit-heading.default">
+                                <div class="elementor-widget-container">
+                                    <div class="ekit-wid-con">
+                                        <div
+                                            class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-text_center   ekit_heading_mobile-text_left">
+                                            <h3 class="ekit-heading--title elementskit-section-title text_fill">
+                                                Ready to transform <span><span>your
+                                                        business? </span></span></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-8d50095 elementor-align-left elementor-align--tabletcenter elementor-widget elementor-widget-elementskit-button"
+                                data-id="8d50095" data-element_type="widget"
+                                data-widget_type="elementskit-button.default">
+                                <div class="elementor-widget-container">
+                                    <div class="ekit-wid-con">
+                                        <div class="ekit-btn-wraper">
+                                            <a href="#" class="elementskit-btn  whitespace--normal" id="">
+                                                Learn More <i class="icon icon-right-arrow"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-2c2a580 e-con-full e-flex e-con e-child"
+                            data-id="2c2a580" data-element_type="container">
+                            <div class="elementor-element elementor-element-73e9142 e-con-full e-flex e-con e-child"
+                                data-id="73e9142" data-element_type="container">
+                                <div class="elementor-element elementor-element-bc9c29b elementor-widget elementor-widget-heading"
+                                    data-id="bc9c29b" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default">Connect with
+                                            us</h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-6d0c3bb elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
+                                    data-id="6d0c3bb" data-element_type="widget" data-widget_type="icon-list.default">
+                                    <div class="elementor-widget-container">
+                                        <ul class="elementor-icon-list-items">
+                                            <li class="elementor-icon-list-item">
+                                                <a href="mailto:support@nextlevelgrowthpartner.com">
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">📧</font> &nbsp;&nbsp;
+                                                        support@nextlevelgrowthpartner.com
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="elementor-icon-list-item">
+                                                <a href="tel:+15615302575">
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">💬</font> &nbsp;&nbsp; +15615302575
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-6785420 e-con-full e-flex e-con e-child"
+                                data-id="6785420" data-element_type="container">
+                                <div class="elementor-element elementor-element-e923f1d elementor-widget elementor-widget-heading"
+                                    data-id="e923f1d" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default">Address</h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-7bef88b elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
+                                    data-id="7bef88b" data-element_type="widget" data-widget_type="icon-list.default">
+                                    <div class="elementor-widget-container">
+                                        <ul class="elementor-icon-list-items">
+                                            <li class="elementor-icon-list-item">
+                                                <a href="#">
 
-                      <span class="elementor-icon-list-text">
-                        <font size="5">🌍</font> &nbsp;&nbsp; 21 NE 10th St,
-                        Deerfield Beach FL 33441
-                      </span>
-                    </a>
-                  </li>
-                  <li class="elementor-icon-list-item">
-                    <a href="#">
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">🌍</font> &nbsp;&nbsp; 21 NE 10th St,
+                                                        Deerfield Beach FL 33441
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="elementor-icon-list-item">
+                                                <a href="#">
 
-                      <span class="elementor-icon-list-text">
-                        <font size="5">🕒</font> &nbsp;&nbsp; Monday → Friday
-                        9am to 5pm
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-9b7cd60 e-con-full e-flex e-con e-child" data-id="9b7cd60"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-e3957e2 elementor-widget elementor-widget-heading"
-              data-id="e3957e2" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default"> Join our
-                  newsletter</h4>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-60dd47a elementor-button-align-stretch elementor-widget elementor-widget-form"
-              data-id="60dd47a" data-element_type="widget"
-              data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;20&quot;,&quot;button_width_mobile&quot;:&quot;20&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
-              data-widget_type="form.default">
-              <div class="elementor-widget-container">
-                <form class="elementor-form" method="post" name="New Form">
-                  <input type="hidden" name="post_id" value="1764" />
-                  <input type="hidden" name="form_id" value="60dd47a" />
-                  <input type="hidden" name="referer_title" value="Services" />
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">🕒</font> &nbsp;&nbsp; Monday → Friday
+                                                        9am to 5pm
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-9b7cd60 e-con-full e-flex e-con e-child"
+                                data-id="9b7cd60" data-element_type="container">
+                                <div class="elementor-element elementor-element-e3957e2 elementor-widget elementor-widget-heading"
+                                    data-id="e3957e2" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default"> Join our
+                                            newsletter</h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-60dd47a elementor-button-align-stretch elementor-widget elementor-widget-form"
+                                    data-id="60dd47a" data-element_type="widget"
+                                    data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;20&quot;,&quot;button_width_mobile&quot;:&quot;20&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
+                                    data-widget_type="form.default">
+                                    <div class="elementor-widget-container">
+                                        <form class="elementor-form" method="post" name="New Form">
+                                            <input type="hidden" name="post_id" value="1764" />
+                                            <input type="hidden" name="form_id" value="60dd47a" />
+                                            <input type="hidden" name="referer_title" value="Services" />
 
-                  <input type="hidden" name="queried_id" value="2433" />
+                                            <input type="hidden" name="queried_id" value="2433" />
 
-                  <div class="elementor-form-fields-wrapper elementor-labels-above">
-                    <div
-                      class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-80 elementor-sm-80 elementor-field-required">
-                      <input size="1" type="email" name="form_fields[email]" id="form-field-email"
-                        class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Email Address"
-                        required="required">
+                                            <div class="elementor-form-fields-wrapper elementor-labels-above">
+                                                <div
+                                                    class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-80 elementor-sm-80 elementor-field-required">
+                                                    <input size="1" type="email" name="form_fields[email]"
+                                                        id="form-field-email"
+                                                        class="elementor-field elementor-size-sm  elementor-field-textual"
+                                                        placeholder="Email Address" required="required">
+                                                </div>
+                                                <div
+                                                    class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-20 e-form__buttons elementor-sm-20">
+                                                    <button class="elementor-button elementor-size-sm" type="submit">
+                                                        <span class="elementor-button-content-wrapper">
+                                                            <span class="elementor-button-icon">
+                                                                <i aria-hidden="true" class="icon icon-right-arrow"></i>
+                                                                <span class="elementor-screen-only">Submit</span>
+                                                            </span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-b9f61ee e-con-full e-flex e-con e-child"
+                                data-id="b9f61ee" data-element_type="container">
+                                <div class="elementor-element elementor-element-8737e81 elementor-widget elementor-widget-heading"
+                                    data-id="8737e81" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default">Follow us
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-265915a e-grid e-con-full e-con e-child"
+                                    data-id="265915a" data-element_type="container">
+                                    <div class="elementor-element elementor-element-5a77c23 elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="5a77c23" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-633e4a1">
+                                                        <a href="https://www.facebook.com/profile.php?id=61575209545205" aria-label="Facebook" target="_blank" class="">
+                                                            Facebook </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-652d726 elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="652d726" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-55fe18f">
+                                                        <a href="https://x.com/tomsantella" aria-label="Twitter" target="_blank"  class="">
+                                                            Twitter </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-c8b0b41 elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="c8b0b41" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-55fe18f">
+                                                        <a href="https://www.instagram.com/nextlevelgrowthpartners/?hl=en" aria-label="Instagram" target="_blank"  class="">
+                                                            Instagram </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-7bde8dc elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="7bde8dc" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-55fe18f">
+                                                        <a href="https://www.linkedin.com/company/next-level-growth-partners/" aria-label="LinkedIn" target="_blank"  class="">
+                                                            LinkedIn </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-dc0f0af e-con-full e-flex e-con e-child"
+                            data-id="dc0f0af" data-element_type="container">
+                            <div class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
+                                data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div class="elementor-widget-container" style="flex: 1; min-width: 200px;">
+                                    <p style="margin: 0; font-size: 14px;">
+                                        <a href="privacy-policy.html"
+                                            style="margin-right: 1rem; text-decoration: underline;">Privacy Policy</a>
+                                        <a href="terms.html" style="text-decoration: underline;">Terms of Service</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
+                                data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div class="elementor-widget-container"
+                                    style="flex: 1; min-width: 200px; text-align: right;">
+                                    <h2 class="elementor-heading-title elementor-size-default"
+                                        style="margin: 0; font-size: 14px;">
+                                        <a href="index.html">Copyright © 2025 Next Level Growth Partners </a>
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div
-                      class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-20 e-form__buttons elementor-sm-20">
-                      <button class="elementor-button elementor-size-sm" type="submit">
-                        <span class="elementor-button-content-wrapper">
-                          <span class="elementor-button-icon">
-                            <i aria-hidden="true" class="icon icon-right-arrow"></i>
-                            <span class="elementor-screen-only">Submit</span>
-                          </span>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-b9f61ee e-con-full e-flex e-con e-child" data-id="b9f61ee"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-8737e81 elementor-widget elementor-widget-heading"
-              data-id="8737e81" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default">Follow us
-                </h4>
-              </div>
-            </div>
-            <div class="elementor-element elementor-element-265915a e-grid e-con-full e-con e-child" data-id="265915a"
-              data-element_type="container">
-              <div
-                class="elementor-element elementor-element-5a77c23 elementor-widget elementor-widget-elementskit-social-media"
-                data-id="5a77c23" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-633e4a1">
-                        <a href="https://www.facebook.com/profile.php?id=61575209545205" aria-label="Facebook"
-                          target="_blank" class="">
-                          Facebook </a>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-652d726 elementor-widget elementor-widget-elementskit-social-media"
-                data-id="652d726" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-55fe18f">
-                        <a href="https://x.com/tomsantella" aria-label="Twitter" target="_blank" class="">
-                          Twitter </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-c8b0b41 elementor-widget elementor-widget-elementskit-social-media"
-                data-id="c8b0b41" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-55fe18f">
-                        <a href="https://www.instagram.com/nextlevelgrowthpartners/?hl=en" aria-label="Instagram"
-                          target="_blank" class="">
-                          Instagram </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-7bde8dc elementor-widget elementor-widget-elementskit-social-media"
-                data-id="7bde8dc" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-55fe18f">
-                        <a href="https://www.linkedin.com/company/next-level-growth-partners/" aria-label="LinkedIn"
-                          target="_blank" class="">
-                          LinkedIn </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-        <div class="elementor-element elementor-element-dc0f0af e-con-full e-flex e-con e-child" data-id="dc0f0af"
-          data-element_type="container">
-          <div
-            class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
-            data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
-            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <div class="elementor-widget-container" style="flex: 1; min-width: 200px;">
-              <p style="margin: 0; font-size: 14px;">
-                <a href="privacy-policy.html" style="margin-right: 1rem; text-decoration: underline;">Privacy Policy</a>
-                <a href="terms.html" style="text-decoration: underline;">Terms of Service</a>
-              </p>
-            </div>
-          </div>
-          <div
-            class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
-            data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
-            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <div class="elementor-widget-container" style="flex: 1; min-width: 200px; text-align: right;">
-              <h2 class="elementor-heading-title elementor-size-default" style="margin: 0; font-size: 14px;">
-                <a href="index.html">Copyright © 2025 Next Level Growth Partners </a>
-              </h2>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script data-cfasync="false"
     src="https://brandmode.1onestrong.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -49753,151 +49553,7 @@
     src="https://brandmode.1onestrong.com/wp-content/plugins/elementskit-lite/widgets/init/assets/js/elementor.js?ver=3.4.0"
     id="elementskit-elementor-js"></script>
 
-  <!-- Dynamic Blog Article Script -->
-  <script>
-    // Initialize blog article page
-    async function initializeBlogArticle() {
-      // Show loading state
-      showLoading();
 
-      try {
-        // Get slug from URL
-        const slug = getSlugFromUrl();
-
-        if (!slug) {
-          showError('No blog post specified');
-          return;
-        }
-
-        // Fetch blog data from API
-        const blogData = await fetchBlogData(slug);
-
-        if (!blogData) {
-          showError('Blog post not found');
-          return;
-        }
-
-        // Populate the page with blog data
-        populateBlogContent(blogData);
-
-        // Show content
-        showContent();
-
-      } catch (error) {
-        console.error('Error loading blog:', error);
-        showError('Failed to load blog post');
-      }
-    }
-
-    // Populate blog content directly from API data
-    function populateBlogContent(blog) {
-      // Update page title
-      document.title = `${blog.Name || 'Blog Post'} - Next Level Growth Partners`;
-
-      // Populate basic info
-      document.getElementById('blog-category').textContent = blog.Category || 'Blog';
-      document.getElementById('blog-title').textContent = blog.Name || 'Untitled';
-      document.getElementById('blog-date').textContent = formatDate(blog['Created at']);
-      document.getElementById('read-time').textContent = blog['Read_Time'] || '5 min read';
-      document.getElementById('author-name').textContent = blog['Author_Name'] || 'Anonymous';
-
-      // Handle images
-      const imageUrl = processImageUrl(blog.Image);
-      document.getElementById('author-image').src = imageUrl;
-      document.getElementById('featured-image').src = imageUrl;
-      document.getElementById('featured-image').alt = blog.Name || 'Blog image';
-
-      // Populate content sections
-      document.getElementById('blog-short-description').textContent = blog['Short_Description'] || '';
-
-      // Handle quote (show/hide based on content)
-      const quoteElement = document.getElementById('blog-quote');
-      if (blog.Quote) {
-        quoteElement.textContent = blog.Quote;
-        quoteElement.classList.remove('hidden');
-      } else {
-        quoteElement.classList.add('hidden');
-      }
-
-      // Handle main content (support both markdown and HTML)
-      const mainContentElement = document.getElementById('blog-main-content');
-      if (blog['Main_Content']) {
-        // Check if content looks like markdown or HTML
-        const content = blog['Main_Content'];
-        if (content.includes('##') || content.includes('**') || content.includes('*') && !content.includes('<')) {
-          // Looks like markdown, convert it
-          mainContentElement.innerHTML = markdownToHtml(content);
-        } else {
-          // Treat as HTML or plain text
-          mainContentElement.innerHTML = content;
-        }
-      } else {
-        mainContentElement.innerHTML = '<p>Content coming soon...</p>';
-      }
-
-      // Handle category tags
-      const tagsContainer = document.getElementById('blog-tags');
-      tagsContainer.innerHTML = '';
-      if (blog.Category) {
-        const tag = document.createElement('span');
-        tag.className = 'px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium';
-        tag.textContent = blog.Category;
-        tagsContainer.appendChild(tag);
-      }
-
-      // Update author bio section
-      document.getElementById('author-bio-title').textContent = `About ${blog['Author_Name'] || 'the Author'}`;
-      document.getElementById('author-bio-description').textContent = blog.Notes || 'Professional content creator and industry expert.';
-      document.getElementById('author-bio-link').textContent = `View all posts by ${blog['Author_Name'] || 'this author'} →`;
-
-      // Set author bio image
-      const authorBioImage = document.getElementById('author-bio-image');
-      if (authorBioImage) {
-        authorBioImage.src = imageUrl;
-      }
-    }
-
-    // Utility functions
-    function formatDate(dateString) {
-      if (!dateString) return 'Unknown date';
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-    }
-
-    // UI state management
-    function showLoading() {
-      document.getElementById('loading-state').classList.remove('hidden');
-      document.getElementById('error-state').classList.add('hidden');
-      document.getElementById('blog-content').classList.add('hidden');
-    }
-
-    function showContent() {
-      document.getElementById('loading-state').classList.add('hidden');
-      document.getElementById('error-state').classList.add('hidden');
-      document.getElementById('blog-content').classList.remove('hidden');
-    }
-
-    function showError(message = 'Unable to load blog post') {
-      document.getElementById('loading-state').classList.add('hidden');
-      document.getElementById('error-state').classList.remove('hidden');
-      document.getElementById('blog-content').classList.add('hidden');
-
-      // Update error message if element exists
-      const errorMessage = document.querySelector('#error-state h2');
-      if (errorMessage) {
-        errorMessage.textContent = message;
-      }
-    }
-
-    // Initialize when page loads
-    document.addEventListener('DOMContentLoaded', initializeBlogArticle);
-
-
-  </script>
 
 </body>
 

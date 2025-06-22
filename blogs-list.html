@@ -5,83 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="https://gmpg.org/xfn/11">
-  <title>Blog - Next Level Growth Partners | AI Lead Conversion Experts</title>
+  <title>About - Next Level Growth Partners | AI Lead Conversion Experts</title>
   <meta name='robots' content='max-image-preview:large' />
-  <meta name="description" content="Discover insights on AI lead conversion, digital marketing strategies, and business growth tips from Next Level Growth Partners.">
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Dynamic Blog List Script -->
-  <script>
-    // Fetch all blogs from Baserow API
-    async function fetchAllBlogs() {
-      try {
-        const apiUrl = 'https://api.baserow.io/api/database/rows/table/580774/?user_field_names=true';
-
-        const response = await fetch(apiUrl, {
-          method: 'GET',
-          headers: {
-            'Authorization': 'Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq',
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log('Fetched blog data:', data);
-        return data.results || [];
-      } catch (error) {
-        console.error('Error fetching blogs:', error);
-        return [];
-      }
-    }
-
-    // Process image URL for Baserow
-    function processImageUrl(imageUrl) {
-      if (!imageUrl) return 'https://via.placeholder.com/400x300?text=Blog+Image';
-
-      // If it's already a full URL, return as is
-      if (imageUrl.startsWith('http')) {
-        return imageUrl;
-      }
-
-      // If it's a Baserow file reference, construct the full URL
-      if (imageUrl.includes('baserow.io') || imageUrl.startsWith('/media/')) {
-        return imageUrl.startsWith('http') ? imageUrl : `https://api.baserow.io${imageUrl}`;
-      }
-
-      return imageUrl;
-    }
-
-    // Format date
-    function formatDate(dateString) {
-      if (!dateString) return 'Unknown date';
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-    }
-
-    // Truncate text
-    function truncateText(text, maxLength = 120) {
-      if (!text || text.length <= maxLength) return text || '';
-      return text.substr(0, maxLength) + '...';
-    }
-
-    // Strip HTML tags
-    function stripHtml(html) {
-      if (!html) return '';
-      const tmp = document.createElement('div');
-      tmp.innerHTML = html;
-      return tmp.textContent || tmp.innerText || '';
-    }
-  </script>
   <style>
     img:is([sizes="auto" i], [sizes^="auto," i]) {
       contain-intrinsic-size: 3000px 1500px
@@ -108,14 +33,13 @@
       background: none !important;
       padding: 0 !important;
     }
+                    .elementor-message-danger{
+            display: none !important;
+        }
 
-    .elementor-message-danger {
-      display: none !important;
-    }
-
-    .elementor-message-danger::before {
-      display: none;
-    }
+          .elementor-message-danger::before{
+            display: none;
+        }
   </style>
   <style id='global-styles-inline-css'>
     :root {
@@ -40210,16 +40134,15 @@
         flex-wrap: wrap
       }
     }
-
-    .site-logo-img {
-      max-height: 50px;
-      width: auto;
-      display: block;
-      margin: 0;
-      padding: 0;
-      border: none;
-      background: none;
-    }
+          .site-logo-img {
+            max-height: 50px;
+            width: auto;
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: none;
+        }
   </style>
   <style>
     /* latin-ext */
@@ -48543,7 +48466,8 @@
   <link rel="icon" href="./img/image-logo.png" sizes="32x32" />
   <link rel="icon" href="./img/image-logo.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./img/image-logo.png" />
-  <meta name="msapplication-TileImage" content="./img/image-logo.png" />
+  <meta name="msapplication-TileImage"
+    content="./img/image-logo.png" />
 </head>
 
 <body
@@ -48564,8 +48488,8 @@
             data-id="f0c84a9" data-element_type="widget" data-widget_type="theme-site-logo.default">
             <div class="elementor-widget-container">
               <a href="index.html" class="site-logo-link">
-                <img src="img/image.png" alt="Next Level Growth Partners" class="site-logo-img">
-              </a>
+                                <img src="img/image.png" alt="Next Level Growth Partners" class="site-logo-img">
+                            </a>
             </div>
           </div>
         </div>
@@ -48676,7 +48600,7 @@
         <div class="e-con-inner">
           <div class="elementor-element elementor-element-809954e e-con-full e-flex e-con e-child" data-id="809954e"
             data-element_type="container">
-
+           
           </div>
           <div
             class="elementor-element elementor-element-927ea8f elementor-widget__width-initial elementor-widget elementor-widget-elementskit-heading"
@@ -48688,13 +48612,9 @@
                   <h2 class="ekit-heading--title elementskit-section-title text_fill">Blogs
                   </h2>
                   <div class='ekit-heading__description'>
-                    <p>We specialize in AI-powered lead conversion systems that transform your business operations. Our
-                      advanced automation solutions help companies capture, nurture, and convert leads 24/7 without the
-                      overhead of traditional sales teams.</p>
+                    <p>We specialize in AI-powered lead conversion systems that transform your business operations. Our advanced automation solutions help companies capture, nurture, and convert leads 24/7 without the overhead of traditional sales teams.</p>
                     <br>
-                    <p>We are in the business of getting our client's results. We simply leverage AI & our marketing
-                      expertise to do so. We use our AI services to streamline sales processes, increase productivity
-                      and turn time-sucking tasks into profit centers</p>
+                    <p>We are in the business of getting our client's results. We simply leverage AI & our marketing expertise to do so. We use our AI services to streamline sales processes, increase productivity and turn time-sucking tasks into profit centers</p>
                   </div>
                 </div>
               </div>
@@ -48703,10 +48623,10 @@
         </div>
       </div>
     </div>
+       
+   
 
-
-
-
+      
     <!-- <div class="elementor-element elementor-element-6a0ac55 e-flex e-con-boxed e-con e-parent" data-id="6a0ac55"
       data-element_type="container"
       data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;background_motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;background_motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;laptop&quot;,&quot;tablet&quot;],&quot;background_motion_fx_motion_fx_mouse&quot;:&quot;yes&quot;,&quot;background_motion_fx_mouseTrack_effect&quot;:&quot;yes&quot;,&quot;background_motion_fx_mouseTrack_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:1,&quot;sizes&quot;:[]}}">
@@ -48734,176 +48654,169 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              darkblue: {
-                900: '#0a192f',
-                800: '#172a45',
-                700: '#303f60',
-                600: '#4a6fa5',
-                500: '#64ffda',
-              }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkblue: {
+                            900: '#0a192f',
+                            800: '#172a45',
+                            700: '#303f60',
+                            600: '#4a6fa5',
+                            500: '#64ffda',
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     </script>
     <style>
-      .blog-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(10, 25, 47, 0.5);
-      }
-
-      .gradient-text {
-        background: linear-gradient(90deg, #64ffda, #4a6fa5);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      /* Dynamic Blog Styles */
-      .fade-in {
-        animation: fadeIn 0.5s ease-in;
-      }
-
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      .dynamic-blog-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-      }
-
-      .dynamic-blog-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      }
-
-      .category-filter {
-        transition: all 0.3s ease;
-      }
-
-      .category-filter.active {
-        background-color: #4f46e5;
-        color: white;
-      }
-
-      .loading-spinner {
-        border: 3px solid #f3f3f3;
-        border-top: 3px solid #4f46e5;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        animation: spin 1s linear infinite;
-        margin: 0 auto;
-      }
-
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-
-      .search-container {
-        position: relative;
-        max-width: 400px;
-        margin: 0 auto;
-      }
-
-      .search-input {
-        width: 100%;
-        padding: 12px 16px 12px 48px;
-        border: 2px solid #e5e7eb;
-        border-radius: 12px;
-        font-size: 16px;
-        transition: all 0.3s ease;
-      }
-
-      .search-input:focus {
-        outline: none;
-        border-color: #4f46e5;
-        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-      }
-
-      .search-icon {
-        position: absolute;
-        left: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #9ca3af;
-      }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(10, 25, 47, 0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #64ffda, #4a6fa5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
     </style>
-    <div class="elementor-element elementor-element-73e92d4 e-flex e-con-boxed e-con e-parent" data-id="73e92d4"
+    <div class="" data-id="73e92d4"
       data-element_type="container">
       <div class="">
-        <!-- Loading State -->
-        <div id="loading-state" class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:px-10 lg:px-16">
-          <div class="text-center">
-            <div class="loading-spinner mb-4"></div>
-            <p class="text-gray-400">Loading blog posts...</p>
-          </div>
-        </div>
+      <!-- Blog Listing Main Section -->
+<main class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:px-10 lg:px-16">
+  <!-- Loading State -->
+  <div id="loading-state" class="text-center py-12">
+    <div class="loading-spinner mb-4"></div>
+    <p class="text-gray-400">Loading blog posts...</p>
+  </div>
 
-        <!-- Error State -->
-        <div id="error-state" class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:px-10 lg:px-16 hidden">
-          <div class="text-center">
-            <div class="text-red-500 text-6xl mb-4">⚠️</div>
-            <h2 class="text-2xl font-bold text-white mb-4">Unable to Load Blog Posts</h2>
-            <p class="text-gray-400 mb-6">There was an error loading the blog posts. Please try again later.</p>
-            <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
-              Try Again
-            </button>
-          </div>
-        </div>
+  <!-- Error State -->
+  <div id="error-state" class="hidden text-center py-12">
+    <div class="text-red-500 text-6xl mb-4">⚠️</div>
+    <h2 class="text-2xl font-bold text-white mb-4">Unable to Load Blog Posts</h2>
+    <p class="text-gray-400 mb-6">There was an error loading the blog posts. Please try again later.</p>
+    <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Try Again</button>
+  </div>
 
-        <!-- Main Dynamic Content -->
-        <main id="blog-listing" class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:px-10 lg:px-16 hidden">
-          <!-- Search Bar -->
-          <div class="mb-12">
-            <div class="search-container">
-              <input
-                type="text"
-                id="search-input"
-                placeholder="Search blog posts..."
-                class="search-input"
-              >
-              <i class="fas fa-search search-icon"></i>
+  <!-- Dynamic Blog Container -->
+  <div id="blog-grid" class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 hidden"></div>
+
+  <!-- Pagination Placeholder -->
+  <div class="mt-12 flex justify-center">
+    <nav class="flex items-center space-x-2">
+      <button class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-left"></i></button>
+      <button class="w-10 h-10 rounded-full bg-darkblue-500 text-darkblue-900 font-bold">1</button>
+      <button class="w-10 h-10 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">2</button>
+      <button class="w-10 h-10 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">3</button>
+      <span class="px-2 text-gray-400">...</span>
+      <button class="w-10 h-10 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">8</button>
+      <button class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-right"></i></button>
+    </nav>
+  </div>
+</main>
+
+<!-- Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const loading = document.getElementById('loading-state');
+    const error = document.getElementById('error-state');
+    const blogGrid = document.getElementById('blog-grid');
+
+    async function fetchBlogs() {
+      const apiUrl = 'https://api.baserow.io/api/database/rows/table/580774/?user_field_names=true';
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Authorization': 'Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq',
+            'Content-Type': 'application/json'
+          }
+        });
+        if (!response.ok) throw new Error('API error');
+        const data = await response.json();
+        return data.results || [];
+      } catch (err) {
+        console.error(err);
+        return null;
+      }
+    }
+
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      return date.toLocaleString('en-US', {
+        month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'
+      });
+    }
+
+    function getImage(imageArray) {
+      const imageObj = imageArray?.find(img => img.thumbnails?.card_cover);
+      return imageObj?.thumbnails?.card_cover?.url || 'https://via.placeholder.com/600x400?text=Blog+Image';
+    }
+
+    function stripHtmlTags(html) {
+      const div = document.createElement('div');
+      div.innerHTML = html || '';
+      return div.textContent || '';
+    }
+
+    function truncate(text, max = 100) {
+      return text.length > max ? text.substring(0, max) + '...' : text;
+    }
+
+    const blogs = await fetchBlogs();
+
+    loading.classList.add('hidden');
+
+    if (!blogs) {
+      error.classList.remove('hidden');
+      return;
+    }
+
+    blogGrid.classList.remove('hidden');
+
+    blogs.forEach(blog => {
+      const image = getImage(blog.Image);
+      const title = blog.Name || 'Untitled';
+      const category = blog.Category || 'General';
+      const readTime = blog.Read_Time || '5';
+      const description = truncate(stripHtmlTags(blog.Short_Description));
+      const author = blog.Author_Name || blog["Created by"]?.name || 'Anonymous';
+      const createdAt = formatDate(blog.Created_at);
+      const slug = blog.slug || '#';
+
+      const card = `
+        <a href="blogs-artical.html?slug=${slug}" class="blog-card bg-darkblue-800 rounded-xl overflow-hidden border border-darkblue-700 transition duration-300 ease-in-out flex flex-col">
+          <div class="h-48 sm:h-52 md:h-48 overflow-hidden">
+            <img src="${image}" alt="Blog Image" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex items-center mb-2">
+              <span class="bg-darkblue-700 text-darkblue-500 text-xs px-3 py-1 rounded-full">${category}</span>
+              <span class="ml-auto text-xs text-gray-400"><i class="far fa-clock mr-1"></i> ${readTime} min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2 hover:text-darkblue-500 transition">${title}</h3>
+            <p class="text-gray-400 mb-4">${description}</p>
+            <div class="flex items-center mt-auto">
+              <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
+                <img src="https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 90)}.jpg" alt="Author" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <p class="text-sm font-medium text-white">${author}</p>
+                <p class="text-xs text-gray-400">${createdAt}</p>
+              </div>
             </div>
           </div>
+        </a>
+      `;
 
-          <!-- Category Filters -->
-          <div class="mb-12">
-            <h2 class="text-2xl font-bold text-white mb-6 text-center">Browse by Category</h2>
-            <div id="category-filters" class="flex flex-wrap gap-3 justify-center">
-              <button class="category-filter active px-4 py-2 rounded-full border border-gray-600 text-gray-300 hover:bg-blue-600 hover:text-white" data-category="all">
-                All Posts
-              </button>
-              <!-- Dynamic category filters will be inserted here -->
-            </div>
-          </div>
+      blogGrid.innerHTML += card;
+    });
+  });
+</script>
 
-          <!-- Dynamic Blog Grid -->
-          <div id="blog-grid" class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            <!-- Dynamic blog cards will be inserted here -->
-          </div>
-
-          <!-- Load More Button -->
-          <div class="text-center mt-12">
-            <button id="load-more-btn" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition hidden">
-              Load More Posts
-            </button>
-          </div>
-
-          <!-- No Results -->
-          <div id="no-results" class="text-center py-16 hidden">
-            <div class="text-gray-400 text-6xl mb-4">📝</div>
-            <h3 class="text-xl font-semibold text-white mb-2">No blog posts found</h3>
-            <p class="text-gray-400">Try adjusting your search or filter criteria.</p>
-          </div>
-        </main>
         <!-- <div class="elementor-element elementor-element-808104b e-con-full e-flex e-con e-child" data-id="808104b"
           data-element_type="container">
           <div class="elementor-element elementor-element-bf62d9c e-con-full e-flex e-con e-child" data-id="bf62d9c"
@@ -49228,255 +49141,253 @@
       </div>
     </div>
   </div>
-  <div data-elementor-type="footer" data-elementor-id="1764" class="elementor elementor-1764 elementor-location-footer"
-    data-elementor-post-type="elementor_library">
-    <div class="elementor-element elementor-element-78cad96 e-flex e-con-boxed e-con e-parent" data-id="78cad96"
-      data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-      <div class="e-con-inner">
-        <div class="elementor-element elementor-element-52abb05 e-con-full e-flex e-con e-child" data-id="52abb05"
-          data-element_type="container">
-          <div class="elementor-element elementor-element-600cf77 elementor-widget elementor-widget-elementskit-heading"
-            data-id="600cf77" data-element_type="widget" data-widget_type="elementskit-heading.default">
-            <div class="elementor-widget-container">
-              <div class="ekit-wid-con">
-                <div
-                  class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-text_center   ekit_heading_mobile-text_left">
-                  <h3 class="ekit-heading--title elementskit-section-title text_fill">
-                    Ready to transform <span><span>your
-                        business? </span></span></h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="elementor-element elementor-element-8d50095 elementor-align-left elementor-align--tabletcenter elementor-widget elementor-widget-elementskit-button"
-            data-id="8d50095" data-element_type="widget" data-widget_type="elementskit-button.default">
-            <div class="elementor-widget-container">
-              <div class="ekit-wid-con">
-                <div class="ekit-btn-wraper">
-                  <a href="#" class="elementskit-btn  whitespace--normal" id="">
-                    Learn More <i class="icon icon-right-arrow"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="elementor-element elementor-element-2c2a580 e-con-full e-flex e-con e-child" data-id="2c2a580"
-          data-element_type="container">
-          <div class="elementor-element elementor-element-73e9142 e-con-full e-flex e-con e-child" data-id="73e9142"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-bc9c29b elementor-widget elementor-widget-heading"
-              data-id="bc9c29b" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default">Connect with
-                  us</h4>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-6d0c3bb elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
-              data-id="6d0c3bb" data-element_type="widget" data-widget_type="icon-list.default">
-              <div class="elementor-widget-container">
-                <ul class="elementor-icon-list-items">
-                  <li class="elementor-icon-list-item">
-                    <a href="mailto:support@nextlevelgrowthpartner.com">
-                      <span class="elementor-icon-list-text">
-                        <font size="5">📧</font> &nbsp;&nbsp;
-                        support@nextlevelgrowthpartner.com
-                      </span>
-                    </a>
-                  </li>
-                  <li class="elementor-icon-list-item">
-                    <a href="tel:+15615302575">
-                      <span class="elementor-icon-list-text">
-                        <font size="5">💬</font> &nbsp;&nbsp; +15615302575
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-6785420 e-con-full e-flex e-con e-child" data-id="6785420"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-e923f1d elementor-widget elementor-widget-heading"
-              data-id="e923f1d" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default">Address</h4>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-7bef88b elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
-              data-id="7bef88b" data-element_type="widget" data-widget_type="icon-list.default">
-              <div class="elementor-widget-container">
-                <ul class="elementor-icon-list-items">
-                  <li class="elementor-icon-list-item">
-                    <a href="#">
+    <div data-elementor-type="footer" data-elementor-id="1764"
+                class="elementor elementor-1764 elementor-location-footer" data-elementor-post-type="elementor_library">
+                <div class="elementor-element elementor-element-78cad96 e-flex e-con-boxed e-con e-parent"
+                    data-id="78cad96" data-element_type="container"
+                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                    <div class="e-con-inner">
+                        <div class="elementor-element elementor-element-52abb05 e-con-full e-flex e-con e-child"
+                            data-id="52abb05" data-element_type="container">
+                            <div class="elementor-element elementor-element-600cf77 elementor-widget elementor-widget-elementskit-heading"
+                                data-id="600cf77" data-element_type="widget"
+                                data-widget_type="elementskit-heading.default">
+                                <div class="elementor-widget-container">
+                                    <div class="ekit-wid-con">
+                                        <div
+                                            class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-text_center   ekit_heading_mobile-text_left">
+                                            <h3 class="ekit-heading--title elementskit-section-title text_fill">
+                                                Ready to transform <span><span>your
+                                                        business? </span></span></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-8d50095 elementor-align-left elementor-align--tabletcenter elementor-widget elementor-widget-elementskit-button"
+                                data-id="8d50095" data-element_type="widget"
+                                data-widget_type="elementskit-button.default">
+                                <div class="elementor-widget-container">
+                                    <div class="ekit-wid-con">
+                                        <div class="ekit-btn-wraper">
+                                            <a href="#" class="elementskit-btn  whitespace--normal" id="">
+                                                Learn More <i class="icon icon-right-arrow"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-2c2a580 e-con-full e-flex e-con e-child"
+                            data-id="2c2a580" data-element_type="container">
+                            <div class="elementor-element elementor-element-73e9142 e-con-full e-flex e-con e-child"
+                                data-id="73e9142" data-element_type="container">
+                                <div class="elementor-element elementor-element-bc9c29b elementor-widget elementor-widget-heading"
+                                    data-id="bc9c29b" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default">Connect with
+                                            us</h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-6d0c3bb elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
+                                    data-id="6d0c3bb" data-element_type="widget" data-widget_type="icon-list.default">
+                                    <div class="elementor-widget-container">
+                                        <ul class="elementor-icon-list-items">
+                                            <li class="elementor-icon-list-item">
+                                                <a href="mailto:support@nextlevelgrowthpartner.com">
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">📧</font> &nbsp;&nbsp;
+                                                        support@nextlevelgrowthpartner.com
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="elementor-icon-list-item">
+                                                <a href="tel:+15615302575">
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">💬</font> &nbsp;&nbsp; +15615302575
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-6785420 e-con-full e-flex e-con e-child"
+                                data-id="6785420" data-element_type="container">
+                                <div class="elementor-element elementor-element-e923f1d elementor-widget elementor-widget-heading"
+                                    data-id="e923f1d" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default">Address</h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-7bef88b elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
+                                    data-id="7bef88b" data-element_type="widget" data-widget_type="icon-list.default">
+                                    <div class="elementor-widget-container">
+                                        <ul class="elementor-icon-list-items">
+                                            <li class="elementor-icon-list-item">
+                                                <a href="#">
 
-                      <span class="elementor-icon-list-text">
-                        <font size="5">🌍</font> &nbsp;&nbsp; 21 NE 10th St,
-                        Deerfield Beach FL 33441
-                      </span>
-                    </a>
-                  </li>
-                  <li class="elementor-icon-list-item">
-                    <a href="#">
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">🌍</font> &nbsp;&nbsp; 21 NE 10th St,
+                                                        Deerfield Beach FL 33441
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="elementor-icon-list-item">
+                                                <a href="#">
 
-                      <span class="elementor-icon-list-text">
-                        <font size="5">🕒</font> &nbsp;&nbsp; Monday → Friday
-                        9am to 5pm
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-9b7cd60 e-con-full e-flex e-con e-child" data-id="9b7cd60"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-e3957e2 elementor-widget elementor-widget-heading"
-              data-id="e3957e2" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default"> Join our
-                  newsletter</h4>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-60dd47a elementor-button-align-stretch elementor-widget elementor-widget-form"
-              data-id="60dd47a" data-element_type="widget"
-              data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;20&quot;,&quot;button_width_mobile&quot;:&quot;20&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
-              data-widget_type="form.default">
-              <div class="elementor-widget-container">
-                <form class="elementor-form" method="post" name="New Form">
-                  <input type="hidden" name="post_id" value="1764" />
-                  <input type="hidden" name="form_id" value="60dd47a" />
-                  <input type="hidden" name="referer_title" value="Services" />
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">🕒</font> &nbsp;&nbsp; Monday → Friday
+                                                        9am to 5pm
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-9b7cd60 e-con-full e-flex e-con e-child"
+                                data-id="9b7cd60" data-element_type="container">
+                                <div class="elementor-element elementor-element-e3957e2 elementor-widget elementor-widget-heading"
+                                    data-id="e3957e2" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default"> Join our
+                                            newsletter</h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-60dd47a elementor-button-align-stretch elementor-widget elementor-widget-form"
+                                    data-id="60dd47a" data-element_type="widget"
+                                    data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;20&quot;,&quot;button_width_mobile&quot;:&quot;20&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
+                                    data-widget_type="form.default">
+                                    <div class="elementor-widget-container">
+                                        <form class="elementor-form" method="post" name="New Form">
+                                            <input type="hidden" name="post_id" value="1764" />
+                                            <input type="hidden" name="form_id" value="60dd47a" />
+                                            <input type="hidden" name="referer_title" value="Services" />
 
-                  <input type="hidden" name="queried_id" value="2433" />
+                                            <input type="hidden" name="queried_id" value="2433" />
 
-                  <div class="elementor-form-fields-wrapper elementor-labels-above">
-                    <div
-                      class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-80 elementor-sm-80 elementor-field-required">
-                      <input size="1" type="email" name="form_fields[email]" id="form-field-email"
-                        class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Email Address"
-                        required="required">
+                                            <div class="elementor-form-fields-wrapper elementor-labels-above">
+                                                <div
+                                                    class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-80 elementor-sm-80 elementor-field-required">
+                                                    <input size="1" type="email" name="form_fields[email]"
+                                                        id="form-field-email"
+                                                        class="elementor-field elementor-size-sm  elementor-field-textual"
+                                                        placeholder="Email Address" required="required">
+                                                </div>
+                                                <div
+                                                    class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-20 e-form__buttons elementor-sm-20">
+                                                    <button class="elementor-button elementor-size-sm" type="submit">
+                                                        <span class="elementor-button-content-wrapper">
+                                                            <span class="elementor-button-icon">
+                                                                <i aria-hidden="true" class="icon icon-right-arrow"></i>
+                                                                <span class="elementor-screen-only">Submit</span>
+                                                            </span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-b9f61ee e-con-full e-flex e-con e-child"
+                                data-id="b9f61ee" data-element_type="container">
+                                <div class="elementor-element elementor-element-8737e81 elementor-widget elementor-widget-heading"
+                                    data-id="8737e81" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default">Follow us
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-265915a e-grid e-con-full e-con e-child"
+                                    data-id="265915a" data-element_type="container">
+                                    <div class="elementor-element elementor-element-5a77c23 elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="5a77c23" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-633e4a1">
+                                                        <a href="https://www.facebook.com/profile.php?id=61575209545205" aria-label="Facebook" target="_blank" class="">
+                                                            Facebook </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-652d726 elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="652d726" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-55fe18f">
+                                                        <a href="https://x.com/tomsantella" aria-label="Twitter" target="_blank"  class="">
+                                                            Twitter </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-c8b0b41 elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="c8b0b41" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-55fe18f">
+                                                        <a href="https://www.instagram.com/nextlevelgrowthpartners/?hl=en" aria-label="Instagram" target="_blank"  class="">
+                                                            Instagram </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-7bde8dc elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="7bde8dc" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-55fe18f">
+                                                        <a href="https://www.linkedin.com/company/next-level-growth-partners/" aria-label="LinkedIn" target="_blank"  class="">
+                                                            LinkedIn </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-dc0f0af e-con-full e-flex e-con e-child"
+                            data-id="dc0f0af" data-element_type="container">
+                            <div class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
+                                data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div class="elementor-widget-container" style="flex: 1; min-width: 200px;">
+                                    <p style="margin: 0; font-size: 14px;">
+                                        <a href="privacy-policy.html"
+                                            style="margin-right: 1rem; text-decoration: underline;">Privacy Policy</a>
+                                        <a href="terms.html" style="text-decoration: underline;">Terms of Service</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
+                                data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div class="elementor-widget-container"
+                                    style="flex: 1; min-width: 200px; text-align: right;">
+                                    <h2 class="elementor-heading-title elementor-size-default"
+                                        style="margin: 0; font-size: 14px;">
+                                        <a href="index.html">Copyright © 2025 Next Level Growth Partners </a>
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div
-                      class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-20 e-form__buttons elementor-sm-20">
-                      <button class="elementor-button elementor-size-sm" type="submit">
-                        <span class="elementor-button-content-wrapper">
-                          <span class="elementor-button-icon">
-                            <i aria-hidden="true" class="icon icon-right-arrow"></i>
-                            <span class="elementor-screen-only">Submit</span>
-                          </span>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-b9f61ee e-con-full e-flex e-con e-child" data-id="b9f61ee"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-8737e81 elementor-widget elementor-widget-heading"
-              data-id="8737e81" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default">Follow us
-                </h4>
-              </div>
-            </div>
-            <div class="elementor-element elementor-element-265915a e-grid e-con-full e-con e-child" data-id="265915a"
-              data-element_type="container">
-              <div
-                class="elementor-element elementor-element-5a77c23 elementor-widget elementor-widget-elementskit-social-media"
-                data-id="5a77c23" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-633e4a1">
-                        <a href="https://www.facebook.com/profile.php?id=61575209545205" aria-label="Facebook"
-                          target="_blank" class="">
-                          Facebook </a>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-652d726 elementor-widget elementor-widget-elementskit-social-media"
-                data-id="652d726" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-55fe18f">
-                        <a href="https://x.com/tomsantella" aria-label="Twitter" target="_blank" class="">
-                          Twitter </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-c8b0b41 elementor-widget elementor-widget-elementskit-social-media"
-                data-id="c8b0b41" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-55fe18f">
-                        <a href="https://www.instagram.com/nextlevelgrowthpartners/?hl=en" aria-label="Instagram"
-                          target="_blank" class="">
-                          Instagram </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-7bde8dc elementor-widget elementor-widget-elementskit-social-media"
-                data-id="7bde8dc" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-55fe18f">
-                        <a href="https://www.linkedin.com/company/next-level-growth-partners/" aria-label="LinkedIn"
-                          target="_blank" class="">
-                          LinkedIn </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-        <div class="elementor-element elementor-element-dc0f0af e-con-full e-flex e-con e-child" data-id="dc0f0af"
-          data-element_type="container">
-          <div
-            class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
-            data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
-            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <div class="elementor-widget-container" style="flex: 1; min-width: 200px;">
-              <p style="margin: 0; font-size: 14px;">
-                <a href="privacy-policy.html" style="margin-right: 1rem; text-decoration: underline;">Privacy Policy</a>
-                <a href="terms.html" style="text-decoration: underline;">Terms of Service</a>
-              </p>
-            </div>
-          </div>
-          <div
-            class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
-            data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
-            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <div class="elementor-widget-container" style="flex: 1; min-width: 200px; text-align: right;">
-              <h2 class="elementor-heading-title elementor-size-default" style="margin: 0; font-size: 14px;">
-                <a href="index.html">Copyright © 2025 Next Level Growth Partners </a>
-              </h2>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script data-cfasync="false"
     src="https://brandmode.1onestrong.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -49568,135 +49479,6 @@
   <script
     src="https://brandmode.1onestrong.com/wp-content/plugins/elementskit-lite/widgets/init/assets/js/elementor.js?ver=3.4.0"
     id="elementskit-elementor-js"></script>
-
-  <!-- Dynamic Blog Listing JavaScript -->
-  <script>
-    // Global variables
-    let allBlogs = [];
-    let filteredBlogs = [];
-    let currentPage = 1;
-    const blogsPerPage = 9;
-    let currentCategory = 'all';
-    let currentSearch = '';
-
-    // Populate blog content directly from API data
-    function populateBlogList(blogs) {
-      const blogGrid = document.getElementById('blog-grid');
-      if (!blogGrid) {
-        console.error('Blog grid element not found');
-        return;
-      }
-
-      if (blogs.length === 0) {
-        blogGrid.innerHTML = '<div class="col-span-full text-center text-gray-400">No blogs found</div>';
-        return;
-      }
-
-      blogGrid.innerHTML = '';
-
-      blogs.forEach(blog => {
-        const blogCard = createBlogCard(blog);
-        blogGrid.appendChild(blogCard);
-      });
-    }
-
-    // Create individual blog card
-    function createBlogCard(blog) {
-      const card = document.createElement('div');
-      card.className = 'bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300 cursor-pointer';
-
-      const imageUrl = processImageUrl(blog.Image);
-      const slug = blog.slug || blog.Name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-
-      card.innerHTML = `
-        <img src="${imageUrl}" alt="${blog.Name || 'Blog image'}" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <span class="text-xs font-medium text-indigo-600">${blog.Category || 'BLOG'}</span>
-          <h3 class="text-lg font-bold mt-2 mb-2 text-gray-900">${blog.Name || 'Untitled'}</h3>
-          <p class="text-sm text-gray-500 mb-4">${truncateText(stripHtml(blog.Short_Description || ''), 100)}</p>
-          <div class="flex items-center text-sm text-gray-500">
-            <span>${formatDate(blog['Created at'])}</span>
-            <span class="mx-2">•</span>
-            <span>${blog.Read_Time || '5 min read'}</span>
-          </div>
-        </div>
-      `;
-
-      card.addEventListener('click', () => {
-        window.location.href = `blogs-artical.html?slug=${encodeURIComponent(slug)}`;
-      });
-
-      return card;
-    }
-
-    // UI state management
-    function showLoading() {
-      const loadingElement = document.getElementById('loading-state');
-      const contentElement = document.getElementById('blog-listing');
-      const errorElement = document.getElementById('error-state');
-
-      if (loadingElement) loadingElement.classList.remove('hidden');
-      if (contentElement) contentElement.classList.add('hidden');
-      if (errorElement) errorElement.classList.add('hidden');
-    }
-
-    function showContent() {
-      const loadingElement = document.getElementById('loading-state');
-      const contentElement = document.getElementById('blog-listing');
-      const errorElement = document.getElementById('error-state');
-
-      if (loadingElement) loadingElement.classList.add('hidden');
-      if (contentElement) contentElement.classList.remove('hidden');
-      if (errorElement) errorElement.classList.add('hidden');
-    }
-
-    function showError(message = 'Unable to load blog posts') {
-      const loadingElement = document.getElementById('loading-state');
-      const contentElement = document.getElementById('blog-listing');
-      const errorElement = document.getElementById('error-state');
-
-      if (loadingElement) loadingElement.classList.add('hidden');
-      if (contentElement) contentElement.classList.add('hidden');
-      if (errorElement) errorElement.classList.remove('hidden');
-
-      console.error(message);
-    }
-
-    // Initialize blog listing page
-    async function initializeBlogListing() {
-      try {
-        // Show loading state
-        showLoading();
-
-        // Fetch all blogs from API
-        const blogs = await fetchAllBlogs();
-
-        if (!blogs || blogs.length === 0) {
-          showError('No blogs found');
-          return;
-        }
-
-        // Store blogs globally
-        allBlogs = blogs;
-        filteredBlogs = [...blogs];
-
-        // Populate the blog list
-        populateBlogList(filteredBlogs);
-
-        // Show content
-        showContent();
-
-        console.log(`Successfully loaded ${blogs.length} blog posts`);
-      } catch (error) {
-        console.error('Error loading blogs:', error);
-        showError('Failed to load blog posts');
-      }
-    }
-
-    // Initialize when page loads
-    document.addEventListener('DOMContentLoaded', initializeBlogListing);
-
-  </script>
 
 
 
