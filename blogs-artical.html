@@ -14,32 +14,98 @@
   </style>
   <script src="newsletter.js" defer></script>
 
-  <!-- Baserow API Configuration -->
+  <!-- Dynamic Blog Article Script -->
   <script>
-    // Baserow Configuration
-    const BASEROW_CONFIG = {
-      baseUrl: 'https://api.baserow.io/api/database/rows/table/',
-      tableId: '580774', // Replace with your actual table ID
-      token: 'dq5ZamHGgdU0fv4BgbvUSakrh4c12idq', // Replace with your actual API token
-      fields: {
-        name: 'Name',
-        notes: 'Notes',
-        active: 'Active',
-        category: 'Category',
-        shortDescription: 'Short description',
-        image: 'image',
-        authorName: 'author name',
-        readTime: 'read time',
-        quote: 'quote',
-        mainContent: 'main content',
-        createdAt: 'created at',
-        slug: 'slug'
+    // Get slug from URL parameters
+    function getSlugFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('slug');
+    }
+
+    // Fetch blog data directly from Baserow API using slug
+    async function fetchBlogData(slug) {
+      if (!slug) {
+        throw new Error('No slug provided');
       }
-    };
+
+      try {
+        const apiUrl = `https://api.baserow.io/api/database/rows/table/580774/?user_field_names=true&filter_slug_equal=${encodeURIComponent(slug)}`;
+
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Authorization': 'Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq',
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!data.results || data.results.length === 0) {
+          throw new Error('Blog post not found');
+        }
+
+        return data.results[0]; // Return the first (and should be only) result
+      } catch (error) {
+        console.error('Error fetching blog data:', error);
+        throw error;
+      }
+    }
+
+    // Process image URL for Baserow
+    function processImageUrl(imageUrl) {
+      if (!imageUrl) return 'https://via.placeholder.com/400x300?text=Blog+Image';
+
+      // If it's already a full URL, return as is
+      if (imageUrl.startsWith('http')) {
+        return imageUrl;
+      }
+
+      // If it's a Baserow file reference, construct the full URL
+      if (imageUrl.includes('baserow.io') || imageUrl.startsWith('/media/')) {
+        return imageUrl.startsWith('http') ? imageUrl : `https://api.baserow.io${imageUrl}`;
+      }
+
+      return imageUrl;
+    }
+
+    // Convert markdown to HTML (simple implementation)
+    function markdownToHtml(text) {
+      if (!text) return '';
+
+      let html = text
+        // Headers
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        // Bold
+        .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+        .replace(/__(.*?)__/gim, '<strong>$1</strong>')
+        // Italic
+        .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+        .replace(/_(.*?)_/gim, '<em>$1</em>')
+        // Links
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank">$1</a>')
+        // Line breaks
+        .replace(/\n\n/gim, '</p><p>')
+        .replace(/\n/gim, '<br>');
+
+      // Wrap in paragraphs if not already wrapped
+      if (!html.startsWith('<h') && !html.startsWith('<p')) {
+        html = '<p>' + html + '</p>';
+      }
+
+      return html;
+    }
   </script>
 
 
   <script>
+    console.log(BASEROW_CONFIG)
     window._wpemojiSettings = { "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/", "ext": ".png", "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/", "svgExt": ".svg", "source": { "concatemoji": "https:\/\/brandmode.1onestrong.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1" } };
     /*! This file is auto-generated */
     !function (i, n) { var o, s, e; function c(e) { try { var t = { supportTests: e, timestamp: (new Date).valueOf() }; sessionStorage.setItem(o, JSON.stringify(t)) } catch (e) { } } function p(e, t, n) { e.clearRect(0, 0, e.canvas.width, e.canvas.height), e.fillText(t, 0, 0); var t = new Uint32Array(e.getImageData(0, 0, e.canvas.width, e.canvas.height).data), r = (e.clearRect(0, 0, e.canvas.width, e.canvas.height), e.fillText(n, 0, 0), new Uint32Array(e.getImageData(0, 0, e.canvas.width, e.canvas.height).data)); return t.every(function (e, t) { return e === r[t] }) } function u(e, t, n) { switch (t) { case "flag": return n(e, "\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f", "\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f") ? !1 : !n(e, "\ud83c\uddfa\ud83c\uddf3", "\ud83c\uddfa\u200b\ud83c\uddf3") && !n(e, "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f", "\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f"); case "emoji": return !n(e, "\ud83d\udc26\u200d\ud83d\udd25", "\ud83d\udc26\u200b\ud83d\udd25") }return !1 } function f(e, t, n) { var r = "undefined" != typeof WorkerGlobalScope && self instanceof WorkerGlobalScope ? new OffscreenCanvas(300, 150) : i.createElement("canvas"), a = r.getContext("2d", { willReadFrequently: !0 }), o = (a.textBaseline = "top", a.font = "600 32px Arial", {}); return e.forEach(function (e) { o[e] = t(a, e, n) }), o } function t(e) { var t = i.createElement("script"); t.src = e, t.defer = !0, i.head.appendChild(t) } "undefined" != typeof Promise && (o = "wpEmojiSettingsSupports", s = ["flag", "emoji"], n.supports = { everything: !0, everythingExceptFlag: !0 }, e = new Promise(function (e) { i.addEventListener("DOMContentLoaded", e, { once: !0 }) }), new Promise(function (t) { var n = function () { try { var e = JSON.parse(sessionStorage.getItem(o)); if ("object" == typeof e && "number" == typeof e.timestamp && (new Date).valueOf() < e.timestamp + 604800 && "object" == typeof e.supportTests) return e.supportTests } catch (e) { } return null }(); if (!n) { if ("undefined" != typeof Worker && "undefined" != typeof OffscreenCanvas && "undefined" != typeof URL && URL.createObjectURL && "undefined" != typeof Blob) try { var e = "postMessage(" + f.toString() + "(" + [JSON.stringify(s), u.toString(), p.toString()].join(",") + "));", r = new Blob([e], { type: "text/javascript" }), a = new Worker(URL.createObjectURL(r), { name: "wpTestEmojiSupports" }); return void (a.onmessage = function (e) { c(n = e.data), a.terminate(), t(n) }) } catch (e) { } c(n = f(s, u, p)) } t(n) }).then(function (e) { for (var t in e) n.supports[t] = e[t], n.supports.everything = n.supports.everything && n.supports[t], "flag" !== t && (n.supports.everythingExceptFlag = n.supports.everythingExceptFlag && n.supports[t]); n.supports.everythingExceptFlag = n.supports.everythingExceptFlag && !n.supports.flag, n.DOMReady = !1, n.readyCallback = function () { n.DOMReady = !0 } }).then(function () { return e }).then(function () { var e; n.supports.everything || (n.readyCallback(), (e = n.source || {}).concatemoji ? t(e.concatemoji) : e.wpemoji && e.twemoji && (t(e.twemoji), t(e.wpemoji))) })) }((window, document), window._wpemojiSettings);
@@ -49687,48 +49753,111 @@
     src="https://brandmode.1onestrong.com/wp-content/plugins/elementskit-lite/widgets/init/assets/js/elementor.js?ver=3.4.0"
     id="elementskit-elementor-js"></script>
 
-  <!-- Dynamic Blog Functionality -->
+  <!-- Dynamic Blog Article Script -->
   <script>
-    // Global variables
-    let currentBlog = null;
-    let allBlogs = [];
-    let retryCount = 0;
-    const maxRetries = 3;
+    // Initialize blog article page
+    async function initializeBlogArticle() {
+      // Show loading state
+      showLoading();
 
-    // Fallback content for when API fails
-    const fallbackContent = {
-      name: 'Welcome to Our Blog',
-      category: 'General',
-      shortDescription: 'We\'re experiencing technical difficulties loading this blog post. Please try again later or contact us for assistance.',
-      authorName: 'Next Level Growth Partners',
-      readTime: '5 min read',
-      mainContent: `
-        <h2>We're Sorry for the Inconvenience</h2>
-        <p>We're currently experiencing technical difficulties loading this blog post. Our team is working to resolve this issue as quickly as possible.</p>
+      try {
+        // Get slug from URL
+        const slug = getSlugFromUrl();
 
-        <h3>What you can do:</h3>
-        <ul>
-          <li>Try refreshing the page in a few minutes</li>
-          <li>Visit our <a href="blogs.html">blog listing page</a> to see other articles</li>
-          <li>Contact us directly if you need immediate assistance</li>
-        </ul>
+        if (!slug) {
+          showError('No blog post specified');
+          return;
+        }
 
-        <h3>About Next Level Growth Partners</h3>
-        <p>We're AI-powered lead conversion experts helping businesses grow through innovative digital marketing strategies and cutting-edge technology solutions.</p>
+        // Fetch blog data from API
+        const blogData = await fetchBlogData(slug);
 
-        <p>Thank you for your patience and understanding.</p>
-      `,
-      image: 'https://via.placeholder.com/800x400?text=Next+Level+Growth+Partners',
-      createdAt: new Date().toISOString(),
-      slug: 'fallback-content'
-    };
+        if (!blogData) {
+          showError('Blog post not found');
+          return;
+        }
 
-    // Utility functions
-    function getUrlParameter(name) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(name);
+        // Populate the page with blog data
+        populateBlogContent(blogData);
+
+        // Show content
+        showContent();
+
+      } catch (error) {
+        console.error('Error loading blog:', error);
+        showError('Failed to load blog post');
+      }
     }
 
+    // Populate blog content directly from API data
+    function populateBlogContent(blog) {
+      // Update page title
+      document.title = `${blog.Name || 'Blog Post'} - Next Level Growth Partners`;
+
+      // Populate basic info
+      document.getElementById('blog-category').textContent = blog.Category || 'Blog';
+      document.getElementById('blog-title').textContent = blog.Name || 'Untitled';
+      document.getElementById('blog-date').textContent = formatDate(blog['Created at']);
+      document.getElementById('read-time').textContent = blog['Read_Time'] || '5 min read';
+      document.getElementById('author-name').textContent = blog['Author_Name'] || 'Anonymous';
+
+      // Handle images
+      const imageUrl = processImageUrl(blog.Image);
+      document.getElementById('author-image').src = imageUrl;
+      document.getElementById('featured-image').src = imageUrl;
+      document.getElementById('featured-image').alt = blog.Name || 'Blog image';
+
+      // Populate content sections
+      document.getElementById('blog-short-description').textContent = blog['Short_Description'] || '';
+
+      // Handle quote (show/hide based on content)
+      const quoteElement = document.getElementById('blog-quote');
+      if (blog.Quote) {
+        quoteElement.textContent = blog.Quote;
+        quoteElement.classList.remove('hidden');
+      } else {
+        quoteElement.classList.add('hidden');
+      }
+
+      // Handle main content (support both markdown and HTML)
+      const mainContentElement = document.getElementById('blog-main-content');
+      if (blog['Main_Content']) {
+        // Check if content looks like markdown or HTML
+        const content = blog['Main_Content'];
+        if (content.includes('##') || content.includes('**') || content.includes('*') && !content.includes('<')) {
+          // Looks like markdown, convert it
+          mainContentElement.innerHTML = markdownToHtml(content);
+        } else {
+          // Treat as HTML or plain text
+          mainContentElement.innerHTML = content;
+        }
+      } else {
+        mainContentElement.innerHTML = '<p>Content coming soon...</p>';
+      }
+
+      // Handle category tags
+      const tagsContainer = document.getElementById('blog-tags');
+      tagsContainer.innerHTML = '';
+      if (blog.Category) {
+        const tag = document.createElement('span');
+        tag.className = 'px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium';
+        tag.textContent = blog.Category;
+        tagsContainer.appendChild(tag);
+      }
+
+      // Update author bio section
+      document.getElementById('author-bio-title').textContent = `About ${blog['Author_Name'] || 'the Author'}`;
+      document.getElementById('author-bio-description').textContent = blog.Notes || 'Professional content creator and industry expert.';
+      document.getElementById('author-bio-link').textContent = `View all posts by ${blog['Author_Name'] || 'this author'} →`;
+
+      // Set author bio image
+      const authorBioImage = document.getElementById('author-bio-image');
+      if (authorBioImage) {
+        authorBioImage.src = imageUrl;
+      }
+    }
+
+    // Utility functions
     function formatDate(dateString) {
       if (!dateString) return 'Unknown date';
       const date = new Date(dateString);
@@ -49739,367 +49868,10 @@
       });
     }
 
-    function stripHtml(html) {
-      const tmp = document.createElement('div');
-      tmp.innerHTML = html;
-      return tmp.textContent || tmp.innerText || '';
-    }
-
-    function truncateText(text, maxLength = 150) {
-      if (text.length <= maxLength) return text;
-      return text.substr(0, maxLength) + '...';
-    }
-
-    // API functions with retry logic
-    async function fetchBlogBySlug(slug, attempt = 1) {
-      try {
-        // Check if Baserow config is properly set
-        if (!BASEROW_CONFIG.tableId || BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
-          throw new Error('Baserow configuration not properly set');
-        }
-
-        const response = await fetch(
-          `${BASEROW_CONFIG.baseUrl}${BASEROW_CONFIG.tableId}/?user_field_names=true&filter__field_${BASEROW_CONFIG.fields.slug}__equal=${encodeURIComponent(slug)}`,
-          {
-            headers: {
-              'Authorization': `Token ${BASEROW_CONFIG.token}`,
-              'Content-Type': 'application/json'
-            },
-            timeout: 10000 // 10 second timeout
-          }
-        );
-
-        if (!response.ok) {
-          if (response.status === 429 && attempt < maxRetries) {
-            // Rate limited, wait and retry
-            await new Promise(resolve => setTimeout(resolve, 2000 * attempt));
-            return fetchBlogBySlug(slug, attempt + 1);
-          }
-          throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        return data.results && data.results.length > 0 ? data.results[0] : null;
-      } catch (error) {
-        console.error(`Error fetching blog (attempt ${attempt}):`, error);
-
-        if (attempt < maxRetries && !error.message.includes('configuration')) {
-          // Retry with exponential backoff
-          await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempt)));
-          return fetchBlogBySlug(slug, attempt + 1);
-        }
-
-        return null;
-      }
-    }
-
-    async function fetchAllBlogs(attempt = 1) {
-      try {
-        // Check if Baserow config is properly set
-        if (!BASEROW_CONFIG.tableId || BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
-          console.warn('Baserow configuration not properly set, using fallback content');
-          return [];
-        }
-
-        const response = await fetch(
-          `${BASEROW_CONFIG.baseUrl}${BASEROW_CONFIG.tableId}/?user_field_names=true&filter__field_${BASEROW_CONFIG.fields.active}__equal=true&order_by=-${BASEROW_CONFIG.fields.createdAt}`,
-          {
-            headers: {
-              'Authorization': `Token ${BASEROW_CONFIG.token}`,
-              'Content-Type': 'application/json'
-            },
-            timeout: 15000 // 15 second timeout for multiple records
-          }
-        );
-
-        if (!response.ok) {
-          if (response.status === 429 && attempt < maxRetries) {
-            // Rate limited, wait and retry
-            await new Promise(resolve => setTimeout(resolve, 2000 * attempt));
-            return fetchAllBlogs(attempt + 1);
-          }
-          throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        return data.results || [];
-      } catch (error) {
-        console.error(`Error fetching blogs (attempt ${attempt}):`, error);
-
-        if (attempt < maxRetries) {
-          // Retry with exponential backoff
-          await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempt)));
-          return fetchAllBlogs(attempt + 1);
-        }
-
-        return [];
-      }
-    }
-
-    // SEO and Meta functions
-    function updateSEOMetaTags(blog) {
-      // Update page title
-      document.title = `${blog[BASEROW_CONFIG.fields.name]} - Next Level Growth Partners`;
-
-      // Update meta description
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (!metaDescription) {
-        metaDescription = document.createElement('meta');
-        metaDescription.name = 'description';
-        document.head.appendChild(metaDescription);
-      }
-      metaDescription.content = stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || blog[BASEROW_CONFIG.fields.name]);
-
-      // Update Open Graph tags
-      updateOpenGraphTags(blog);
-
-      // Update Twitter Card tags
-      updateTwitterCardTags(blog);
-
-      // Add structured data
-      addStructuredData(blog);
-    }
-
-    function updateOpenGraphTags(blog) {
-      const ogTags = [
-        { property: 'og:title', content: blog[BASEROW_CONFIG.fields.name] },
-        { property: 'og:description', content: stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || blog[BASEROW_CONFIG.fields.name]) },
-        { property: 'og:image', content: blog[BASEROW_CONFIG.fields.image] || 'https://via.placeholder.com/1200x630?text=Blog+Image' },
-        { property: 'og:url', content: window.location.href },
-        { property: 'og:type', content: 'article' },
-        { property: 'og:site_name', content: 'Next Level Growth Partners' },
-        { property: 'article:author', content: blog[BASEROW_CONFIG.fields.authorName] || 'Next Level Growth Partners' },
-        { property: 'article:published_time', content: blog[BASEROW_CONFIG.fields.createdAt] },
-        { property: 'article:section', content: blog[BASEROW_CONFIG.fields.category] || 'Blog' }
-      ];
-
-      ogTags.forEach(tag => {
-        let metaTag = document.querySelector(`meta[property="${tag.property}"]`);
-        if (!metaTag) {
-          metaTag = document.createElement('meta');
-          metaTag.setAttribute('property', tag.property);
-          document.head.appendChild(metaTag);
-        }
-        metaTag.content = tag.content;
-      });
-    }
-
-    function updateTwitterCardTags(blog) {
-      const twitterTags = [
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: blog[BASEROW_CONFIG.fields.name] },
-        { name: 'twitter:description', content: stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || blog[BASEROW_CONFIG.fields.name]) },
-        { name: 'twitter:image', content: blog[BASEROW_CONFIG.fields.image] || 'https://via.placeholder.com/1200x630?text=Blog+Image' },
-        { name: 'twitter:site', content: '@NextLevelGrowth' },
-        { name: 'twitter:creator', content: '@NextLevelGrowth' }
-      ];
-
-      twitterTags.forEach(tag => {
-        let metaTag = document.querySelector(`meta[name="${tag.name}"]`);
-        if (!metaTag) {
-          metaTag = document.createElement('meta');
-          metaTag.setAttribute('name', tag.name);
-          document.head.appendChild(metaTag);
-        }
-        metaTag.content = tag.content;
-      });
-    }
-
-    function addStructuredData(blog) {
-      // Remove existing structured data
-      const existingScript = document.querySelector('script[type="application/ld+json"]');
-      if (existingScript) {
-        existingScript.remove();
-      }
-
-      // Create new structured data
-      const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": blog[BASEROW_CONFIG.fields.name],
-        "description": stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || blog[BASEROW_CONFIG.fields.name]),
-        "image": blog[BASEROW_CONFIG.fields.image] || 'https://via.placeholder.com/1200x630?text=Blog+Image',
-        "author": {
-          "@type": "Person",
-          "name": blog[BASEROW_CONFIG.fields.authorName] || 'Next Level Growth Partners'
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Next Level Growth Partners",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://nextlevelgrowthpartners.com/logo.png"
-          }
-        },
-        "datePublished": blog[BASEROW_CONFIG.fields.createdAt],
-        "dateModified": blog[BASEROW_CONFIG.fields.createdAt],
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": window.location.href
-        },
-        "articleSection": blog[BASEROW_CONFIG.fields.category] || 'Blog',
-        "keywords": blog[BASEROW_CONFIG.fields.category] || 'business, growth, AI, lead conversion'
-      };
-
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(structuredData);
-      document.head.appendChild(script);
-    }
-
-    // Display functions
-    function displayBlog(blog) {
-      currentBlog = blog;
-
-      // Update SEO and meta tags
-      updateSEOMetaTags(blog);
-
-      // Update blog content
-      document.getElementById('blog-category').textContent = blog[BASEROW_CONFIG.fields.category] || 'Blog';
-      document.getElementById('blog-title').textContent = blog[BASEROW_CONFIG.fields.name] || 'Untitled';
-      document.getElementById('blog-date').textContent = formatDate(blog[BASEROW_CONFIG.fields.createdAt]);
-      document.getElementById('read-time').textContent = blog[BASEROW_CONFIG.fields.readTime] || '5 min read';
-      document.getElementById('author-name').textContent = blog[BASEROW_CONFIG.fields.authorName] || 'Anonymous';
-
-      // Update images
-      const authorImage = document.getElementById('author-image');
-      const featuredImage = document.getElementById('featured-image');
-      const authorBioImage = document.getElementById('author-bio-image');
-
-      if (blog[BASEROW_CONFIG.fields.image]) {
-        authorImage.src = blog[BASEROW_CONFIG.fields.image];
-        featuredImage.src = blog[BASEROW_CONFIG.fields.image];
-        featuredImage.alt = blog[BASEROW_CONFIG.fields.name];
-        authorBioImage.src = blog[BASEROW_CONFIG.fields.image];
-      } else {
-        // Default images
-        const defaultImage = 'https://via.placeholder.com/400x300?text=Blog+Image';
-        authorImage.src = defaultImage;
-        featuredImage.src = defaultImage;
-        featuredImage.alt = 'Blog image';
-        authorBioImage.src = defaultImage;
-      }
-
-      // Update content
-      document.getElementById('blog-short-description').textContent = blog[BASEROW_CONFIG.fields.shortDescription] || '';
-
-      // Handle quote
-      const quoteElement = document.getElementById('blog-quote');
-      if (blog[BASEROW_CONFIG.fields.quote]) {
-        quoteElement.textContent = blog[BASEROW_CONFIG.fields.quote];
-        quoteElement.classList.remove('hidden');
-      } else {
-        quoteElement.classList.add('hidden');
-      }
-
-      // Update main content
-      const mainContentElement = document.getElementById('blog-main-content');
-      if (blog[BASEROW_CONFIG.fields.mainContent]) {
-        mainContentElement.innerHTML = blog[BASEROW_CONFIG.fields.mainContent];
-      } else {
-        mainContentElement.innerHTML = '<p>Content coming soon...</p>';
-      }
-
-      // Update tags
-      const tagsContainer = document.getElementById('blog-tags');
-      tagsContainer.innerHTML = '';
-      if (blog[BASEROW_CONFIG.fields.category]) {
-        const tag = document.createElement('span');
-        tag.className = 'px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium';
-        tag.textContent = blog[BASEROW_CONFIG.fields.category];
-        tagsContainer.appendChild(tag);
-      }
-
-      // Update author bio
-      document.getElementById('author-bio-title').textContent = `About ${blog[BASEROW_CONFIG.fields.authorName] || 'the Author'}`;
-      document.getElementById('author-bio-description').textContent = blog[BASEROW_CONFIG.fields.notes] || 'Professional content creator and industry expert.';
-      document.getElementById('author-bio-link').textContent = `View all posts by ${blog[BASEROW_CONFIG.fields.authorName] || 'this author'} →`;
-
-      // Load related articles
-      loadRelatedArticles(blog);
-    }
-
-    async function loadRelatedArticles(currentBlog) {
-      if (allBlogs.length === 0) {
-        allBlogs = await fetchAllBlogs();
-      }
-
-      // Filter out current blog and get related ones (same category or recent)
-      const relatedBlogs = allBlogs
-        .filter(blog => blog.id !== currentBlog.id)
-        .filter(blog =>
-          blog[BASEROW_CONFIG.fields.category] === currentBlog[BASEROW_CONFIG.fields.category] ||
-          blog[BASEROW_CONFIG.fields.active] === true
-        )
-        .slice(0, 3);
-
-      const relatedContainer = document.getElementById('related-articles-grid');
-      relatedContainer.innerHTML = '';
-
-      relatedBlogs.forEach(blog => {
-        const articleCard = createArticleCard(blog);
-        relatedContainer.appendChild(articleCard);
-      });
-    }
-
-    function createArticleCard(blog) {
-      const card = document.createElement('div');
-      card.className = 'bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300';
-
-      const imageUrl = blog[BASEROW_CONFIG.fields.image] || 'https://via.placeholder.com/400x300?text=Blog+Image';
-      const shortDesc = stripHtml(blog[BASEROW_CONFIG.fields.shortDescription] || '');
-
-      card.innerHTML = `
-        <img src="${imageUrl}" alt="${blog[BASEROW_CONFIG.fields.name]}" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <span class="text-xs font-medium text-indigo-600">${blog[BASEROW_CONFIG.fields.category] || 'BLOG'}</span>
-          <h3 class="text-lg font-bold mt-2 mb-2 text-gray-900">${blog[BASEROW_CONFIG.fields.name] || 'Untitled'}</h3>
-          <p class="text-sm text-gray-500 mb-4">${truncateText(shortDesc, 100)}</p>
-          <div class="flex items-center text-sm text-gray-500">
-            <span>${formatDate(blog[BASEROW_CONFIG.fields.createdAt])}</span>
-            <span class="mx-2">•</span>
-            <span>${blog[BASEROW_CONFIG.fields.readTime] || '5 min read'}</span>
-          </div>
-        </div>
-      `;
-
-      card.addEventListener('click', () => {
-        window.location.href = `blogs-artical.html?slug=${encodeURIComponent(blog[BASEROW_CONFIG.fields.slug])}`;
-      });
-
-      return card;
-    }
-
-    // Social sharing functions
-    function shareOnTwitter() {
-      if (!currentBlog) return;
-      const text = `Check out this article: ${currentBlog[BASEROW_CONFIG.fields.name]}`;
-      const url = window.location.href;
-      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
-    }
-
-    function shareOnFacebook() {
-      if (!currentBlog) return;
-      const url = window.location.href;
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-    }
-
-    function shareOnLinkedIn() {
-      if (!currentBlog) return;
-      const url = window.location.href;
-      const title = currentBlog[BASEROW_CONFIG.fields.name];
-      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`, '_blank');
-    }
-
-    // Make functions globally available
-    window.shareOnTwitter = shareOnTwitter;
-    window.shareOnFacebook = shareOnFacebook;
-    window.shareOnLinkedIn = shareOnLinkedIn;
-
-    // Error handling
-    function showError() {
-      document.getElementById('loading-state').classList.add('hidden');
-      document.getElementById('error-state').classList.remove('hidden');
+    // UI state management
+    function showLoading() {
+      document.getElementById('loading-state').classList.remove('hidden');
+      document.getElementById('error-state').classList.add('hidden');
       document.getElementById('blog-content').classList.add('hidden');
     }
 
@@ -50109,60 +49881,22 @@
       document.getElementById('blog-content').classList.remove('hidden');
     }
 
-    // Main initialization with fallback support
-    async function initializeBlog() {
-      const slug = getUrlParameter('slug');
+    function showError(message = 'Unable to load blog post') {
+      document.getElementById('loading-state').classList.add('hidden');
+      document.getElementById('error-state').classList.remove('hidden');
+      document.getElementById('blog-content').classList.add('hidden');
 
-      if (!slug) {
-        // If no slug provided, try to use fallback or show error
-        if (BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
-          // Configuration not set, show fallback content
-          displayBlog(fallbackContent);
-          showContent();
-          return;
-        }
-        showError();
-        return;
-      }
-
-      try {
-        const blog = await fetchBlogBySlug(slug);
-
-        if (!blog) {
-          // Blog not found, check if we should show fallback
-          if (BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
-            // Configuration not set, show fallback content
-            displayBlog(fallbackContent);
-            showContent();
-            return;
-          }
-          showError();
-          return;
-        }
-
-        if (!blog[BASEROW_CONFIG.fields.active]) {
-          showError();
-          return;
-        }
-
-        displayBlog(blog);
-        showContent();
-      } catch (error) {
-        console.error('Error initializing blog:', error);
-
-        // Try to show fallback content if configuration issues
-        if (error.message.includes('configuration') || BASEROW_CONFIG.tableId === 'YOUR_TABLE_ID') {
-          displayBlog(fallbackContent);
-          showContent();
-          return;
-        }
-
-        showError();
+      // Update error message if element exists
+      const errorMessage = document.querySelector('#error-state h2');
+      if (errorMessage) {
+        errorMessage.textContent = message;
       }
     }
 
-    // Initialize when DOM is loaded
-    document.addEventListener('DOMContentLoaded', initializeBlog);
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', initializeBlogArticle);
+
+
   </script>
 
 </body>

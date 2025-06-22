@@ -5,8 +5,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="https://gmpg.org/xfn/11">
-  <title>About - Next Level Growth Partners | AI Lead Conversion Experts</title>
+  <title>Blog - Next Level Growth Partners | AI Lead Conversion Experts</title>
   <meta name='robots' content='max-image-preview:large' />
+  <meta name="description" content="Discover insights on AI lead conversion, digital marketing strategies, and business growth tips from Next Level Growth Partners.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Dynamic Blog List Script -->
+  <script>
+    // Fetch all blogs from Baserow API
+    async function fetchAllBlogs() {
+      try {
+        const apiUrl = 'https://api.baserow.io/api/database/rows/table/580774/?user_field_names=true';
+
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Authorization': 'Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq',
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Fetched blog data:', data);
+        return data.results || [];
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+        return [];
+      }
+    }
+
+    // Process image URL for Baserow
+    function processImageUrl(imageUrl) {
+      if (!imageUrl) return 'https://via.placeholder.com/400x300?text=Blog+Image';
+
+      // If it's already a full URL, return as is
+      if (imageUrl.startsWith('http')) {
+        return imageUrl;
+      }
+
+      // If it's a Baserow file reference, construct the full URL
+      if (imageUrl.includes('baserow.io') || imageUrl.startsWith('/media/')) {
+        return imageUrl.startsWith('http') ? imageUrl : `https://api.baserow.io${imageUrl}`;
+      }
+
+      return imageUrl;
+    }
+
+    // Format date
+    function formatDate(dateString) {
+      if (!dateString) return 'Unknown date';
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+
+    // Truncate text
+    function truncateText(text, maxLength = 120) {
+      if (!text || text.length <= maxLength) return text || '';
+      return text.substr(0, maxLength) + '...';
+    }
+
+    // Strip HTML tags
+    function stripHtml(html) {
+      if (!html) return '';
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || '';
+    }
+  </script>
   <style>
     img:is([sizes="auto" i], [sizes^="auto," i]) {
       contain-intrinsic-size: 3000px 1500px
@@ -48687,118 +48762,146 @@
         background-clip: text;
         color: transparent;
       }
+
+      /* Dynamic Blog Styles */
+      .fade-in {
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .dynamic-blog-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .dynamic-blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .category-filter {
+        transition: all 0.3s ease;
+      }
+
+      .category-filter.active {
+        background-color: #4f46e5;
+        color: white;
+      }
+
+      .loading-spinner {
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #4f46e5;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .search-container {
+        position: relative;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 16px 12px 48px;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+      }
     </style>
     <div class="elementor-element elementor-element-73e92d4 e-flex e-con-boxed e-con e-parent" data-id="73e92d4"
       data-element_type="container">
       <div class="">
-        <main class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:px-10 lg:px-16">
-          <!-- <ds -->
+        <!-- Loading State -->
+        <div id="loading-state" class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:px-10 lg:px-16">
+          <div class="text-center">
+            <div class="loading-spinner mb-4"></div>
+            <p class="text-gray-400">Loading blog posts...</p>
+          </div>
+        </div>
 
-          <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            <!-- Blog Card 1 -->
-            <div
-              class="blog-card bg-darkblue-800 rounded-xl overflow-hidden border border-darkblue-700 transition duration-300 ease-in-out flex flex-col">
-              <div class="h-48 sm:h-52 md:h-48 overflow-hidden">
-                <img src="https://source.unsplash.com/random/600x400/?technology" alt="Blog Image"
-                  class="w-full h-full object-cover hover:scale-105 transition duration-500">
-              </div>
-              <div class="p-6 flex flex-col flex-grow">
-                <div class="flex items-center mb-2">
-                  <span class="bg-darkblue-700 text-darkblue-500 text-xs px-3 py-1 rounded-full">Tech</span>
-                  <span class="ml-auto text-xs text-gray-400"><i class="far fa-clock mr-1"></i> 7 min read</span>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2 hover:text-darkblue-500 transition">Next-Gen Tech
-                  Innovations</h3>
-                <p class="text-gray-400 mb-4">Explore emerging technologies transforming the world in 2025 and beyond.
-                </p>
-                <div class="flex items-center mt-auto">
-                  <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
-                    <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Author"
-                      class="w-full h-full object-cover">
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium text-white">John Miller</p>
-                    <p class="text-xs text-gray-400">Jun 15, 2025 · 11:00 AM</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <!-- Error State -->
+        <div id="error-state" class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:px-10 lg:px-16 hidden">
+          <div class="text-center">
+            <div class="text-red-500 text-6xl mb-4">⚠️</div>
+            <h2 class="text-2xl font-bold text-white mb-4">Unable to Load Blog Posts</h2>
+            <p class="text-gray-400 mb-6">There was an error loading the blog posts. Please try again later.</p>
+            <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+              Try Again
+            </button>
+          </div>
+        </div>
 
-            <!-- Blog Card 2 -->
-            <div
-              class="blog-card bg-darkblue-800 rounded-xl overflow-hidden border border-darkblue-700 transition duration-300 ease-in-out flex flex-col">
-              <div class="h-48 sm:h-52 md:h-48 overflow-hidden">
-                <img src="https://source.unsplash.com/random/600x400/?coding" alt="Blog Image"
-                  class="w-full h-full object-cover hover:scale-105 transition duration-500">
-              </div>
-              <div class="p-6 flex flex-col flex-grow">
-                <div class="flex items-center mb-2">
-                  <span class="bg-darkblue-700 text-darkblue-500 text-xs px-3 py-1 rounded-full">Programming</span>
-                  <span class="ml-auto text-xs text-gray-400"><i class="far fa-clock mr-1"></i> 5 min read</span>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2 hover:text-darkblue-500 transition">Clean Code Practices
-                </h3>
-                <p class="text-gray-400 mb-4">Learn essential tips to write clean, readable, and maintainable code.</p>
-                <div class="flex items-center mt-auto">
-                  <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
-                    <img src="https://randomuser.me/api/portraits/women/24.jpg" alt="Author"
-                      class="w-full h-full object-cover">
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium text-white">Nina Patel</p>
-                    <p class="text-xs text-gray-400">Jun 14, 2025 · 2:30 PM</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Blog Card 3 -->
-            <div
-              class="blog-card bg-darkblue-800 rounded-xl overflow-hidden border border-darkblue-700 transition duration-300 ease-in-out flex flex-col">
-              <div class="h-48 sm:h-52 md:h-48 overflow-hidden">
-                <img src="https://source.unsplash.com/random/600x400/?ux-design" alt="Blog Image"
-                  class="w-full h-full object-cover hover:scale-105 transition duration-500">
-              </div>
-              <div class="p-6 flex flex-col flex-grow">
-                <div class="flex items-center mb-2">
-                  <span class="bg-darkblue-700 text-darkblue-500 text-xs px-3 py-1 rounded-full">UX Design</span>
-                  <span class="ml-auto text-xs text-gray-400"><i class="far fa-clock mr-1"></i> 6 min read</span>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2 hover:text-darkblue-500 transition">Crafting Intuitive
-                  Interfaces</h3>
-                <p class="text-gray-400 mb-4">How thoughtful design choices can improve usability and user satisfaction.
-                </p>
-                <div class="flex items-center mt-auto">
-                  <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
-                    <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Author"
-                      class="w-full h-full object-cover">
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium text-white">Leo Anders</p>
-                    <p class="text-xs text-gray-400">Jun 13, 2025 · 9:10 AM</p>
-                  </div>
-                </div>
-              </div>
+        <!-- Main Dynamic Content -->
+        <main id="blog-listing" class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:px-10 lg:px-16 hidden">
+          <!-- Search Bar -->
+          <div class="mb-12">
+            <div class="search-container">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search blog posts..."
+                class="search-input"
+              >
+              <i class="fas fa-search search-icon"></i>
             </div>
           </div>
 
-          <div class="mt-12 flex justify-center">
-            <nav class="flex items-center space-x-2">
-              <button class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">
-                <i class="fas fa-chevron-left"></i>
+          <!-- Category Filters -->
+          <div class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">Browse by Category</h2>
+            <div id="category-filters" class="flex flex-wrap gap-3 justify-center">
+              <button class="category-filter active px-4 py-2 rounded-full border border-gray-600 text-gray-300 hover:bg-blue-600 hover:text-white" data-category="all">
+                All Posts
               </button>
-              <button class="w-10 h-10 rounded-full bg-darkblue-500 text-darkblue-900 font-bold">1</button>
-              <button
-                class="w-10 h-10 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">2</button>
-              <button
-                class="w-10 h-10 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">3</button>
-              <span class="px-2 text-gray-400">...</span>
-              <button
-                class="w-10 h-10 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">8</button>
-              <button class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">
-                <i class="fas fa-chevron-right"></i>
-              </button>
-            </nav>
+              <!-- Dynamic category filters will be inserted here -->
+            </div>
+          </div>
+
+          <!-- Dynamic Blog Grid -->
+          <div id="blog-grid" class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Dynamic blog cards will be inserted here -->
+          </div>
+
+          <!-- Load More Button -->
+          <div class="text-center mt-12">
+            <button id="load-more-btn" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition hidden">
+              Load More Posts
+            </button>
+          </div>
+
+          <!-- No Results -->
+          <div id="no-results" class="text-center py-16 hidden">
+            <div class="text-gray-400 text-6xl mb-4">📝</div>
+            <h3 class="text-xl font-semibold text-white mb-2">No blog posts found</h3>
+            <p class="text-gray-400">Try adjusting your search or filter criteria.</p>
           </div>
         </main>
         <!-- <div class="elementor-element elementor-element-808104b e-con-full e-flex e-con e-child" data-id="808104b"
@@ -49465,6 +49568,135 @@
   <script
     src="https://brandmode.1onestrong.com/wp-content/plugins/elementskit-lite/widgets/init/assets/js/elementor.js?ver=3.4.0"
     id="elementskit-elementor-js"></script>
+
+  <!-- Dynamic Blog Listing JavaScript -->
+  <script>
+    // Global variables
+    let allBlogs = [];
+    let filteredBlogs = [];
+    let currentPage = 1;
+    const blogsPerPage = 9;
+    let currentCategory = 'all';
+    let currentSearch = '';
+
+    // Populate blog content directly from API data
+    function populateBlogList(blogs) {
+      const blogGrid = document.getElementById('blog-grid');
+      if (!blogGrid) {
+        console.error('Blog grid element not found');
+        return;
+      }
+
+      if (blogs.length === 0) {
+        blogGrid.innerHTML = '<div class="col-span-full text-center text-gray-400">No blogs found</div>';
+        return;
+      }
+
+      blogGrid.innerHTML = '';
+
+      blogs.forEach(blog => {
+        const blogCard = createBlogCard(blog);
+        blogGrid.appendChild(blogCard);
+      });
+    }
+
+    // Create individual blog card
+    function createBlogCard(blog) {
+      const card = document.createElement('div');
+      card.className = 'bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300 cursor-pointer';
+
+      const imageUrl = processImageUrl(blog.Image);
+      const slug = blog.slug || blog.Name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+      card.innerHTML = `
+        <img src="${imageUrl}" alt="${blog.Name || 'Blog image'}" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <span class="text-xs font-medium text-indigo-600">${blog.Category || 'BLOG'}</span>
+          <h3 class="text-lg font-bold mt-2 mb-2 text-gray-900">${blog.Name || 'Untitled'}</h3>
+          <p class="text-sm text-gray-500 mb-4">${truncateText(stripHtml(blog.Short_Description || ''), 100)}</p>
+          <div class="flex items-center text-sm text-gray-500">
+            <span>${formatDate(blog['Created at'])}</span>
+            <span class="mx-2">•</span>
+            <span>${blog.Read_Time || '5 min read'}</span>
+          </div>
+        </div>
+      `;
+
+      card.addEventListener('click', () => {
+        window.location.href = `blogs-artical.html?slug=${encodeURIComponent(slug)}`;
+      });
+
+      return card;
+    }
+
+    // UI state management
+    function showLoading() {
+      const loadingElement = document.getElementById('loading-state');
+      const contentElement = document.getElementById('blog-listing');
+      const errorElement = document.getElementById('error-state');
+
+      if (loadingElement) loadingElement.classList.remove('hidden');
+      if (contentElement) contentElement.classList.add('hidden');
+      if (errorElement) errorElement.classList.add('hidden');
+    }
+
+    function showContent() {
+      const loadingElement = document.getElementById('loading-state');
+      const contentElement = document.getElementById('blog-listing');
+      const errorElement = document.getElementById('error-state');
+
+      if (loadingElement) loadingElement.classList.add('hidden');
+      if (contentElement) contentElement.classList.remove('hidden');
+      if (errorElement) errorElement.classList.add('hidden');
+    }
+
+    function showError(message = 'Unable to load blog posts') {
+      const loadingElement = document.getElementById('loading-state');
+      const contentElement = document.getElementById('blog-listing');
+      const errorElement = document.getElementById('error-state');
+
+      if (loadingElement) loadingElement.classList.add('hidden');
+      if (contentElement) contentElement.classList.add('hidden');
+      if (errorElement) errorElement.classList.remove('hidden');
+
+      console.error(message);
+    }
+
+    // Initialize blog listing page
+    async function initializeBlogListing() {
+      try {
+        // Show loading state
+        showLoading();
+
+        // Fetch all blogs from API
+        const blogs = await fetchAllBlogs();
+
+        if (!blogs || blogs.length === 0) {
+          showError('No blogs found');
+          return;
+        }
+
+        // Store blogs globally
+        allBlogs = blogs;
+        filteredBlogs = [...blogs];
+
+        // Populate the blog list
+        populateBlogList(filteredBlogs);
+
+        // Show content
+        showContent();
+
+        console.log(`Successfully loaded ${blogs.length} blog posts`);
+      } catch (error) {
+        console.error('Error loading blogs:', error);
+        showError('Failed to load blog posts');
+      }
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', initializeBlogListing);
+
+  </script>
 
 
 
