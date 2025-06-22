@@ -48779,101 +48779,82 @@
       data-element_type="container">
       <div class="">
             <!-- Main Content -->
-        <main id="blog-main" class="container mx-auto px-4 py-8 max-w-4xl fade-in">
-    <!-- Article Header -->
-    <article>
-        <div class="mb-6">
-            <span id="category" class="text-indigo-600 font-medium">Category</span>
-            <h1 id="title" class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4 leading-tight"></h1>
-            <div class="flex items-center mt-6">
-                <img id="author-image" src="" alt="Author" class="w-12 h-12 rounded-full object-cover">
-                <div class="ml-4">
-                    <p id="author-name" class="font-medium text-gray-200"></p>
-                    <div class="flex items-center text-sm text-gray-500">
-                        <span id="published-date"></span>
-                        <span class="mx-2">•</span>
-                        <span id="read-time"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+     <main id="blog-main" class="container mx-auto px-4 py-8 max-w-4xl fade-in">
 
-        <!-- Featured Image -->
-        <div class="rounded-xl overflow-hidden shadow-lg mb-8">
-            <img id="main-image" src="" alt="Main blog image" class="w-full h-auto max-h-96 object-cover">
-        </div>
+  <!-- Loader -->
+  <div id="loader" class="flex justify-center items-center py-16">
+    <div class="w-12 h-12 border-4 border-indigo-600 border-t-transparent border-solid rounded-full animate-spin"></div>
+  </div>
 
-        <!-- Article Content -->
-        <div id="article-content" class="article-content">
-            <!-- Filled by JavaScript -->
+  <!-- Blog Article -->
+  <article id="blog-article" class="hidden">
+    <div class="mb-6">
+      <span id="category" class="text-indigo-600 font-medium">Category</span>
+      <h1 id="title" class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4 leading-tight"></h1>
+      <div class="flex items-center mt-6">
+        <img id="author-image" src="" alt="Author" class="w-12 h-12 rounded-full object-cover">
+        <div class="ml-4">
+          <p id="author-name" class="font-medium text-white-800"></p>
+          <div class="flex items-center text-sm text-gray-500">
+            <span id="published-date"></span>
+            <span class="mx-2">•</span>
+            <span id="read-time"></span>
+          </div>
         </div>
-    </article>
+      </div>
+    </div>
+
+    <!-- Featured Image -->
+    <div class="rounded-xl overflow-hidden shadow-lg mb-8">
+      <img id="main-image" src="" alt="Main blog image" class="w-full h-auto max-h-96 object-cover">
+    </div>
+
+    <!-- Article Content -->
+    <div id="article-content" class="article-content"></div>
+
+    <!-- Next/Previous Blog Navigation -->
+    <div id="blog-nav" class="mt-12 border-t pt-8 flex justify-between text-indigo-600 font-medium text-lg hidden">
+      <a id="prev-post" href="#" class="hover:underline hidden"></a>
+      <a id="next-post" href="#" class="hover:underline hidden"></a>
+    </div>
+  </article>
 </main>
 
 <script>
+  const slug = new URLSearchParams(window.location.search).get("slug") || "chatbot-blog";
+
   async function fetchBlogData(slug) {
-    if (!slug) {
-      throw new Error("No slug provided");
-    }
-
-    try {
-      const apiUrl = `https://api.baserow.io/api/database/rows/table/580774/?user_field_names=true&filter__slug__equal=${encodeURIComponent(slug)}`;
-      const response = await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          Authorization: "Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq",
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (!data.results || data.results.length === 0) {
-        throw new Error("Blog post not found");
-      }
-
-      return data.results[0];
-    } catch (error) {
-      console.error("Error fetching blog data:", error);
-      throw error;
-    }
+    const url = `https://api.baserow.io/api/database/rows/table/580774/?user_field_names=true&filter__slug__equal=${encodeURIComponent(slug)}`;
+    const res = await fetch(url, {
+      headers: {
+        Authorization: "Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq",
+        "Content-Type": "application/json",
+      },
+    });
+    if (!res.ok) throw new Error(`Failed to fetch blog: ${res.status}`);
+    const data = await res.json();
+    return data.results[0];
   }
 
-  function populateBlog(blog) {
-    // Header section
-    document.getElementById("category").innerText = blog.Category || "Blog";
-    document.getElementById("title").innerText = blog.Name;
-    document.getElementById("author-name").innerText = blog.Author_Name || "Unknown Author";
-    document.getElementById("read-time").innerText = `${blog.Read_Time || "5"} min read`;
+  async function fetchAllBlogs() {
+    const url = `https://api.baserow.io/api/database/rows/table/580774/?user_field_names=true&size=100`;
+    const res = await fetch(url, {
+      headers: {
+        Authorization: "Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq",
+        "Content-Type": "application/json",
+      },
+    });
+    if (!res.ok) throw new Error("Failed to fetch all blogs");
+    const data = await res.json();
+    return data.results;
+  }
 
-    // Fallback author image if not available
-    document.getElementById("author-image").src = "https://randomuser.me/api/portraits/men/32.jpg";
-
-    // Date formatting
-    const publishedDate = new Date(blog.Created_at);
-    document.getElementById("published-date").innerText = publishedDate.toDateString();
-
-    // Main Image
-    const imageObj = blog.Image?.find((img) => img.is_image);
-    if (imageObj) {
-      document.getElementById("main-image").src = imageObj.url;
-    }
-
-    // Article content
-    let articleHTML = `
-      <p class="text-lg font-medium text-gray-400 mb-6">${blog.Quote}</p>
-      <div>${convertMarkdown(blog.Main_Content)}</div>
-      <div>${convertMarkdown(blog.Sub_Main_Content)}</div>
-    `;
-    document.getElementById("article-content").innerHTML = articleHTML;
+  function showLoader(loading) {
+    document.getElementById("loader").style.display = loading ? "flex" : "none";
+    document.getElementById("blog-article").classList.toggle("hidden", loading);
   }
 
   function convertMarkdown(text) {
-    // Very basic Markdown rendering (headings, blockquotes, newlines)
     return (text || "")
       .replace(/^### (.*$)/gim, "<h3>$1</h3>")
       .replace(/^## (.*$)/gim, "<h2>$1</h2>")
@@ -48882,14 +48863,111 @@
       .replace(/\n/g, "<br>");
   }
 
-  // Get slug from URL (e.g. ?slug=first-blog)
-  const urlParams = new URLSearchParams(window.location.search);
-  const slug = urlParams.get("slug") || "first-blog"; // default fallback
+  function populateBlog(blog) {
+    document.getElementById("category").innerText = blog.Category || "Blog";
+    document.getElementById("title").innerText = blog.Name;
+    document.getElementById("author-name").innerText = blog.Author_Name || "Unknown Author";
+    document.getElementById("read-time").innerText = `${blog.Read_Time || "5"} min read`;
+    document.getElementById("author-image").src = "https://randomuser.me/api/portraits/men/32.jpg";
 
-  fetchBlogData(slug).then(populateBlog).catch((err) => {
-    document.getElementById("blog-main").innerHTML = `<p class="text-red-500 font-semibold">Error loading blog: ${err.message}</p>`;
-  });
+    const publishedDate = new Date(blog.Created_at);
+    document.getElementById("published-date").innerText = publishedDate.toDateString();
+
+    const imageObj = blog.Image?.find((img) => img.is_image);
+    if (imageObj) {
+      document.getElementById("main-image").src = imageObj.url;
+    }
+
+    let content = `
+      <p class="text-lg font-medium text-gray-400 mb-6">${blog.Quote || ""}</p>
+      <div>${convertMarkdown(blog.Main_Content)}</div>
+    `;
+
+    const points = [blog.Point_1, blog.Point_2, blog.Point_3, blog.Point_4, blog.Point_5].filter(Boolean);
+    if (points.length) {
+      content += `
+        <div class="bg-indigo-50 rounded-lg p-6 my-6">
+          <h3 class="text-indigo-800 font-semibold mb-3">${blog.Div || "Quick Start"}</h3>
+          <ol class="list-decimal pl-6 space-y-2">
+            ${points.map(p => `<li>${p}</li>`).join("")}
+          </ol>
+        </div>
+      `;
+    }
+
+    if (blog.Sub_Main_Content) {
+      content += `<div>${convertMarkdown(blog.Sub_Main_Content)}</div>`;
+    }
+
+    content += `
+      <div class="border-t border-b border-gray-200 py-6 my-8">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <i class="fas fa-lightbulb text-3xl text-indigo-600"></i>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-medium text-white-900">Mindfulness Tip</h3>
+            <p class="mt-1 text-gray-600">
+              Set a gentle chime on your phone to remind you to pause and take three mindful breaths at various times throughout your day.
+            </p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.getElementById("article-content").innerHTML = content;
+  }
+
+  function setupNextPrev(allBlogs, currentSlug) {
+    const index = allBlogs.findIndex(blog => blog.slug === currentSlug);
+    const prev = allBlogs[index - 1];
+    const next = allBlogs[index + 1];
+
+    const prevEl = document.getElementById("prev-post");
+    const nextEl = document.getElementById("next-post");
+    const navWrap = document.getElementById("blog-nav");
+
+    if (prev) {
+      prevEl.href = `?slug=${prev.slug}`;
+      prevEl.innerText = `← ${prev.Name}`;
+      prevEl.classList.remove("hidden");
+    } else {
+      prevEl.style.display = "none";
+    }
+
+    if (next) {
+      nextEl.href = `?slug=${next.slug}`;
+      nextEl.innerText = `${next.Name} →`;
+      nextEl.classList.remove("hidden");
+    } else {
+      nextEl.style.display = "none";
+    }
+
+    navWrap.classList.remove("hidden");
+  }
+
+  async function initBlog() {
+    try {
+      showLoader(true);
+      const [allBlogs, currentBlog] = await Promise.all([
+        fetchAllBlogs(),
+        fetchBlogData(slug)
+      ]);
+      populateBlog(currentBlog);
+      setupNextPrev(allBlogs, currentBlog.slug);
+      showLoader(false);
+    } catch (err) {
+      showLoader(false);
+      document.getElementById("blog-main").innerHTML = `
+        <p class="text-red-500 font-semibold">Error loading blog: ${err.message}</p>
+      `;
+    }
+  }
+
+  // Run the app
+  initBlog();
 </script>
+
 
         <!-- <div class="elementor-element elementor-element-808104b e-con-full e-flex e-con e-child" data-id="808104b"
           data-element_type="container">
