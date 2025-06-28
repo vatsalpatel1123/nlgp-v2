@@ -48817,9 +48817,452 @@
                 </div>
             </div>
         </div>
+        <div class="elementor-element elementor-element-387d033 e-flex e-con-boxed elementor-invisible e-con e-child"
+        data-id="387d033" data-element_type="container"
+        data-settings="{&quot;animation&quot;:&quot;slideInUp&quot;,&quot;animation_delay&quot;:150}">
+        <div class="e-con-inner">
+          <div class="elementor-element elementor-element-809954e e-con-full e-flex e-con e-child" data-id="809954e"
+            data-element_type="container">
+
+          </div>
+          <div
+            class="elementor-element elementor-element-927ea8f elementor-widget__width-initial elementor-widget elementor-widget-elementskit-heading"
+            data-id="927ea8f" data-element_type="widget" data-widget_type="elementskit-heading.default">
+            <div class="elementor-widget-container">
+              <div class="ekit-wid-con">
+                <div
+                  class="ekit-heading elementskit-section-title-wraper text_center   ekit_heading_tablet-   ekit_heading_mobile-">
+                  <h2 class="ekit-heading--title elementskit-section-title text_fill">Quiz
+                  </h2>
+                  <div class='ekit-heading__description'>
+                    <p>Based on your responses, it’s clear that a significant amount of time, money, and opportunity is being lost in manual lead follow-up and outdated processes. With AI, we can help you convert more leads, reduce overhead, and give your team back hours every week.</p>
+                    <br>
+                    <p>Our AI-powered systems are built to capture, nurture, and convert leads 24/7 — with zero burnout and full visibility. If you're ready to streamline operations and scale smarter, let’s walk you through a custom strategy built just for your business.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- <div class="elementor-element elementor-element-6a0ac55 e-flex e-con-boxed e-con e-parent" data-id="6a0ac55"
+      data-element_type="container"
+      data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;background_motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;background_motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;laptop&quot;,&quot;tablet&quot;],&quot;background_motion_fx_motion_fx_mouse&quot;:&quot;yes&quot;,&quot;background_motion_fx_mouseTrack_effect&quot;:&quot;yes&quot;,&quot;background_motion_fx_mouseTrack_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:1,&quot;sizes&quot;:[]}}">
+      <div class="e-con-inner">
+        <div class="elementor-element elementor-element-730a6ef e-con-full e-flex e-con e-child" data-id="730a6ef"
+          data-element_type="container">
+          <div
+            class="elementor-element elementor-element-f84101c elementor-widget__width-initial elementor-invisible elementor-widget elementor-widget-elementskit-heading"
+            data-id="f84101c" data-element_type="widget"
+            data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:200}"
+            data-widget_type="elementskit-heading.default">
+            <div class="elementor-widget-container">
+              <div class="ekit-wid-con">
+                <div
+                  class="ekit-heading elementskit-section-title-wraper text_center   ekit_heading_tablet-   ekit_heading_mobile-">
+                  <h2 class="ekit-heading--title elementskit-section-title text_fill">"Transforming businesses through intelligent automation -
+                    helping companies achieve <span><span>exponential growth.</span></span>"</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              darkblue: {
+                900: '#0a192f',
+                800: '#172a45',
+                700: '#303f60',
+                600: '#4a6fa5',
+                500: '#64ffda',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(10, 25, 47, 0.5);
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #64ffda, #4a6fa5);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      .question-container {
+        transition: transform 0.5s ease, opacity 0.5s ease;
+      }
+
+      .question-enter {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+
+      .question-active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .question-exit {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+
+      .font-color-change {
+        color: #00347b;
+        font-size: 40px;
+      }
+
+      input[type="text"] {
+        border-radius: 14px;
+        border: 1px solid darkgray;
+        color: black;
+      }
+    </style>
+   <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const quizQuestions = [
+      { id: 1, type: 'textarea', question: 'How does your business get, follow up with, and convert leads?', placeholder: 'we have a team of 3 cold callers we pay $180k + commissions to constantly dial a list we buy from zoom info. When they get a lead, they update our crm for our sales team', correctAnswer: '' },
+      { id: 2, type: 'textarea', question: 'What are the largest bottlenecks in your business and why?', placeholder: 'Staying in touch with all the potential prospects takes me hours every day. It prevents me from spending time on tasks that would grow my business.', correctAnswer: '' },
+      { id: 3, type: 'textarea', question: 'What are the system you use in your sales cycle?', placeholder: 'We have 3 cold callers using a dialer system and our crm is hubspot. We pay for leads from zoom info.', correctAnswer: '' },
+      { id: 4, type: 'text', question: 'Your Name', placeholder: 'Grant Cardone', correctAnswer: '' },
+      { id: 5, type: 'text', question: 'Your Email', placeholder: 'you@example.com', correctAnswer: '' },
+      { id: 6, type: 'text', question: 'Company Website', placeholder: 'www.yourcompany.com', correctAnswer: '' },
+      { id: 7, type: 'radio', question: 'Business Size', options: ['1-10 Member(s)', '11-25 Member(s)', '25-100 Member(s)', '150+ Member(s)'], correctAnswer: '' },
+      { id: 8, type: 'text', question: 'Industry', placeholder: ' SaaS, eCommerce, Healthcare', correctAnswer: '' },
+      { id: 9, type: 'text', question: 'How much time would you guess your team spends on manual tasks a week?', placeholder: ' 20 hours', correctAnswer: '' }
+    ];
+
+    const groupSize = 5;
+    let currentQuestionIndex = 0;
+    let answers = {};
+    let score = 0;
+
+    const quizContainer = document.getElementById('quiz-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const skipBtn = document.getElementById('skip-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const resultsModal = document.getElementById('results-modal');
+    const correctAnswersEl = document.getElementById('correct-answers');
+    const totalQuestionsEl = document.getElementById('total-questions');
+    const quizScoreEl = document.getElementById('quiz-score');
+    const restartBtn = document.getElementById('restart-btn');
+
+    function initQuiz() {
+      currentQuestionIndex = 0;
+      answers = {};
+      score = 0;
+      renderGroup(currentQuestionIndex);
+    }
+
+    function renderGroup(startIndex) {
+      quizContainer.innerHTML = '';
+      const endIndex = Math.min(startIndex + groupSize, quizQuestions.length);
+
+      for (let i = startIndex; i < endIndex; i++) {
+        const q = quizQuestions[i];
+        const wrapper = document.createElement('div');
+        wrapper.className = 'question-container mb-8';
+        wrapper.id = `question-${q.id}`;
+        wrapper.innerHTML = `
+          <h6 class="text-md font-color-change font-bold mb-4" style="color: black;">${q.question}</h6>
+          ${renderQuestionContent(q)}
+        `;
+        quizContainer.appendChild(wrapper);
+
+        if (answers[q.id]) loadAnswer(q, answers[q.id]);
+      }
+
+      updateNavigationButtons();
+      updateProgress();
+    }
+
+    function renderQuestionContent(question) {
+      const placeholder = question.placeholder || 'Enter your response';
+
+      switch (question.type) {
+        case 'radio':
+          return question.options.map((opt) => `
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="radio" name="q${question.id}" value="${opt}" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+              <span class="text-gray-700">${opt}</span>
+            </label>
+          `).join('');
+        case 'text':
+          return `<input type="text" name="q${question.id}" class="w-full p-2 border rounded-md" placeholder="${placeholder}" style=" border-radius: 14px; border: 1px solid darkgray; color: black;">`;
+        case 'textarea':
+          return `<textarea name="q${question.id}" rows="4" class="w-full p-2 border rounded-md" placeholder="${placeholder}" style=" border-radius: 14px; border: 1px solid darkgray; color: black;"></textarea>`;
+        default:
+          return '';
+      }
+    }
+
+    function loadAnswer(question, answer) {
+      const input = document.querySelector(`[name="q${question.id}"]`);
+      if (!input) return;
+
+      if (question.type === 'radio') {
+        const radio = document.querySelector(`input[name="q${question.id}"][value="${answer}"]`);
+        if (radio) radio.checked = true;
+      } else {
+        input.value = answer;
+      }
+    }
+
+    function saveGroupAnswers() {
+      const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
+      for (let i = currentQuestionIndex; i < end; i++) {
+        const q = quizQuestions[i];
+        let ans = null;
+
+        if (q.type === 'radio') {
+          const sel = document.querySelector(`input[name="q${q.id}"]:checked`);
+          ans = sel ? sel.value : null;
+        } else {
+          const inp = document.querySelector(`[name="q${q.id}"]`);
+          ans = inp ? inp.value.trim() : null;
+        }
+        if (ans) answers[q.id] = ans;
+      }
+    }
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+
+    function validateWebsite(url) {
+      const re = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/\S*)?$/;
+      return re.test(url);
+    }
+
+    function validateGroupAnswers() {
+      const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
+      for (let i = currentQuestionIndex; i < end; i++) {
+        const q = quizQuestions[i];
+        if (q.type === 'radio') {
+          if (!document.querySelector(`input[name="q${q.id}"]:checked`)) return false;
+        } else {
+          const inp = document.querySelector(`[name="q${q.id}"]`);
+          if (!inp || !inp.value.trim()) return false;
+
+          if (q.id === 5 && !validateEmail(inp.value.trim())) {
+            alert('Please enter a valid email address.');
+            return false;
+          }
+          if (q.id === 6 && !validateWebsite(inp.value.trim())) {
+            alert('Please enter a valid website URL.');
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    function nextGroup() {
+      if (!validateGroupAnswers()) {
+        return;
+      }
+      saveGroupAnswers();
+
+      if (currentQuestionIndex + groupSize >= quizQuestions.length) {
+        calculateScore();
+        submitForm();
+        showResults();
+      } else {
+        currentQuestionIndex += groupSize;
+        renderGroup(currentQuestionIndex);
+      }
+    }
+
+    function prevGroup() {
+      if (currentQuestionIndex === 0) return;
+      saveGroupAnswers();
+      currentQuestionIndex -= groupSize;
+      renderGroup(currentQuestionIndex);
+    }
+
+    function skipQuestion() {
+      const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
+      for (let i = currentQuestionIndex; i < end; i++) {
+        delete answers[quizQuestions[i].id];
+      }
+      nextGroup();
+    }
+
+    function updateProgress() {
+      const answered = Object.keys(answers).length;
+      progressBar.style.width = `${(answered / quizQuestions.length) * 100}%`;
+      progressText.textContent = `${answered}/${quizQuestions.length}`;
+    }
+
+    function updateNavigationButtons() {
+      prevBtn.disabled = currentQuestionIndex === 0;
+      nextBtn.textContent = (currentQuestionIndex + groupSize >= quizQuestions.length) ? 'Submit' : 'Next';
+    }
+
+    function calculateScore() {
+      score = 0;
+      quizQuestions.forEach(q => {
+        if (q.correctAnswer && answers[q.id] === q.correctAnswer) score++;
+      });
+    }
+
+    function showResults() {
+      correctAnswersEl.textContent = score;
+      totalQuestionsEl.textContent = quizQuestions.length;
+      quizScoreEl.textContent = `${Math.round((score / quizQuestions.length) * 100)}%`;
+      resultsModal.classList.remove('hidden');
+    }
+
+    function submitForm() {
+      const formattedAnswers = {};
+      for (const key in answers) {
+        formattedAnswers[`Q${key}`] = answers[key];
+      }
+
+      fetch('https://n8n.srv791889.hstgr.cloud/webhook/quiz-form-submission', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formattedAnswers)
+      })
+        .then(response => {
+          if (!response.ok) throw new Error("Submission failed.");
+          return response.json();
+        })
+        .then(data => {
+          console.log('Form submitted successfully:', data);
+        })
+        .catch(error => {
+          console.error('Error submitting form:', error);
+        });
+    }
+
+    nextBtn.addEventListener('click', nextGroup);
+    prevBtn.addEventListener('click', prevGroup);
+    skipBtn.addEventListener('click', skipQuestion);
+    restartBtn.addEventListener('click', () => {
+      resultsModal.classList.add('hidden');
+      initQuiz();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') nextGroup();
+      else if (e.key === 'ArrowLeft' && !prevBtn.disabled) prevGroup();
+      else if (e.key === 'ArrowRight') nextGroup();
+      else if (e.key === 'Escape') skipQuestion();
+    });
+
+    initQuiz();
+  });
+</script>
+
+
+    <div class="" data-id="73e92d4" data-element_type="container">
+      <div class="">
+        <main class="w-full max-w-2xl mx-auto">
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <!-- Quiz Header -->
+            <div class="bg-indigo-600 text-white p-6" style="background-color: #00347b;">
+              <h2 class="text-2xl font-bold">Where can AI improve my business? </h2>
+              <p class="text-lg font-bold">Fill out this quiz to find out.</p>
+              <div class="flex items-center mt-2">
+                <div class="w-full bg-indigo-400 rounded-full h-2.5">
+                  <div id="progress-bar" class="bg-white h-2.5 rounded-full transition-all duration-300"
+                    style="width: 0%"></div>
+                </div>
+                <span id="progress-text" class="ml-3 text-sm font-medium">0/0</span>
+              </div>
+            </div>
+
+            <!-- Quiz Content -->
+            <div class="p-6 relative overflow-hidden" style="min-height: 400px;">
+              <div id="quiz-container" class="relative">
+                <!-- Questions will be dynamically inserted here -->
+              </div>
+            </div>
+
+            <!-- Quiz Navigation -->
+            <div class="bg-gray-50 px-6 py-4 flex justify-between border-t border-gray-200">
+              <button id="prev-btn"
+                class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed transition"
+                disabled>
+                <i class="fas fa-arrow-left mr-2"></i>Previous
+              </button>
+              <div class="flex space-x-2">
+                <button id="skip-btn"
+                  class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium transition hover:bg-gray-300"
+                  style="display: none;">
+                  Skip <i class="fas fa-forward ml-2"></i>
+                </button>
+                <button id="next-btn"
+                  class="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium transition hover:bg-indigo-700">
+                  Next <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results Modal -->
+          <div id="results-modal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+            <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+              <div class="text-center">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-check text-green-600 text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #00347b;">Quiz Completed!</h2>
+                <p class="text-gray-600 mb-6">Check your mail inbox to magic response!</p>
+                <div class="bg-gray-100 rounded-lg p-4 mb-6" style="display: none;">
+                  <div class="flex justify-between mb-2">
+                    <span class="text-gray-700">Correct Answers:</span>
+                    <span id="correct-answers" class="font-bold">0</span>
+                  </div>
+                  <div class="flex justify-between mb-2">
+                    <span class="text-gray-700">Total Questions:</span>
+                    <span id="total-questions" class="font-bold">0</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-700">Score:</span>
+                    <span id="quiz-score" class="font-bold text-indigo-600">0%</span>
+                  </div>
+                </div>
+                <button id="restart-btn" onclick="window.location.href='index.html';"
+                  class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium transition hover:bg-indigo-700">
+                  <i class="fas fa-redo mr-2"></i>Back to Dashboard
+                </button>
+
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
         
         <footer class="mt-12 text-center text-gray-500 text-sm">
-            <p>© 2023 Next Level Growth Partner. All rights reserved.</p>
+            <p>© 2025 Next Level Growth Partner. All rights reserved.</p>
         </footer>
     </div>
 
