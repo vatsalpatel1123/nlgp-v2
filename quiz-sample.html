@@ -48723,19 +48723,19 @@
     <script>
   document.addEventListener('DOMContentLoaded', function () {
     const quizQuestions = [
-      { id: 1, type: 'textarea', question: 'How does your business get, follow up with, and convert leads?', correctAnswer: '' },
-      { id: 2, type: 'textarea', question: 'What pain points or bottlenecks exist in your business that you are considering AI solutions?', correctAnswer: '' },
-      { id: 3, type: 'textarea', question: 'What current systems do you use in your sales cycle?', correctAnswer: '' },
-      { id: 4, type: 'text', question: 'Your Name', correctAnswer: '' },
-      { id: 5, type: 'text', question: 'Your Email', correctAnswer: '' },
-      { id: 6, type: 'text', question: 'Company Website', correctAnswer: '' },
-      { id: 7, type: 'radio', question: 'Business Size', options: ['1-10 Member(s)', '11-25 Member(s)', '25-100 Member(s)', '150+ Member(s)'], correctAnswer: '' },
-      { id: 8, type: 'text', question: 'Industry', correctAnswer: '' },
-      { id: 9, type: 'text', question: 'Monthly Revenue', correctAnswer: '' },
-      { id: 10, type: 'text', question: 'Manual time team spends on tasks per week?', correctAnswer: '' }
-    ];
+  { id: 1, type: 'textarea', question: 'How does your business get, follow up with, and convert leads?', placeholder: 'we have a team of 3 cold callers we pay $180k + commissions to constantly dial a list we buy from zoom info. When they get a lead, they update our crm for our sales team', correctAnswer: '' },
+  { id: 2, type: 'textarea', question: 'What are the largest bottlenecks in your business and why?', placeholder: 'Staying in touch with all the  potential prospects takes me hours every day.  It prevents me from spending time on tasks that would grow my business.', correctAnswer: '' },
+  { id: 3, type: 'textarea', question: 'What are the system you use in your sales cycle?', placeholder: 'We have 3 cold callers using a dialer system and our crm is hubspot. We pay for leads from zoom info.', correctAnswer: '' },
+  { id: 4, type: 'text', question: 'Your Name', placeholder: 'grant cardone', correctAnswer: '' },
+  { id: 5, type: 'text', question: 'Your Email', placeholder: 'you@example.com', correctAnswer: '' },
+  { id: 6, type: 'text', question: 'Company Website', placeholder: 'www.yourcompany.com', correctAnswer: '' },
+  { id: 7, type: 'radio', question: 'Business Size', options: ['1-10 Member(s)', '11-25 Member(s)', '25-100 Member(s)', '150+ Member(s)'], correctAnswer: '' },
+  { id: 8, type: 'text', question: 'Industry', placeholder: ' SaaS, eCommerce, Healthcare', correctAnswer: '' },
+  { id: 9, type: 'text', question: 'How much time would you guess your team spends on manual tasks a week?', placeholder: ' 20 hours', correctAnswer: '' }
+];
 
-    const groupSize = 4;
+
+    const groupSize = 5;
     let currentQuestionIndex = 0;
     let answers = {};
     let score = 0;
@@ -48782,22 +48782,25 @@
     }
 
     function renderQuestionContent(question) {
-      switch (question.type) {
-        case 'radio':
-          return question.options.map((opt) => `
-            <label class="flex items-center space-x-3 cursor-pointer">
-              <input type="radio" name="q${question.id}" value="${opt}" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
-              <span class="text-gray-700">${opt}</span>
-            </label>
-          `).join('');
-        case 'text':
-          return `<input type="text" name="q${question.id}" class="w-full p-2 border rounded-md" placeholder="Enter your response" style=" border-radius: 14px; border: 1px solid darkgray; color: black;">`;
-        case 'textarea':
-          return `<textarea name="q${question.id}" rows="4" class="w-full p-2 border rounded-md" placeholder="Enter your response" style=" border-radius: 14px; border: 1px solid darkgray; color: black;"></textarea>`;
-        default:
-          return '';
-      }
-    }
+  const placeholder = question.placeholder || 'Enter your response';
+
+  switch (question.type) {
+    case 'radio':
+      return question.options.map((opt) => `
+        <label class="flex items-center space-x-3 cursor-pointer">
+          <input type="radio" name="q${question.id}" value="${opt}" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+          <span class="text-gray-700">${opt}</span>
+        </label>
+      `).join('');
+    case 'text':
+      return `<input type="text" name="q${question.id}" class="w-full p-2 border rounded-md" placeholder="${placeholder}" style=" border-radius: 14px; border: 1px solid darkgray; color: black;">`;
+    case 'textarea':
+      return `<textarea name="q${question.id}" rows="4" class="w-full p-2 border rounded-md" placeholder="${placeholder}" style=" border-radius: 14px; border: 1px solid darkgray; color: black;"></textarea>`;
+    default:
+      return '';
+  }
+}
+
 
     function loadAnswer(question, answer) {
       const input = document.querySelector(`[name="q${question.id}"]`);
@@ -48947,7 +48950,8 @@
           <div class="bg-white rounded-xl shadow-lg overflow-hidden">
             <!-- Quiz Header -->
             <div class="bg-indigo-600 text-white p-6" style="background-color: #00347b;">
-              <h2 class="text-2xl font-bold">Which AI Solutions Will Grow Your Business? </h2>
+              <h2 class="text-2xl font-bold">Where can AI improve my business? </h2>
+              <p class="text-lg font-bold">Fill out this quiz to find out.</p>
               <div class="flex items-center mt-2">
                 <div class="w-full bg-indigo-400 rounded-full h-2.5">
                   <div id="progress-bar" class="bg-white h-2.5 rounded-full transition-all duration-300"
