@@ -48720,20 +48720,19 @@
         color: black;
       }
     </style>
-    <script>
+   <script>
   document.addEventListener('DOMContentLoaded', function () {
     const quizQuestions = [
-  { id: 1, type: 'textarea', question: 'How does your business get, follow up with, and convert leads?', placeholder: 'we have a team of 3 cold callers we pay $180k + commissions to constantly dial a list we buy from zoom info. When they get a lead, they update our crm for our sales team', correctAnswer: '' },
-  { id: 2, type: 'textarea', question: 'What are the largest bottlenecks in your business and why?', placeholder: 'Staying in touch with all the  potential prospects takes me hours every day.  It prevents me from spending time on tasks that would grow my business.', correctAnswer: '' },
-  { id: 3, type: 'textarea', question: 'What are the system you use in your sales cycle?', placeholder: 'We have 3 cold callers using a dialer system and our crm is hubspot. We pay for leads from zoom info.', correctAnswer: '' },
-  { id: 4, type: 'text', question: 'Your Name', placeholder: 'grant cardone', correctAnswer: '' },
-  { id: 5, type: 'text', question: 'Your Email', placeholder: 'you@example.com', correctAnswer: '' },
-  { id: 6, type: 'text', question: 'Company Website', placeholder: 'www.yourcompany.com', correctAnswer: '' },
-  { id: 7, type: 'radio', question: 'Business Size', options: ['1-10 Member(s)', '11-25 Member(s)', '25-100 Member(s)', '150+ Member(s)'], correctAnswer: '' },
-  { id: 8, type: 'text', question: 'Industry', placeholder: ' SaaS, eCommerce, Healthcare', correctAnswer: '' },
-  { id: 9, type: 'text', question: 'How much time would you guess your team spends on manual tasks a week?', placeholder: ' 20 hours', correctAnswer: '' }
-];
-
+      { id: 1, type: 'textarea', question: 'How does your business get, follow up with, and convert leads?', placeholder: 'we have a team of 3 cold callers we pay $180k + commissions to constantly dial a list we buy from zoom info. When they get a lead, they update our crm for our sales team', correctAnswer: '' },
+      { id: 2, type: 'textarea', question: 'What are the largest bottlenecks in your business and why?', placeholder: 'Staying in touch with all the potential prospects takes me hours every day. It prevents me from spending time on tasks that would grow my business.', correctAnswer: '' },
+      { id: 3, type: 'textarea', question: 'What are the system you use in your sales cycle?', placeholder: 'We have 3 cold callers using a dialer system and our crm is hubspot. We pay for leads from zoom info.', correctAnswer: '' },
+      { id: 4, type: 'text', question: 'Your Name', placeholder: 'grant cardone', correctAnswer: '' },
+      { id: 5, type: 'text', question: 'Your Email', placeholder: 'you@example.com', correctAnswer: '' },
+      { id: 6, type: 'text', question: 'Company Website', placeholder: 'www.yourcompany.com', correctAnswer: '' },
+      { id: 7, type: 'radio', question: 'Business Size', options: ['1-10 Member(s)', '11-25 Member(s)', '25-100 Member(s)', '150+ Member(s)'], correctAnswer: '' },
+      { id: 8, type: 'text', question: 'Industry', placeholder: ' SaaS, eCommerce, Healthcare', correctAnswer: '' },
+      { id: 9, type: 'text', question: 'How much time would you guess your team spends on manual tasks a week?', placeholder: ' 20 hours', correctAnswer: '' }
+    ];
 
     const groupSize = 5;
     let currentQuestionIndex = 0;
@@ -48782,25 +48781,24 @@
     }
 
     function renderQuestionContent(question) {
-  const placeholder = question.placeholder || 'Enter your response';
+      const placeholder = question.placeholder || 'Enter your response';
 
-  switch (question.type) {
-    case 'radio':
-      return question.options.map((opt) => `
-        <label class="flex items-center space-x-3 cursor-pointer">
-          <input type="radio" name="q${question.id}" value="${opt}" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
-          <span class="text-gray-700">${opt}</span>
-        </label>
-      `).join('');
-    case 'text':
-      return `<input type="text" name="q${question.id}" class="w-full p-2 border rounded-md" placeholder="${placeholder}" style=" border-radius: 14px; border: 1px solid darkgray; color: black;">`;
-    case 'textarea':
-      return `<textarea name="q${question.id}" rows="4" class="w-full p-2 border rounded-md" placeholder="${placeholder}" style=" border-radius: 14px; border: 1px solid darkgray; color: black;"></textarea>`;
-    default:
-      return '';
-  }
-}
-
+      switch (question.type) {
+        case 'radio':
+          return question.options.map((opt) => `
+            <label class="flex items-center space-x-3 cursor-pointer">
+              <input type="radio" name="q${question.id}" value="${opt}" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+              <span class="text-gray-700">${opt}</span>
+            </label>
+          `).join('');
+        case 'text':
+          return `<input type="text" name="q${question.id}" class="w-full p-2 border rounded-md" placeholder="${placeholder}" style=" border-radius: 14px; border: 1px solid darkgray; color: black;">`;
+        case 'textarea':
+          return `<textarea name="q${question.id}" rows="4" class="w-full p-2 border rounded-md" placeholder="${placeholder}" style=" border-radius: 14px; border: 1px solid darkgray; color: black;"></textarea>`;
+        default:
+          return '';
+      }
+    }
 
     function loadAnswer(question, answer) {
       const input = document.querySelector(`[name="q${question.id}"]`);
@@ -48831,6 +48829,16 @@
       }
     }
 
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+
+    function validateWebsite(url) {
+      const re = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/\S*)?$/;
+      return re.test(url);
+    }
+
     function validateGroupAnswers() {
       const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
       for (let i = currentQuestionIndex; i < end; i++) {
@@ -48840,6 +48848,15 @@
         } else {
           const inp = document.querySelector(`[name="q${q.id}"]`);
           if (!inp || !inp.value.trim()) return false;
+
+          if (q.id === 5 && !validateEmail(inp.value.trim())) {
+            alert('Please enter a valid email address.');
+            return false;
+          }
+          if (q.id === 6 && !validateWebsite(inp.value.trim())) {
+            alert('Please enter a valid website URL.');
+            return false;
+          }
         }
       }
       return true;
@@ -48847,7 +48864,6 @@
 
     function nextGroup() {
       if (!validateGroupAnswers()) {
-        alert('Please answer all questions on this page.');
         return;
       }
       saveGroupAnswers();
@@ -48943,6 +48959,7 @@
     initQuiz();
   });
 </script>
+
 
     <div class="" data-id="73e92d4" data-element_type="container">
       <div class="">
