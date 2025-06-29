@@ -48842,13 +48842,8 @@
               <div class="ekit-wid-con">
                 <div
                   class="ekit-heading elementskit-section-title-wraper text_center   ekit_heading_tablet-   ekit_heading_mobile-">
-                  <h2 class="ekit-heading--title elementskit-section-title text_fill">Quiz
+                  <h2 class="ekit-heading--title elementskit-section-title text_fill">Business Bottleneck Quiz
                   </h2>
-                  <div class='ekit-heading__description'>
-                    <p>Based on your responses, it’s clear that a significant amount of time, money, and opportunity is being lost in manual lead follow-up and outdated processes. With AI, we can help you convert more leads, reduce overhead, and give your team back hours every week.</p>
-                    <br>
-                    <p>Our AI-powered systems are built to capture, nurture, and convert leads 24/7 — with zero burnout and full visibility. If you're ready to streamline operations and scale smarter, let’s walk you through a custom strategy built just for your business.</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -49121,11 +49116,15 @@
       nextGroup();
     }
 
-    function updateProgress() {
-      const answered = Object.keys(answers).length;
-      progressBar.style.width = `${(answered / quizQuestions.length) * 100}%`;
-      progressText.textContent = `${answered}/${quizQuestions.length}`;
-    }
+   function updateProgress() {
+  const totalGroups = Math.ceil(quizQuestions.length / groupSize);
+  const currentGroupNumber = Math.floor(currentQuestionIndex / groupSize) + 1;
+
+  progressBar.style.width = `${(currentGroupNumber / totalGroups) * 100}%`;
+  progressText.textContent = `${currentGroupNumber}/${totalGroups}`;
+}
+
+
 
     function updateNavigationButtons() {
       prevBtn.disabled = currentQuestionIndex === 0;
