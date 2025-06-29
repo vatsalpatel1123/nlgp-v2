@@ -48,6 +48,13 @@
       padding: 0 20px;
     }
 
+    .loading {
+      text-align: center;
+      font-size: 16px;
+      color: #800000;
+      margin-top: 30px;
+    }
+
     .card {
       background-color: #fff;
       border-left: 5px solid #800000;
@@ -111,8 +118,9 @@
     </div>
   </header>
 
-  <div class="container" id="call-log-container">
-    <!-- Cards will be inserted here -->
+  <div class="container">
+    <div id="loading" class="loading">Loading call logs...</div>
+    <div id="call-log-container"></div>
   </div>
 
   <footer>
@@ -129,6 +137,9 @@
     }
 
     async function fetchCallLogs() {
+      const loadingElement = document.getElementById('loading');
+      const container = document.getElementById('call-log-container');
+
       try {
         const response = await fetch(API_URL, {
           headers: {
@@ -136,10 +147,15 @@
           }
         });
         const data = await response.json();
+        loadingElement.style.display = 'none';
+
         if (data && data.results) {
           renderCallLogs(data.results);
+        } else {
+          container.innerHTML = '<p>No call logs found.</p>';
         }
       } catch (error) {
+        loadingElement.textContent = 'Failed to load call logs.';
         console.error('Error fetching call logs:', error);
       }
     }
