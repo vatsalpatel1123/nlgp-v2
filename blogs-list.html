@@ -48814,7 +48814,7 @@
       paginationContainer.innerHTML = '';
 
       const createBtn = (label, page, isActive = false) => {
-        return `<button onclick="goToPage(${page})" class="${isActive ? 'bg-darkblue-500 text-darkblue-900 font-bold' : 'bg-darkblue-700 text-gray-300 hover:bg-darkblue-600'} w-10 h-10 rounded-full transition">${label}</button>`;
+        return `<button onclick="goToPage(${page})" class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">${label}</button>`;
       };
 
       paginationContainer.innerHTML += `<button onclick="goToPage(${Math.max(currentPage - 1, 1)})" class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-left"></i></button>`;

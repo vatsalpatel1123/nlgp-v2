@@ -49062,28 +49062,42 @@
       return re.test(url);
     }
 
-    function validateGroupAnswers() {
-      const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
-      for (let i = currentQuestionIndex; i < end; i++) {
-        const q = quizQuestions[i];
-        if (q.type === 'radio') {
-          if (!document.querySelector(`input[name="q${q.id}"]:checked`)) return false;
-        } else {
-          const inp = document.querySelector(`[name="q${q.id}"]`);
-          if (!inp || !inp.value.trim()) return false;
-
-          if (q.id === 5 && !validateEmail(inp.value.trim())) {
-            alert('Please enter a valid email address.');
-            return false;
-          }
-          if (q.id === 6 && !validateWebsite(inp.value.trim())) {
-            alert('Please enter a valid website URL.');
-            return false;
-          }
-        }
+function validateGroupAnswers() {
+  const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
+  
+  for (let i = currentQuestionIndex; i < end; i++) {
+    const q = quizQuestions[i];
+    
+    if (q.type === 'radio') {
+      const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+      if (!selected) {
+        alert(`Please select an option of question.`);
+        return false;
       }
-      return true;
+    } else {
+      const inp = document.querySelector(`[name="q${q.id}"]`);
+      if (!inp || !inp.value.trim()) {
+        alert(`Please fill out all question.`);
+        return false;
+      }
+
+      // Specific validations
+      const value = inp.value.trim();
+      if (q.id === 5 && !validateEmail(value)) {
+        alert('Please enter a valid email address.');
+        return false;
+      }
+
+      if (q.id === 6 && !validateWebsite(value)) {
+        alert('Please enter a valid website URL.');
+        return false;
+      }
     }
+  }
+
+  return true;
+}
+
 
     function nextGroup() {
       if (!validateGroupAnswers()) {
