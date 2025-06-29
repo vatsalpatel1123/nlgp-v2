@@ -13,6 +13,7 @@
     }
   </style>
   <script src="newsletter.js" defer></script>
+  <script src="baserow-config.js"></script>
 
 
   <script>
@@ -48683,7 +48684,7 @@
                             </div> -->
                         </div>
                     </div>
-                    
+
                     <div>
                         <label for="value" style="color: black;"  class="block text-sm font-medium text-gray-700 mb-1">Average Sale Value</label>
                         <div class="flex gap-2">
@@ -48694,107 +48695,144 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Stats Display -->
-                <div class="relative p-6 mb-8">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg opacity-60"></div>
-                    <div class="relative z-10">
-                        <h3 style="color: black;" class="text-lg font-semibold text-primary mb-6">Lead Data Overview</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:shadow-md transition-all">
-                                <div class="flex items-center justify-between mb-2">
-                                    <p class="text-sm text-gray-500 font-medium">Total Leads</p>
-                                    <i class="fas fa-users text-primary text-opacity-70"></i>
-                                </div>
-                                <p id="leads-display" class="text-3xl font-bold text-dark animate-[pulse_1s_ease-in-out]">0</p>
-                                <div class="h-1 mt-3 bg-gray-100 rounded-full overflow-hidden">
-                                    <div id="leads-progress" class="progress-bar h-full bg-gradient-to-r from-blue-400 to-blue-600" style="width: 0%"></div>
-                                </div>
-                            </div>
-                            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:shadow-md transition-all">
-                                <div class="flex items-center justify-between mb-2">
-                                    <p class="text-sm text-gray-500 font-medium">Avg. Value</p>
-                                    <i class="fas fa-dollar-sign text-secondary text-opacity-70"></i>
-                                </div>
-                                <p id="value-display" class="text-3xl font-bold text-dark animate-[pulse_1s_ease-in-out]">$0</p>
-                                <div class="h-1 mt-3 bg-gray-100 rounded-full overflow-hidden">
-                                    <div id="value-progress" class="progress-bar h-full bg-gradient-to-r from-green-400 to-green-600" style="width: 0%"></div>
-                                </div>
-                            </div>
+
+                <!-- Contact Information Fields -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div>
+                        <label for="calc-name" style="color: black;" class="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
+                        <div class="relative">
+                            <input type="text" style="border-radius: 10px; background-color: lightgray; color: black;" id="calc-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition" placeholder="Enter your name">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="calc-email" style="color: black;" class="block text-sm font-medium text-gray-700 mb-1">Your Email *</label>
+                        <div class="relative">
+                            <input type="email" style="border-radius: 10px; background-color: lightgray; color: black;" id="calc-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition" placeholder="Enter your email">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="calc-phone" style="color: black;" class="block text-sm font-medium text-gray-700 mb-1">Your Phone Number *</label>
+                        <div class="relative">
+                            <input type="tel" style="border-radius: 10px; background-color: lightgray; color: black;" id="calc-phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition" placeholder="Enter your phone">
                         </div>
                     </div>
                 </div>
-                
-                <!-- Conversion Visualization -->
-                <div class="mb-8">
-                    <h3 style="color: black;"  class="text-lg font-semibold text-primary mb-6">Potential Revenue Visualization</h3>
-                    <div class="relative h-80 bg-gray-50 rounded-xl p-4">
-                        <canvas id="conversionChart"></canvas>
-                    </div>
+
+                <!-- Calculate Button -->
+                <div class="text-center mb-8">
+                    <button id="calculate-btn" style="background: linear-gradient(135deg, #4F46E5, #7C3AED); border-radius: 10px;" class="px-8 py-4 text-white font-semibold rounded-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-calculator mr-2"></i>
+                        Calculate Revenue Potential
+                    </button>
+
+                  
                 </div>
-                
-                <!-- Detailed Conversion Data -->
-                <div class="space-y-6">
-                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-primary">
-                        <div class="p-4">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium text-blue-600 flex items-center">
-                                    <span class="w-3 h-3 rounded-full bg-blue-400 mr-2"></span>
-                                    <span>1% Conversion</span>
-                                </span>
-                                <span id="rev-1" class="text-lg font-bold text-dark">$0</span>
-                            </div>
-                            <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
-                                <div id="bar-1" class="progress-bar h-full bg-gradient-to-r from-blue-300 to-blue-500 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-indigo-500">
-                        <div class="p-4">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium text-indigo-600 flex items-center">
-                                    <span class="w-3 h-3 rounded-full bg-indigo-400 mr-2"></span>
-                                    <span>3% Conversion</span>
-                                </span>
-                                <span id="rev-3" class="text-lg font-bold text-dark">$0</span>
-                            </div>
-                            <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
-                                <div id="bar-3" class="progress-bar h-full bg-gradient-to-r from-indigo-300 to-indigo-500 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-purple-500">
-                        <div class="p-4">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium text-purple-600 flex items-center">
-                                    <span class="w-3 h-3 rounded-full bg-purple-400 mr-2"></span>
-                                    <span>5% Conversion</span>
-                                </span>
-                                <span id="rev-5" class="text-lg font-bold text-dark">$0</span>
-                            </div>
-                            <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
-                                <div id="bar-5" class="progress-bar h-full bg-gradient-to-r from-purple-300 to-purple-500 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
+
+                <!-- Results Section (initially hidden) -->
+                <div id="results-section" class="hidden">
+                    <!-- Stats Display -->
+                    <div class="relative p-6 mb-8">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg opacity-60"></div>
+                        <div class="relative z-10">
+                            <h3 style="color: black;" class="text-lg font-semibold text-primary mb-6">Lead Data Overview</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:shadow-md transition-all">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <p class="text-sm text-gray-500 font-medium">Total Leads</p>
+                                        <i class="fas fa-users text-primary text-opacity-70"></i>
+                                    </div>
+                                    <p id="leads-display" class="text-3xl font-bold text-dark animate-[pulse_1s_ease-in-out]">0</p>
+                                    <div class="h-1 mt-3 bg-gray-100 rounded-full overflow-hidden">
+                                        <div id="leads-progress" class="progress-bar h-full bg-gradient-to-r from-blue-400 to-blue-600" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:shadow-md transition-all">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <p class="text-sm text-gray-500 font-medium">Avg. Value</p>
+                                        <i class="fas fa-dollar-sign text-secondary text-opacity-70"></i>
+                                    </div>
+                                    <p id="value-display" class="text-3xl font-bold text-dark animate-[pulse_1s_ease-in-out]">$0</p>
+                                    <div class="h-1 mt-3 bg-gray-100 rounded-full overflow-hidden">
+                                        <div id="value-progress" class="progress-bar h-full bg-gradient-to-r from-green-400 to-green-600" style="width: 0%"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-blue-600">
-                        <div class="p-4">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium text-blue-700 flex items-center">
-                                    <span class="w-3 h-3 rounded-full bg-blue-500 mr-2"></span>
-                                    <span>8% Conversion</span>
-                                </span>
-                                <span id="rev-8" class="text-lg font-bold text-dark">$0</span>
+
+                    <!-- Conversion Visualization -->
+                    <div class="mb-8">
+                        <h3 style="color: black;"  class="text-lg font-semibold text-primary mb-6">Potential Revenue Visualization</h3>
+                        <div class="relative h-80 bg-gray-50 rounded-xl p-4">
+                            <canvas id="conversionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Conversion Data -->
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-primary">
+                            <div class="p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-medium text-blue-600 flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-blue-400 mr-2"></span>
+                                        <span>1% Conversion</span>
+                                    </span>
+                                    <span id="rev-1" class="text-lg font-bold text-dark">$0</span>
+                                </div>
+                                <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="bar-1" class="progress-bar h-full bg-gradient-to-r from-blue-300 to-blue-500 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
+                                </div>
                             </div>
-                            <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
-                                <div id="bar-8" class="progress-bar h-full bg-gradient-to-r from-blue-400 to-blue-600 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
+                        </div>
+
+                        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-indigo-500">
+                            <div class="p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-medium text-indigo-600 flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-indigo-400 mr-2"></span>
+                                        <span>3% Conversion</span>
+                                    </span>
+                                    <span id="rev-3" class="text-lg font-bold text-dark">$0</span>
+                                </div>
+                                <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="bar-3" class="progress-bar h-full bg-gradient-to-r from-indigo-300 to-indigo-500 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-purple-500">
+                            <div class="p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-medium text-purple-600 flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-purple-400 mr-2"></span>
+                                        <span>5% Conversion</span>
+                                    </span>
+                                    <span id="rev-5" class="text-lg font-bold text-dark">$0</span>
+                                </div>
+                                <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="bar-5" class="progress-bar h-full bg-gradient-to-r from-purple-300 to-purple-500 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-blue-600">
+                            <div class="p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-medium text-blue-700 flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-blue-500 mr-2"></span>
+                                        <span>8% Conversion</span>
+                                    </span>
+                                    <span id="rev-8" class="text-lg font-bold text-dark">$0</span>
+                                </div>
+                                <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="bar-8" class="progress-bar h-full bg-gradient-to-r from-blue-400 to-blue-600 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> <!-- End of results-section -->
             </div>
         </div>
         
@@ -49292,43 +49330,137 @@ function validateGroupAnswers() {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let conversionChart;
-            
+
             // Initialize Chart
             const ctx = document.getElementById('conversionChart').getContext('2d');
-            
+
             const leadsInput = document.getElementById('leads');
             const valueInput = document.getElementById('value');
             const currencySelect = document.getElementById('currency');
-            
+            const nameInput = document.getElementById('calc-name');
+            const emailInput = document.getElementById('calc-email');
+            const phoneInput = document.getElementById('calc-phone');
+            const calculateBtn = document.getElementById('calculate-btn');
+            const testConnectionBtn = document.getElementById('test-connection-btn');
+            const resultsSection = document.getElementById('results-section');
+
             const leadsDisplay = document.getElementById('leads-display');
             const valueDisplay = document.getElementById('value-display');
-            
+
             const rev1 = document.getElementById('rev-1');
             const rev3 = document.getElementById('rev-3');
             const rev5 = document.getElementById('rev-5');
             const rev8 = document.getElementById('rev-8');
-            
+
             const bar1 = document.getElementById('bar-1');
             const bar3 = document.getElementById('bar-3');
             const bar5 = document.getElementById('bar-5');
             const bar8 = document.getElementById('bar-8');
-            
+
+            // Validation function
+            function validateForm() {
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+                const phone = phoneInput.value.trim();
+                const leads = parseInt(leadsInput.value) || 0;
+                const value = parseInt(valueInput.value) || 0;
+
+                if (!name) {
+                    alert('Please enter your name');
+                    nameInput.focus();
+                    return false;
+                }
+
+                if (!email || !email.includes('@')) {
+                    alert('Please enter a valid email address');
+                    emailInput.focus();
+                    return false;
+                }
+
+                if (!phone) {
+                    alert('Please enter your phone number');
+                    phoneInput.focus();
+                    return false;
+                }
+
+                if (leads <= 0) {
+                    alert('Please enter a valid number of leads');
+                    leadsInput.focus();
+                    return false;
+                }
+
+                if (value <= 0) {
+                    alert('Please enter a valid average sale value');
+                    valueInput.focus();
+                    return false;
+                }
+
+                return true;
+            }
+
+            // Function to send data to Baserow
+            async function sendToBaserow(data) {
+                try {
+                    // Check if Baserow config is available
+                    if (typeof BASEROW_CONFIG === 'undefined') {
+                        console.error('Baserow configuration not found');
+                        return false;
+                    }
+
+                    // Map the data to Baserow field names
+                    const mappedData = {};
+                    Object.keys(data).forEach(key => {
+                        if (BASEROW_CONFIG.fields[key]) {
+                            mappedData[BASEROW_CONFIG.fields[key]] = data[key];
+                        } else {
+                            console.warn(`No field mapping found for: ${key}`);
+                        }
+                    });
+
+                    console.log('Original data:', data);
+                    console.log('Mapped data being sent to Baserow:', mappedData);
+                    console.log('API URL:', getBaserowApiUrl());
+
+                    const response = await fetch(getBaserowApiUrl(), {
+                        method: 'POST',
+                        headers: getBaserowHeaders(),
+                        body: JSON.stringify(mappedData)
+                    });
+
+                    if (response.ok) {
+                        console.log('Data sent to Baserow successfully');
+                        return true;
+                    } else {
+                        const errorText = await response.text();
+                        console.error('Failed to send data to Baserow:', response.statusText, errorText);
+                        return false;
+                    }
+                } catch (error) {
+                    console.error('Error sending data to Baserow:', error);
+                    return false;
+                }
+            }
+
             function calculateRevenue() {
                 const leads = parseInt(leadsInput.value) || 0;
                 const value = parseInt(valueInput.value) || 0;
                 const currency = currencySelect.value;
-                
+
+                // Show results section
+                resultsSection.classList.remove('hidden');
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+
                 // Update displays with animations
                 leadsDisplay.textContent = leads.toLocaleString();
                 leadsDisplay.classList.add('animate-[pulse_0.5s_ease-in-out]');
-                
+
                 valueDisplay.textContent = currency + value.toLocaleString();
                 valueDisplay.classList.add('animate-[pulse_0.5s_ease-in-out]');
-                
+
                 // Update progress indicators
                 const leadsProgress = Math.min(100, leads / 10000 * 100);
                 document.getElementById('leads-progress').style.width = `${leadsProgress}%`;
-                
+
                 const valueProgress = Math.min(100, value / 10000 * 100);
                 document.getElementById('value-progress').style.width = `${valueProgress}%`;
                 
@@ -49443,21 +49575,56 @@ function validateGroupAnswers() {
                 };
             }
             
-            // Add event listeners
-            leadsInput.addEventListener('input', calculateRevenue);
-            valueInput.addEventListener('input', calculateRevenue);
-            currencySelect.addEventListener('change', calculateRevenue);
-            
-            // Initial calculation
-            setTimeout(() => {
+            // Add button click handler
+            calculateBtn.addEventListener('click', async function() {
+                if (!validateForm()) {
+                    return;
+                }
+
+                // Show loading state
+                calculateBtn.disabled = true;
+                calculateBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Calculating...';
+
+                // Get form data
+                const formData = {
+                    name: nameInput.value.trim(),
+                    email: emailInput.value.trim(),
+                    phone: phoneInput.value.trim(),
+                    leads: parseInt(leadsInput.value) || 0,
+                    average_sale_value: parseInt(valueInput.value) || 0,
+                    currency: currencySelect.value,
+                    calculated_at: new Date().toISOString(),
+                    revenue_1_percent: Math.round((parseInt(leadsInput.value) || 0) * 0.01 * (parseInt(valueInput.value) || 0)),
+                    revenue_3_percent: Math.round((parseInt(leadsInput.value) || 0) * 0.03 * (parseInt(valueInput.value) || 0)),
+                    revenue_5_percent: Math.round((parseInt(leadsInput.value) || 0) * 0.05 * (parseInt(valueInput.value) || 0)),
+                    revenue_8_percent: Math.round((parseInt(leadsInput.value) || 0) * 0.08 * (parseInt(valueInput.value) || 0))
+                };
+
+                // Send to Baserow
+                const success = await sendToBaserow(formData);
+
+                // Calculate and show results
                 calculateRevenue();
-                
-                // Remove animation after initial load
-                setTimeout(() => {
-                    document.getElementById('leads-display').classList.remove('animate-[pulse_1s_ease-in-out]');
-                    document.getElementById('value-display').classList.remove('animate-[pulse_1s_ease-in-out]');
-                }, 1000);
-            }, 100);
+
+                // Reset button state
+                calculateBtn.disabled = false;
+                calculateBtn.innerHTML = '<i class="fas fa-calculator mr-2"></i>Calculate Revenue Potential';
+
+                if (success) {
+                    // Show success message
+                    const successMsg = document.createElement('div');
+                    successMsg.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mt-4';
+                    successMsg.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Your calculation has been saved successfully!';
+                    calculateBtn.parentNode.appendChild(successMsg);
+
+                    setTimeout(() => {
+                        successMsg.remove();
+                    }, 5000);
+                }
+            });
+
+            
+            });
         });
     </script>
 

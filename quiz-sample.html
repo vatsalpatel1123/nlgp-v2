@@ -48730,13 +48730,13 @@
         color: black;
       }
     </style>
-   <script>
+ <script>
   document.addEventListener('DOMContentLoaded', function () {
     const quizQuestions = [
       { id: 1, type: 'textarea', question: 'How does your business get, follow up with, and convert leads?', placeholder: 'we have a team of 3 cold callers we pay $180k + commissions to constantly dial a list we buy from zoom info. When they get a lead, they update our crm for our sales team', correctAnswer: '' },
       { id: 2, type: 'textarea', question: 'What are the largest bottlenecks in your business and why?', placeholder: 'Staying in touch with all the potential prospects takes me hours every day. It prevents me from spending time on tasks that would grow my business.', correctAnswer: '' },
       { id: 3, type: 'textarea', question: 'What are the system you use in your sales cycle?', placeholder: 'We have 3 cold callers using a dialer system and our crm is hubspot. We pay for leads from zoom info.', correctAnswer: '' },
-      { id: 4, type: 'text', question: 'Your Name', placeholder: 'grant cardone', correctAnswer: '' },
+      { id: 4, type: 'text', question: 'Your Name', placeholder: 'Grant Cardone', correctAnswer: '' },
       { id: 5, type: 'text', question: 'Your Email', placeholder: 'you@example.com', correctAnswer: '' },
       { id: 6, type: 'text', question: 'Company Website', placeholder: 'www.yourcompany.com', correctAnswer: '' },
       { id: 7, type: 'radio', question: 'Business Size', options: ['1-10 Member(s)', '11-25 Member(s)', '25-100 Member(s)', '150+ Member(s)'], correctAnswer: '' },
@@ -48849,28 +48849,42 @@
       return re.test(url);
     }
 
-    function validateGroupAnswers() {
-      const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
-      for (let i = currentQuestionIndex; i < end; i++) {
-        const q = quizQuestions[i];
-        if (q.type === 'radio') {
-          if (!document.querySelector(`input[name="q${q.id}"]:checked`)) return false;
-        } else {
-          const inp = document.querySelector(`[name="q${q.id}"]`);
-          if (!inp || !inp.value.trim()) return false;
-
-          if (q.id === 5 && !validateEmail(inp.value.trim())) {
-            alert('Please enter a valid email address.');
-            return false;
-          }
-          if (q.id === 6 && !validateWebsite(inp.value.trim())) {
-            alert('Please enter a valid website URL.');
-            return false;
-          }
-        }
+function validateGroupAnswers() {
+  const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
+  
+  for (let i = currentQuestionIndex; i < end; i++) {
+    const q = quizQuestions[i];
+    
+    if (q.type === 'radio') {
+      const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+      if (!selected) {
+        alert(`Please select an option of question.`);
+        return false;
       }
-      return true;
+    } else {
+      const inp = document.querySelector(`[name="q${q.id}"]`);
+      if (!inp || !inp.value.trim()) {
+        alert(`Please fill out all question.`);
+        return false;
+      }
+
+      // Specific validations
+      const value = inp.value.trim();
+      if (q.id === 5 && !validateEmail(value)) {
+        alert('Please enter a valid email address.');
+        return false;
+      }
+
+      if (q.id === 6 && !validateWebsite(value)) {
+        alert('Please enter a valid website URL.');
+        return false;
+      }
     }
+  }
+
+  return true;
+}
+
 
     function nextGroup() {
       if (!validateGroupAnswers()) {
@@ -48903,11 +48917,15 @@
       nextGroup();
     }
 
-    function updateProgress() {
-      const answered = Object.keys(answers).length;
-      progressBar.style.width = `${(answered / quizQuestions.length) * 100}%`;
-      progressText.textContent = `${answered}/${quizQuestions.length}`;
-    }
+   function updateProgress() {
+  const totalGroups = Math.ceil(quizQuestions.length / groupSize);
+  const currentGroupNumber = Math.floor(currentQuestionIndex / groupSize) + 1;
+
+  progressBar.style.width = `${(currentGroupNumber / totalGroups) * 100}%`;
+  progressText.textContent = `${currentGroupNumber}/${totalGroups}`;
+}
+
+
 
     function updateNavigationButtons() {
       prevBtn.disabled = currentQuestionIndex === 0;
