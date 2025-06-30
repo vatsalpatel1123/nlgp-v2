@@ -13,6 +13,50 @@
     }
   </style>
   <script src="newsletter.js" defer></script>
+  <script>
+    document.getElementById('calculate-btn').addEventListener('click', async () => {
+        const name = document.getElementById('calc-name').value.trim();
+        const email = document.getElementById('calc-email').value.trim();
+        const phone = document.getElementById('calc-phone').value.trim();
+        const leads = document.getElementById('leads').value.trim();
+        const value = document.getElementById('value').value.trim();
+
+        if (!name || !email || !phone) {
+            alert('Please fill all required fields.');
+            return;
+        }
+
+        const data = {
+            field_4771897: name,
+            field_4771898: email,
+            field_4771899: phone,
+            field_4772061: leads,
+            field_4772062: value
+        };
+
+        try {
+            const response = await fetch('https://api.baserow.io/api/database/rows/table/590151/', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq', // <-- Replace with your actual token
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert('Form submitted successfully to Baserow!');
+            } else {
+                const error = await response.json();
+                console.error('Baserow API Error:', error);
+                alert('Failed to submit form. Check console for error.');
+            }
+        } catch (err) {
+            console.error('Request failed:', err);
+            alert('Something went wrong while sending data.');
+        }
+    });
+</script>
 
 
   <script>
@@ -33,14 +77,13 @@
       background: none !important;
       padding: 0 !important;
     }
+                    .elementor-message-danger{
+            display: none !important;
+        }
 
-    .elementor-message-danger {
-      display: none !important;
-    }
-
-    .elementor-message-danger::before {
-      display: none;
-    }
+          .elementor-message-danger::before{
+            display: none;
+        }
   </style>
   <style id='global-styles-inline-css'>
     :root {
@@ -9642,7 +9685,7 @@
     .elementor-3078 .elementor-element.elementor-element-73e92d4>.elementor-background-slideshow::before,
     .elementor-3078 .elementor-element.elementor-element-73e92d4>.e-con-inner>.elementor-background-slideshow::before,
     .elementor-3078 .elementor-element.elementor-element-73e92d4>.elementor-motion-effects-container>.elementor-motion-effects-layer::before {
-      /* background-image: url("https://brandmode.1onestrong.com/wp-content/uploads/2024/05/BG-011.jpg"); */
+      background-image: url("https://brandmode.1onestrong.com/wp-content/uploads/2024/05/BG-011.jpg");
       --background-overlay: '';
       background-position: center left;
       background-repeat: no-repeat;
@@ -40135,16 +40178,15 @@
         flex-wrap: wrap
       }
     }
-
-    .site-logo-img {
-      max-height: 50px;
-      width: auto;
-      display: block;
-      margin: 0;
-      padding: 0;
-      border: none;
-      background: none;
-    }
+          .site-logo-img {
+            max-height: 50px;
+            width: auto;
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: none;
+        }
   </style>
   <style>
     /* latin-ext */
@@ -48468,7 +48510,8 @@
   <link rel="icon" href="./img/image-logo.png" sizes="32x32" />
   <link rel="icon" href="./img/image-logo.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./img/image-logo.png" />
-  <meta name="msapplication-TileImage" content="./img/image-logo.png" />
+  <meta name="msapplication-TileImage"
+    content="./img/image-logo.png" />
 </head>
 
 <body
@@ -48489,8 +48532,8 @@
             data-id="f0c84a9" data-element_type="widget" data-widget_type="theme-site-logo.default">
             <div class="elementor-widget-container">
               <a href="index.html" class="site-logo-link">
-                <img src="img/image.png" alt="Next Level Growth Partners" class="site-logo-img">
-              </a>
+                                <img src="img/image.png" alt="Next Level Growth Partners" class="site-logo-img">
+                            </a>
             </div>
           </div>
         </div>
@@ -48611,7 +48654,7 @@
         <div class="e-con-inner">
           <div class="elementor-element elementor-element-809954e e-con-full e-flex e-con e-child" data-id="809954e"
             data-element_type="container">
-
+           
           </div>
           <div
             class="elementor-element elementor-element-927ea8f elementor-widget__width-initial elementor-widget elementor-widget-elementskit-heading"
@@ -48620,697 +48663,813 @@
               <div class="ekit-wid-con">
                 <div
                   class="ekit-heading elementskit-section-title-wraper text_center   ekit_heading_tablet-   ekit_heading_mobile-">
-                  <h2 class="ekit-heading--title elementskit-section-title text_fill">Business Bottleneck Quiz
+                  <h2 class="ekit-heading--title elementskit-section-title text_fill">Advanced Revenue Potential Calculator
                   </h2>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-    <!-- <div class="elementor-element elementor-element-6a0ac55 e-flex e-con-boxed e-con e-parent" data-id="6a0ac55"
-      data-element_type="container"
-      data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;background_motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;background_motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;laptop&quot;,&quot;tablet&quot;],&quot;background_motion_fx_motion_fx_mouse&quot;:&quot;yes&quot;,&quot;background_motion_fx_mouseTrack_effect&quot;:&quot;yes&quot;,&quot;background_motion_fx_mouseTrack_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:1,&quot;sizes&quot;:[]}}">
-      <div class="e-con-inner">
-        <div class="elementor-element elementor-element-730a6ef e-con-full e-flex e-con e-child" data-id="730a6ef"
-          data-element_type="container">
-          <div
-            class="elementor-element elementor-element-f84101c elementor-widget__width-initial elementor-invisible elementor-widget elementor-widget-elementskit-heading"
-            data-id="f84101c" data-element_type="widget"
-            data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:200}"
-            data-widget_type="elementskit-heading.default">
-            <div class="elementor-widget-container">
-              <div class="ekit-wid-con">
-                <div
-                  class="ekit-heading elementskit-section-title-wraper text_center   ekit_heading_tablet-   ekit_heading_mobile-">
-                  <h2 class="ekit-heading--title elementskit-section-title text_fill">"Transforming businesses through intelligent automation -
-                    helping companies achieve <span><span>exponential growth.</span></span>"</h2>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <script src="https://cdn.tailwindcss.com"></script>
+                  <div class="container mx-auto px-4 py-12 max-w-4xl">
+                    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              darkblue: {
-                900: '#0a192f',
-                800: '#172a45',
-                700: '#303f60',
-                600: '#4a6fa5',
-                500: '#64ffda',
-              }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        light: '#F3F4F6'
+                    }
+                }
             }
-          }
         }
-      }
     </script>
     <style>
-      .blog-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(10, 25, 47, 0.5);
-      }
-
-      .gradient-text {
-        background: linear-gradient(90deg, #64ffda, #4a6fa5);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-      .question-container {
-        transition: transform 0.5s ease, opacity 0.5s ease;
-      }
-
-      .question-enter {
-        transform: translateY(100%);
-        opacity: 0;
-      }
-
-      .question-active {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      .question-exit {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-
-      .font-color-change {
-        color: #00347b;
-        font-size: 40px;
-      }
-
-      input[type="text"] {
-        border-radius: 14px;
-        border: 1px solid darkgray;
-        color: black;
-      }
-    </style>
- <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const quizQuestions = [
-      { id: 1, type: 'textarea', question: 'How does your business get, follow up with, and convert leads?', placeholder: 'we have a team of 3 cold callers we pay $180k + commissions to constantly dial a list we buy from zoom info. When they get a lead, they update our crm for our sales team', correctAnswer: '' },
-      { id: 2, type: 'textarea', question: 'What are the largest bottlenecks in your business and why?', placeholder: 'Staying in touch with all the potential prospects takes me hours every day. It prevents me from spending time on tasks that would grow my business.', correctAnswer: '' },
-      { id: 3, type: 'textarea', question: 'What are the system you use in your sales cycle?', placeholder: 'We have 3 cold callers using a dialer system and our crm is hubspot. We pay for leads from zoom info.', correctAnswer: '' },
-      { id: 4, type: 'text', question: 'Your Name', placeholder: 'Grant Cardone', correctAnswer: '' },
-      { id: 5, type: 'text', question: 'Your Email', placeholder: 'you@example.com', correctAnswer: '' },
-      { id: 6, type: 'text', question: 'Company Website', placeholder: 'www.yourcompany.com', correctAnswer: '' },
-      { id: 7, type: 'radio', question: 'Business Size', options: ['1-10 Member(s)', '11-25 Member(s)', '25-100 Member(s)', '150+ Member(s)'], correctAnswer: '' },
-      { id: 8, type: 'text', question: 'Industry', placeholder: ' SaaS, eCommerce, Healthcare', correctAnswer: '' },
-      { id: 9, type: 'text', question: 'How much time would you guess your team spends on manual tasks a week?', placeholder: ' 20 hours', correctAnswer: '' }
-    ];
-
-    const groupSize = 5;
-    let currentQuestionIndex = 0;
-    let answers = {};
-    let score = 0;
-
-    const quizContainer = document.getElementById('quiz-container');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const skipBtn = document.getElementById('skip-btn');
-    const progressBar = document.getElementById('progress-bar');
-    const progressText = document.getElementById('progress-text');
-    const resultsModal = document.getElementById('results-modal');
-    const correctAnswersEl = document.getElementById('correct-answers');
-    const totalQuestionsEl = document.getElementById('total-questions');
-    const quizScoreEl = document.getElementById('quiz-score');
-    const restartBtn = document.getElementById('restart-btn');
-
-    function initQuiz() {
-      currentQuestionIndex = 0;
-      answers = {};
-      score = 0;
-      renderGroup(currentQuestionIndex);
-    }
-
-    function renderGroup(startIndex) {
-      quizContainer.innerHTML = '';
-      const endIndex = Math.min(startIndex + groupSize, quizQuestions.length);
-
-      for (let i = startIndex; i < endIndex; i++) {
-        const q = quizQuestions[i];
-        const wrapper = document.createElement('div');
-        wrapper.className = 'question-container mb-8';
-        wrapper.id = `question-${q.id}`;
-        wrapper.innerHTML = `
-          <h6 class="text-md font-color-change font-bold mb-4" style="color: black;">${q.question}</h6>
-          ${renderQuestionContent(q)}
-        `;
-        quizContainer.appendChild(wrapper);
-
-        if (answers[q.id]) loadAnswer(q, answers[q.id]);
-      }
-
-      updateNavigationButtons();
-      updateProgress();
-    }
-
-    function renderQuestionContent(question) {
-      const placeholder = question.placeholder || 'Enter your response';
-
-      switch (question.type) {
-        case 'radio':
-          return question.options.map((opt) => `
-            <label class="flex items-center space-x-3 cursor-pointer">
-              <input type="radio" name="q${question.id}" value="${opt}" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
-              <span class="text-gray-700">${opt}</span>
-            </label>
-          `).join('');
-        case 'text':
-          return `<input type="text" name="q${question.id}" class="w-full p-2 border rounded-md" placeholder="${placeholder}" style=" border-radius: 14px; border: 1px solid darkgray; color: black;">`;
-        case 'textarea':
-          return `<textarea name="q${question.id}" rows="4" class="w-full p-2 border rounded-md" placeholder="${placeholder}" style=" border-radius: 14px; border: 1px solid darkgray; color: black;"></textarea>`;
-        default:
-          return '';
-      }
-    }
-
-    function loadAnswer(question, answer) {
-      const input = document.querySelector(`[name="q${question.id}"]`);
-      if (!input) return;
-
-      if (question.type === 'radio') {
-        const radio = document.querySelector(`input[name="q${question.id}"][value="${answer}"]`);
-        if (radio) radio.checked = true;
-      } else {
-        input.value = answer;
-      }
-    }
-
-    function saveGroupAnswers() {
-      const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
-      for (let i = currentQuestionIndex; i < end; i++) {
-        const q = quizQuestions[i];
-        let ans = null;
-
-        if (q.type === 'radio') {
-          const sel = document.querySelector(`input[name="q${q.id}"]:checked`);
-          ans = sel ? sel.value : null;
-        } else {
-          const inp = document.querySelector(`[name="q${q.id}"]`);
-          ans = inp ? inp.value.trim() : null;
+        @keyframes grow {
+            from { width: 0%; }
+            to { width: var(--target-width); }
         }
-        if (ans) answers[q.id] = ans;
-      }
-    }
+        
+        .progress-bar {
+            transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.2s;
+            transform: translateY(5px);
+        }
+        
+        .has-tooltip:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .shadow-xs {
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        }
+    </style>
 
-    function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    }
-
-    function validateWebsite(url) {
-      const re = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/\S*)?$/;
-      return re.test(url);
-    }
-
-function validateGroupAnswers() {
-  const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
-  
-  for (let i = currentQuestionIndex; i < end; i++) {
-    const q = quizQuestions[i];
-    
-    if (q.type === 'radio') {
-      const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
-      if (!selected) {
-        alert(`Please select an option of question.`);
-        return false;
-      }
-    } else {
-      const inp = document.querySelector(`[name="q${q.id}"]`);
-      if (!inp || !inp.value.trim()) {
-        alert(`Please fill out all question.`);
-        return false;
-      }
-
-      // Specific validations
-      const value = inp.value.trim();
-      if (q.id === 5 && !validateEmail(value)) {
-        alert('Please enter a valid email address.');
-        return false;
-      }
-
-      if (q.id === 6 && !validateWebsite(value)) {
-        alert('Please enter a valid website URL.');
-        return false;
-      }
-    }
-  }
-
-  return true;
-}
-
-
-    function nextGroup() {
-      if (!validateGroupAnswers()) {
-        return;
-      }
-      saveGroupAnswers();
-
-      if (currentQuestionIndex + groupSize >= quizQuestions.length) {
-        calculateScore();
-        submitForm();
-        showResults();
-      } else {
-        currentQuestionIndex += groupSize;
-        renderGroup(currentQuestionIndex);
-      }
-    }
-
-    function prevGroup() {
-      if (currentQuestionIndex === 0) return;
-      saveGroupAnswers();
-      currentQuestionIndex -= groupSize;
-      renderGroup(currentQuestionIndex);
-    }
-
-    function skipQuestion() {
-      const end = Math.min(currentQuestionIndex + groupSize, quizQuestions.length);
-      for (let i = currentQuestionIndex; i < end; i++) {
-        delete answers[quizQuestions[i].id];
-      }
-      nextGroup();
-    }
-
-   function updateProgress() {
-  const totalGroups = Math.ceil(quizQuestions.length / groupSize);
-  const currentGroupNumber = Math.floor(currentQuestionIndex / groupSize) + 1;
-
-  progressBar.style.width = `${(currentGroupNumber / totalGroups) * 100}%`;
-  progressText.textContent = `${currentGroupNumber}/${totalGroups}`;
-}
-
-
-
-    function updateNavigationButtons() {
-      prevBtn.disabled = currentQuestionIndex === 0;
-      nextBtn.textContent = (currentQuestionIndex + groupSize >= quizQuestions.length) ? 'Submit' : 'Next';
-    }
-
-    function calculateScore() {
-      score = 0;
-      quizQuestions.forEach(q => {
-        if (q.correctAnswer && answers[q.id] === q.correctAnswer) score++;
-      });
-    }
-
-    function showResults() {
-      correctAnswersEl.textContent = score;
-      totalQuestionsEl.textContent = quizQuestions.length;
-      quizScoreEl.textContent = `${Math.round((score / quizQuestions.length) * 100)}%`;
-      resultsModal.classList.remove('hidden');
-    }
-
-    function submitForm() {
-      const formattedAnswers = {};
-      for (const key in answers) {
-        formattedAnswers[`Q${key}`] = answers[key];
-      }
-
-      fetch('https://n8n.srv791889.hstgr.cloud/webhook/quiz-form-submission', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formattedAnswers)
-      })
-        .then(response => {
-          if (!response.ok) throw new Error("Submission failed.");
-          return response.json();
-        })
-        .then(data => {
-          console.log('Form submitted successfully:', data);
-        })
-        .catch(error => {
-          console.error('Error submitting form:', error);
-        });
-    }
-
-    nextBtn.addEventListener('click', nextGroup);
-    prevBtn.addEventListener('click', prevGroup);
-    skipBtn.addEventListener('click', skipQuestion);
-    restartBtn.addEventListener('click', () => {
-      resultsModal.classList.add('hidden');
-      initQuiz();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') nextGroup();
-      else if (e.key === 'ArrowLeft' && !prevBtn.disabled) prevGroup();
-      else if (e.key === 'ArrowRight') nextGroup();
-      else if (e.key === 'Escape') skipQuestion();
-    });
-
-    initQuiz();
-  });
-</script>
-
-
-    <div class="" data-id="73e92d4" data-element_type="container">
-      <div class="">
-        <main class="w-full max-w-2xl mx-auto">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-            <!-- Quiz Header -->
-            <div class="bg-indigo-600 text-white p-6" style="background-color: #00347b;">
-              <h2 class="text-2xl font-bold">Where can AI improve my business? </h2>
-              <p class="text-lg font-bold">Fill out this quiz to find out.</p>
-              <div class="flex items-center mt-2">
-                <div class="w-full bg-indigo-400 rounded-full h-2.5">
-                  <div id="progress-bar" class="bg-white h-2.5 rounded-full transition-all duration-300"
-                    style="width: 0%"></div>
-                </div>
-                <span id="progress-text" class="ml-3 text-sm font-medium">0/0</span>
-              </div>
-            </div>
-
-            <!-- Quiz Content -->
-            <div class="p-6 relative overflow-hidden" style="min-height: 400px;">
-              <div id="quiz-container" class="relative">
-                <!-- Questions will be dynamically inserted here -->
-              </div>
-            </div>
-
-            <!-- Quiz Navigation -->
-            <div class="bg-gray-50 px-6 py-4 flex justify-between border-t border-gray-200">
-              <button id="prev-btn"
-                class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed transition"
-                disabled>
-                <i class="fas fa-arrow-left mr-2"></i>Previous
-              </button>
-              <div class="flex space-x-2">
-                <button id="skip-btn"
-                  class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium transition hover:bg-gray-300"
-                  style="display: none;">
-                  Skip <i class="fas fa-forward ml-2"></i>
-                </button>
-                <button id="next-btn"
-                  class="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium transition hover:bg-indigo-700">
-                  Next <i class="fas fa-arrow-right ml-2"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Results Modal -->
-          <div id="results-modal"
-            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-            <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
-              <div class="text-center">
-                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i class="fas fa-check text-green-600 text-3xl"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #00347b;">Quiz Completed!</h2>
-                <p class="text-gray-600 mb-6">Check your mail inbox to magic response!</p>
-                <div class="bg-gray-100 rounded-lg p-4 mb-6" style="display: none;">
-                  <div class="flex justify-between mb-2">
-                    <span class="text-gray-700">Correct Answers:</span>
-                    <span id="correct-answers" class="font-bold">0</span>
-                  </div>
-                  <div class="flex justify-between mb-2">
-                    <span class="text-gray-700">Total Questions:</span>
-                    <span id="total-questions" class="font-bold">0</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-gray-700">Score:</span>
-                    <span id="quiz-score" class="font-bold text-indigo-600">0%</span>
-                  </div>
-                </div>
-                <button id="restart-btn" onclick="window.location.href='index.html';"
-                  class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium transition hover:bg-indigo-700">
-                  <i class="fas fa-redo mr-2"></i>Back to Dashboard
-                </button>
-
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
-  </div>
-  <div data-elementor-type="footer" data-elementor-id="1764" class="elementor elementor-1764 elementor-location-footer"
-    data-elementor-post-type="elementor_library">
-    <div class="elementor-element elementor-element-78cad96 e-flex e-con-boxed e-con e-parent" data-id="78cad96"
-      data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-      <div class="e-con-inner">
-        <div class="elementor-element elementor-element-52abb05 e-con-full e-flex e-con e-child" data-id="52abb05"
-          data-element_type="container">
-          <div class="elementor-element elementor-element-600cf77 elementor-widget elementor-widget-elementskit-heading"
-            data-id="600cf77" data-element_type="widget" data-widget_type="elementskit-heading.default">
-            <div class="elementor-widget-container">
-              <div class="ekit-wid-con">
-                <div
-                  class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-text_center   ekit_heading_mobile-text_left">
-                  <h3 class="ekit-heading--title elementskit-section-title text_fill">
-                    Ready to transform <span><span>your
-                        business? </span></span></h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="elementor-element elementor-element-8d50095 elementor-align-left elementor-align--tabletcenter elementor-widget elementor-widget-elementskit-button"
-            data-id="8d50095" data-element_type="widget" data-widget_type="elementskit-button.default">
-            <div class="elementor-widget-container">
-              <div class="ekit-wid-con">
-                <div class="ekit-btn-wraper">
-                  <a href="#" class="elementskit-btn  whitespace--normal" id="">
-                    Learn More <i class="icon icon-right-arrow"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="elementor-element elementor-element-2c2a580 e-con-full e-flex e-con e-child" data-id="2c2a580"
-          data-element_type="container">
-          <div class="elementor-element elementor-element-73e9142 e-con-full e-flex e-con e-child" data-id="73e9142"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-bc9c29b elementor-widget elementor-widget-heading"
-              data-id="bc9c29b" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default">Connect with
-                  us</h4>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-6d0c3bb elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
-              data-id="6d0c3bb" data-element_type="widget" data-widget_type="icon-list.default">
-              <div class="elementor-widget-container">
-                <ul class="elementor-icon-list-items">
-                  <li class="elementor-icon-list-item">
-                    <a href="mailto:support@nextlevelgrowthpartner.com">
-                      <span class="elementor-icon-list-text">
-                        <font size="5">📧</font> &nbsp;&nbsp;
-                        support@nextlevelgrowthpartner.com
-                      </span>
-                    </a>
-                  </li>
-                  <li class="elementor-icon-list-item">
-                    <a href="tel:+15615302575">
-                      <span class="elementor-icon-list-text">
-                        <font size="5">💬</font> &nbsp;&nbsp; +15615302575
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-6785420 e-con-full e-flex e-con e-child" data-id="6785420"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-e923f1d elementor-widget elementor-widget-heading"
-              data-id="e923f1d" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default">Address</h4>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-7bef88b elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
-              data-id="7bef88b" data-element_type="widget" data-widget_type="icon-list.default">
-              <div class="elementor-widget-container">
-                <ul class="elementor-icon-list-items">
-                  <li class="elementor-icon-list-item">
-                    <a href="#">
-
-                      <span class="elementor-icon-list-text">
-                        <font size="5">🌍</font> &nbsp;&nbsp; 21 NE 10th St,
-                        Deerfield Beach FL 33441
-                      </span>
-                    </a>
-                  </li>
-                  <li class="elementor-icon-list-item">
-                    <a href="#">
-
-                      <span class="elementor-icon-list-text">
-                        <font size="5">🕒</font> &nbsp;&nbsp; Monday → Friday
-                        9am to 5pm
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-9b7cd60 e-con-full e-flex e-con e-child" data-id="9b7cd60"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-e3957e2 elementor-widget elementor-widget-heading"
-              data-id="e3957e2" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default"> Join our
-                  newsletter</h4>
-              </div>
-            </div>
-            <div
-              class="elementor-element elementor-element-60dd47a elementor-button-align-stretch elementor-widget elementor-widget-form"
-              data-id="60dd47a" data-element_type="widget"
-              data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;20&quot;,&quot;button_width_mobile&quot;:&quot;20&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
-              data-widget_type="form.default">
-              <div class="elementor-widget-container">
-                <form class="elementor-form" method="post" name="New Form">
-                  <input type="hidden" name="post_id" value="1764" />
-                  <input type="hidden" name="form_id" value="60dd47a" />
-                  <input type="hidden" name="referer_title" value="Services" />
-
-                  <input type="hidden" name="queried_id" value="2433" />
-
-                  <div class="elementor-form-fields-wrapper elementor-labels-above">
-                    <div
-                      class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-80 elementor-sm-80 elementor-field-required">
-                      <input size="1" type="email" name="form_fields[email]" id="form-field-email"
-                        class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Email Address"
-                        required="required">
+        <!-- Calculator Card -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12 relative">
+            <!-- <div class="absolute inset-0 bg-gradient-to-r from-primary to-indigo-700 opacity-5 pointer-events-none"></div> -->
+            
+            <div class="p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <!-- Input Fields -->
+                    <div>
+                        <label for="leads" style="color: black;" class="block text-sm font-medium text-gray-700 mb-1">Number of Unconverted Leads in Database</label>
+                        <div class="relative">
+                            <input type="number" style="border-radius: 10px; background-color: lightgray; color: black; " id="leads" min="0" value="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                            <!-- <div class="absolute right-3 top-3 text-gray-400">
+                                <i class="fas fa-users"></i>
+                            </div> -->
+                        </div>
                     </div>
-                    <div
-                      class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-20 e-form__buttons elementor-sm-20">
-                      <button class="elementor-button elementor-size-sm" type="submit">
-                        <span class="elementor-button-content-wrapper">
-                          <span class="elementor-button-icon">
-                            <i aria-hidden="true" class="icon icon-right-arrow"></i>
-                            <span class="elementor-screen-only">Submit</span>
-                          </span>
+
+                    <div>
+                        <label for="value" style="color: black;"  class="block text-sm font-medium text-gray-700 mb-1">Average Sale Value</label>
+                        <div class="flex gap-2">
+                            <select style="border-radius: 10px; background-color: lightgray;"  id="currency" class="px-3 py-3 border border-r-0 border-gray-300 rounded-l-lg bg-gray-100 text-gray-700 focus:ring-primary focus:border-primary">
+                                <option>$</option>
+                            </select>
+                            <input style="border-radius: 10px; background-color: lightgray; color: black; "  type="number" id="value" min="0" value="0" class="w-full px-4 py-3 border border-l-0 border-gray-300 rounded-r-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information Fields -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div>
+                        <label for="calc-name" style="color: black;" class="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
+                        <div class="relative">
+                            <input type="text" style="border-radius: 10px; background-color: lightgray; color: black;" id="calc-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition" placeholder="Enter your name">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="calc-email" style="color: black;" class="block text-sm font-medium text-gray-700 mb-1">Your Email *</label>
+                        <div class="relative">
+                            <input type="email" style="border-radius: 10px; background-color: lightgray; color: black;" id="calc-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition" placeholder="Enter your email">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="calc-phone" style="color: black;" class="block text-sm font-medium text-gray-700 mb-1">Your Phone Number *</label>
+                        <div class="relative">
+                            <input type="tel" style="border-radius: 10px; background-color: lightgray; color: black;" id="calc-phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition" placeholder="Enter your phone">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculate Button -->
+                <div class="text-center mb-8">
+                    <button id="calculate-btn"  class="px-8 py-4 text-white font-semibold rounded-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-calculator mr-2"></i>
+                        Calculate Revenue Potential
+                    </button>
+
+                  
+                </div>
+
+                <!-- Results Section (initially hidden) -->
+                <div id="results-section" class="hidden">
+                    <!-- Stats Display -->
+                    <div class="relative p-6 mb-8">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg opacity-60"></div>
+                        <div class="relative z-10">
+                            <h3 style="color: black;" class="text-lg font-semibold text-primary mb-6">Lead Data Overview</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:shadow-md transition-all">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <p class="text-sm text-gray-500 font-medium">Total Leads</p>
+                                        <i class="fas fa-users text-primary text-opacity-70"></i>
+                                    </div>
+                                    <p id="leads-display" class="text-3xl font-bold text-dark animate-[pulse_1s_ease-in-out]">0</p>
+                                    <div class="h-1 mt-3 bg-gray-100 rounded-full overflow-hidden">
+                                        <div id="leads-progress" class="progress-bar h-full bg-gradient-to-r from-blue-400 to-blue-600" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:shadow-md transition-all">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <p class="text-sm text-gray-500 font-medium">Avg. Value</p>
+                                        <i class="fas fa-dollar-sign text-secondary text-opacity-70"></i>
+                                    </div>
+                                    <p id="value-display" class="text-3xl font-bold text-dark animate-[pulse_1s_ease-in-out]">$0</p>
+                                    <div class="h-1 mt-3 bg-gray-100 rounded-full overflow-hidden">
+                                        <div id="value-progress" class="progress-bar h-full bg-gradient-to-r from-green-400 to-green-600" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conversion Visualization -->
+                    <div class="mb-8">
+                        <h3 style="color: black;"  class="text-lg font-semibold text-primary mb-6">Potential Revenue Visualization</h3>
+                        <div class="relative h-80 bg-gray-50 rounded-xl p-4">
+                            <canvas id="conversionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Conversion Data -->
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-primary">
+                            <div class="p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-medium text-blue-600 flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-blue-400 mr-2"></span>
+                                        <span>1% Conversion</span>
+                                    </span>
+                                    <span id="rev-1" class="text-lg font-bold text-dark">$0</span>
+                                </div>
+                                <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="bar-1" class="progress-bar h-full bg-gradient-to-r from-blue-300 to-blue-500 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-indigo-500">
+                            <div class="p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-medium text-indigo-600 flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-indigo-400 mr-2"></span>
+                                        <span>3% Conversion</span>
+                                    </span>
+                                    <span id="rev-3" class="text-lg font-bold text-dark">$0</span>
+                                </div>
+                                <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="bar-3" class="progress-bar h-full bg-gradient-to-r from-indigo-300 to-indigo-500 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-purple-500">
+                            <div class="p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-medium text-purple-600 flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-purple-400 mr-2"></span>
+                                        <span>5% Conversion</span>
+                                    </span>
+                                    <span id="rev-5" class="text-lg font-bold text-dark">$0</span>
+                                </div>
+                                <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="bar-5" class="progress-bar h-full bg-gradient-to-r from-purple-300 to-purple-500 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden transition-all hover:shadow-md hover:border-blue-600">
+                            <div class="p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-medium text-blue-700 flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-blue-500 mr-2"></span>
+                                        <span>8% Conversion</span>
+                                    </span>
+                                    <span id="rev-8" class="text-lg font-bold text-dark">$0</span>
+                                </div>
+                                <div class="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="bar-8" class="progress-bar h-full bg-gradient-to-r from-blue-400 to-blue-600 animate-[grow_0.6s_ease-out]" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End of results-section -->
+            </div>
+        </div>
+        
+        <!-- Calculation Explanation -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6 md:p-8">
+                <h3 style="color: black;"  class="text-xl font-semibold text-dark mb-4 flex items-center">
+                    <i class="fas fa-calculator mr-2 text-secondary"></i> How this is calculated
+                </h3>
+                <div class="prose prose-gray max-w-none">
+                    <p class="text-gray-700 mb-4">This calculator shows the potential revenue you could generate by converting different percentages of your unconverted leads. The industry average for successful database revival campaigns ranges from 1-8%, depending on the age of the leads, industry, and approach.</p>
+                    
+                    <p class="text-gray-700 mb-4">Each bar represents the potential revenue if you were able to convert that percentage of your previously unconverted leads in your database.</p>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4 border border-blue-100">
+                        <p class="font-semibold text-blue-700 mb-2">For example, if you have 10,000 unconverted leads and an average sale value of 1,000:</p>
+                        <ul class="list-disc pl-5 space-y-1 text-blue-800">
+                            <li>At 1% conversion: 100 leads × $1,000 = $100,000 revenue</li>
+                            <li>At 5% conversion: 500 leads × $1,000 = $500,000 revenue</li>
+                            <li>At 8% conversion: 800 leads × $1,000 = $800,000 revenue</li>
+                        </ul>
+                    </div>
+                    
+                    <p class="text-gray-700 relative has-tooltip">
+                        Most companies can expect conversion rates in the 1-3% range for a revival campaign, with top-performing campaigns reaching 5-8% for warm leads.
+                        <span class="tooltip absolute z-10 w-64 p-2 mt-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg">
+                            <span class="font-semibold">Tip:</span> The quality of your follow-up process significantly impacts conversion rates.
                         </span>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
+                    </p>
+                </div>
             </div>
-          </div>
-          <div class="elementor-element elementor-element-b9f61ee e-con-full e-flex e-con e-child" data-id="b9f61ee"
-            data-element_type="container">
-            <div class="elementor-element elementor-element-8737e81 elementor-widget elementor-widget-heading"
-              data-id="8737e81" data-element_type="widget" data-widget_type="heading.default">
-              <div class="elementor-widget-container">
-                <h4 class="elementor-heading-title elementor-size-default">Follow us
-                </h4>
-              </div>
-            </div>
-            <div class="elementor-element elementor-element-265915a e-grid e-con-full e-con e-child" data-id="265915a"
-              data-element_type="container">
-              <div
-                class="elementor-element elementor-element-5a77c23 elementor-widget elementor-widget-elementskit-social-media"
-                data-id="5a77c23" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-633e4a1">
-                        <a href="https://www.facebook.com/profile.php?id=61575209545205" aria-label="Facebook"
-                          target="_blank" class="">
-                          Facebook </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-652d726 elementor-widget elementor-widget-elementskit-social-media"
-                data-id="652d726" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-55fe18f">
-                        <a href="https://x.com/tomsantella" aria-label="Twitter" target="_blank" class="">
-                          Twitter </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-c8b0b41 elementor-widget elementor-widget-elementskit-social-media"
-                data-id="c8b0b41" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-55fe18f">
-                        <a href="https://www.instagram.com/nextlevelgrowthpartners/?hl=en" aria-label="Instagram"
-                          target="_blank" class="">
-                          Instagram </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="elementor-element elementor-element-7bde8dc elementor-widget elementor-widget-elementskit-social-media"
-                data-id="7bde8dc" data-element_type="widget" data-widget_type="elementskit-social-media.default">
-                <div class="elementor-widget-container">
-                  <div class="ekit-wid-con">
-                    <ul class="ekit_social_media">
-                      <li class="elementor-repeater-item-55fe18f">
-                        <a href="https://www.linkedin.com/company/next-level-growth-partners/" aria-label="LinkedIn"
-                          target="_blank" class="">
-                          LinkedIn </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="elementor-element elementor-element-dc0f0af e-con-full e-flex e-con e-child" data-id="dc0f0af"
-          data-element_type="container">
-          <div
-            class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
-            data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
-            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <div class="elementor-widget-container" style="flex: 1; min-width: 200px;">
-              <p style="margin: 0; font-size: 14px;">
-                <a href="privacy-policy.html" style="margin-right: 1rem; text-decoration: underline;">Privacy Policy</a>
-                <a href="terms.html" style="text-decoration: underline;">Terms of Service</a>
-              </p>
-            </div>
-          </div>
-          <div
-            class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
-            data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
-            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <div class="elementor-widget-container" style="flex: 1; min-width: 200px; text-align: right;">
-              <h2 class="elementor-heading-title elementor-size-default" style="margin: 0; font-size: 14px;">
-                <a href="index.html">Copyright © 2025 Next Level Growth Partners </a>
-              </h2>
-            </div>
-          </div>
+       
 
+
+   
+        
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p>© 2025 Next Level Growth Partner. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let conversionChart;
+
+            // Initialize Chart
+            const ctx = document.getElementById('conversionChart').getContext('2d');
+
+            const leadsInput = document.getElementById('leads');
+            const valueInput = document.getElementById('value');
+            const currencySelect = document.getElementById('currency');
+            const resultsSection = document.getElementById('results-section');
+
+            const leadsDisplay = document.getElementById('leads-display');
+            const valueDisplay = document.getElementById('value-display');
+
+            const rev1 = document.getElementById('rev-1');
+            const rev3 = document.getElementById('rev-3');
+            const rev5 = document.getElementById('rev-5');
+            const rev8 = document.getElementById('rev-8');
+
+            const bar1 = document.getElementById('bar-1');
+            const bar3 = document.getElementById('bar-3');
+            const bar5 = document.getElementById('bar-5');
+            const bar8 = document.getElementById('bar-8');
+
+            function calculateRevenue() {
+                const leads = parseInt(leadsInput.value) || 0;
+                const value = parseInt(valueInput.value) || 0;
+                const currency = currencySelect.value;
+
+                // Show results section
+                resultsSection.classList.remove('hidden');
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+
+                // Update displays with animations
+                leadsDisplay.textContent = leads.toLocaleString();
+                leadsDisplay.classList.add('animate-[pulse_0.5s_ease-in-out]');
+
+                valueDisplay.textContent = currency + value.toLocaleString();
+                valueDisplay.classList.add('animate-[pulse_0.5s_ease-in-out]');
+
+                // Update progress indicators
+                const leadsProgress = Math.min(100, leads / 10000 * 100);
+                document.getElementById('leads-progress').style.width = `${leadsProgress}%`;
+
+                const valueProgress = Math.min(100, value / 10000 * 100);
+                document.getElementById('value-progress').style.width = `${valueProgress}%`;
+
+                // Calculate revenue at different conversion rates
+                const revAt1 = Math.round(leads * 0.01 * value);
+                const revAt3 = Math.round(leads * 0.03 * value);
+                const revAt5 = Math.round(leads * 0.05 * value);
+                const revAt8 = Math.round(leads * 0.08 * value);
+
+                rev1.textContent = currency + revAt1.toLocaleString();
+                rev3.textContent = currency + revAt3.toLocaleString();
+                rev5.textContent = currency + revAt5.toLocaleString();
+                rev8.textContent = currency + revAt8.toLocaleString();
+
+                // Update chart
+                if (conversionChart) {
+                    updateChart(leads, value, currency);
+                } else {
+                    initChart(leads, value, currency);
+                }
+
+                // Calculate percentages for bar widths
+                const maxValue = leads * 0.08 * value;
+                const widths = {
+                    'bar-1': maxValue > 0 ? `${Math.min(100, (revAt1 / maxValue * 100))}%` : '0%',
+                    'bar-3': maxValue > 0 ? `${Math.min(100, (revAt3 / maxValue * 100))}%` : '0%',
+                    'bar-5': maxValue > 0 ? `${Math.min(100, (revAt5 / maxValue * 100))}%` : '0%',
+                    'bar-8': maxValue > 0 ? `${Math.min(100, (revAt8 / maxValue * 100))}%` : '0%'
+                };
+
+                Object.entries(widths).forEach(([id, width]) => {
+                    document.getElementById(id).style.width = width;
+                });
+            }
+
+            function initChart(leads, value, currency) {
+                conversionChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: getChartData(leads, value, currency),
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return currency + context.raw.toLocaleString();
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return currency + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            function updateChart(leads, value, currency) {
+                conversionChart.data = getChartData(leads, value, currency);
+                conversionChart.update();
+            }
+
+            function getChartData(leads, value, currency) {
+                return {
+                    labels: ['1%', '3%', '5%', '8%'],
+                    datasets: [{
+                        label: 'Potential Revenue',
+                        data: [
+                            Math.round(leads * 0.01 * value),
+                            Math.round(leads * 0.03 * value),
+                            Math.round(leads * 0.05 * value),
+                            Math.round(leads * 0.08 * value)
+                        ],
+                        backgroundColor: [
+                            'rgba(99, 102, 241, 0.7)',
+                            'rgba(129, 140, 248, 0.7)',
+                            'rgba(167, 139, 250, 0.7)',
+                            'rgba(79, 70, 229, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(99, 102, 241, 1)',
+                            'rgba(129, 140, 248, 1)',
+                            'rgba(167, 139, 250, 1)',
+                            'rgba(79, 70, 229, 1)'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 6,
+                        hoverBackgroundColor: [
+                            'rgba(99, 102, 241, 1)',
+                            'rgba(129, 140, 248, 1)',
+                            'rgba(167, 139, 250, 1)',
+                            'rgba(79, 70, 229, 1)'
+                        ]
+                    }]
+                };
+            }
+        });
+    </script>
+
+    <script>
+        document.getElementById('calculate-btn').addEventListener('click', async () => {
+            const name = document.getElementById('calc-name').value.trim();
+            const email = document.getElementById('calc-email').value.trim();
+            const phone = document.getElementById('calc-phone').value.trim();
+            const leads = document.getElementById('leads').value.trim();
+            const value = document.getElementById('value').value.trim();
+
+            if (!name || !email || !phone) {
+                alert('Please fill all required fields.');
+                return;
+            }
+
+            // Show loading
+            const btn = document.getElementById('calculate-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
+            btn.disabled = true;
+
+            const data = {
+                field_4771897: name,
+                field_4771898: email,
+                field_4771899: phone,
+                field_4772061: leads,
+                field_4772062: value
+            };
+
+            try {
+                const response = await fetch('https://api.baserow.io/api/database/rows/table/590151/', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Token dq5ZamHGgdU0fv4BgbvUSakrh4c12idq',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    // Reset button
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+
+                    alert('Form submitted successfully to Baserow!');
+
+                    // Get values
+                    const leadsValue = parseInt(leads) || 0;
+                    const valueValue = parseInt(value) || 0;
+                    const currency = document.getElementById('currency').value;
+
+                    // Show results section
+                    const resultsSection = document.getElementById('results-section');
+                    resultsSection.classList.remove('hidden');
+                    resultsSection.scrollIntoView({ behavior: 'smooth' });
+
+                    // Update displays
+                    document.getElementById('leads-display').textContent = leadsValue.toLocaleString();
+                    document.getElementById('value-display').textContent = currency + valueValue.toLocaleString();
+
+                    // Update progress indicators
+                    const leadsProgress = Math.min(100, leadsValue / 10000 * 100);
+                    document.getElementById('leads-progress').style.width = `${leadsProgress}%`;
+
+                    const valueProgress = Math.min(100, valueValue / 10000 * 100);
+                    document.getElementById('value-progress').style.width = `${valueProgress}%`;
+
+                    // Calculate revenue
+                    const revAt1 = Math.round(leadsValue * 0.01 * valueValue);
+                    const revAt3 = Math.round(leadsValue * 0.03 * valueValue);
+                    const revAt5 = Math.round(leadsValue * 0.05 * valueValue);
+                    const revAt8 = Math.round(leadsValue * 0.08 * valueValue);
+
+                    // Update revenue displays
+                    document.getElementById('rev-1').textContent = currency + revAt1.toLocaleString();
+                    document.getElementById('rev-3').textContent = currency + revAt3.toLocaleString();
+                    document.getElementById('rev-5').textContent = currency + revAt5.toLocaleString();
+                    document.getElementById('rev-8').textContent = currency + revAt8.toLocaleString();
+
+                    // Update progress bars
+                    const maxRevenue = Math.max(revAt1, revAt3, revAt5, revAt8);
+                    if (maxRevenue > 0) {
+                        document.getElementById('bar-1').style.width = `${(revAt1 / maxRevenue) * 100}%`;
+                        document.getElementById('bar-3').style.width = `${(revAt3 / maxRevenue) * 100}%`;
+                        document.getElementById('bar-5').style.width = `${(revAt5 / maxRevenue) * 100}%`;
+                        document.getElementById('bar-8').style.width = `${(revAt8 / maxRevenue) * 100}%`;
+                    }
+
+                    // Create chart
+                    const canvas = document.getElementById('conversionChart');
+                    if (canvas && window.Chart) {
+                        const ctx = canvas.getContext('2d');
+
+                        // Destroy existing chart
+                        if (window.myChart) {
+                            window.myChart.destroy();
+                        }
+
+                        window.myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['1%', '3%', '5%', '8%'],
+                                datasets: [{
+                                    data: [revAt1, revAt3, revAt5, revAt8],
+                                    backgroundColor: ['#6366f1', '#8b5cf6', '#a855f7', '#4f46e5'],
+                                    borderRadius: 6
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: { legend: { display: false } },
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        ticks: {
+                                            callback: function(value) {
+                                                return currency + value.toLocaleString();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                } else {
+                    // Reset button on error
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    alert('Failed to submit form. Please try again.');
+                }
+            } catch (err) {
+                // Reset button on error
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                console.error('Request failed:', err);
+                alert('Something went wrong while sending data.');
+            }
+        });
+    </script>
+
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+        
+
   </div>
+   <div data-elementor-type="footer" data-elementor-id="1764"
+                class="elementor elementor-1764 elementor-location-footer" data-elementor-post-type="elementor_library">
+                <div class="elementor-element elementor-element-78cad96 e-flex e-con-boxed e-con e-parent"
+                    data-id="78cad96" data-element_type="container"
+                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                    <div class="e-con-inner">
+                        <div class="elementor-element elementor-element-52abb05 e-con-full e-flex e-con e-child"
+                            data-id="52abb05" data-element_type="container">
+                            <div class="elementor-element elementor-element-600cf77 elementor-widget elementor-widget-elementskit-heading"
+                                data-id="600cf77" data-element_type="widget"
+                                data-widget_type="elementskit-heading.default">
+                                <div class="elementor-widget-container">
+                                    <div class="ekit-wid-con">
+                                        <div
+                                            class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-text_center   ekit_heading_mobile-text_left">
+                                            <h3 class="ekit-heading--title elementskit-section-title text_fill">
+                                                Ready to transform <span><span>your
+                                                        business? </span></span></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-8d50095 elementor-align-left elementor-align--tabletcenter elementor-widget elementor-widget-elementskit-button"
+                                data-id="8d50095" data-element_type="widget"
+                                data-widget_type="elementskit-button.default">
+                                <div class="elementor-widget-container">
+                                    <div class="ekit-wid-con">
+                                        <div class="ekit-btn-wraper">
+                                            <a href="#" class="elementskit-btn  whitespace--normal" id="">
+                                                Learn More <i class="icon icon-right-arrow"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-2c2a580 e-con-full e-flex e-con e-child"
+                            data-id="2c2a580" data-element_type="container">
+                            <div class="elementor-element elementor-element-73e9142 e-con-full e-flex e-con e-child"
+                                data-id="73e9142" data-element_type="container">
+                                <div class="elementor-element elementor-element-bc9c29b elementor-widget elementor-widget-heading"
+                                    data-id="bc9c29b" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default">Connect with
+                                            us</h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-6d0c3bb elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
+                                    data-id="6d0c3bb" data-element_type="widget" data-widget_type="icon-list.default">
+                                    <div class="elementor-widget-container">
+                                        <ul class="elementor-icon-list-items">
+                                            <li class="elementor-icon-list-item">
+                                                <a href="mailto:support@nextlevelgrowthpartner.com">
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">📧</font> &nbsp;&nbsp;
+                                                        support@nextlevelgrowthpartner.com
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="elementor-icon-list-item">
+                                                <a href="tel:+15615302575">
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">💬</font> &nbsp;&nbsp; +15615302575
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-6785420 e-con-full e-flex e-con e-child"
+                                data-id="6785420" data-element_type="container">
+                                <div class="elementor-element elementor-element-e923f1d elementor-widget elementor-widget-heading"
+                                    data-id="e923f1d" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default">Address</h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-7bef88b elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
+                                    data-id="7bef88b" data-element_type="widget" data-widget_type="icon-list.default">
+                                    <div class="elementor-widget-container">
+                                        <ul class="elementor-icon-list-items">
+                                            <li class="elementor-icon-list-item">
+                                                <a href="#">
+
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">🌍</font> &nbsp;&nbsp; 21 NE 10th St,
+                                                        Deerfield Beach FL 33441
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="elementor-icon-list-item">
+                                                <a href="#">
+
+                                                    <span class="elementor-icon-list-text">
+                                                        <font size="5">🕒</font> &nbsp;&nbsp; Monday → Friday
+                                                        9am to 5pm
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-9b7cd60 e-con-full e-flex e-con e-child"
+                                data-id="9b7cd60" data-element_type="container">
+                                <div class="elementor-element elementor-element-e3957e2 elementor-widget elementor-widget-heading"
+                                    data-id="e3957e2" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default"> Join our
+                                            newsletter</h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-60dd47a elementor-button-align-stretch elementor-widget elementor-widget-form"
+                                    data-id="60dd47a" data-element_type="widget"
+                                    data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;20&quot;,&quot;button_width_mobile&quot;:&quot;20&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
+                                    data-widget_type="form.default">
+                                    <div class="elementor-widget-container">
+                                        <form class="elementor-form" method="post" name="New Form">
+                                            <input type="hidden" name="post_id" value="1764" />
+                                            <input type="hidden" name="form_id" value="60dd47a" />
+                                            <input type="hidden" name="referer_title" value="Services" />
+
+                                            <input type="hidden" name="queried_id" value="2433" />
+
+                                            <div class="elementor-form-fields-wrapper elementor-labels-above">
+                                                <div
+                                                    class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-80 elementor-sm-80 elementor-field-required">
+                                                    <input size="1" type="email" name="form_fields[email]"
+                                                        id="form-field-email"
+                                                        class="elementor-field elementor-size-sm  elementor-field-textual"
+                                                        placeholder="Email Address" required="required">
+                                                </div>
+                                                <div
+                                                    class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-20 e-form__buttons elementor-sm-20">
+                                                    <button class="elementor-button elementor-size-sm" type="submit">
+                                                        <span class="elementor-button-content-wrapper">
+                                                            <span class="elementor-button-icon">
+                                                                <i aria-hidden="true" class="icon icon-right-arrow"></i>
+                                                                <span class="elementor-screen-only">Submit</span>
+                                                            </span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-b9f61ee e-con-full e-flex e-con e-child"
+                                data-id="b9f61ee" data-element_type="container">
+                                <div class="elementor-element elementor-element-8737e81 elementor-widget elementor-widget-heading"
+                                    data-id="8737e81" data-element_type="widget" data-widget_type="heading.default">
+                                    <div class="elementor-widget-container">
+                                        <h4 class="elementor-heading-title elementor-size-default">Follow us
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-265915a e-grid e-con-full e-con e-child"
+                                    data-id="265915a" data-element_type="container">
+                                    <div class="elementor-element elementor-element-5a77c23 elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="5a77c23" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-633e4a1">
+                                                        <a href="https://www.facebook.com/profile.php?id=61575209545205" aria-label="Facebook" target="_blank" class="">
+                                                            Facebook </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-652d726 elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="652d726" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-55fe18f">
+                                                        <a href="https://x.com/tomsantella" aria-label="Twitter" target="_blank"  class="">
+                                                            Twitter </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-c8b0b41 elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="c8b0b41" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-55fe18f">
+                                                        <a href="https://www.instagram.com/nextlevelgrowthpartners/?hl=en" aria-label="Instagram" target="_blank"  class="">
+                                                            Instagram </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-7bde8dc elementor-widget elementor-widget-elementskit-social-media"
+                                        data-id="7bde8dc" data-element_type="widget"
+                                        data-widget_type="elementskit-social-media.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <ul class="ekit_social_media">
+                                                    <li class="elementor-repeater-item-55fe18f">
+                                                        <a href="https://www.linkedin.com/company/next-level-growth-partners/" aria-label="LinkedIn" target="_blank"  class="">
+                                                            LinkedIn </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-dc0f0af e-con-full e-flex e-con e-child"
+                            data-id="dc0f0af" data-element_type="container">
+                            <div class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
+                                data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div class="elementor-widget-container" style="flex: 1; min-width: 200px;">
+                                    <p style="margin: 0; font-size: 14px;">
+                                        <a href="privacy-policy.html"
+                                            style="margin-right: 1rem; text-decoration: underline;">Privacy Policy</a>
+                                        <a href="terms.html" style="text-decoration: underline;">Terms of Service</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-49dd403 elementor-widget elementor-widget-theme-site-title elementor-widget-heading"
+                                data-id="49dd403" data-element_type="widget" data-widget_type="theme-site-title.default"
+                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <div class="elementor-widget-container"
+                                    style="flex: 1; min-width: 200px; text-align: right;">
+                                    <h2 class="elementor-heading-title elementor-size-default"
+                                        style="margin: 0; font-size: 14px;">
+                                        <a href="index.html">Copyright © 2025 Next Level Growth Partners </a>
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
   <script data-cfasync="false"
     src="https://brandmode.1onestrong.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
