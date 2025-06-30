@@ -48765,7 +48765,7 @@
 
                 <!-- Calculate Button -->
                 <div class="text-center mb-8">
-                    <button id="calculate-btn" style="background: linear-gradient(135deg, #4F46E5, #7C3AED); border-radius: 10px;" class="px-8 py-4 text-white font-semibold rounded-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    <button id="calculate-btn"  class="px-8 py-4 text-white font-semibold rounded-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg">
                         <i class="fas fa-calculator mr-2"></i>
                         Calculate Revenue Potential
                     </button>
@@ -49538,8 +49538,11 @@ function validateGroupAnswers() {
                 return;
             }
 
-
-            
+            // Show loading
+            const btn = document.getElementById('calculate-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
+            btn.disabled = true;
 
             const data = {
                 field_4771897: name,
@@ -49560,19 +49563,19 @@ function validateGroupAnswers() {
                 });
 
                 if (response.ok) {
+                    // Reset button
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+
                     alert('Form submitted successfully to Baserow!');
 
-                    // Trigger the calculation display
-                    const leadsInput = document.getElementById('leads');
-                    const valueInput = document.getElementById('value');
-                    const currencySelect = document.getElementById('currency');
-                    const resultsSection = document.getElementById('results-section');
-
-                    const leadsValue = parseInt(leadsInput.value) || 0;
-                    const valueValue = parseInt(valueInput.value) || 0;
-                    const currency = currencySelect.value;
+                    // Get values
+                    const leadsValue = parseInt(leads) || 0;
+                    const valueValue = parseInt(value) || 0;
+                    const currency = document.getElementById('currency').value;
 
                     // Show results section
+                    const resultsSection = document.getElementById('results-section');
                     resultsSection.classList.remove('hidden');
                     resultsSection.scrollIntoView({ behavior: 'smooth' });
 
@@ -49587,12 +49590,13 @@ function validateGroupAnswers() {
                     const valueProgress = Math.min(100, valueValue / 10000 * 100);
                     document.getElementById('value-progress').style.width = `${valueProgress}%`;
 
-                    // Calculate and display revenue
+                    // Calculate revenue
                     const revAt1 = Math.round(leadsValue * 0.01 * valueValue);
                     const revAt3 = Math.round(leadsValue * 0.03 * valueValue);
                     const revAt5 = Math.round(leadsValue * 0.05 * valueValue);
                     const revAt8 = Math.round(leadsValue * 0.08 * valueValue);
 
+                    // Update revenue displays
                     document.getElementById('rev-1').textContent = currency + revAt1.toLocaleString();
                     document.getElementById('rev-3').textContent = currency + revAt3.toLocaleString();
                     document.getElementById('rev-5').textContent = currency + revAt5.toLocaleString();
@@ -49607,73 +49611,54 @@ function validateGroupAnswers() {
                         document.getElementById('bar-8').style.width = `${(revAt8 / maxRevenue) * 100}%`;
                     }
 
-                    // Update chart - wait a bit for DOM to be ready
-                    setTimeout(() => {
-                        const ctx = document.getElementById('conversionChart');
-                        if (ctx) {
-                            const chartContext = ctx.getContext('2d');
-                            if (window.conversionChart) {
-                                window.conversionChart.destroy();
-                            }
+                    // Create chart
+                    const canvas = document.getElementById('conversionChart');
+                    if (canvas && window.Chart) {
+                        const ctx = canvas.getContext('2d');
 
-                            window.conversionChart = new Chart(chartContext, {
-                                type: 'bar',
-                                data: {
-                                    labels: ['1% Conversion', '3% Conversion', '5% Conversion', '8% Conversion'],
-                                    datasets: [{
-                                        label: 'Potential Revenue',
-                                        data: [revAt1, revAt3, revAt5, revAt8],
-                                        backgroundColor: [
-                                            'rgba(99, 102, 241, 0.8)',
-                                            'rgba(129, 140, 248, 0.8)',
-                                            'rgba(167, 139, 250, 0.8)',
-                                            'rgba(79, 70, 229, 0.8)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(99, 102, 241, 1)',
-                                            'rgba(129, 140, 248, 1)',
-                                            'rgba(167, 139, 250, 1)',
-                                            'rgba(79, 70, 229, 1)'
-                                        ],
-                                        borderWidth: 2,
-                                        borderRadius: 8
-                                    }]
-                                },
-                                options: {
-                                    responsive: true,
-                                    maintainAspectRatio: false,
-                                    plugins: {
-                                        legend: {
-                                            display: false
-                                        },
-                                        tooltip: {
-                                            callbacks: {
-                                                label: function(context) {
-                                                    return 'Revenue: ' + currency + context.raw.toLocaleString();
-                                                }
-                                            }
-                                        }
-                                    },
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true,
-                                            ticks: {
-                                                callback: function(value) {
-                                                    return currency + value.toLocaleString();
-                                                }
+                        // Destroy existing chart
+                        if (window.myChart) {
+                            window.myChart.destroy();
+                        }
+
+                        window.myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['1%', '3%', '5%', '8%'],
+                                datasets: [{
+                                    data: [revAt1, revAt3, revAt5, revAt8],
+                                    backgroundColor: ['#6366f1', '#8b5cf6', '#a855f7', '#4f46e5'],
+                                    borderRadius: 6
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: { legend: { display: false } },
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        ticks: {
+                                            callback: function(value) {
+                                                return currency + value.toLocaleString();
                                             }
                                         }
                                     }
                                 }
-                            });
-                        }
-                    }, 100);
+                            }
+                        });
+                    }
 
                 } else {
-                    console.error('Baserow API Error - Status:', response.status);
-                    alert('Failed to submit form. Status: ' + response.status);
+                    // Reset button on error
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    alert('Failed to submit form. Please try again.');
                 }
             } catch (err) {
+                // Reset button on error
+                btn.innerHTML = originalText;
+                btn.disabled = false;
                 console.error('Request failed:', err);
                 alert('Something went wrong while sending data.');
             }
