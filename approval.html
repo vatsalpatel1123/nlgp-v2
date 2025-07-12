@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Baserow Data Viewer</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f9;
+    }
+    header {
+      background-color: #3f51b5;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #e3e8f0;
+    }
+    button {
+      padding: 6px 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #999;
+    }
+    .loader {
+      display: none;
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+      padding: 10px;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Baserow Email & Summary Viewer</h1>
+</header>
+
+<div class="container">
+  <div id="loader" class="loader">⏳ Sending data...</div>
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Website</th>
+        <th>Summary</th>
+        <th>Approve</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be inserted here -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  const apiToken = 'dq5ZamHGgdU0fv4BgbvUSakrh4c12idq';  // ✅ Use your actual API key
+  const tableId = 604607;
+  const webhookURL = 'https://n8n.srv791889.hstgr.cloud/webhook/5c76886a-1a44-47a7-96f4-ce0dc84defe0';
+  const apiUrl = `https://api.baserow.io/api/database/rows/table/${tableId}/?user_field_names=true`;
+
+  async function fetchData() {
+    const loader = document.getElementById('loader');
+    loader.style.display = 'block';
+
+    try {
+      const response = await fetch(apiUrl, {
+        headers: { 'Authorization': `Token ${apiToken}` }
+      });
+      const data = await response.json();
+      populateTable(data.results);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      loader.textContent = '❌ Error loading data';
+      loader.classList.add('error');
+    } finally {
+      loader.style.display = 'none';
+    }
+  }
+
+  function populateTable(rows) {
+    const tbody = document.querySelector('#data-table tbody');
+    tbody.innerHTML = '';
+    rows.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td data-label="Email">${row.Email || '-'}</td>
+        <td data-label="Website">${row.Website || '-'}</td>
+        <td data-label="Summary">${row.Summary || '-'}</td>
+        <td><button onclick='approveRow(${JSON.stringify(row).replace(/'/g, "\\'")})'>Approve</button></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  async function approveRow(row) {
+    const loader = document.getElementById('loader');
+    loader.textContent = '⏳ Sending row to webhook...';
+    loader.style.display = 'block';
+    loader.className = 'loader';
+
+    try {
+      const response = await fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(row)
+      });
+
+      if (!response.ok) {
+        throw new Error('Webhook POST failed');
+      }
+
+      loader.textContent = '✅ Approved and sent successfully!';
+      loader.classList.add('success');
+    } catch (err) {
+      loader.textContent = '❌ Error sending data: ' + err.message;
+      loader.classList.add('error');
+    }
+
+    setTimeout(() => {
+      loader.style.display = 'none';
+    }, 3000);
+  }
+
+  fetchData();
+</script>
+
+</body>
+</html>
