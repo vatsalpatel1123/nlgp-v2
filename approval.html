@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Baserow Data Viewer</title>
+  <title>Google Sheet Data Viewer</title>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -57,31 +57,21 @@
       color: #333;
       padding: 10px;
     }
-    .success {
-      color: green;
-    }
-    .error {
-      color: red;
-    }
-    button.approving {
-      background-color: #f0ad4e;
-    }
-    button.approved {
-      background-color: #5cb85c;
-    }
-    button.error {
-      background-color: #d9534f;
-    }
+    .success { color: green; }
+    .error { color: red; }
+    button.approving { background-color: #f0ad4e; }
+    button.approved { background-color: #5cb85c; }
+    button.error { background-color: #d9534f; }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Baserow Email & Summary Viewer</h1>
+  <h1>Google Sheet Email & Summary Viewer</h1>
 </header>
 
 <div class="container">
-  <div id="loader" class="loader">⏳ Sending data...</div>
+  <div id="loader" class="loader">⏳ Loading data...</div>
   <table id="data-table">
     <thead>
       <tr>
@@ -98,22 +88,30 @@
 </div>
 
 <script>
-  const apiToken = 'dq5ZamHGgdU0fv4BgbvUSakrh4c12idq';
-  const tableId = 604607;
-  const webhookURL = 'https://n8n.srv791889.hstgr.cloud/webhook/5c76886a-1a44-47a7-96f4-ce0dc84defe0';
-  const apiUrl = `https://api.baserow.io/api/database/rows/table/${tableId}/?user_field_names=true`;
+  const sheetAPI = 'https://sheets.googleapis.com/v4/spreadsheets/1uGmiqozxfHfsklaNE3DMSnjzT5B4vCHEbXAao38R4Eg/values/Sheet1?alt=json&key=AIzaSyDw0WDpU5A1cujeUD4qgIMPP1IfkGmBxnE';
+  const updateAPI = 'https://script.google.com/macros/s/AKfycby1a_oZNyHZdiN5OKu6VGbbQgh97PzAMMVPbhd4U9SwU-r7rMlMNrGnulLifqrzg_LfKw/exec'; 
 
   async function fetchData() {
     const loader = document.getElementById('loader');
     loader.style.display = 'block';
 
     try {
-      const response = await fetch(apiUrl, {
-        headers: { 'Authorization': `Token ${apiToken}` }
-      });
+      const response = await fetch(sheetAPI);
       const data = await response.json();
-      const filteredRows = data.results.filter(row => !row.Approval_Status);
-      populateTable(filteredRows);
+
+      const headers = data.values[0];
+      const rows = data.values.slice(1);
+
+      // Convert to array of objects
+      const formattedRows = rows.map(row => {
+        const obj = {};
+        headers.forEach((header, i) => {
+          obj[header] = row[i] || '';
+        });
+        return obj;
+      }).filter(row => row.Status !== 'Approved');
+
+      populateTable(formattedRows);
     } catch (error) {
       console.error('Error fetching data:', error);
       loader.textContent = '❌ Error loading data';
@@ -129,9 +127,9 @@
     rows.forEach(row => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td data-label="Email">${row.Email || '-'}</td>
-        <td data-label="Website">${row.Website || '-'}</td>
-        <td data-label="Summary">${row.Summary || '-'}</td>
+        <td>${row.Email || '-'}</td>
+        <td>${row.Website || '-'}</td>
+        <td>${row.Summary || '-'}</td>
       `;
       const td = document.createElement('td');
       const btn = document.createElement('button');
@@ -142,62 +140,53 @@
       tbody.appendChild(tr);
     });
   }
+  
+async function approveRow(button, row) {
+  button.disabled = true;
+  button.textContent = '⏳ Approving...';
+  button.classList.add('approving');
 
-  async function approveRow(button, row) {
-    const approveBtn = button;
-    approveBtn.disabled = true;
-    approveBtn.textContent = '⏳ Approving...';
-    approveBtn.classList.add('approving');
+  const loader = document.getElementById('loader');
+  loader.textContent = '⏳ Updating row in Google Sheet...';
+  loader.style.display = 'block';
+  loader.className = 'loader';
 
-    const loader = document.getElementById('loader');
-    loader.textContent = '⏳ Sending row to webhook...';
-    loader.style.display = 'block';
-    loader.className = 'loader';
+  try {
+    const response = await fetch(updateAPI, {
+      method: 'POST',
+      mode: 'no-cors', // ADD THIS LINE if testing quickly, but read note below
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: row.Email, status: 'Approved' })
+    });
 
-    try {
-      const response = await fetch(webhookURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(row)
-      });
+    // If using no-cors, response.ok will always be false and no body will be returned.
+    // Therefore, skip checking response.ok if using no-cors, or handle differently.
+    // For production, remove 'no-cors' and ensure your Apps Script CORS headers are correct.
 
-      if (!response.ok) {
-        throw new Error('Webhook POST failed');
-      }
+    button.textContent = '✅ Approved';
+    button.classList.remove('approving');
+    button.classList.add('approved');
+    loader.textContent = '✅ Approved successfully!';
+    loader.classList.add('success');
+  } catch (err) {
+    button.disabled = false;
+    button.textContent = '❌ Error';
+    button.classList.remove('approving');
+    button.classList.add('error');
 
-      await fetch(`https://api.baserow.io/api/database/rows/table/${tableId}/${row.id}/?user_field_names=true`, {
-        method: 'PATCH',
-        headers: {
-          'Authorization': `Token ${apiToken}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ Approval_Status: true })
-      });
-
-      approveBtn.textContent = '✅ Approved';
-      approveBtn.classList.remove('approving');
-      approveBtn.classList.add('approved');
-
-      loader.textContent = '✅ Approved and sent successfully!';
-      loader.classList.add('success');
-    } catch (err) {
-      approveBtn.disabled = false;
-      approveBtn.textContent = '❌ Error';
-      approveBtn.classList.remove('approving');
-      approveBtn.classList.add('error');
-
-      loader.textContent = '❌ Error sending data: ' + err.message;
-      loader.classList.add('error');
-    }
-
-    setTimeout(() => {
-      loader.style.display = 'none';
-      if (approveBtn.classList.contains('error')) {
-        approveBtn.textContent = 'Approve';
-        approveBtn.classList.remove('error');
-      }
-    }, 3000);
+    loader.textContent = '❌ Error approving data: ' + err.message;
+    loader.classList.add('error');
   }
+
+  setTimeout(() => {
+    loader.style.display = 'none';
+    if (button.classList.contains('error')) {
+      button.textContent = 'Approve';
+      button.classList.remove('error');
+    }
+  }, 3000);
+}
+
 
   fetchData();
 </script>
