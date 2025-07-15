@@ -19,12 +19,13 @@
       text-align: center;
     }
     .container {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 2rem auto;
       background: white;
       padding: 1rem;
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
     }
     table {
       width: 100%;
@@ -67,7 +68,7 @@
 <body>
 
 <header>
-  <h1>Google Sheet Email & Summary Viewer</h1>
+  <h1>Google Sheet Data Viewer</h1>
 </header>
 
 <div class="container">
@@ -77,7 +78,11 @@
       <tr>
         <th>Email</th>
         <th>Website</th>
-        <th>Summary</th>
+        <th>Status</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Company Name</th>
+        <th>Company Category</th>
         <th>Approve</th>
       </tr>
     </thead>
@@ -102,7 +107,6 @@
       const headers = data.values[0];
       const rows = data.values.slice(1);
 
-      // Convert to array of objects
       const formattedRows = rows.map(row => {
         const obj = {};
         headers.forEach((header, i) => {
@@ -129,7 +133,11 @@
       tr.innerHTML = `
         <td>${row.Email || '-'}</td>
         <td>${row.Website || '-'}</td>
-        <td>${row.Summary || '-'}</td>
+        <td>${row.Status || '-'}</td>
+        <td>${row.Name || '-'}</td>
+        <td>${row.Phone || '-'}</td>
+        <td>${row['Company Name'] || '-'}</td>
+        <td>${row['Company Category'] || '-'}</td>
       `;
       const td = document.createElement('td');
       const btn = document.createElement('button');
@@ -140,53 +148,48 @@
       tbody.appendChild(tr);
     });
   }
-  
-async function approveRow(button, row) {
-  button.disabled = true;
-  button.textContent = '⏳ Approving...';
-  button.classList.add('approving');
 
-  const loader = document.getElementById('loader');
-  loader.textContent = '⏳ Updating row in Google Sheet...';
-  loader.style.display = 'block';
-  loader.className = 'loader';
+  async function approveRow(button, row) {
+    button.disabled = true;
+    button.textContent = '⏳ Approving...';
+    button.classList.add('approving');
 
-  try {
-    const response = await fetch(updateAPI, {
-      method: 'POST',
-      mode: 'no-cors', // ADD THIS LINE if testing quickly, but read note below
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: row.Email, status: 'Approved' })
-    });
+    const loader = document.getElementById('loader');
+    loader.textContent = '⏳ Updating row in Google Sheet...';
+    loader.style.display = 'block';
+    loader.className = 'loader';
 
-    // If using no-cors, response.ok will always be false and no body will be returned.
-    // Therefore, skip checking response.ok if using no-cors, or handle differently.
-    // For production, remove 'no-cors' and ensure your Apps Script CORS headers are correct.
+    try {
+      const response = await fetch(updateAPI, {
+        method: 'POST',
+        mode: 'no-cors', // Remove this in production if CORS headers are fixed
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: row.Email, status: 'Approved' })
+      });
 
-    button.textContent = '✅ Approved';
-    button.classList.remove('approving');
-    button.classList.add('approved');
-    loader.textContent = '✅ Approved successfully!';
-    loader.classList.add('success');
-  } catch (err) {
-    button.disabled = false;
-    button.textContent = '❌ Error';
-    button.classList.remove('approving');
-    button.classList.add('error');
+      button.textContent = '✅ Approved';
+      button.classList.remove('approving');
+      button.classList.add('approved');
+      loader.textContent = '✅ Approved successfully!';
+      loader.classList.add('success');
+    } catch (err) {
+      button.disabled = false;
+      button.textContent = '❌ Error';
+      button.classList.remove('approving');
+      button.classList.add('error');
 
-    loader.textContent = '❌ Error approving data: ' + err.message;
-    loader.classList.add('error');
-  }
-
-  setTimeout(() => {
-    loader.style.display = 'none';
-    if (button.classList.contains('error')) {
-      button.textContent = 'Approve';
-      button.classList.remove('error');
+      loader.textContent = '❌ Error approving data: ' + err.message;
+      loader.classList.add('error');
     }
-  }, 3000);
-}
 
+    setTimeout(() => {
+      loader.style.display = 'none';
+      if (button.classList.contains('error')) {
+        button.textContent = 'Approve';
+        button.classList.remove('error');
+      }
+    }, 3000);
+  }
 
   fetchData();
 </script>
