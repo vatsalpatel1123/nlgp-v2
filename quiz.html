@@ -48944,7 +48944,7 @@ function validateGroupAnswers() {
         formattedAnswers[`Q${key}`] = answers[key];
       }
 
-      fetch('https://n8n.srv791889.hstgr.cloud/webhook/quiz-form-submission', {
+      fetch('https://automate.axonflash.com/webhook/quiz-form-submission', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formattedAnswers)

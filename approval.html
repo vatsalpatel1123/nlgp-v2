@@ -3,196 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Google Sheet Data Viewer</title>
+  <title>Frappe Google Sheet Integration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f6f9;
+    .frappe-bg { background-color: #f5f7fa; }
+    .sidebar-bg { background-color: #2c3e50; }
+    .header-bg {
+      background-color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
-    header {
-      background-color: #3f51b5;
-      color: white;
-      padding: 1rem;
-      text-align: center;
+    .card-bg {
+      background-color: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
-    .container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      background: white;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      overflow-x: auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-    th {
-      background-color: #e3e8f0;
-    }
-    button {
-      padding: 6px 12px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:disabled {
-      cursor: not-allowed;
-    }
-    .loader {
-      display: none;
-      text-align: center;
-      font-weight: bold;
-      color: #333;
-      padding: 10px;
-    }
-    .success { color: green; }
-    .error { color: red; }
-    button.approving { background-color: #f0ad4e; }
-    button.approved { background-color: #5cb85c; }
-    button.error { background-color: #d9534f; }
+    .table-header { background-color: #f7fafc; color: #36414c; }
+    .btn-primary { background-color: #5e64ff; color: white; }
+    .btn-primary:hover { background-color: #4a50e0; }
+    .text-muted { color: #8d99a6; }
+    .nav-link { color: #d1d8dd; }
+    .nav-link:hover { color: white; }
+    .active-link { color: white; background-color: rgba(255,255,255,0.1); }
+    .table-row:hover { background-color: #f8f9fa; }
   </style>
 </head>
-<body>
+<body class="frappe-bg min-h-screen flex">
+  <div class="sidebar-bg w-64 min-h-screen text-white hidden md:block">
+    <div class="p-4 border-b border-gray-700">
+      <h1 class="text-xl font-semibold flex items-center">
+        <i class="fas fa-cube mr-2"></i> Frappe App
+      </h1>
+    </div>
+    <nav class="mt-4">
+      <div class="px-4 py-2 text-xs uppercase tracking-wider text-gray-400">Modules</div>
+      <a href="#" class="nav-link active-link flex items-center px-4 py-2">
+        <i class="fas fa-table mr-3"></i> Data Tables
+      </a>
+      <a href="#" class="nav-link flex items-center px-4 py-2">
+        <i class="fas fa-chart-bar mr-3"></i> Reports
+      </a>
+      <a href="#" class="nav-link flex items-center px-4 py-2">
+        <i class="fas fa-cog mr-3"></i> Settings
+      </a>
+      <div class="px-4 py-2 text-xs uppercase tracking-wider text-gray-400 mt-4">Tools</div>
+      <a href="#" class="nav-link flex items-center px-4 py-2">
+        <i class="fas fa-calendar mr-3"></i> Calendar
+      </a>
+      <a href="#" class="nav-link flex items-center px-4 py-2">
+        <i class="fas fa-users mr-3"></i> Users
+      </a>
+    </nav>
+  </div>
 
-<header>
-  <h1>Google Sheet Data Viewer</h1>
-</header>
+  <div class="flex-1 flex flex-col">
+    <header class="header-bg py-3 px-6 flex items-center justify-between">
+      <div class="flex items-center">
+        <button class="md:hidden mr-4 text-gray-600">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h2 class="text-lg font-semibold text-gray-800">Data Tables</h2>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="relative">
+          <input type="text" placeholder="Search..." class="pl-8 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500">
+          <i class="fas fa-search absolute left-2 top-3 text-gray-400"></i>
+        </div>
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+            <i class="fas fa-user"></i>
+          </div>
+          <span class="text-sm hidden md:inline">Admin</span>
+        </div>
+      </div>
+    </header>
 
-<div class="container">
-  <div id="loader" class="loader">⏳ Loading data...</div>
-  <table id="data-table">
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th>Website</th>
-        <th>Status</th>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Company Name</th>
-        <th>Company Category</th>
-        <th>Approve</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Data will be inserted here -->
-    </tbody>
-  </table>
-</div>
+    <main class="flex-1 p-6">
+      <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800">Google Sheet Viewer</h3>
+          <p class="text-muted text-sm">Live view and approval of data</p>
+        </div>
+      </div>
 
-<script>
-  const sheetAPI = 'https://sheets.googleapis.com/v4/spreadsheets/1uGmiqozxfHfsklaNE3DMSnjzT5B4vCHEbXAao38R4Eg/values/Sheet1?alt=json&key=AIzaSyDw0WDpU5A1cujeUD4qgIMPP1IfkGmBxnE';
-  const updateAPI = 'https://script.google.com/macros/s/AKfycby1a_oZNyHZdiN5OKu6VGbbQgh97PzAMMVPbhd4U9SwU-r7rMlMNrGnulLifqrzg_LfKw/exec'; 
+      <div class="card-bg overflow-hidden">
+        <div id="loader" class="text-sm text-center text-gray-500 py-3">Loading...</div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="table-header">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"><input type="checkbox"></th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Name</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Email</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Phone</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Status</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Company Name</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Category</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
+              </tr>
+            </thead>
+            <tbody id="data-table-body" class="bg-white divide-y divide-gray-200">
+              <!-- Dynamic rows go here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
 
-  async function fetchData() {
-    const loader = document.getElementById('loader');
-    loader.style.display = 'block';
+  <script>
+    const sheetAPI = 'https://sheets.googleapis.com/v4/spreadsheets/1uGmiqozxfHfsklaNE3DMSnjzT5B4vCHEbXAao38R4Eg/values/Sheet1?alt=json&key=AIzaSyDw0WDpU5A1cujeUD4qgIMPP1IfkGmBxnE';
+    const updateAPI = 'https://script.google.com/macros/s/AKfycby1a_oZNyHZdiN5OKu6VGbbQgh97PzAMMVPbhd4U9SwU-r7rMlMNrGnulLifqrzg_LfKw/exec';
 
-    try {
-      const response = await fetch(sheetAPI);
-      const data = await response.json();
+    async function fetchData() {
+      const tbody = document.getElementById('data-table-body');
+      const loader = document.getElementById('loader');
+      tbody.innerHTML = '';
+      loader.style.display = 'block';
 
-      const headers = data.values[0];
-      const rows = data.values.slice(1);
+      try {
+        const res = await fetch(sheetAPI);
+        const data = await res.json();
+        const headers = data.values[0];
+        const rows = data.values.slice(1).map(row => {
+          const obj = {};
+          headers.forEach((h, i) => obj[h] = row[i] || '');
+          return obj;
+        }).filter(row => row.Status !== 'Approved');
 
-      const formattedRows = rows.map(row => {
-        const obj = {};
-        headers.forEach((header, i) => {
-          obj[header] = row[i] || '';
-        });
-        return obj;
-      }).filter(row => row.Status !== 'Approved');
-
-      populateTable(formattedRows);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      loader.textContent = '❌ Error loading data';
-      loader.classList.add('error');
-    } finally {
-      loader.style.display = 'none';
-    }
-  }
-
-  function populateTable(rows) {
-    const tbody = document.querySelector('#data-table tbody');
-    tbody.innerHTML = '';
-    rows.forEach(row => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${row.Email || '-'}</td>
-        <td>${row.Website || '-'}</td>
-        <td>${row.Status || '-'}</td>
-        <td>${row.Name || '-'}</td>
-        <td>${row.Phone || '-'}</td>
-        <td>${row['Company Name'] || '-'}</td>
-        <td>${row['Company Category'] || '-'}</td>
-      `;
-      const td = document.createElement('td');
-      const btn = document.createElement('button');
-      btn.textContent = 'Approve';
-      btn.addEventListener('click', () => approveRow(btn, row));
-      td.appendChild(btn);
-      tr.appendChild(td);
-      tbody.appendChild(tr);
-    });
-  }
-
-  async function approveRow(button, row) {
-    button.disabled = true;
-    button.textContent = '⏳ Approving...';
-    button.classList.add('approving');
-
-    const loader = document.getElementById('loader');
-    loader.textContent = '⏳ Updating row in Google Sheet...';
-    loader.style.display = 'block';
-    loader.className = 'loader';
-
-    try {
-      const response = await fetch(updateAPI, {
-        method: 'POST',
-        mode: 'no-cors', // Remove this in production if CORS headers are fixed
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: row.Email, status: 'Approved' })
-      });
-
-      button.textContent = '✅ Approved';
-      button.classList.remove('approving');
-      button.classList.add('approved');
-      loader.textContent = '✅ Approved successfully!';
-      loader.classList.add('success');
-    } catch (err) {
-      button.disabled = false;
-      button.textContent = '❌ Error';
-      button.classList.remove('approving');
-      button.classList.add('error');
-
-      loader.textContent = '❌ Error approving data: ' + err.message;
-      loader.classList.add('error');
-    }
-
-    setTimeout(() => {
-      loader.style.display = 'none';
-      if (button.classList.contains('error')) {
-        button.textContent = 'Approve';
-        button.classList.remove('error');
+        loader.style.display = 'none';
+        populateTable(rows);
+      } catch (err) {
+        loader.textContent = '❌ Error loading data';
       }
-    }, 3000);
-  }
+    }
 
-  fetchData();
-</script>
+    function populateTable(rows) {
+      const tbody = document.getElementById('data-table-body');
+      rows.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.classList.add('table-row');
+        tr.innerHTML = `
+          <td class="px-6 py-4"><input type="checkbox"></td>
+          <td class="px-6 py-4">${row.Name || '-'}</td>
+          <td class="px-6 py-4">${row.Email || '-'}</td>
+          <td class="px-6 py-4">${row.Phone || '-'}</td>
+          <td class="px-6 py-4">${row.Status || '-'}</td>
+          <td class="px-6 py-4">${row['Company Name'] || '-'}</td>
+          <td class="px-6 py-4">${row['Company Category'] || '-'}</td>
+          <td class="px-6 py-4">
+            <button class="approve-btn bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm">Approve</button>
+          </td>
+        `;
+        const btn = tr.querySelector('.approve-btn');
+        btn.addEventListener('click', () => approveRow(btn, row));
+        tbody.appendChild(tr);
+      });
+    }
 
+    async function approveRow(button, row) {
+      button.disabled = true;
+      button.textContent = '⏳ Approving...';
+      try {
+        await fetch(updateAPI, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: row.Email, status: 'Approved' })
+        });
+        button.textContent = '✅ Approved';
+        setTimeout(() => fetchData(), 2000);
+      } catch (err) {
+        button.disabled = false;
+        button.textContent = '❌ Error';
+      }
+    }
+
+    fetchData();
+  </script>
 </body>
 </html>

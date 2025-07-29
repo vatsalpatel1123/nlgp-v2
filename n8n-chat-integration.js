@@ -23,7 +23,7 @@
 
     // n8n Webhook Configuration
     const N8N_CONFIG = {
-        webhookUrl: 'https://n8n.srv791889.hstgr.cloud/webhook/a8205c39-11e6-4be8-a95f-6f9ad5df6a25', // Replace with your actual n8n webhook URL
+        webhookUrl: 'https://automate.axonflash.com/webhook/a8205c39-11e6-4be8-a95f-6f9ad5df6a25', // Replace with your actual n8n webhook URL
         timeout: 10000, // 10 seconds timeout
         retryAttempts: 3,
         debugMode: true // Set to false in production

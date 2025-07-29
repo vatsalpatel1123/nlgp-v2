@@ -1,8 +1,8 @@
 
 const WEBHOOK_CONFIG = {
     // Replace with your actual n8n webhook URLs
-    DEMO_FORM_WEBHOOK: 'https://n8n.srv791889.hstgr.cloud/webhook/demo-form-submission',
-    CONTACT_FORM_WEBHOOK: 'https://n8n.srv791889.hstgr.cloud/webhook/demo-form-submission',
+    DEMO_FORM_WEBHOOK: 'https://automate.axonflash.com/webhook/demo-form-submission',
+    CONTACT_FORM_WEBHOOK: 'https://automate.axonflash.com/webhook/demo-form-submission',
     
     // Optional: Add timeout and retry settings
     TIMEOUT: 10000, // 10 seconds

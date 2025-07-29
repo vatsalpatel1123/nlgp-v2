@@ -30,7 +30,7 @@ function handleNewsletterFormSubmission(form, submitBtn) {
     email: formData.get('form_fields[email]')
   };
 
-  const webhookUrl = 'https://n8n.srv791889.hstgr.cloud/webhook/newsletter';
+  const webhookUrl = 'https://automate.axonflash.com/webhook/newsletter';
 
   fetch(webhookUrl, {
     method: 'POST',
