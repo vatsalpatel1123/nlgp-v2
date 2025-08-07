@@ -1,634 +1,626 @@
-
-
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introducing Our New AI-Powered Platform</title>
-    <style>
-      body, html {
-        margin: 0;
-        padding: 0;
-        font-family: 'Inter', sans-serif;
-        color: #24201d;
-        background-color: #f5f5f5;
-      }
-      .email-container {
-        max-width: 600px;
-        margin: 0 auto;
-        background-color: #FFFFFF;
-        border-radius: 8px;
-        overflow: hidden;
-      }
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AxonFlash - Transforming Decisions with AI Automation</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      color: #ffffff;
+      background-color: #0a0a0a;
+      line-height: 1.6;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    .header {
+      padding: 40px 30px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #ff4a02 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://framerusercontent.com/images/owwKtlNdFLOnLdJ6Jdj6hOguZSk.png') center/cover;
+      opacity: 0.1;
+      z-index: 1;
+    }
+    .header-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo-circle {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #ff4a02, #ff6b2d);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      box-shadow: 0 8px 20px rgba(255, 74, 2, 0.3);
+    }
+    .logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+    .logo-subtitle {
+      color: #ff4a02;
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .content {
+      padding: 40px 30px;
+      background-color: #1a1a1a;
+    }
+    .divider {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      display: inline-block;
+      width: 25%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #ff4a02, transparent);
+      vertical-align: middle;
+    }
+    .divider-text {
+      display: inline-block;
+      padding: 0 20px;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 600;
+      color: #ff4a02;
+      letter-spacing: 2px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff, #ff4a02);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    p {
+      color: #cccccc;
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+    .greeting {
+      margin-bottom: 25px;
+      font-size: 18px;
+    }
+    .name-highlight {
+      font-weight: 600;
+      color: #ff4a02;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+    .service-card {
+      background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
+      border: 1px solid #333;
+      border-radius: 16px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #ff4a02, #ff6b2d);
+    }
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #ff4a02, #ff6b2d);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(255, 74, 2, 0.2);
+    }
+    .service-icon i {
+      font-size: 28px;
+      color: #ffffff;
+    }
+    .service-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    .service-description {
+      color: #cccccc;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .features-section {
+      background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px 0;
+      border: 1px solid #333;
+    }
+    .features-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 20px;
+      background: rgba(255, 74, 2, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 74, 2, 0.1);
+    }
+    .feature-icon-circle {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #ff4a02, #ff6b2d);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    .feature-icon-circle i {
+      color: #ffffff;
+      font-size: 20px;
+    }
+    .feature-content h4 {
+      color: #ffffff;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+      font-size: 16px;
+    }
+    .feature-content p {
+      color: #cccccc;
+      margin: 0;
+      font-size: 14px;
+    }
+    .integrations-section {
+      margin: 40px 0;
+      text-align: center;
+    }
+    .integrations-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .integrations-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .integration-logo {
+      width: 80px;
+      height: 80px;
+      background: #2a2a2a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ff4a02;
+      font-size: 24px;
+    }
+    .testimonials-section {
+      background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px 0;
+      border: 1px solid #333;
+    }
+    .testimonials-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .testimonial {
+      background: rgba(255, 74, 2, 0.05);
+      border: 1px solid rgba(255, 74, 2, 0.1);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 25px;
+      position: relative;
+    }
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 60px;
+      color: #ff4a02;
+      opacity: 0.3;
+    }
+    .testimonial-text {
+      color: #ffffff;
+      font-size: 16px;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    .author-info h5 {
+      color: #ff4a02;
+      margin: 0 0 4px 0;
+      font-weight: 600;
+    }
+    .author-info p {
+      color: #cccccc;
+      margin: 0;
+      font-size: 14px;
+    }
+    .cta-container {
+      text-align: center;
+      margin: 50px 0;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #ff4a02, #ff6b2d);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 18px;
+      box-shadow: 0 8px 25px rgba(255, 74, 2, 0.3);
+      transition: transform 0.3s ease;
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+    }
+    .cta-note {
+      color: #cccccc;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+    .footer {
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+      padding: 40px 30px;
+      border-top: 1px solid #333;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .footer-subtitle {
+      color: #ff4a02;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 25px;
+    }
+    .footer-link {
+      color: #cccccc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .footer-link:hover {
+      color: #ff4a02;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+    }
+    .copyright {
+      color: #999999;
+      font-size: 12px;
+    }
+    @media only screen and (max-width: 600px) {
       .header {
         padding: 30px 20px;
-        background-color: #14100b;
-        color: #FFFFFF;
-        position: relative;
       }
-      .header-content {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .header-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #14100b, #ff4a0250);
-        z-index: 1;
-      }
-      .header-bg-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.2;
-        background-image: url('https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1932&auto=format&fit=crop');
-        background-size: cover;
-        background-position: center;
-        z-index: 0;
-      }
-      .logo {
-        display: flex;
-        align-items: center;
-      }
-      .logo-circle {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #ff4a02;
-        color: #14100b;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        margin-right: 10px;
-        font-size: 18px;
-      }
-      .logo-text {
-        font-family: 'SF Pro Display', 'Inter', sans-serif;
-        letter-spacing: -0.025em;
-        color: #FFFFFF;
-      }
-      .subheader {
-        color: #FFFFFFCC;
-        font-size: 14px;
-      }
-      
       .content {
         padding: 30px 20px;
-        background-color: #FFFFFF;
       }
-      .divider {
-        text-align: center;
-        margin-bottom: 20px;
-        position: relative;
-      }
-      .divider:before, .divider:after {
-        content: "";
-        display: inline-block;
-        width: 30%;
-        height: 1px;
-        background: linear-gradient(to right, transparent, #ff4a0280, transparent);
-        vertical-align: middle;
-      }
-      .divider-text {
-        display: inline-block;
-        padding: 0 10px;
-        text-transform: uppercase;
-        font-size: 14px;
-        color: #24201dB3;
-      }
-      h1 {
-        font-family: 'SF Pro Display', 'Inter', sans-serif;
-        color: #14100b;
-        font-size: 24px;
-        margin-bottom: 20px;
-        text-align: center;
-      }
-      p {
-        line-height: 1.6;
-        margin-bottom: 16px;
-      }
-      .greeting {
-        margin-bottom: 20px;
-      }
-      .name-highlight {
-        font-weight: 600;
-        color: #14100b;
-      }
-      .date-highlight {
-        font-weight: 500;
-        color: #14100b;
-        position: relative;
-        display: inline-block;
-      }
-      .date-highlight:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 30%;
-        background-color: #ff4a0233;
-        z-index: -1;
-        border-radius: 2px;
-      }
-      .benefits-box {
-        background-color: #f9f9f9;
-        border: 1px solid #ff4a0220;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 30px;
-      }
-      .benefits-title {
-        font-family: 'SF Pro Display', 'Inter', sans-serif;
-        color: #14100b;
-        font-size: 18px;
-        margin-bottom: 15px;
-        font-weight: 500;
-      }
-      .benefit-item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 10px;
-      }
-      .benefit-icon {
-        color: #ff4a02;
-        margin-right: 10px;
-        flex-shrink: 0;
-      }
-      .benefit-text {
-        font-size: 14px;
-      }
-      .investment-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        margin-bottom: 30px;
-      }
-      .investment-card {
-        flex: 1 1 calc(50% - 8px);
-        min-width: 200px;
-        border: 1px solid #ff4a0220;
-        border-radius: 8px;
-        padding: 16px;
-        position: relative;
-        background-color: #FFFFFF;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      }
-      .card-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 16px;
-      }
-      .card-title {
-        font-weight: 600;
-        color: #14100b;
-        margin-bottom: 4px;
-      }
-      .card-subtitle {
-        font-size: 12px;
-        color: #24201d99;
-      }
-      .card-percentage {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background-color: #ff4a0215;
-        border: 1px solid #ff4a0240;
-        display: flex;
+      .header-content {
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        text-align: center;
       }
-      .percentage-value {
-        font-weight: bold;
-        color: #14100b;
-        font-size: 16px;
-      }
-      .percentage-symbol {
-        font-size: 10px;
-        color: #14100b99;
-        margin-top: -2px;
-      }
-      .card-description {
-        font-size: 14px;
-      }
-      .card-bar {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 4px;
-        width: 100%;
-        background: linear-gradient(to right, #14100b80, #14100b30);
-      }
-      .featured-section {
-        margin-bottom: 30px;
-      }
-      .featured-title {
-        font-family: 'SF Pro Display', 'Inter', sans-serif;
-        color: #14100b;
-        font-size: 18px;
+      .logo {
         margin-bottom: 15px;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
       }
-      .featured-icon {
-        color: #ff4a02;
-        margin-right: 8px;
+      .services-grid {
+        grid-template-columns: 1fr;
       }
-      .feature-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 12px;
-      }
-      .feature-icon-circle {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background-color: #f9f9f9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 12px;
-        flex-shrink: 0;
-      }
-      .feature-icon {
-        color: #14100b;
-      }
-      .cta-container {
-        text-align: center;
-        margin-bottom: 30px;
-      }
-      .cta-button {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color: #ff4a02;
-        color: white;
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: 500;
-        margin-bottom: 16px;
-      }
-      .cta-note {
-        font-size: 12px;
-        color: #24201dB3;
-      }
-      .resources-title {
-        font-family: 'SF Pro Display', 'Inter', sans-serif;
-        color: #14100b;
-        font-size: 18px;
-        margin-bottom: 15px;
-        font-weight: 500;
-        text-align: center;
-      }
-      .resources-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        margin-bottom: 30px;
-      }
-      .resource-card {
-        flex: 1 1 calc(33.333% - 11px);
-        min-width: 150px;
-        border: 1px solid #ff4a0220;
-        border-radius: 8px;
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        text-decoration: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-        background-color: #FFFFFF;
-      }
-      .resource-icon-circle {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background-color: #14100b0D;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 12px;
-      }
-      .resource-icon {
-        color: #14100b;
-      }
-      .resource-title {
-        font-weight: 500;
-        color: #14100b;
-        margin-bottom: 4px;
-      }
-      .resource-description {
-        font-size: 12px;
-        color: #24201dB3;
-      }
-      .footer {
-        background-color: #14100b;
-        color: #FFFFFF;
-        padding: 20px;
+      .features-grid {
+        grid-template-columns: 1fr;
       }
       .footer-content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-bottom: 20px;
+        flex-direction: column;
+        gap: 20px;
       }
-      .footer-logo {
-        margin-bottom: 16px;
+      h1 {
+        font-size: 24px;
       }
-      .footer-links {
-        display: flex;
-        gap: 16px;
-      }
-      .footer-link {
-        color: #FFFFFFCC;
-        text-decoration: none;
-        font-size: 14px;
-      }
-      .footer-bottom {
-        text-align: center;
-        padding-top: 16px;
-        border-top: 1px solid #FFFFFF1A;
-      }
-      .copyright {
-        font-size: 12px;
-        color: #FFFFFF99;
-      }
-      .methodology {
-        margin-bottom: 30px;
-      }
-      .methodology-item {
-        display: flex;
-        align-items: center;
-        padding: 8px 0;
-        border-top: 1px solid #ff4a022060;
-      }
-      .step-number {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background-color: #ff4a0215;
-        border: 1px solid #ff4a0230;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 12px;
-        flex-shrink: 0;
-        color: #ff4a02;
-        font-size: 12px;
-        font-weight: 600;
-      }
-      
-      /* Why Join Section */
-      .why-join-section {
-        background-color: #f9f9f960;
-        border: 1px solid #ff4a0220;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 30px;
-      }
-      
-      .why-join-title {
-        font-family: 'SF Pro Display', 'Inter', sans-serif;
-        color: #14100b;
-        font-size: 20px;
-        margin-bottom: 16px;
-        font-weight: 600;
-      }
-      
-      .benefits-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 14px;
-      }
-      
-      .benefit-dot {
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #ff4a02;
-        margin-right: 8px;
-      }
-      
-      /* Your Role Section */
-      .role-section {
-        margin-bottom: 30px;
-      }
-      
-      .role-title {
-        font-family: 'SF Pro Display', 'Inter', sans-serif;
-        color: #14100b;
-        font-size: 20px;
-        margin-bottom: 16px;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-      }
-      
-      .role-title-icon {
-        color: #ff4a02;
-        margin-right: 8px;
-      }
-      
-      .role-item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 16px;
-      }
-      
-      .role-icon {
-        width: 28px;
-        height: 28px;
-        margin-right: 12px;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      @media only screen and (max-width: 480px) {
-        .header-content {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .subheader {
-          margin-top: 8px;
-        }
-        .investment-card, .resource-card {
-          flex: 1 1 100%;
-        }
-        .feature-icon-circle {
-          width: 24px;
-          height: 24px;
-        }
-        .benefits-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="email-container">
-      <!-- Header -->
-      <div class="header">
-        <div class="header-bg"></div>
-        
-        <div class="header-content">
-          <div class="logo">
-            <img src="https://storage.googleapis.com/lovable-projects/lovable-uploads/bc650133-e099-4ebb-9b93-65bbf576e820.png" alt="AxonFlash Logo" width="32" height="32" style="margin-right: 10px;">
-            <div class="logo-text">Tech Solutions</div>
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-circle">
+            <i class="fas fa-bolt" style="color: white; font-size: 24px;"></i>
           </div>
-          <div class="subheader">AI Innovation</div>
-        </div>
-      </div>
-      
-      <!-- Content -->
-      <div class="content">
-        <div class="divider">
-          <span class="divider-text">New Release</span>
-        </div>
-        
-        <h1>Revolutionizing Automation with AI</h1>
-        
-        
-          <p class="greeting">
-            Dear <span class="name-highlight">Valued Client</span>,
-          </p>
-        
-        
-        
-          <p>Dear Valued Client,
-          </p>
-        
-          <p>We are thrilled to announce the launch of our new AI-powered platform, designed to revolutionize your automation processes. This platform leverages cutting-edge artificial intelligence to provide unparalleled efficiency and insights.
-          </p>
-        
-          <p>With our new platform, you can automate complex tasks, optimize workflows, and gain a competitive edge in today's fast-paced market.
-          </p>
-        
-        
-        
-        
-        
-        
-        
-          <div class="benefits-box">
-            <h3 class="benefits-title">Key Features</h3>
-            
-            <div class="benefits-list">
-              
-                <div class="benefit-item">
-                  <div class="benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4a02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                  <div class="benefit-text">AI-powered automation</div>
-                </div>
-              
-                <div class="benefit-item">
-                  <div class="benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4a02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                  <div class="benefit-text">Real-time data analytics</div>
-                </div>
-              
-                <div class="benefit-item">
-                  <div class="benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4a02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                  <div class="benefit-text">Customizable workflows</div>
-                </div>
-              
-                <div class="benefit-item">
-                  <div class="benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4a02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                  <div class="benefit-text">Seamless integration with existing systems</div>
-                </div>
-              
-            </div>
+          <div>
+            <div class="logo-text">AxonFlash</div>
+            <div class="logo-subtitle">AI Automation</div>
           </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <div class="cta-container">
-          <a href="#action" class="cta-button">
-            Learn More <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </a>
-          
-          <p class="cta-note">
-            Thank you for your continued partnership
-          </p>
-        </div>
-        
-        
-        
-        <h3 class="resources-title">Additional Resources</h3>
-        
-        <div class="resources-grid">
-          <a href="#pdf" class="resource-card">
-            <div class="resource-icon-circle">
-              <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14100b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
-            </div>
-            <div class="resource-title">Product Overview</div>
-            <div class="resource-description">Key features and benefits</div>
-          </a>
-          
-          <a href="#ppt" class="resource-card">
-            <div class="resource-icon-circle">
-              <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14100b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18.4 9l-6-6-7 7"></path><path d="M18.4 15l-6-6-7 7"></path></svg></div>
-            </div>
-            <div class="resource-title">Success Stories</div>
-            <div class="resource-description">Case studies and results</div>
-          </a>
-          
-          <a href="#website" class="resource-card">
-            <div class="resource-icon-circle">
-              <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14100b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
-            </div>
-            <div class="resource-title">Knowledge Base</div>
-            <div class="resource-description">Interactive resources</div>
-          </a>
-        </div>
-      </div>
-      
-      <!-- Footer -->
-      <div class="footer">
-        <div class="footer-content">
-          <div class="footer-logo">
-            <div style="font-family: 'SF Pro Display', 'Inter', sans-serif; color: white;">
-              Tech Solutions
-            </div>
-            <div style="color: #ff4a02; font-size: 14px;">
-              AI Innovation
-            </div>
-          </div>
-          
-          <div class="footer-links">
-            <a href="#contact" class="footer-link">Contact</a>
-            <a href="#privacy" class="footer-link">Privacy</a>
-            <a href="#terms" class="footer-link">Terms</a>
-          </div>
-        </div>
-        
-        <div class="footer-bottom">
-          <p class="copyright">
-            © 2025 Tech Solutions. All rights reserved.<br>
-            This email was sent to you because you have an active subscription with us.
-          </p>
         </div>
       </div>
     </div>
-  </body>
-  </html>
-  
+    
+    <!-- Content -->
+    <div class="content">
+      <div class="divider">
+        <span class="divider-text">AI Innovation</span>
+      </div>
+      
+      <h1>Transforming Decisions with AI Automation</h1>
+      
+      <p class="greeting">
+        Dear <span class="name-highlight">Valued Partner</span>,
+      </p>
+      
+      <p>We're excited to introduce you to the future of business automation with AxonFlash. Our cutting-edge AI technology transforms raw data into actionable insights, empowering your business to make smarter decisions and achieve unprecedented efficiency.</p>
+      
+      <p>Experience the power of intelligent automation that scales with your business needs, streamlines operations, and delivers measurable results.</p>
+      
+      <!-- Services Grid -->
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="service-title">Data-Driven Insights</div>
+          <div class="service-description">Transform raw data into precise, actionable insights that power smarter business decisions and drive growth.</div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <div class="service-title">Automation Optimization</div>
+          <div class="service-description">Streamline repetitive tasks to enhance efficiency and precision across all your business operations.</div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="service-title">Advanced AI Insights</div>
+          <div class="service-description">Leverage cutting-edge AI technology to unlock hidden patterns and opportunities in your data.</div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-link"></i>
+          </div>
+          <div class="service-title">Seamless Integrations</div>
+          <div class="service-description">Connect effortlessly with leading business tools like Salesforce, Slack, Discord, and ChatGPT.</div>
+        </div>
+      </div>
+      
+      <!-- Features Section -->
+      <div class="features-section">
+        <h2 class="features-title">Why Leading Businesses Choose AxonFlash</h2>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon-circle">
+              <i class="fas fa-user-friendly"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Easy Access</h4>
+              <p>User-friendly interface makes AI functions simple for all skill levels</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon-circle">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Smart Automation</h4>
+              <p>Automate routine tasks to focus on high-impact, strategic work</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon-circle">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Trusted Security</h4>
+              <p>Top-level encryption and GDPR compliance ensure your data stays secure</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon-circle">
+              <i class="fas fa-analytics"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Insightful Analytics</h4>
+              <p>Unlock actionable insights and accurate forecasts for smarter decisions</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon-circle">
+              <i class="fas fa-plug"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Seamless Integrations</h4>
+              <p>Effortlessly connect with your existing tools for a unified experience</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon-circle">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="feature-content">
+              <h4>24/7 Support</h4>
+              <p>Our dedicated support team is ready to help you succeed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Integrations Section -->
+      <div class="integrations-section">
+        <h2 class="integrations-title">Effortless Integrations</h2>
+        <p>Connect with your favorite business tools and streamline operations</p>
+        <div class="integrations-logos">
+          <div class="integration-logo"><i class="fab fa-salesforce"></i></div>
+          <div class="integration-logo"><i class="fab fa-hubspot"></i></div>
+          <div class="integration-logo"><i class="fab fa-slack"></i></div>
+          <div class="integration-logo"><i class="fab fa-discord"></i></div>
+          <div class="integration-logo"><i class="fab fa-shopify"></i></div>
+          <div class="integration-logo"><i class="fab fa-stripe"></i></div>
+          <div class="integration-logo"><i class="fab fa-google-drive"></i></div>
+          <div class="integration-logo"><i class="fab fa-aws"></i></div>
+        </div>
+      </div>
+      
+      <!-- Testimonials Section -->
+      <div class="testimonials-section">
+        <h2 class="testimonials-title">What Our Clients Say</h2>
+        
+        <div class="testimonial">
+          <div class="testimonial-text">
+            AxonFlash revolutionized our workflow! The AI automation saved us countless hours, making our business operations seamless and efficient.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h5>Brandley Gordon</h5>
+              <p>CEO & Founder, Archin Studio</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial">
+          <div class="testimonial-text">
+            The AI Agent's ability to streamline tasks and provide intelligent insights is a game-changer. Highly recommended for any business!
+          </div>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h5>Roking Hridoy</h5>
+              <p>CEO & Founder, InnovateTech</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CTA Section -->
+      <div class="cta-container">
+        <a href="#" class="cta-button">
+          Transform Your Business Today <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+        </a>
+        <p class="cta-note">
+          Ready to revolutionize your operations with AI? Let's get started.
+        </p>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-content">
+        <div>
+          <div class="footer-logo">AxonFlash</div>
+          <div class="footer-subtitle">Intelligence That Scales</div>
+        </div>
+        
+        <div class="footer-links">
+          <a href="#" class="footer-link">Contact Us</a>
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="copyright">
+          © 2025 AxonFlash. All rights reserved.<br>
+          Empowering businesses with cutting-edge AI automation solutions.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
