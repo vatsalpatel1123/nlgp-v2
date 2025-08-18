@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="https://gmpg.org/xfn/11">
-  <title>About - Next Level Growth Partners | AI Lead Conversion Experts</title>
+  <title>Blogs - Next Level Growth Partners | AI Lead Conversion Experts</title>
   <meta name='robots' content='max-image-preview:large' />
   <style>
     img:is([sizes="auto" i], [sizes^="auto," i]) {
@@ -48810,21 +48810,27 @@
       });
     }
 
-    function renderPagination(totalPages) {
-      paginationContainer.innerHTML = '';
+function renderPagination(totalPages) {
+  if (totalPages <= 1) {
+    paginationContainer.classList.add('hidden');
+    return;
+  }
+  paginationContainer.classList.remove('hidden');
+  paginationContainer.innerHTML = '';
 
-      const createBtn = (label, page, isActive = false) => {
-        return `<button onclick="goToPage(${page})" class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">${label}</button>`;
-      };
+  const createBtn = (label, page, isActive = false) => {
+    return `<button onclick="goToPage(${page})" class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition">${label}</button>`;
+  };
 
-      paginationContainer.innerHTML += `<button onclick="goToPage(${Math.max(currentPage - 1, 1)})" class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-left"></i></button>`;
+  paginationContainer.innerHTML += `<button onclick="goToPage(${Math.max(currentPage - 1, 1)})" class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-left"></i></button>`;
 
-      for (let i = 1; i <= totalPages; i++) {
-        paginationContainer.innerHTML += createBtn(i, i, i === currentPage);
-      }
+  for (let i = 1; i <= totalPages; i++) {
+    paginationContainer.innerHTML += createBtn(i, i, i === currentPage);
+  }
 
-      paginationContainer.innerHTML += `<button onclick="goToPage(${Math.min(currentPage + 1, totalPages)})" class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-right"></i></button>`;
-    }
+  paginationContainer.innerHTML += `<button onclick="goToPage(${Math.min(currentPage + 1, totalPages)})" class="px-4 py-2 rounded-full bg-darkblue-700 text-gray-300 hover:bg-darkblue-600 transition"><i class="fas fa-chevron-right"></i></button>`;
+}
+
 
     window.goToPage = (page) => {
       currentPage = page;
@@ -48838,6 +48844,7 @@
 
     if (!blogs) {
       error.classList.remove('hidden');
+      paginationContainer.classList.add('hidden'); 
       return;
     }
 
