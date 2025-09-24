@@ -121,11 +121,22 @@
     const API_URL = 'https://api.baserow.io/api/database/rows/table/658007/?user_field_names=true';
     const API_TOKEN = 'dq5ZamHGgdU0fv4BgbvUSakrh4c12idq'; // Replace with your real token
 
+    // function formatDateTime(dateString) {
+    //   const date = new Date(dateString);
+    //   return isNaN(date.getTime()) ? dateString : date.toLocaleString();
+    // }
     function formatDateTime(dateString) {
-      const date = new Date(dateString);
-      return isNaN(date.getTime()) ? dateString : date.toLocaleString();
-    }
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return dateString;
 
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}-${month}-${year}`;
+}
+
+    
     async function fetchCallLogs() {
       const loadingElement = document.getElementById('loading');
       const container = document.getElementById('call-log-container');
