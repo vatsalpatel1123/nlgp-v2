@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Call Log Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header, footer {
+      background-color: #0B3D2C;
+      color: #fff;
+      padding: 15px 20px;
+      text-align: center;
+      position: sticky;
+      z-index: 1000;
+    }
+
+    header { top: 0; }
+    footer { bottom: 0; }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .header-content img {
+      height: 40px;
+      width: auto;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 100px auto 60px;
+      padding: 0 20px;
+    }
+
+    .loading {
+      text-align: center;
+      font-size: 16px;
+      color: #0B3D2C;
+      margin-top: 30px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-left: 5px solid #0B3D2C;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      padding: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .card:hover { background-color: #f9f9f9; }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .card-title {
+      font-weight: bold;
+      color: #0B3D2C;
+    }
+
+    .card-meta {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .card-details {
+      display: none;
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #0B3D2C;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="https://nextlevelgrowthpartner.com/img/logo-color.png" alt="Company Logo">
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="loading" class="loading">Loading call logs...</div>
+    <div id="call-log-container"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Ben Turf Landscaping, LLC.</p>
+  </footer>
+
+  <script>
+    const API_URL = 'https://api.baserow.io/api/database/rows/table/658007/?user_field_names=true';
+    const API_TOKEN = 'dq5ZamHGgdU0fv4BgbvUSakrh4c12idq'; // Replace with your real token
+
+    function formatDateTime(dateString) {
+      const date = new Date(dateString);
+      return isNaN(date.getTime()) ? dateString : date.toLocaleString();
+    }
+
+    async function fetchCallLogs() {
+      const loadingElement = document.getElementById('loading');
+      const container = document.getElementById('call-log-container');
+
+      try {
+        const response = await fetch(API_URL, {
+          headers: { 'Authorization': `Token ${API_TOKEN}` }
+        });
+        const data = await response.json();
+        loadingElement.style.display = 'none';
+
+        if (data && data.results) {
+          renderCallLogs(data.results);
+        } else {
+          container.innerHTML = '<p>No call logs found.</p>';
+        }
+      } catch (error) {
+        loadingElement.textContent = 'Failed to load call logs.';
+        console.error('Error fetching call logs:', error);
+      }
+    }
+
+    function renderCallLogs(logs) {
+      const container = document.getElementById('call-log-container');
+      container.innerHTML = "";
+
+      // Sort by id DESC (latest first)
+      logs.sort((a, b) => b.id - a.id);
+
+      logs.forEach(log => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-title">${log.Name || 'Unknown Caller'}</div>
+            <div class="card-meta">
+              Duration: ${log['Call duration in min'] || 'N/A'} min | End: ${log['Call End Reason'] || 'N/A'}<br>
+              Date: ${formatDateTime(log.date)}
+            </div>
+          </div>
+          <div class="card-details">
+            <p><span class="label">Email:</span> ${log.Email || 'N/A'}</p>
+            <p><span class="label">Phone:</span> ${log['Phone number'] || 'N/A'}</p>
+            <p><span class="label">Lead Source:</span> ${log['Lead source'] || 'N/A'}</p>
+            <p><span class="label">Appointment Booked:</span> ${log['Appointment booked'] || 'N/A'}</p>
+            <p><span class="label">Project Description:</span> ${log['Project Description'] || 'N/A'}</p>
+            <p><span class="label">Call Summary:</span> ${log['Call Summary'] || 'N/A'}</p>
+            <p><span class="label">Transcript:</span></p>
+            <pre style="white-space: pre-wrap; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+${log.Transcription || 'No transcript available.'}
+            </pre>
+            <p><span class="label">Recording:</span></p>
+            <audio controls>
+              <source src="${log['Recording of the call']}" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+            
+          </div>
+        `;
+
+        card.onclick = () => {
+          const detail = card.querySelector('.card-details');
+          const isVisible = detail.style.display === 'block';
+          document.querySelectorAll('.card-details').forEach(el => el.style.display = 'none');
+          if (!isVisible) detail.style.display = 'block';
+        };
+
+        container.appendChild(card);
+      });
+    }
+
+    fetchCallLogs();
+  </script>
+</body>
+</html>
